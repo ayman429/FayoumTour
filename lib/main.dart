@@ -4,7 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Authentication/presentation/screens/authentication_welcome/authentication_welcome_screen.dart';
-import 'app_localizations.dart';
+import 'core/utils/app_localizations.dart';
 import 'core/services/services_locator.dart';
 import 'core/utils/constance/shared_pref.dart';
 import 'core/utils/constance/strings_manager.dart';

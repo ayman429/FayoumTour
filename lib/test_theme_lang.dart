@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'app_localizations.dart';
+import 'core/utils/app_localizations.dart';
 import 'core/utils/languages/bloc/app_language_bloc.dart';
 import 'core/utils/theme/bloc/app_theme_bloc.dart';
 

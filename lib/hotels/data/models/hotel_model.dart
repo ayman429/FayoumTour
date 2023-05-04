@@ -15,6 +15,7 @@ class HotelModel extends Hotel {
       required super.web,
       required super.email,
       required super.single,
+      // ignore: avoid_types_as_parameter_names
       required super.Double,
       required super.triple,
       required super.sweet,

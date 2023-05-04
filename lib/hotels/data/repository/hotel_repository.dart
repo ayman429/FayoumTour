@@ -122,10 +122,9 @@ class HotelRerpository extends BaseHotelRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updateCreateHotelRate(
-      hotelRateModel, HotelID) async {
-    final add = await baseHotelRemoteDataSource.updateCreateHotelRates(
-        hotelRateModel, HotelID);
+  Future<Either<Failure, Unit>> addHotelRate(hotelRateModel, HotelID) async {
+    final add =
+        await baseHotelRemoteDataSource.addHotelRates(hotelRateModel, HotelID);
     try {
       return Right(add);
     } on ServerException catch (failure) {

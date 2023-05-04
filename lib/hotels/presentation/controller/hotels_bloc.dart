@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../hotels/domain/usecase/get_hotel_usecase.dart';
 import '../../../core/usecase/base_usecase.dart';
 import '../../../core/utils/enums.dart';
-import '../../domain/usecase/get_hotel_usecase.dart';
 import 'hotels_event.dart';
 import 'hotels_state.dart';
 

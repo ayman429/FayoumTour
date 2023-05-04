@@ -13,9 +13,9 @@ class TourismPlace extends Equatable {
   double coordinatesX;
   double coordinatesY;
   String originalImage;
-  List<Images2> images2;
+  List<ImagesT> imagesT;
   int noOfRatings;
-  int avgRatings;
+  double avgRatings;
   RateOneByOne rateOneByOne;
   int user;
   CreatedBy? createdBy;
@@ -28,7 +28,7 @@ class TourismPlace extends Equatable {
     required this.coordinatesX,
     required this.coordinatesY,
     required this.originalImage,
-    required this.images2,
+    required this.imagesT,
     required this.noOfRatings,
     required this.avgRatings,
     required this.rateOneByOne,
@@ -46,7 +46,7 @@ class TourismPlace extends Equatable {
     data['coordinatesX'] = coordinatesX;
     data['coordinatesY'] = coordinatesY;
     data['originalImage'] = originalImage;
-    data['images'] = images2.map((v) => v.toJson()).toList();
+    data['images'] = imagesT.map((v) => v.toJson()).toList();
     data['no_of_ratings'] = noOfRatings;
     data['avg_ratings'] = avgRatings;
     data['rate_one_by_one'] = rateOneByOne.toJson();
@@ -66,7 +66,7 @@ class TourismPlace extends Equatable {
       coordinatesX,
       coordinatesY,
       originalImage,
-      images2,
+      imagesT,
       noOfRatings,
       avgRatings,
       rateOneByOne,

@@ -1,8 +1,8 @@
 import '../../domain/entities/img.dart';
 
-class Images2Model extends Images2 {
-  Images2Model({required super.image2});
+class ImagesTModel extends ImagesT {
+  ImagesTModel({required super.imageT});
 
-  factory Images2Model.fromJson(Map<String, dynamic> json) =>
-      Images2Model(image2: json['image']);
+  factory ImagesTModel.fromJson(Map<String, dynamic> json) =>
+      ImagesTModel(imageT: json['image']);
 }

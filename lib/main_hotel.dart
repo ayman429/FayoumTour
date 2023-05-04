@@ -1,12 +1,11 @@
-import 'package:dartz/dartz_unsafe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'TourismPlaces/presentation/controller/tourism_place_bloc.dart';
-import 'TourismPlaces/presentation/controller/tourism_place_event.dart';
-import 'TourismPlaces/presentation/controller/tourism_place_state.dart';
 import 'core/services/services_locator.dart';
 import 'core/utils/enums.dart';
+import 'hotels/presentation/controller/hotels_bloc.dart';
+import 'hotels/presentation/controller/hotels_event.dart';
+import 'hotels/presentation/controller/hotels_state.dart';
 
 void main() {
   ServicesLocator().init();
@@ -18,33 +17,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) {
-        return getIt<TourismPlaceBloc>()..add(GetTourismPlaceEvent());
+        return getIt<HotelsBloc>()..add(GetHotelsEvent());
       },
-      child: BlocBuilder<TourismPlaceBloc, TourismPlaceState>(
-          builder: (context, state) {
+      child: BlocBuilder<HotelsBloc, HotelsState>(builder: (context, state) {
         // print("object");
         // print(state);
-        if (state.tourismPlaceState == RequestState.loading) {
+        if (state.hotelState == RequestState.loading) {
           print("loading");
           return const MaterialApp(
             home: Scaffold(body: Center(child: CircularProgressIndicator())),
           );
-        } else if (state.tourismPlaceState == RequestState.loaded) {
+        } else if (state.hotelState == RequestState.loaded) {
           print("loded");
-          print(state.tourismPlace.length);
+          print(state.hotels.length);
           return MaterialApp(
               home: Scaffold(
                   body: ListView.builder(
-            itemCount: state.tourismPlace.length,
+            itemCount: state.hotels.length,
             itemBuilder: (context, index) {
-              final tourismPlace = state.tourismPlace[index];
-              return Center(
-                  child: Column(
-                children: [
-                  for (int i = 0; i < tourismPlace.imagesT.length; i++)
-                    Text(tourismPlace.imagesT[i].imageT)
-                ],
-              ));
+              final hotel = state.hotels[index];
+              hotel.images2[0].image2;
+              return Center(child: Text(hotel.images2[0].image2));
             },
           )));
           // print("st: ${state.hotelState}");
@@ -70,7 +63,7 @@ class MyApp extends StatelessWidget {
           //     ),
           //   ),
           // );
-        } else if (state.tourismPlaceState == RequestState.error) {
+        } else if (state.hotelState == RequestState.error) {
           print("error");
           return const MaterialApp(
             home: Scaffold(

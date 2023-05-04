@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+import 'Images.dart';
 import 'created_by.dart';
 import 'img.dart';
 import 'rate_one_by_one.dart';

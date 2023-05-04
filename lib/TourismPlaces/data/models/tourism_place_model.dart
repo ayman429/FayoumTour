@@ -1,3 +1,5 @@
+import 'package:fayoumtour/TourismPlaces/data/models/img_model.dart';
+
 import '../../domain/entities/tourism_place.dart';
 import 'created_by_model.dart';
 import 'img_model.dart';
@@ -13,7 +15,7 @@ class TourismPlaceModel extends TourismPlace {
       required super.coordinatesX,
       required super.coordinatesY,
       required super.originalImage,
-      required super.images2,
+      required super.imagesT,
       required super.noOfRatings,
       required super.avgRatings,
       required super.rateOneByOne,
@@ -21,10 +23,10 @@ class TourismPlaceModel extends TourismPlace {
       required super.createdBy});
 
   factory TourismPlaceModel.fromJson(Map<String, dynamic> json) {
-    List<Images2Model> image = <Images2Model>[];
+    List<ImagesTModel> image = <ImagesTModel>[];
     json['images'] != null
         ? json['images'].forEach((v) {
-            image.add(Images2Model.fromJson(v));
+            image.add(ImagesTModel.fromJson(v));
           })
         : [];
     return TourismPlaceModel(
@@ -36,7 +38,7 @@ class TourismPlaceModel extends TourismPlace {
       coordinatesX: json['coordinatesX'],
       coordinatesY: json['coordinatesY'],
       originalImage: json['originalImage'],
-      images2: image,
+      imagesT: image,
       noOfRatings: json['no_of_ratings'],
       avgRatings: json['avg_ratings'],
       rateOneByOne: RateOneByOneModel.fromJson(json['rate_one_by_one']),
@@ -57,7 +59,7 @@ class TourismPlaceModel extends TourismPlace {
           avgRatings: tourismPlace.avgRatings,
           noOfRatings: tourismPlace.noOfRatings,
           rateOneByOne: tourismPlace.rateOneByOne,
-          images2: tourismPlace.images2,
+          imagesT: tourismPlace.imagesT,
           user: tourismPlace.user,
           createdBy: tourismPlace.createdBy,
         );

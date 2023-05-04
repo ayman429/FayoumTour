@@ -7,11 +7,16 @@ import '../../Authentication/domain/usecase/get_user_details_usecase.dart';
 import '../../Authentication/domain/usecase/login_usecase.dart';
 import '../../Authentication/domain/usecase/registration_usecase.dart';
 import '../../Authentication/presentation/controller/authentication_bloc.dart';
-import '../../hotels/data/datasource/hotel_remote_data_source.dart';
-import '../../hotels/data/repository/hotel_repository.dart';
-import '../../hotels/domain/repository/base_hotel_repository.dart';
-import '../../hotels/domain/usecase/get_hotel_usecase.dart';
-import '../../hotels/presentation/controller/hotels_bloc.dart';
+import '../../TourismPlaces/data/datasource/tourism_place_remote_data_source.dart';
+import '../../TourismPlaces/data/repository/tourism_place_repository.dart';
+import '../../TourismPlaces/domain/repository/base_tourism_place_repository.dart';
+import '../../TourismPlaces/domain/usecase/get_tourism_place_usecase.dart';
+import '../../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
+import '../../Hotels/data/datasource/hotel_remote_data_source.dart';
+import '../../Hotels/data/repository/hotel_repository.dart';
+import '../../Hotels/domain/repository/base_hotel_repository.dart';
+import '../../Hotels/domain/usecase/get_hotel_usecase.dart';
+import '../../Hotels/presentation/controller/hotels_bloc.dart';
 import '../network/access_token_shared_preferences.dart';
 
 final getIt = GetIt.instance;
@@ -60,5 +65,20 @@ class ServicesLocator {
     /// DATA SOURCE
     getIt.registerLazySingleton<BaseHotelRemoteDataSource>(
         () => HotelRemoteDataSource());
+
+/* ****** Tourism Places ServicesLocator ****** */
+    /// Bloc
+    getIt.registerFactory(() => TourismPlaceBloc(getIt()));
+
+    /// Use Cases
+    getIt.registerLazySingleton(() => GetTourismPlaceUsecase(getIt()));
+
+    /// Repository
+    getIt.registerLazySingleton<BaseTourismPlaceRepository>(
+        () => TourismPlaceRerpository(getIt()));
+
+    /// DATA SOURCE
+    getIt.registerLazySingleton<BaseTourismPlaceRemoteDataSource>(
+        () => TourismPlaceRemoteDataSource());
   }
 }

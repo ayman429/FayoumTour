@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:fayoumtour/touristPlaces/data/models/tourism_place_model.dart';
-import 'package:fayoumtour/touristPlaces/domain/entities/tourism_place.dart';
 
 import '../../../core/error/faliure.dart';
+import '../../data/models/tourism_place_model.dart';
 import '../../data/models/tourism_place_rate_model.dart';
+import '../entities/tourism_place.dart';
 import '../entities/tourism_place_rate.dart';
 
 abstract class BaseTourismPlaceRepository {

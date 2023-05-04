@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:fayoumtour/touristPlaces/domain/repository/base_tourism_place_repository.dart';
 
 import '../../../core/error/exceptions.dart';
 import '../../../core/error/faliure.dart';
 import '../../domain/entities/tourism_place.dart';
 import '../../domain/entities/tourism_place_rate.dart';
+import '../../domain/repository/base_tourism_place_repository.dart';
 import '../datasource/tourism_place_remote_data_source.dart';
 
 class TourismPlaceRerpository extends BaseTourismPlaceRepository {

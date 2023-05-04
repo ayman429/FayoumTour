@@ -20,7 +20,7 @@ abstract class BaseHotelRemoteDataSource {
 
   Future<List<HotelRateModel>> getHotelRates();
   Future<HotelRateModel> getHotelRateById(ID);
-  Future<Unit> addHotelRates(HotelRateModel hotelRateModel, HotelID);
+  Future<Unit> updateCreateHotelRates(HotelRateModel hotelRateModel, HotelID);
 }
 
 class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
@@ -187,7 +187,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
   }
 
   @override
-  Future<Unit> addHotelRates(hotelRateModel, HotelID) async {
+  Future<Unit> updateCreateHotelRates(hotelRateModel, HotelID) async {
     Map<String, dynamic> hotelRateModelsToJson = hotelRateModel.toJson();
     try {
       Dio dio = (await DioFactory.create()).dio;

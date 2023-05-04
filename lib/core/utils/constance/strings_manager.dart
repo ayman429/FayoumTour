@@ -25,11 +25,15 @@ class AppStrings {
   static const String signUpImagePath = "$iconsPath/signup.svg";
   static const String authenticationWelcomeImage = "$iconsPath/chat.svg";
 // ---------------------------- Constance Error ---------------------------- //
-  static const String apiEmptyString1 = "This field may not be blank";
+  static const String apiEmptyString1 = "This field may not be blank.";
   static const String apiEmptyString2 = "Must include";
   static const String messageEmptyString = "Please enter some text";
-  static const String emailError = "Enter a valid email address";
+  static const String emailError = "Enter a valid email address.";
   static const String apiCredentials = "credentials";
   static const String messageCredentials = "Email or Password Error";
   static const String connection = "No Connection Check Internet";
+  static const String passwordMatchedError =
+      "The two password fields didn't match.";
+  static const String passwordLenError =
+      "This password is too short. It must contain at least 8 characters.";
 }

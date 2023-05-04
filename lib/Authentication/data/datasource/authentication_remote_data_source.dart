@@ -47,8 +47,11 @@ class AuthenticationRemoteDataSource
     Map<String, dynamic> registrationModelsToJson = registrationModel.toJson();
     try {
       // Send user info
-      await Dio()
+      final response = await Dio()
           .post(ApiConstance.registrationPath, data: registrationModelsToJson);
+      // Store Access Token
+      AccessToken accessToken = AccessToken();
+      accessToken.saveToken(response.data["key"]);
       // return unit
       return Future.value(unit);
     } on DioError catch (e) {

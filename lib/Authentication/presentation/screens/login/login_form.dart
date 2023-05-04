@@ -33,7 +33,7 @@ class LoginForm extends StatelessWidget {
                   (route) => false);
             } else if (state.loginstate == RequestState.error) {
               String message;
-              // message = validationMessage(state.loginMessage);
+              // message = loginValidationMessage(state.loginMessage);
               message = Validation.validationMessage(state.loginMessage);
               SnackBarMessage()
                   .showErrorSnackBar(message: message, context: context);

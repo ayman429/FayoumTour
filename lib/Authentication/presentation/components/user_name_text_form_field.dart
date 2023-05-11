@@ -16,12 +16,15 @@ class UserNameTextFormField extends StatelessWidget {
       textInputAction: TextInputAction.next,
       // cursorColor: ColorManager.kPrimaryColor,
       controller: userNameController,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: AppStrings.userNameHint,
-        prefixIcon: Padding(
+        prefixIcon: const Padding(
           padding: EdgeInsets.all(AppPadding.p16),
           child: Icon(Icons.person),
         ),
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppPadding.p16, vertical: AppPadding.p16),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
       ),
     );
   }

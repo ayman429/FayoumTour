@@ -1,107 +1,75 @@
-import 'package:dartz/dartz_unsafe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'TourismPlaces/presentation/controller/tourism_place_bloc.dart';
-import 'TourismPlaces/presentation/controller/tourism_place_event.dart';
-import 'TourismPlaces/presentation/controller/tourism_place_state.dart';
+import 'Authentication/presentation/screens/Login/login_screen.dart';
+import 'core/utils/app_localizations.dart';
 import 'core/services/services_locator.dart';
-import 'core/utils/enums.dart';
+import 'core/utils/constance/shared_pref.dart';
+import 'core/utils/constance/strings_manager.dart';
+import 'core/utils/constance/theme_manager.dart';
+import 'core/utils/languages/bloc/app_language_bloc.dart';
+import 'core/utils/theme/bloc/app_theme_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   ServicesLocator().init();
-  runApp(MyApp()); // profile_screen
+
+  sharedPreferences = await SharedPreferences.getInstance();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) {
-        return getIt<TourismPlaceBloc>()..add(GetTourismPlaceEvent());
-      },
-      child: BlocBuilder<TourismPlaceBloc, TourismPlaceState>(
-          builder: (context, state) {
-        // print("object");
-        // print(state);
-        if (state.tourismPlaceState == RequestState.loading) {
-          print("loading");
-          return const MaterialApp(
-            home: Scaffold(body: Center(child: CircularProgressIndicator())),
-          );
-        } else if (state.tourismPlaceState == RequestState.loaded) {
-          print("loded");
-          print(state.tourismPlace.length);
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(
+              create: (context) => AppThemeBloc()..add(InitialThemeEvent())),
+          BlocProvider(
+              create: (context) =>
+                  AppLanguageBloc()..add(InitialLanguageEvent())),
+        ],
+        child: Builder(builder: (context) {
+          var themeState = context.select((AppThemeBloc bloc) => bloc.state);
+          var langState = context.select((AppLanguageBloc bloc) => bloc.state);
+
           return MaterialApp(
-              home: Scaffold(
-                  body: ListView.builder(
-            itemCount: state.tourismPlace.length,
-            itemBuilder: (context, index) {
-              final tourismPlace = state.tourismPlace[index];
-              return Center(
-                  child: Column(
-                children: [
-                  for (int i = 0; i < tourismPlace.imagesT.length; i++)
-                    Text(tourismPlace.imagesT[i].imageT)
-                ],
-              ));
-            },
-          )));
-          // print("st: ${state.hotelState}");
-          // print("hotels:${state.hotels}");
-          // state.hotels.map(
-          //   (e) {
-          //     print(e.name);
-          //   },
-          // ).toList();
-          // return MaterialApp(
-          //   home: Scaffold(
-          //     appBar: AppBar(),
-          //     body: Row(
-          //       mainAxisAlignment: MainAxisAlignment.center,
-          //       children: [
-          //         Column(
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           children: const [
-          //             Text("Hotels"),
-          //           ],
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // );
-        } else if (state.tourismPlaceState == RequestState.error) {
-          print("error");
-          return const MaterialApp(
-            home: Scaffold(
-              body: Center(child: Text("Error")),
-            ),
-          );
-        } else {
-          return const MaterialApp(
-            home: Scaffold(
-              body: Center(child: Text("Error")),
-            ),
-          );
-        }
-      }),
-    );
+              theme: themeState is AppChangeTheme
+                  ? themeState.appTheme == AppStrings.lightString
+                      ? getApplicationThemeLight()
+                      : getApplicationThemeDark()
+                  : getApplicationThemeLight(),
+              locale: langState is AppChangeLanguage
+                  ? langState.languageCode == 'en'
+                      ? const Locale(AppStrings.enCode)
+                      : const Locale(AppStrings.arCode)
+                  : const Locale(AppStrings.enCode),
+              debugShowCheckedModeBanner: false,
+              supportedLocales: const [
+                Locale(AppStrings.enCode),
+                Locale(AppStrings.arCode)
+              ],
+              localizationsDelegates: [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate, // android
+                GlobalWidgetsLocalizations
+                    .delegate, // direction (right and left)
+                GlobalCupertinoLocalizations.delegate, // ios
+              ],
+              localeResolutionCallback: (deviceLocale, supportedLocales) {
+                for (var local in supportedLocales) {
+                  if (deviceLocale != null) {
+                    if (deviceLocale.languageCode == local.languageCode) {
+                      return deviceLocale;
+                    }
+                  }
+                }
+                return deviceLocale;
+              },
+              home: const LoginScreen());
+        }));
   }
 }
-
-
-/*
- print(state.hotels);
-        state.hotels.map(
-          (e) {
-            print(e.email);
-          },
-        ).toList();
-
-        return MaterialApp(
-          home: Scaffold(
-            appBar: AppBar(),
-            body: const Center(child: Text("Ayman")),
-          ),
-        );
- */

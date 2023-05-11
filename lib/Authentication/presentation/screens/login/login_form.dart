@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snackbar_message.dart';
+import '../../../../home/BottomBar.dart';
 import '../../../domain/entities/login.dart';
 import '../../components/email_text_form_field.dart';
 import '../../components/password_text_form_field.dart';
@@ -12,7 +14,6 @@ import '../../components/validation.dart';
 import '../../controller/authentication_bloc.dart';
 import '../../controller/authentication_event.dart';
 import '../../controller/authentication_state.dart';
-import '../user details/user_details.dart';
 
 class LoginForm extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
@@ -28,8 +29,8 @@ class LoginForm extends StatelessWidget {
               listener: (context, state) {
             if (state.loginstate == RequestState.loaded) {
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => UserDetailsScreen()),
-                  //UserDetailsScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const BottomBar(select: 1)),
                   (route) => false);
             } else if (state.loginstate == RequestState.error) {
               String message;
@@ -51,18 +52,33 @@ class LoginForm extends StatelessWidget {
         const SizedBox(height: AppPadding.p16),
         Hero(
           tag: AppStrings.loginHeroTag,
-          child: ElevatedButton(
-            onPressed: () {
-              Login login = Login(
-                  // email: "newUser2@gmail.com",
-                  // password: "passwordnewUser2");
-                  email: emailController.text,
-                  password: passwordController.text);
-              BlocProvider.of<AuthenticationBloc>(context)
-                  .add(LoginEvent(login: login));
-            },
-            child: Text(
-              AppStrings.loginString.toUpperCase(),
+          child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 20),
+            child: SizedBox(
+              height: 55,
+              width: 320,
+              child: TextButton(
+                onPressed: () {
+                  Login login = Login(
+                      // email: "newUser2@gmail.com",
+                      // password: "passwordnewUser2");
+                      email: emailController.text,
+                      password: passwordController.text);
+                  BlocProvider.of<AuthenticationBloc>(context)
+                      .add(LoginEvent(login: login));
+                },
+                style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                ),
+                child: Text(
+                  AppStrings.loginString.toUpperCase(),
+                  style: GoogleFonts.rye(
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.secondary),
+                ),
+              ),
             ),
           ),
         ),

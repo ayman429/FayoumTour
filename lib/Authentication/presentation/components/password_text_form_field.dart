@@ -22,19 +22,23 @@ class PasswordTextFormField extends StatelessWidget {
             // cursorColor: ColorManager.kPrimaryColor,
             controller: passwordController,
             decoration: InputDecoration(
-              suffixIcon: IconButton(
-                  onPressed: () {
-                    BlocProvider.of<ObscureBloc>(context).add(IsObscureEvent());
-                  },
-                  icon: Icon(state.isObscure
-                      ? Icons.visibility
-                      : Icons.visibility_off)),
-              hintText: AppStrings.passwordHint,
-              prefixIcon: const Padding(
-                padding: EdgeInsets.all(AppPadding.p16),
-                child: Icon(Icons.password),
-              ),
-            ),
+                suffixIcon: IconButton(
+                    onPressed: () {
+                      BlocProvider.of<ObscureBloc>(context)
+                          .add(IsObscureEvent());
+                    },
+                    icon: Icon(state.isObscure
+                        ? Icons.visibility
+                        : Icons.visibility_off)),
+                hintText: AppStrings.passwordHint,
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.all(AppPadding.p16),
+                  child: Icon(Icons.password),
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                    horizontal: AppPadding.p16, vertical: AppPadding.p16),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15))),
           );
         } else {
           return Container();

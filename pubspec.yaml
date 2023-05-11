@@ -46,6 +46,14 @@ dependencies:
   video_player:
   flutter_localizations:
     sdk: flutter
+  light: ^2.1.0
+  flutter_barometer_plugin: ^0.0.1+3
+  flutter_sensors: ^1.0.1
+  # cupertino_icons: ^1.0.2
+  curved_navigation_bar: ^1.0.3
+  atmospeed: ^1.0.2
+  youtube_player_flutter:
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_test:
@@ -73,7 +81,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/videos/
+    # - assets/videos/
     - assets/languages/
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -87,6 +95,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+  - family: KaushanScript
+    fonts:
+      - asset: assets/fonts/KaushanScript-Regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

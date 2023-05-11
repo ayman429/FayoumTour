@@ -18,13 +18,16 @@ class EmailTextFormField extends StatelessWidget {
         textInputAction: TextInputAction.next,
         // cursorColor: ColorManager.kPrimaryColor,
         controller: emailController,
-        decoration: const InputDecoration(
-          hintText: AppStrings.emailHint,
-          prefixIcon: Padding(
-            padding: EdgeInsets.all(AppPadding.p16),
-            child: Icon(Icons.mail),
-          ),
-        ),
+        decoration: InputDecoration(
+            hintText: AppStrings.emailHint,
+            prefixIcon: const Padding(
+              padding: EdgeInsets.all(AppPadding.p16),
+              child: Icon(Icons.mail),
+            ),
+            contentPadding: const EdgeInsets.symmetric(
+                horizontal: AppPadding.p16, vertical: AppPadding.p16),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
       ),
     );
   }

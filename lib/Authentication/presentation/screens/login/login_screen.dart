@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/responsive.dart';
-import '../../components/background.dart';
-import '../../components/top_image_login_signup.dart';
 import 'base_login_form.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -10,16 +8,22 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Background(
-      child: SingleChildScrollView(
+    return Scaffold(
+      body: SingleChildScrollView(
         child: Responsive(
           mobile: const MobileLoginScreen(),
           desktop: Row(
             children: [
-              const Expanded(
-                child: TopImageLoginAndSigup(
-                    loginSignupString: AppStrings.loginString,
-                    imagePath: AppStrings.loginImagePath),
+              Expanded(
+                child: Hero(
+                  tag: AppStrings.loginHeroTag,
+                  child: Container(
+                    margin: const EdgeInsets.fromLTRB(0, 80, 0, 25),
+                    height: 200,
+                    width: 200,
+                    child: Image.asset(AppStrings.logoImage),
+                  ),
+                ),
               ),
               Expanded(
                 child: Row(
@@ -50,9 +54,12 @@ class MobileLoginScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        TopImageLoginAndSigup(
-            loginSignupString: AppStrings.loginString.toUpperCase(),
-            imagePath: AppStrings.loginImagePath),
+        Container(
+          margin: const EdgeInsets.fromLTRB(0, 80, 0, 25),
+          height: 200,
+          width: 200,
+          child: Image.asset(AppStrings.logoImage),
+        ),
         Row(
           children: const [
             Spacer(),

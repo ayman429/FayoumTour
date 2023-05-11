@@ -11,6 +11,12 @@ class AppStrings {
   static const String authenticationWelcomeString = "WELCOME TO EDU";
   static const String dontHaveAccount = "Don’t have an Account ? ";
   static const String alreadyHaveAccount = "Already have an Account ? ";
+  static const String fontFamily = 'KaushanScript';
+  static const String logoHeroTag = "logo";
+  static const String initialVideoId = 'AloFpu8KyO8';
+  static const String homeCardTourismTitle = "Torism Places";
+  static const String homeCardHotel = "Hotels";
+  static const String seeMore = "See More";
 // ---------------------------- Constance Theme ---------------------------- //
   static const String themeString = "theme";
   static const String lightString = "light";
@@ -21,9 +27,13 @@ class AppStrings {
 
 // ---------------------------- Constance Path ----------------------------- //
   static const String iconsPath = "assets/icons";
+  static const String imagesPath = "assets/images";
   static const String loginImagePath = "$iconsPath/login.svg";
   static const String signUpImagePath = "$iconsPath/signup.svg";
   static const String authenticationWelcomeImage = "$iconsPath/chat.svg";
+  static const String logoImage = "$imagesPath/aaa.png";
+  static const String error1Gif = "$imagesPath/error1.gif";
+  static const String loading2Gif = "$imagesPath/loading2.gif";
 // ---------------------------- Constance Error ---------------------------- //
   static const String apiEmptyString1 = "This field may not be blank.";
   static const String apiEmptyString2 = "Must include";
@@ -36,4 +46,11 @@ class AppStrings {
       "The two password fields didn't match.";
   static const String passwordLenError =
       "This password is too short. It must contain at least 8 characters.";
+//------------------------------ App Bar Title -------------------------------//
+  static const List<String> titles = [
+    "My Profile",
+    "Favourites",
+    "FayTour",
+    "Plans"
+  ];
 }

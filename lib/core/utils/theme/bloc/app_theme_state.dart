@@ -1,6 +1,8 @@
 part of 'app_theme_bloc.dart';
 
-abstract class AppThemeState {}
+abstract class AppThemeState {
+  final String? appTheme = AppStrings.lightString;
+}
 
 class AppThemeInitial extends AppThemeState {}
 

@@ -54,6 +54,8 @@ dependencies:
   atmospeed: ^1.0.2
   youtube_player_flutter:
   google_fonts: ^4.0.4
+  lite_rolling_switch:
+  flutter_fadein:
 
 dev_dependencies:
   flutter_test:

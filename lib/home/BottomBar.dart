@@ -44,7 +44,7 @@ class _BottomBarState extends State<BottomBar> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          leading: selected == 2
+          leading: selected == 1
               ? Container(
                   margin: const EdgeInsets.only(left: 8),
                   child: Hero(
@@ -53,7 +53,7 @@ class _BottomBarState extends State<BottomBar> {
                   ),
                 )
               : null,
-          actions: selected == 2
+          actions: selected == 1
               ? [
                   Container(
                     margin: const EdgeInsets.fromLTRB(0, 5, 8, 5),

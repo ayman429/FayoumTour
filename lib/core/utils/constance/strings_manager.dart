@@ -33,7 +33,9 @@ class AppStrings {
   static const String authenticationWelcomeImage = "$iconsPath/chat.svg";
   static const String logoImage = "$imagesPath/aaa.png";
   static const String error1Gif = "$imagesPath/error1.gif";
+  static const String loading1Gif = "$imagesPath/loading1.gif";
   static const String loading2Gif = "$imagesPath/loading2.gif";
+  static const String profileImage = "$imagesPath/zzz.png";
 // ---------------------------- Constance Error ---------------------------- //
   static const String apiEmptyString1 = "This field may not be blank.";
   static const String apiEmptyString2 = "Must include";
@@ -49,8 +51,8 @@ class AppStrings {
 //------------------------------ App Bar Title -------------------------------//
   static const List<String> titles = [
     "My Profile",
-    "Favourites",
     "FayTour",
+    "Favourites",
     "Plans"
   ];
 }

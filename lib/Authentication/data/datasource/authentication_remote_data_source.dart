@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../../../core/error/exceptions.dart';
-import '../../../core/network/access_token_shared_preferences.dart';
+import '../../../core/local_data_shared_preferences/access_token_shared_preferences.dart';
 import '../../../core/network/api_constance.dart';
 import '../../../core/network/dio_factory.dart';
 import '../../../core/network/error_message_model.dart';
@@ -15,9 +15,11 @@ import '../models/user_details_model.dart';
 
 abstract class BaseAuthenticationRemoteDataSource {
   Future<UserDetailsModel> getUsersDetails();
+  Future<UserDetailsModel> updateUsersDetails(
+      UserDetailsModel userDetailsModel);
   Future<Unit> registration(RegistrationModel registrationModel);
   Future<Unit> logIn(LoginModel loginModel);
-  Future<Unit> logOut();
+  Future<dynamic> logOut();
   Future<Unit> changePassword(ChangePasswordModel changePasswordModel);
   Future<Unit> resetPassword(ResetPasswordModel resetPasswordModel);
   Future<Unit> passwordResetConfirm(
@@ -84,14 +86,15 @@ class AuthenticationRemoteDataSource
   }
 
   @override
-  Future<Unit> logOut() async {
+  Future<dynamic> logOut() async {
     try {
       Dio dio = (await DioFactory.create()).dio;
       // LogOut
-      final response = await Dio().post(ApiConstance.logoutPath);
+      final response = await dio.post(ApiConstance.logoutPath);
       print("res = ${response.data}");
       // return unit
-      return Future.value(unit);
+      // return Future.value(unit);
+      return response.data;
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
@@ -107,8 +110,8 @@ class AuthenticationRemoteDataSource
     try {
       Dio dio = (await DioFactory.create()).dio;
       // Change Password , Request and Response
-      final response = await Dio()
-          .post(ApiConstance.changePasswordPath, data: changePasswordToJson);
+      final response = await dio.post(ApiConstance.changePasswordPath,
+          data: changePasswordToJson);
       print(response.data);
       // return unit
       return Future.value(unit);
@@ -149,6 +152,23 @@ class AuthenticationRemoteDataSource
           data: passwordResetConfirmToJson);
       // return unit
       return Future.value(unit);
+    } on DioError catch (e) {
+      // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<UserDetailsModel> updateUsersDetails(
+      UserDetailsModel userDetailsModel) async {
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      // Get user info , Request and Response
+      final response = await dio.put(ApiConstance.userDetailsPath);
+      // return user info
+      return UserDetailsModel.fromJson(response.data);
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(

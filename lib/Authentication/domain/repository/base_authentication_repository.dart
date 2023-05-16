@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:fayoumtour/Authentication/data/models/user_details_model.dart';
 
 import '../../../core/error/faliure.dart';
 import '../../data/models/change_password_model.dart';
@@ -10,10 +11,12 @@ import '../entities/user_details.dart';
 
 abstract class BaseAuthenticationRepository {
   Future<Either<Failure, UserDetails>> getUserDetails();
+  Future<Either<Failure, UserDetails>> updateUserDetails(
+      UserDetailsModel userDetailsModel);
   Future<Either<Failure, Unit>> registration(
       RegistrationModel registrationModel);
   Future<Either<Failure, Unit>> login(LoginModel loginModel);
-  Future<Either<Failure, Unit>> logout();
+  Future<Either<Failure, dynamic>> logout();
   Future<Either<Failure, Unit>> changepassword(
       ChangePasswordModel changePasswordModel);
 

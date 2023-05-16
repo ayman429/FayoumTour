@@ -5,6 +5,7 @@ import '../../Authentication/data/repository/authentication_repository.dart';
 import '../../Authentication/domain/repository/base_authentication_repository.dart';
 import '../../Authentication/domain/usecase/get_user_details_usecase.dart';
 import '../../Authentication/domain/usecase/login_usecase.dart';
+import '../../Authentication/domain/usecase/logout_usecase.dart';
 import '../../Authentication/domain/usecase/registration_usecase.dart';
 import '../../Authentication/presentation/controller/authentication_bloc.dart';
 
@@ -18,7 +19,7 @@ import '../../hotels/data/repository/hotel_repository.dart';
 import '../../hotels/domain/repository/base_hotel_repository.dart';
 import '../../hotels/domain/usecase/get_hotel_usecase.dart';
 import '../../hotels/presentation/controller/hotels_bloc.dart';
-import '../network/access_token_shared_preferences.dart';
+import '../local_data_shared_preferences/access_token_shared_preferences.dart';
 
 final getIt = GetIt.instance;
 
@@ -31,7 +32,12 @@ class ServicesLocator {
 
     /* ****** GetUserDetails ****** */
     /// Bloc
-    getIt.registerFactory(() => AuthenticationBloc(getIt(), getIt(), getIt()));
+    getIt.registerFactory(() => AuthenticationBloc(
+          getIt(),
+          getIt(),
+          getIt(),
+          getIt(),
+        ));
 
     /// Use Cases
     getIt.registerLazySingleton(() => GetUserDetailsUsecase(getIt()));
@@ -51,6 +57,9 @@ class ServicesLocator {
     /* ****** Login ****** */
     /// Use Cases
     getIt.registerLazySingleton(() => LoginUsecase(getIt()));
+    /* ****** Logout ****** */
+    /// Use Cases
+    getIt.registerLazySingleton(() => LogoutUsecase(getIt()));
 
 /* ****** Hotel ServicesLocator ****** */
     /// Bloc

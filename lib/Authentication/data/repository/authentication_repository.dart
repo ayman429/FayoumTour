@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:fayoumtour/Authentication/data/models/user_details_model.dart';
 
 import '../../../core/error/exceptions.dart';
 import '../../../core/error/faliure.dart';
@@ -52,7 +53,7 @@ class AuthenticationRerpository extends BaseAuthenticationRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> logout() async {
+  Future<Either<Failure, dynamic>> logout() async {
     try {
       final result = await baseAuthenticationRemoteDataSource.logOut();
       return Right(result);
@@ -92,6 +93,18 @@ class AuthenticationRerpository extends BaseAuthenticationRepository {
       final add = await baseAuthenticationRemoteDataSource
           .passwordResetConfirm(passwordResetConfirmModel);
       return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserDetails>> updateUserDetails(
+      UserDetailsModel userDetailsModel) async {
+    try {
+      final result = await baseAuthenticationRemoteDataSource
+          .updateUsersDetails(userDetailsModel);
+      return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
     }

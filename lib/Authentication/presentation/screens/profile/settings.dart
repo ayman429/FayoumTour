@@ -48,7 +48,9 @@ class SSSettings extends StatelessWidget {
                       return LiteRollingSwitch(
                           textSize: 13,
                           animationDuration: const Duration(microseconds: 100),
-                          value: state.appTheme == AppStrings.darkString,
+                          value: (state.appTheme == AppStrings.darkString)
+                              ? true
+                              : false,
                           // value: _themeManager.themeMode == ThemeMode.dark,
                           textOff: "Light",
                           textOn: "Dark",

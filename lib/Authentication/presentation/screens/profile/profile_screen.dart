@@ -8,6 +8,7 @@ import '../../../../core/utils/enums.dart';
 import '../../controller/authentication_bloc.dart';
 import '../../controller/authentication_event.dart';
 import '../../controller/authentication_state.dart';
+import '../login/login_screen.dart';
 import 'ProfileMenuWidget.dart';
 import 'settings.dart';
 
@@ -78,6 +79,7 @@ class profile_screen extends StatelessWidget {
                     );
 
                   case RequestState.error:
+                    print(state.userDetailsMessage.toString());
                     return const Text("Error...!!");
                 }
               }),
@@ -123,14 +125,23 @@ class profile_screen extends StatelessWidget {
               const SizedBox(height: 10),
               ProfileMenuWidget(
                   title: "Information", icon: Icons.info, onPress: () {}),
-              ProfileMenuWidget(
-                  title: "Logout",
-                  icon: Icons.logout_outlined,
-                  textColor: Colors.red,
-                  endIcon: false,
-                  onPress: () {
-                    // FirebaseAuth.instance.signOut();
-                  }),
+              BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                builder: (context, state) {
+                  return ProfileMenuWidget(
+                      title: "Logout",
+                      icon: Icons.logout_outlined,
+                      textColor: Colors.red,
+                      endIcon: false,
+                      onPress: () {
+                        BlocProvider.of<AuthenticationBloc>(context)
+                            .add(LogoutEvent());
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()));
+                      });
+                },
+              ),
             ],
           ),
         ),

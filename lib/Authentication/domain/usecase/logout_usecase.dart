@@ -4,12 +4,12 @@ import '../../../core/error/faliure.dart';
 import '../../../core/usecase/base_usecase.dart';
 import '../repository/base_authentication_repository.dart';
 
-class Logout extends BaseUseCase<Unit, NoParameters> {
+class LogoutUsecase extends BaseUseCase<dynamic, NoParameters> {
   final BaseAuthenticationRepository baseAuthenticationRepositor;
 
-  Logout(this.baseAuthenticationRepositor);
+  LogoutUsecase(this.baseAuthenticationRepositor);
   @override
-  Future<Either<Failure, Unit>> call(NoParameters parameters) async {
+  Future<Either<Failure, dynamic>> call(NoParameters parameters) async {
     return await baseAuthenticationRepositor.logout();
   }
 }

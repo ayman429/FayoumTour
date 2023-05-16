@@ -40,7 +40,8 @@ class TourismPlaceModel extends TourismPlace {
       originalImage: json['originalImage'],
       imagesT: image,
       noOfRatings: json['no_of_ratings'],
-      avgRatings: json['avg_ratings'],
+      avgRatings: double.parse(
+          (json['avg_ratings']).toStringAsFixed(2)), //json['avg_ratings'],
       rateOneByOne: RateOneByOneModel.fromJson(json['rate_one_by_one']),
       user: json['user'],
       createdBy: CreatedByModel.fromJson(json['created_by']),

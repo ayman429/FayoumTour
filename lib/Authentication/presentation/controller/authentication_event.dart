@@ -20,3 +20,5 @@ class RegistrationEvent extends AuthenticationEvent {
     required this.registration,
   });
 }
+
+class LogoutEvent extends AuthenticationEvent {}

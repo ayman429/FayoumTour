@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../services/services_locator.dart';
-import 'access_token_shared_preferences.dart';
+import '../local_data_shared_preferences/access_token_shared_preferences.dart';
 
 class DioFactory {
   Dio dio;

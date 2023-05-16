@@ -13,7 +13,7 @@ class AppStrings {
   static const String alreadyHaveAccount = "Already have an Account ? ";
   static const String fontFamily = 'KaushanScript';
   static const String logoHeroTag = "logo";
-  static const String initialVideoId = 'AloFpu8KyO8';
+  static const String initialVideoId = 'BBHwtDhfydI';
   static const String homeCardTourismTitle = "Torism Places";
   static const String homeCardHotel = "Hotels";
   static const String seeMore = "See More";
@@ -36,6 +36,12 @@ class AppStrings {
   static const String loading1Gif = "$imagesPath/loading1.gif";
   static const String loading2Gif = "$imagesPath/loading2.gif";
   static const String profileImage = "$imagesPath/zzz.png";
+  static const String plan1Image = "$imagesPath/plan1.jpeg";
+  static const String plan2Image = "$imagesPath/plan2.jpeg";
+  static const String plan3Image = "$imagesPath/plan3.jpg";
+  static const String plan4Image = "$imagesPath/plan4.jpg";
+  static const String e1 = "$imagesPath/e1.jpg";
+
 // ---------------------------- Constance Error ---------------------------- //
   static const String apiEmptyString1 = "This field may not be blank.";
   static const String apiEmptyString2 = "Must include";

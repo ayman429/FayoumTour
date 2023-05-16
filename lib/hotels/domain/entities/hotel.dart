@@ -26,7 +26,7 @@ class Hotel extends Equatable {
   double avgRatings;
   RateOneByOne rateOneByOne;
   // List<Images> images;
-  List<Images2> images2;
+  List<Images2> imagesT;
   // String images;
   String originalImage;
   int user;
@@ -53,7 +53,7 @@ class Hotel extends Equatable {
       required this.avgRatings,
       required this.rateOneByOne,
       // required this.images,
-      required this.images2,
+      required this.imagesT,
       required this.originalImage,
       required this.user,
       this.createdBy});
@@ -83,7 +83,7 @@ class Hotel extends Equatable {
     data['avg_ratings'] = avgRatings;
     data['rate_one_by_one'] = rateOneByOne.toJson();
     // data['images'] = this.images;
-    data['images'] = images2.map((v) => v.toJson()).toList();
+    data['images'] = imagesT.map((v) => v.toJson()).toList();
     // data['images'] = this.images.toJson();
     // data['images'] = this.images2.toJson();
     data['originalImage'] = originalImage;
@@ -114,7 +114,7 @@ class Hotel extends Equatable {
       noOfRatings,
       avgRatings,
       rateOneByOne,
-      images2,
+      imagesT,
       originalImage,
       user,
     ];

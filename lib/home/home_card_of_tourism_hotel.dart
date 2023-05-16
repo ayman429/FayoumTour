@@ -3,12 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../core/utils/constance/strings_manager.dart';
 import 'RatingStarsBar.dart';
+import 'up_bar_image.dart';
 
 class HomeCard extends StatelessWidget {
   var data;
+  int index;
   HomeCard({
     Key? key,
     required this.data,
+    required this.index,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -28,18 +31,13 @@ class HomeCard extends StatelessWidget {
           ]),
       child: InkWell(
         onTap: () {
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (context) => BAR(
-          //               ro: snapshot.data
-          //                       ?.docs[index]
-          //                   ["name"],
-          //               img: snapshot.data
-          //                       ?.docs[index]
-          //                   ["images"][0],
-          //               index: 0,
-          //             )));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => UpBarImage(
+                        data: data,
+                        index: index,
+                      )));
         },
         child: Stack(
           fit: StackFit.expand,

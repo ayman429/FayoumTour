@@ -15,6 +15,11 @@ class AuthenticationState {
   final RequestState registrationstate;
   dynamic registrationMessage;
 
+  /// Logout
+  dynamic logoutString;
+  final RequestState logoutstate;
+  dynamic logoutMessage;
+
   AuthenticationState({
     this.userDetails,
     this.userDetailsState = RequestState.loading,
@@ -23,6 +28,9 @@ class AuthenticationState {
     this.loginMessage = '',
     this.registrationstate = RequestState.loading,
     this.registrationMessage = '',
+    this.logoutString,
+    this.logoutstate = RequestState.loading,
+    this.logoutMessage = '',
   });
   AuthenticationState copyWith({
     UserDetails? userDetails,
@@ -32,6 +40,9 @@ class AuthenticationState {
     dynamic loginMessage,
     RequestState? registrationstate,
     dynamic registrationMessage,
+    dynamic logoutString,
+    RequestState? logoutstate,
+    dynamic logoutMessage,
   }) {
     return AuthenticationState(
       userDetails: userDetails ?? this.userDetails,
@@ -41,6 +52,9 @@ class AuthenticationState {
       loginstate: loginstate ?? this.loginstate,
       registrationMessage: registrationMessage ?? this.registrationMessage,
       registrationstate: registrationstate ?? this.registrationstate,
+      logoutString: logoutString ?? this.logoutString,
+      logoutMessage: logoutMessage ?? this.logoutMessage,
+      logoutstate: logoutstate ?? this.logoutstate,
     );
   }
 }

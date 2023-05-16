@@ -5,6 +5,7 @@ import '../../../core/usecase/base_usecase.dart';
 import '../../../core/utils/enums.dart';
 import '../../domain/usecase/get_user_details_usecase.dart';
 import '../../domain/usecase/login_usecase.dart';
+import '../../domain/usecase/logout_usecase.dart';
 import '../../domain/usecase/registration_usecase.dart';
 import 'authentication_event.dart';
 import 'authentication_state.dart';
@@ -14,12 +15,14 @@ class AuthenticationBloc
   final GetUserDetailsUsecase getUserDetailsUsecase;
   final LoginUsecase loginUsecase;
   final RegisterationUsecase registerationUsecase;
-  AuthenticationBloc(
-      this.getUserDetailsUsecase, this.loginUsecase, this.registerationUsecase)
+  final LogoutUsecase logoutUsecase;
+  AuthenticationBloc(this.getUserDetailsUsecase, this.loginUsecase,
+      this.registerationUsecase, this.logoutUsecase)
       : super(AuthenticationState()) {
     on<GetUserDetailsEvent>(_getUserDetails);
     on<LoginEvent>(_login);
     on<RegistrationEvent>(_registration);
+    on<LogoutEvent>(_logout);
   }
 
   FutureOr<void> _getUserDetails(
@@ -34,7 +37,7 @@ class AuthenticationBloc
       },
       (r) {
         // list.add(r);
-        print(r.email);
+        print("userDetails: " + r.email);
         // list.add(r);
         return emit(state.copyWith(
           userDetails: r,
@@ -78,5 +81,20 @@ class AuthenticationBloc
         registrationstate: RequestState.loaded,
       )),
     );
+  }
+
+  FutureOr<void> _logout(
+      LogoutEvent event, Emitter<AuthenticationState> emit) async {
+    (await logoutUsecase(const NoParameters())).fold((l) {
+      return emit(state.copyWith(
+          logoutstate: RequestState.error,
+          logoutMessage: l.message.toString()));
+    }, (r) {
+      print("logout: $r");
+      return emit(state.copyWith(
+        logoutString: r,
+        logoutstate: RequestState.loaded,
+      ));
+    });
   }
 }

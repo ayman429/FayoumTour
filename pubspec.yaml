@@ -56,6 +56,7 @@ dependencies:
   google_fonts: ^4.0.4
   lite_rolling_switch:
   flutter_fadein:
+  photo_view:
 
 dev_dependencies:
   flutter_test:

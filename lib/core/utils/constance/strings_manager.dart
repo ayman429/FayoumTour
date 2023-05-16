@@ -17,6 +17,7 @@ class AppStrings {
   static const String homeCardTourismTitle = "Torism Places";
   static const String homeCardHotel = "Hotels";
   static const String seeMore = "See More";
+  // static const String homeCardSearchFieldTitle = "";
 // ---------------------------- Constance Theme ---------------------------- //
   static const String themeString = "theme";
   static const String lightString = "light";

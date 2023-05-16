@@ -1,3 +1,4 @@
+import 'package:fayoumtour/hotels/domain/usecase/search_by_fields_usecase.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../Authentication/data/datasource/authentication_remote_data_source.dart';
@@ -13,6 +14,7 @@ import '../../TourismPlaces/data/datasource/tourism_place_remote_data_source.dar
 import '../../TourismPlaces/data/repository/tourism_place_repository.dart';
 import '../../TourismPlaces/domain/repository/base_tourism_place_repository.dart';
 import '../../TourismPlaces/domain/usecase/get_tourism_place_usecase.dart';
+import '../../TourismPlaces/domain/usecase/search_by_fields_usecase.dart';
 import '../../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
 import '../../hotels/data/datasource/hotel_remote_data_source.dart';
 import '../../hotels/data/repository/hotel_repository.dart';
@@ -63,10 +65,11 @@ class ServicesLocator {
 
 /* ****** Hotel ServicesLocator ****** */
     /// Bloc
-    getIt.registerFactory(() => HotelsBloc(getIt()));
+    getIt.registerFactory(() => HotelsBloc(getIt(), getIt()));
 
     /// Use Cases
     getIt.registerLazySingleton(() => GetHotelUsecase(getIt()));
+    getIt.registerLazySingleton(() => SearchByFieldsHotelUsecase(getIt()));
 
     /// Repository
     getIt.registerLazySingleton<BaseHotelRepository>(
@@ -78,10 +81,12 @@ class ServicesLocator {
 
 /* ****** Tourism Places ServicesLocator ****** */
     /// Bloc
-    getIt.registerFactory(() => TourismPlaceBloc(getIt()));
+    getIt.registerFactory(() => TourismPlaceBloc(getIt(), getIt()));
 
     /// Use Cases
     getIt.registerLazySingleton(() => GetTourismPlaceUsecase(getIt()));
+    getIt.registerLazySingleton(
+        () => SearchByFieldsTourismPlaceUsecase(getIt()));
 
     /// Repository
     getIt.registerLazySingleton<BaseTourismPlaceRepository>(

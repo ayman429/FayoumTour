@@ -3,3 +3,10 @@ abstract class HotelsEvent {
 }
 
 class GetHotelsEvent extends HotelsEvent {}
+
+class SearchByFieldsEvent extends HotelsEvent {
+  String hotelSearchByFeild;
+  SearchByFieldsEvent({
+    required this.hotelSearchByFeild,
+  });
+}

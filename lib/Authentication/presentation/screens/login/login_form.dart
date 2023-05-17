@@ -7,6 +7,7 @@ import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snackbar_message.dart';
 import '../../../../home/BottomBar.dart';
+import '../../../../home/questions.dart';
 import '../../../domain/entities/login.dart';
 import '../../components/email_text_form_field.dart';
 import '../../components/password_text_form_field.dart';
@@ -30,7 +31,8 @@ class LoginForm extends StatelessWidget {
             if (state.loginstate == RequestState.loaded) {
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
-                      builder: (context) => const BottomBar(select: 1)),
+                      builder: (context) =>
+                          TourismScreen()), //BottomBar(select: 1)),
                   (route) => false);
             } else if (state.loginstate == RequestState.error) {
               String message;

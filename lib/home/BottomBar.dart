@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/material.dart';
 
 import '../core/utils/constance/strings_manager.dart';
 import 'favourites.dart';
@@ -7,17 +7,32 @@ import 'home.dart';
 import 'plan.dart';
 import 'profile.dart';
 
+late String tourtismTypes;
+
 class BottomBar extends StatefulWidget {
   final int select;
-  const BottomBar({Key? key, required this.select}) : super(key: key);
+  // String tourtismType;
+  BottomBar(
+    tourtismType, {
+    Key? key,
+    required this.select,
+    // required this.tourtismType,
+  }) : super(key: key) {
+    tourtismTypes = tourtismType;
+  }
   @override
   State<BottomBar> createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
+  // String tourtismTypes;
+  // _BottomBarState(tourtismType) {
+  //   tourtismTypes = tourtismType;
+  // }
+
   List<Widget> Screens = [
     Profile(),
-    Home(),
+    Home(tourtismType: tourtismTypes),
     Favourites(),
     Plan(),
   ];

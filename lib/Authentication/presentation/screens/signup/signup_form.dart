@@ -7,6 +7,7 @@ import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snackbar_message.dart';
 import '../../../../home/BottomBar.dart';
+import '../../../../home/questions.dart';
 import '../../../domain/entities/registration.dart';
 import '../../components/email_text_form_field.dart';
 import '../../components/password_text_form_field.dart';
@@ -32,7 +33,9 @@ class SigupForm extends StatelessWidget {
               listener: (context, state) {
             if (state.registrationstate == RequestState.loaded) {
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => BottomBar(select: 1)),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          TourismScreen()), //BottomBar(select: 1)),
                   (route) => false);
             } else if (state.registrationstate == RequestState.error) {
               String message;

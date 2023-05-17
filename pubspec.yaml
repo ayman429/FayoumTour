@@ -57,6 +57,8 @@ dependencies:
   lite_rolling_switch:
   flutter_fadein:
   photo_view:
+  google_maps_flutter: ^2.2.6
+  url_launcher:
 
 dev_dependencies:
   flutter_test:

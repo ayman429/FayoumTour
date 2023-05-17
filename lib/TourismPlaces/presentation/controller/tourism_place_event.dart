@@ -11,8 +11,15 @@ class SearchByFieldsEvent extends TourismPlaceEvent {
   });
 }
 
-class GetTourismPlaceRates extends TourismPlaceEvent {}
+class GetTourismPlaceRatesEvent extends TourismPlaceEvent {}
 
-class GetTourismPlaceRateById extends TourismPlaceEvent {}
+class GetTourismPlacesByIdEvent extends TourismPlaceEvent {
+  String tourId;
+  GetTourismPlacesByIdEvent({
+    required this.tourId,
+  });
+}
 
-class UpdateCreateTourismPlaceRates extends TourismPlaceEvent {}
+class GetTourismPlaceRateByIdEvent extends TourismPlaceEvent {}
+
+class UpdateCreateTourismPlaceRatesEvent extends TourismPlaceEvent {}

@@ -13,12 +13,14 @@ import '../../Authentication/presentation/controller/authentication_bloc.dart';
 import '../../TourismPlaces/data/datasource/tourism_place_remote_data_source.dart';
 import '../../TourismPlaces/data/repository/tourism_place_repository.dart';
 import '../../TourismPlaces/domain/repository/base_tourism_place_repository.dart';
+import '../../TourismPlaces/domain/usecase/get_tourism_place_by_id_usecase.dart';
 import '../../TourismPlaces/domain/usecase/get_tourism_place_usecase.dart';
 import '../../TourismPlaces/domain/usecase/search_by_fields_usecase.dart';
 import '../../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
 import '../../hotels/data/datasource/hotel_remote_data_source.dart';
 import '../../hotels/data/repository/hotel_repository.dart';
 import '../../hotels/domain/repository/base_hotel_repository.dart';
+import '../../hotels/domain/usecase/get_hotel_by_id_usecase.dart';
 import '../../hotels/domain/usecase/get_hotel_usecase.dart';
 import '../../hotels/presentation/controller/hotels_bloc.dart';
 import '../local_data_shared_preferences/access_token_shared_preferences.dart';
@@ -65,10 +67,11 @@ class ServicesLocator {
 
 /* ****** Hotel ServicesLocator ****** */
     /// Bloc
-    getIt.registerFactory(() => HotelsBloc(getIt(), getIt()));
+    getIt.registerFactory(() => HotelsBloc(getIt(), getIt(), getIt()));
 
     /// Use Cases
     getIt.registerLazySingleton(() => GetHotelUsecase(getIt()));
+    getIt.registerLazySingleton(() => GetHotelByIdUsecase(getIt()));
     getIt.registerLazySingleton(() => SearchByFieldsHotelUsecase(getIt()));
 
     /// Repository
@@ -81,10 +84,11 @@ class ServicesLocator {
 
 /* ****** Tourism Places ServicesLocator ****** */
     /// Bloc
-    getIt.registerFactory(() => TourismPlaceBloc(getIt(), getIt()));
+    getIt.registerFactory(() => TourismPlaceBloc(getIt(), getIt(), getIt()));
 
     /// Use Cases
     getIt.registerLazySingleton(() => GetTourismPlaceUsecase(getIt()));
+    getIt.registerLazySingleton(() => GetTourismPlaceByIdUsecase(getIt()));
     getIt.registerLazySingleton(
         () => SearchByFieldsTourismPlaceUsecase(getIt()));
 

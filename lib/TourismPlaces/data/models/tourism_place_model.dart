@@ -6,21 +6,22 @@ import 'img_model.dart';
 import 'rate_on_by_one_model.dart';
 
 class TourismPlaceModel extends TourismPlace {
-  TourismPlaceModel(
-      {required super.id,
-      required super.name,
-      required super.type,
-      required super.address,
-      required super.description,
-      required super.coordinatesX,
-      required super.coordinatesY,
-      required super.originalImage,
-      required super.imagesT,
-      required super.noOfRatings,
-      required super.avgRatings,
-      required super.rateOneByOne,
-      required super.user,
-      required super.createdBy});
+  TourismPlaceModel({
+    required super.id,
+    required super.name,
+    required super.type,
+    required super.address,
+    required super.description,
+    required super.coordinatesX,
+    required super.coordinatesY,
+    required super.originalImage,
+    required super.imagesT,
+    required super.noOfRatings,
+    required super.avgRatings,
+    required super.rateOneByOne,
+    required super.user,
+    // required super.createdBy
+  });
 
   factory TourismPlaceModel.fromJson(Map<String, dynamic> json) {
     List<ImagesTModel> image = <ImagesTModel>[];
@@ -44,7 +45,7 @@ class TourismPlaceModel extends TourismPlace {
           (json['avg_ratings']).toStringAsFixed(2)), //json['avg_ratings'],
       rateOneByOne: RateOneByOneModel.fromJson(json['rate_one_by_one']),
       user: json['user'],
-      createdBy: CreatedByModel.fromJson(json['created_by']),
+      // createdBy: CreatedByModel.fromJson(json['created_by']),
     );
   }
   TourismPlaceModel.castFromEntity(final TourismPlace tourismPlace)

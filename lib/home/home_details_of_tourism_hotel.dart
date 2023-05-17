@@ -1,6 +1,7 @@
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'RatingStarsBar.dart';
 import 'image_list.dart';
@@ -226,11 +227,18 @@ class Details extends StatelessWidget {
                     height: 55,
                     width: 260,
                     child: TextButton(
-                      onPressed: () {
-                        // Navigator.push(context,MaterialPageRoute(builder: ((context) => MyHomePage(title: "Go To "+snapshot.data?.docs[0]["name"]+"...",
-                        // destinationLatitude: 29.331028081862264,
-                        // destinationLongitude: 30.841983847540963,
-                        // ))));
+                      onPressed: () async {
+                        print(data.coordinatesY);
+                        print(data
+                            .coordinatesX); //29.405833973995296, 30.4192274478539
+
+                        // final url =
+                        //     "https://www.google.com/maps/search/?api=1&query=${29.405833973995296},${30.4192274478539}";
+                        // if (await canLaunch(url)) {
+                        //   await launch(url);
+                        // } else {
+                        //   throw 'Could not launch $url';
+                        // }
                       },
                       style: TextButton.styleFrom(
                           backgroundColor:
@@ -272,6 +280,5 @@ class Details extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

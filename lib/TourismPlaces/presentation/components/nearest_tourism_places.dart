@@ -8,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
-import '../../../home/home_card_of_nearest.dart';
 import '../../../home/home_card_of_tourism_hotel.dart';
 import '../controller/tourism_place_bloc.dart';
 import '../controller/tourism_place_event.dart';

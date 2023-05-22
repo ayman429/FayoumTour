@@ -3,12 +3,12 @@ import 'package:equatable/equatable.dart';
 class TourismPlaceRate extends Equatable {
   int id;
   int stars;
-  int touristPlaces;
+  int? touristPlaces;
   int user;
   TourismPlaceRate({
     required this.id,
     required this.stars,
-    required this.touristPlaces,
+    this.touristPlaces,
     required this.user,
   });
 
@@ -22,5 +22,5 @@ class TourismPlaceRate extends Equatable {
   }
 
   @override
-  List<Object> get props => [id, stars, touristPlaces, user];
+  List<Object> get props => [id, stars, user];
 }

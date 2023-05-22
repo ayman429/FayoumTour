@@ -1,3 +1,5 @@
+import 'package:fayoumtour/hotels/domain/entities/hotel_rate.dart';
+
 import '../../../core/utils/enums.dart';
 import '../../domain/entities/hotel.dart';
 
@@ -10,10 +12,59 @@ class HotelsState {
   final RequestState hotelStateById;
   final String hotelMessageById;
 
+  final RequestState addHotelState;
+  final String addHotelMessage;
+
+  final RequestState updateHotelState;
+  final String updateHotelMessage;
+
+  final RequestState deleteHotelState;
+  final String deleteHotelMessage;
+
   final List<Hotel> searchHotels;
   final RequestState searchHotelState;
   final String searchHotelsMessage;
+
+  final List<Hotel> searchHotelRate;
+  final RequestState searchHotelRateState;
+  final String searchHotelRateMessage;
+
+  final List<Hotel> orderingHotel;
+  final RequestState orderingHotelState;
+  final String orderingHotelMessage;
+
+  final List<HotelRate> getHotelRate;
+  final RequestState getHotelRateState;
+  final String getHotelRateMessage;
+
+  final HotelRate? getHotelRateById;
+  final RequestState getHotelRateByIdState;
+  final String getHotelRateByIdMessage;
+
+  final RequestState updateCreateHotelRateState;
+  final String updateCreateHotelRateMessage;
+
   HotelsState({
+    this.addHotelState = RequestState.loading,
+    this.addHotelMessage = '',
+    this.updateHotelState = RequestState.loading,
+    this.updateHotelMessage = '',
+    this.deleteHotelState = RequestState.loading,
+    this.deleteHotelMessage = '',
+    this.searchHotelRate = const [],
+    this.searchHotelRateState = RequestState.loading,
+    this.searchHotelRateMessage = '',
+    this.orderingHotel = const [],
+    this.orderingHotelState = RequestState.loading,
+    this.orderingHotelMessage = '',
+    this.getHotelRate = const [],
+    this.getHotelRateState = RequestState.loading,
+    this.getHotelRateMessage = '',
+    this.getHotelRateById,
+    this.getHotelRateByIdState = RequestState.loading,
+    this.getHotelRateByIdMessage = '',
+    this.updateCreateHotelRateState = RequestState.loading,
+    this.updateCreateHotelRateMessage = '',
     this.searchHotels = const [],
     this.searchHotelState = RequestState.loading,
     this.searchHotelsMessage = '',
@@ -32,9 +83,29 @@ class HotelsState {
     Hotel? hotelsById,
     RequestState? hotelStateById,
     String? hotelMessageById,
+    RequestState? addHotelState,
+    String? addHotelMessage,
+    RequestState? updateHotelState,
+    String? updateHotelMessage,
+    RequestState? deleteHotelState,
+    String? deleteHotelMessage,
     List<Hotel>? searchHotels,
     RequestState? searchHotelState,
     String? searchHotelsMessage,
+    List<Hotel>? searchHotelRate,
+    RequestState? searchHotelRateState,
+    String? searchHotelRateMessage,
+    List<Hotel>? orderingHotel,
+    RequestState? orderingHotelState,
+    String? orderingHotelMessage,
+    List<HotelRate>? getHotelRate,
+    RequestState? getHotelRateState,
+    String? getHotelRateMessage,
+    HotelRate? getHotelRateById,
+    RequestState? getHotelRateByIdState,
+    String? getHotelRateByIdMessage,
+    RequestState? updateCreateHotelRateState,
+    String? updateCreateHotelRateMessage,
   }) {
     return HotelsState(
       hotels: hotels ?? this.hotels,
@@ -46,6 +117,31 @@ class HotelsState {
       searchHotels: searchHotels ?? this.searchHotels,
       searchHotelState: searchHotelState ?? this.searchHotelState,
       searchHotelsMessage: searchHotelsMessage ?? this.searchHotelsMessage,
+      addHotelState: addHotelState ?? this.addHotelState,
+      addHotelMessage: addHotelMessage ?? this.addHotelMessage,
+      updateHotelState: updateHotelState ?? this.updateHotelState,
+      updateHotelMessage: updateHotelMessage ?? this.updateHotelMessage,
+      deleteHotelState: deleteHotelState ?? this.deleteHotelState,
+      deleteHotelMessage: deleteHotelMessage ?? this.deleteHotelMessage,
+      searchHotelRate: searchHotelRate ?? this.searchHotelRate,
+      searchHotelRateState: searchHotelRateState ?? this.searchHotelRateState,
+      searchHotelRateMessage:
+          searchHotelRateMessage ?? this.searchHotelRateMessage,
+      orderingHotel: orderingHotel ?? this.orderingHotel,
+      orderingHotelState: orderingHotelState ?? this.orderingHotelState,
+      orderingHotelMessage: orderingHotelMessage ?? this.orderingHotelMessage,
+      getHotelRate: getHotelRate ?? this.getHotelRate,
+      getHotelRateState: getHotelRateState ?? this.getHotelRateState,
+      getHotelRateMessage: getHotelRateMessage ?? this.getHotelRateMessage,
+      getHotelRateById: getHotelRateById ?? this.getHotelRateById,
+      getHotelRateByIdState:
+          getHotelRateByIdState ?? this.getHotelRateByIdState,
+      getHotelRateByIdMessage:
+          getHotelRateByIdMessage ?? this.getHotelRateByIdMessage,
+      updateCreateHotelRateMessage:
+          updateCreateHotelRateMessage ?? this.updateCreateHotelRateMessage,
+      updateCreateHotelRateState:
+          updateCreateHotelRateState ?? this.updateCreateHotelRateState,
     );
   }
 }

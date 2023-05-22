@@ -21,7 +21,7 @@ class HomeCardsTourismPlacesSearch extends StatelessWidget {
     return BlocProvider(
         create: (context) {
           return getIt<TourismPlaceBloc>()
-            ..add(SearchByFieldsEvent(
+            ..add(SearchTourismPlaceByFieldsEvent(
                 tourismPlaceSearchByFeild: tourismPlaceSearchByFeild));
         },
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

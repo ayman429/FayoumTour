@@ -1,4 +1,5 @@
 import '../../../core/utils/enums.dart';
+import '../../domain/entities/change_password.dart';
 import '../../domain/entities/user_details.dart';
 
 class AuthenticationState {
@@ -15,6 +16,24 @@ class AuthenticationState {
   final RequestState registrationstate;
   dynamic registrationMessage;
 
+  /// Change Password
+  // ChangePassword? changePassword;
+  final RequestState changePasswordstate;
+  dynamic changePasswordMessage;
+
+  /// Update User Details
+  UserDetails? updateuserDetails;
+  final RequestState updateuserDetailsState;
+  dynamic updateuserDetailsMessage;
+
+  /// Reset Password
+  final RequestState resetPasswordState;
+  dynamic resetPasswordMessage;
+
+  /// Reset Password Confirm
+  final RequestState resetPasswordConfirmState;
+  dynamic resetPasswordConfirmMessage;
+
   /// Logout
   dynamic logoutString;
   final RequestState logoutstate;
@@ -28,6 +47,16 @@ class AuthenticationState {
     this.loginMessage = '',
     this.registrationstate = RequestState.loading,
     this.registrationMessage = '',
+    // this.changePassword,
+    this.changePasswordstate = RequestState.loading,
+    this.changePasswordMessage = '',
+    this.updateuserDetails,
+    this.updateuserDetailsState = RequestState.loading,
+    this.updateuserDetailsMessage = '',
+    this.resetPasswordState = RequestState.loading,
+    this.resetPasswordMessage = '',
+    this.resetPasswordConfirmState = RequestState.loading,
+    this.resetPasswordConfirmMessage = '',
     this.logoutString,
     this.logoutstate = RequestState.loading,
     this.logoutMessage = '',
@@ -40,6 +69,24 @@ class AuthenticationState {
     dynamic loginMessage,
     RequestState? registrationstate,
     dynamic registrationMessage,
+
+    /// Change Password
+    ChangePassword? changePassword,
+    RequestState? changePasswordstate,
+    dynamic changePasswordMessage,
+
+    /// Update User Details
+    UserDetails? updateuserDetails,
+    RequestState? updateuserDetailsState,
+    dynamic updateuserDetailsMessage,
+
+    /// Reset Password
+    RequestState? resetPasswordState,
+    dynamic resetPasswordMessage,
+
+    /// Reset Password Confirm
+    RequestState? resetPasswordConfirmState,
+    dynamic resetPasswordConfirmMessage,
     dynamic logoutString,
     RequestState? logoutstate,
     dynamic logoutMessage,
@@ -52,6 +99,21 @@ class AuthenticationState {
       loginstate: loginstate ?? this.loginstate,
       registrationMessage: registrationMessage ?? this.registrationMessage,
       registrationstate: registrationstate ?? this.registrationstate,
+      // changePassword: changePassword ?? this.changePassword,
+      changePasswordMessage:
+          changePasswordMessage ?? this.changePasswordMessage,
+      changePasswordstate: changePasswordstate ?? this.changePasswordstate,
+      updateuserDetails: updateuserDetails ?? this.updateuserDetails,
+      updateuserDetailsMessage:
+          updateuserDetailsMessage ?? this.updateuserDetailsMessage,
+      updateuserDetailsState:
+          updateuserDetailsState ?? this.updateuserDetailsState,
+      resetPasswordMessage: resetPasswordMessage ?? this.resetPasswordMessage,
+      resetPasswordState: resetPasswordState ?? this.resetPasswordState,
+      resetPasswordConfirmMessage:
+          resetPasswordConfirmMessage ?? this.resetPasswordConfirmMessage,
+      resetPasswordConfirmState:
+          resetPasswordConfirmState ?? this.resetPasswordConfirmState,
       logoutString: logoutString ?? this.logoutString,
       logoutMessage: logoutMessage ?? this.logoutMessage,
       logoutstate: logoutstate ?? this.logoutstate,

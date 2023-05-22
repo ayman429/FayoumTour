@@ -33,7 +33,7 @@ List<Map<String, dynamic>> rearrangeList(List<Map<String, dynamic>> list) {
   return sortedList;
 }
 
-List<int> listId = [];
+// List<int> listId = [];
 
 class NearestTourismPlaces extends StatelessWidget {
   @override
@@ -73,9 +73,9 @@ class NearestTourismPlaces extends StatelessWidget {
             }
             List<Map<String, dynamic>> sortedArr = [];
             sortedArr = rearrangeList(arr);
-            print(getDistance(sortedArr[0]));
-            print(sortedArr[0]['id']);
-            listId.add(sortedArr[0]['id']);
+            // print(getDistance(sortedArr[0]));
+            // print(sortedArr[0]['id']);
+            // listId.add(sortedArr[0]['id']);
             var data = List<TourismPlaceModel>.from(
                 sortedArr.map((e) => TourismPlaceModel.fromJson(e)));
             print(data[0].name);

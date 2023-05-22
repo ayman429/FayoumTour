@@ -5,10 +5,10 @@ import '../../../core/usecase/base_usecase.dart';
 import '../entities/hotel.dart';
 import '../repository/base_hotel_repository.dart';
 
-class OrderingByFieldsUsecase extends BaseUseCase<List<Hotel>, String> {
+class OrderingHotelByFieldsUsecase extends BaseUseCase<List<Hotel>, String> {
   final BaseHotelRepository baseHotelRepository;
 
-  OrderingByFieldsUsecase(this.baseHotelRepository);
+  OrderingHotelByFieldsUsecase(this.baseHotelRepository);
   @override
   Future<Either<Failure, List<Hotel>>> call(String parameters) async {
     return await baseHotelRepository.orderingByField(parameters);

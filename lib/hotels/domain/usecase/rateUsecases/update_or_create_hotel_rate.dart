@@ -2,14 +2,16 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/faliure.dart';
 import '../../../data/models/hotel_rate_model.dart';
+import '../../entities/hotel_rate.dart';
 import '../../repository/base_hotel_repository.dart';
 
-class UpdateCreateHotelUsecase {
+class UpdateCreateHotelRateUsecase {
   final BaseHotelRepository baseHotelRepository;
 
-  UpdateCreateHotelUsecase(this.baseHotelRepository);
+  UpdateCreateHotelRateUsecase(this.baseHotelRepository);
   Future<Either<Failure, Unit>> call(
-      HotelRateModel hotelRateModel, String HotelID) async {
-    return await baseHotelRepository.addHotelRate(hotelRateModel, HotelID);
+      HotelRate hotelRate, String hotelID) async {
+    HotelRateModel hotelRateModel = HotelRateModel.castFromEntity(hotelRate);
+    return await baseHotelRepository.addHotelRate(hotelRateModel, hotelID);
   }
 }

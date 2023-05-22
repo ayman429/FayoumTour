@@ -66,7 +66,7 @@ class UpBarImage extends StatelessWidget {
                   ),
                 ),
                 actions: [
-                  checkFav(id: data.id),
+                  // checkFav(id: data.id),
                 ],
               ),
             ],

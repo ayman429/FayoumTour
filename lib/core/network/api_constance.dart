@@ -11,10 +11,13 @@ class ApiConstance {
   static const String hotelPath = "$baseUrl/api/Hotel/";
   static const String tourismPlacePath = "$baseUrl/api/TourismPlace/";
 
-/* **************** Hotels EndPoints **************** */
+/* **************** Rates EndPoints **************** */
   // GET All Hotel/TourismPlace Rate , GET By IDs , POST PUT Hotel Rate
   static const String hotelRatePath = "$baseUrl/api/RateHotel/";
   static const String tourismPlaceRatePath = "$baseUrl/api/RateTourismPlace/";
+
+/* **************** Posts EndPoints **************** */
+  static const String postPath = "$baseUrl/api/Post/";
 
 /* **************** User EndPoints **************** */
   static const String userDetailsPath = "$baseUrl/rest-auth/user/";

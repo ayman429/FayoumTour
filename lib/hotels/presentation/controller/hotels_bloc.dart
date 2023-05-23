@@ -100,7 +100,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       UpdateHotelEvent event, Emitter<HotelsState> emit) async {
     (await updateHotelUsecase(event.hotel)).fold((l) {
       return emit(HotelsState(
-          searchHotelState: RequestState.error, updateHotelMessage: l.message));
+          updateHotelState: RequestState.error, updateHotelMessage: l.message));
     }, (r) {
       return emit(HotelsState(
         updateHotelState: RequestState.loaded,

@@ -8,10 +8,12 @@ import 'up_bar_image.dart';
 class HomeCard extends StatelessWidget {
   var data;
   int index;
+  String type;
   HomeCard({
     Key? key,
     required this.data,
     required this.index,
+    required this.type,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class HomeCard extends StatelessWidget {
                   builder: (context) => UpBarImage(
                         data: data,
                         index: index,
+                        type: type,
                       )));
         },
         child: Stack(

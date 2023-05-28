@@ -53,6 +53,7 @@ class HomeCardsHotels extends StatelessWidget {
                   return HomeCard(
                     data: hotels,
                     index: 1,
+                    type: "hotels",
                   );
                   // Container(
                   //   //height: 200,

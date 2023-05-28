@@ -95,7 +95,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     try {
       Dio dio = (await DioFactory.create()).dio;
       final response = await dio.get(
-        "${ApiConstance.hotelPath}$id/",
+        "${ApiConstance.tourismPlacePath}$id/",
       );
 
       return TourismPlaceModel.fromJson(response.data);

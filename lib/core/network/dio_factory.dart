@@ -15,6 +15,9 @@ class DioFactory {
       headers: {
         'Authorization': 'Token $token',
       },
+      connectTimeout: const Duration(seconds: 30),
+      receiveTimeout: const Duration(seconds: 30),
+      sendTimeout: const Duration(seconds: 30),
     );
     return DioFactory(dio);
   }

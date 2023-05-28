@@ -116,13 +116,13 @@ class ServicesLocator {
     getIt.registerLazySingleton(() => GetHotelRateByIdUsecase(getIt()));
     getIt.registerLazySingleton(() => UpdateCreateHotelRateUsecase(getIt()));
 
-    /// Repository
-    getIt.registerLazySingleton<BaseTourismPlaceRepository>(
-        () => TourismPlaceRerpository(getIt()));
+    // /// Repository
+    // getIt.registerLazySingleton<BaseTourismPlaceRepository>(
+    //     () => TourismPlaceRerpository(getIt()));
 
-    /// DATA SOURCE
-    getIt.registerLazySingleton<BaseTourismPlaceRemoteDataSource>(
-        () => TourismPlaceRemoteDataSource());
+    // /// DATA SOURCE
+    // getIt.registerLazySingleton<BaseTourismPlaceRemoteDataSource>(
+    //     () => TourismPlaceRemoteDataSource());
 
     /// Repository
     getIt.registerLazySingleton<BaseHotelRepository>(

@@ -53,6 +53,7 @@ class HomeCardsTourismPlaces extends StatelessWidget {
                   return HomeCard(
                     data: tourismPlace,
                     index: 0,
+                    type: "places",
                   );
                 },
               ),

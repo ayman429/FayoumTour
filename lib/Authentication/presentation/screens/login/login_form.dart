@@ -6,7 +6,6 @@ import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snackbar_message.dart';
-import '../../../../home/BottomBar.dart';
 import '../../../../home/questions.dart';
 import '../../../domain/entities/login.dart';
 import '../../components/email_text_form_field.dart';

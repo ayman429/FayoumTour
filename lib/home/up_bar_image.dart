@@ -1,19 +1,20 @@
 //This file is for the upbar of the hotels pages
-import 'package:fayoumtour/home/CheckFavorite.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fayoumtour/home/home_details_of_tourism_hotel.dart';
-
 import '../core/utils/constance/strings_manager.dart';
+import 'check_favorite.dart';
+import 'home_details_of_tourism_hotel.dart';
 
 class UpBarImage extends StatelessWidget {
   // String img;
   int index;
   var data;
+  String type;
   UpBarImage({
     Key? key,
-    required this.data,
     required this.index,
+    required this.data,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -66,7 +67,7 @@ class UpBarImage extends StatelessWidget {
                   ),
                 ),
                 actions: [
-                  // checkFav(id: data.id),
+                  CheckFavorite(data: data, type: type),
                 ],
               ),
             ],

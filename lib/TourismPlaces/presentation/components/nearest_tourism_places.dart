@@ -88,6 +88,7 @@ class NearestTourismPlaces extends StatelessWidget {
                     return HomeCard(
                       data: data[index],
                       index: 0,
+                      type: "places",
                     );
                   },
                 ));

@@ -33,7 +33,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> Screens = [
     Profile(),
     Home(tourtismType: tourtismTypes),
-    Favourites(),
+    Favorites(),
     Plan(),
   ];
   int selected = 0;

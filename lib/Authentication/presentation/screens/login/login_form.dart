@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../core/utils/constance/shared_pref.dart';
 import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snackbar_message.dart';
+import '../../../../home/BottomBar.dart';
 import '../../../../home/questions.dart';
 import '../../../domain/entities/login.dart';
 import '../../components/email_text_form_field.dart';
@@ -28,11 +30,22 @@ class LoginForm extends StatelessWidget {
           child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
               listener: (context, state) {
             if (state.loginstate == RequestState.loaded) {
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          TourismScreen()), //BottomBar(select: 1)),
-                  (route) => false);
+              var _selectedOption =
+                  sharedPreferences!.getString("selectedOption");
+              if (_selectedOption != null) {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => BottomBar(
+                            select: 1,
+                            _selectedOption)), //BottomBar(select: 1)),
+                    (route) => false);
+              } else {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            TourismScreen()), //BottomBar(select: 1)),
+                    (route) => false);
+              }
             } else if (state.loginstate == RequestState.error) {
               String message;
               // message = loginValidationMessage(state.loginMessage);

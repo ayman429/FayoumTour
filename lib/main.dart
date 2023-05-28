@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Authentication/presentation/screens/Login/login_screen.dart';
+import 'core/local_data_shared_preferences/access_token_shared_preferences.dart';
 import 'core/utils/app_localizations.dart';
 import 'core/services/services_locator.dart';
 import 'core/utils/constance/shared_pref.dart';
@@ -11,12 +12,17 @@ import 'core/utils/constance/strings_manager.dart';
 import 'core/utils/constance/theme_manager.dart';
 import 'core/utils/languages/bloc/app_language_bloc.dart';
 import 'core/utils/theme/bloc/app_theme_bloc.dart';
+import 'home/BottomBar.dart';
 
+var token;
+var _selectedOption;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ServicesLocator().init();
 
   sharedPreferences = await SharedPreferences.getInstance();
+  token = await getIt<AccessToken>().getToken();
+  _selectedOption = sharedPreferences!.getString("selectedOption") ?? "";
   runApp(const MyApp());
 }
 
@@ -69,7 +75,9 @@ class MyApp extends StatelessWidget {
                 }
                 return deviceLocale;
               },
-              home: const LoginScreen());
+              home: (token == "0")
+                  ? const LoginScreen()
+                  : BottomBar(select: 1, _selectedOption));
         }));
   }
 }

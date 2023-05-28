@@ -1,3 +1,4 @@
+import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:flutter/material.dart';
 
 import 'BottomBar.dart';
@@ -48,6 +49,7 @@ class _TourismScreenState extends State<TourismScreen>
   void _onOptionSelected(String option) {
     setState(() {
       _selectedOption = option;
+      sharedPreferences!.setString("selectedOption", _selectedOption);
     });
   }
 

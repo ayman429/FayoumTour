@@ -23,14 +23,14 @@ class _CheckFavoriteState extends State<CheckFavorite> {
     typeVal = type;
   }
   var flag;
-  @override
-  void initState() {
-    super.initState();
-    FavouritStorage().searchFavourit(newData).then((value) => setState(() {
-          flag = value;
-          print("flag===--===> $flag");
-        }));
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   FavouritStorage().searchFavourit(newData).then((value) => setState(() {
+  //         flag = value;
+  //         print("flag===--===> $flag");
+  //       }));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -45,21 +45,17 @@ class _CheckFavoriteState extends State<CheckFavorite> {
             child: IconButton(
               onPressed: () async {
                 if (await FavouritStorage().searchFavourit(newData) == true) {
+                  FavouritStorage().deleteFavourit(newData.name);
                   setState(() {
-                    FavouritStorage().deleteFavourit(newData.name);
+                    flag = false;
                   });
-                  FavouritStorage()
-                      .searchFavourit(newData)
-                      .then((value) => setState(() {
-                            flag = value;
-                          }));
-                } else {
-                  FavouritStorage().saveFavourits(newData, typeVal);
-                  FavouritStorage()
-                      .searchFavourit(newData)
-                      .then((value) => setState(() {
-                            flag = value;
-                          }));
+                } else if (await FavouritStorage().searchFavourit(newData) ==
+                    false) {
+                  await FavouritStorage().saveFavourits(newData, typeVal);
+                  setState(() {
+                    flag = true;
+                  });
+
                   showDialog(
                       context: context,
                       barrierDismissible: false,

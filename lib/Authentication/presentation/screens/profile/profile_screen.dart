@@ -80,7 +80,7 @@ class profile_screen extends StatelessWidget {
 
                   case RequestState.error:
                     print(state.userDetailsMessage.toString());
-                    return const Text("Error...!!");
+                    return const Text("data not foud...!");
                 }
               }),
               const SizedBox(height: 20),

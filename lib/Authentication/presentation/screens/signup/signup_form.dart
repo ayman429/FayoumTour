@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../core/utils/constance/shared_pref.dart';
 import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
@@ -32,11 +33,22 @@ class SigupForm extends StatelessWidget {
           child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
               listener: (context, state) {
             if (state.registrationstate == RequestState.loaded) {
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          TourismScreen()), //BottomBar(select: 1)),
-                  (route) => false);
+              // print("---------- SignUp userId -------------");
+              // print(state.userDetails!.id);
+              //  sharedPreferences!.setString("USERID",state.userDetails!.id);
+              var _selectedOption =
+                  sharedPreferences!.getString("selectedOption");
+              if (_selectedOption != null) {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            BottomBar(select: 1, _selectedOption)),
+                    (route) => false);
+              } else {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => TourismScreen()),
+                    (route) => false);
+              }
             } else if (state.registrationstate == RequestState.error) {
               String message;
               message = Validation.validationMessage(state.registrationMessage);

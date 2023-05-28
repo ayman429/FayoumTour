@@ -1,8 +1,13 @@
+import 'dart:io';
+
+import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../core/local_data_shared_preferences/favourites_shared_preferences.dart';
 import '../../../../core/services/services_locator.dart';
 import '../../../../core/utils/enums.dart';
 import '../../controller/authentication_bloc.dart';
@@ -10,10 +15,32 @@ import '../../controller/authentication_event.dart';
 import '../../controller/authentication_state.dart';
 import '../login/login_screen.dart';
 import 'ProfileMenuWidget.dart';
+import 'base_update_profile.dart';
 import 'settings.dart';
 
-class profile_screen extends StatelessWidget {
+class profile_screen extends StatefulWidget {
   profile_screen({Key? key}) : super(key: key);
+
+  @override
+  State<profile_screen> createState() => _profile_screenState();
+}
+
+class _profile_screenState extends State<profile_screen> {
+  String getImagePath = "";
+  Future<void> updateUIWithImagePath() async {
+    var userId = await FavouritStorage().getUsersDetails();
+    String imagePath =
+        sharedPreferences!.getString("${userId.id}USERIMAGE") ?? "";
+    setState(() {
+      getImagePath = imagePath;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    updateUIWithImagePath();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,30 +60,10 @@ class profile_screen extends StatelessWidget {
                     height: 120,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
-                      child: Image.asset(
-                        AppStrings.profileImage,
-                        fit: BoxFit.cover,
-                      ),
-                      // Image.network(
-                      //         snapshot.data?.docs[0]["image"],
-                      //         fit: BoxFit.cover,
-                      //         errorBuilder: (context, error, stackTrace) {
-                      //           return Image.asset(
-                      //             AppStrings.error1Gif,
-                      //             fit: BoxFit.cover,
-                      //           );
-                      //         },
-                      //         loadingBuilder:
-                      //             (context, child, loadingProgress) {
-                      //           if (loadingProgress != null) {
-                      //             return Image.asset(
-                      //               AppStrings.loading1Gif,
-                      //               fit: BoxFit.cover,
-                      //             );
-                      //           }
-                      //           return child;
-                      //         },
-                      //       )
+                      child: FutureBuilder(
+                          future: updateUIWithImagePath(),
+                          builder: (context, snapshot) =>
+                              displayImage(getImagePath)),
                     ),
                   ),
                 ],
@@ -88,11 +95,12 @@ class profile_screen extends StatelessWidget {
                 width: 200,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //       builder: (context) => const UpdateProfileScreen(),
-                    //     ));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const BaseUpdateProfile(), //UpdateProfileScreen(),
+                        ));
                   },
                   style: ElevatedButton.styleFrom(
                       primary: Theme.of(context).colorScheme.primary,
@@ -146,6 +154,21 @@ class profile_screen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+Widget displayImage(String imagePath) {
+  final File imageFile = File(imagePath);
+  if (imagePath.isNotEmpty && imageFile.existsSync()) {
+    return Image.file(
+      imageFile,
+      fit: BoxFit.cover,
+    );
+  } else {
+    return Image.asset(
+      AppStrings.profileImage,
+      fit: BoxFit.cover,
     );
   }
 }

@@ -6,15 +6,14 @@ import '../../../core/usecase/base_usecase.dart';
 import '../entities/user_details.dart';
 import '../repository/base_authentication_repository.dart';
 
-class UpdateUserDetailsUsecase extends BaseUseCase<UserDetails, UserDetails> {
+class UpdateUserDetailsUsecase extends BaseUseCase<String, String> {
   final BaseAuthenticationRepository baseAuthenticationRepository;
 
   UpdateUserDetailsUsecase(this.baseAuthenticationRepository);
   @override
-  Future<Either<Failure, UserDetails>> call(UserDetails parameters) async {
-    UserDetailsModel userDetailsModel =
-        UserDetailsModel.castFromEntity(parameters);
-    return await baseAuthenticationRepository
-        .updateUserDetails(userDetailsModel);
+  Future<Either<Failure, String>> call(String parameters) async {
+    // UserDetailsModel userDetailsModel =
+    //     UserDetailsModel.castFromEntity(parameters);
+    return await baseAuthenticationRepository.updateUserDetails(parameters);
   }
 }

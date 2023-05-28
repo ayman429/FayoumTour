@@ -35,15 +35,12 @@ class LoginForm extends StatelessWidget {
               if (_selectedOption != null) {
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                        builder: (context) => BottomBar(
-                            select: 1,
-                            _selectedOption)), //BottomBar(select: 1)),
+                        builder: (context) =>
+                            BottomBar(select: 1, _selectedOption)),
                     (route) => false);
               } else {
                 Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            TourismScreen()), //BottomBar(select: 1)),
+                    MaterialPageRoute(builder: (context) => TourismScreen()),
                     (route) => false);
               }
             } else if (state.loginstate == RequestState.error) {

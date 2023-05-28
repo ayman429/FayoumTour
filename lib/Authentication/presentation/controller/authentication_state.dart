@@ -22,7 +22,7 @@ class AuthenticationState {
   dynamic changePasswordMessage;
 
   /// Update User Details
-  UserDetails? updateuserDetails;
+  String? updateuserDetails;
   final RequestState updateuserDetailsState;
   dynamic updateuserDetailsMessage;
 
@@ -76,7 +76,7 @@ class AuthenticationState {
     dynamic changePasswordMessage,
 
     /// Update User Details
-    UserDetails? updateuserDetails,
+    String? updateuserDetails,
     RequestState? updateuserDetailsState,
     dynamic updateuserDetailsMessage,
 

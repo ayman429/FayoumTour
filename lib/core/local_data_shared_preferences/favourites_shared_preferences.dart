@@ -10,8 +10,6 @@ import '../error/exceptions.dart';
 import '../network/api_constance.dart';
 import '../network/dio_factory.dart';
 import '../network/error_message_model.dart';
-import '../services/services_locator.dart';
-import 'access_token_shared_preferences.dart';
 
 abstract class BaseFavourits {
   Future<Unit> saveFavourits(data, String type);

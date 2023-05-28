@@ -33,7 +33,7 @@ class PasswordTextFormField extends StatelessWidget {
                 hintText: AppStrings.passwordHint,
                 prefixIcon: const Padding(
                   padding: EdgeInsets.all(AppPadding.p16),
-                  child: Icon(Icons.password),
+                  child: Icon(Icons.fingerprint),
                 ),
                 contentPadding: const EdgeInsets.symmetric(
                     horizontal: AppPadding.p16, vertical: AppPadding.p16),

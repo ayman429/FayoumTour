@@ -99,11 +99,10 @@ class AuthenticationRerpository extends BaseAuthenticationRepository {
   }
 
   @override
-  Future<Either<Failure, UserDetails>> updateUserDetails(
-      UserDetailsModel userDetailsModel) async {
+  Future<Either<Failure, String>> updateUserDetails(String userName) async {
     try {
-      final result = await baseAuthenticationRemoteDataSource
-          .updateUsersDetails(userDetailsModel);
+      final result =
+          await baseAuthenticationRemoteDataSource.updateUsersDetails(userName);
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));

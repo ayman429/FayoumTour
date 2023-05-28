@@ -15,8 +15,7 @@ import '../models/user_details_model.dart';
 
 abstract class BaseAuthenticationRemoteDataSource {
   Future<UserDetailsModel> getUsersDetails();
-  Future<UserDetailsModel> updateUsersDetails(
-      UserDetailsModel userDetailsModel);
+  Future<String> updateUsersDetails(String userName);
   Future<Unit> registration(RegistrationModel registrationModel);
   Future<Unit> logIn(LoginModel loginModel);
   Future<dynamic> logOut();
@@ -108,6 +107,7 @@ class AuthenticationRemoteDataSource
     final Map<String, dynamic> changePasswordToJson =
         changePasswordModel.toJson();
     try {
+      print("password: $changePasswordToJson");
       Dio dio = (await DioFactory.create()).dio;
       // Change Password , Request and Response
       final response = await dio.post(ApiConstance.changePasswordPath,
@@ -161,14 +161,17 @@ class AuthenticationRemoteDataSource
   }
 
   @override
-  Future<UserDetailsModel> updateUsersDetails(
-      UserDetailsModel userDetailsModel) async {
+  Future<String> updateUsersDetails(String userName) async {
     try {
+      // print("==============> $userName");
       Dio dio = (await DioFactory.create()).dio;
       // Get user info , Request and Response
-      final response = await dio.put(ApiConstance.userDetailsPath);
+      final response = await dio
+          .patch(ApiConstance.userDetailsPath, data: {"username": userName});
+      print(response.data["username"].toString());
       // return user info
-      return UserDetailsModel.fromJson(response.data);
+      return response.data["username"].toString();
+      // return UserDetailsModel.fromJson(response.data);
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(

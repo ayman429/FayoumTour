@@ -17,6 +17,9 @@ class AppStrings {
   static const String homeCardTourismTitle = "Torism Places";
   static const String homeCardHotel = "Hotels";
   static const String seeMore = "See More";
+  static const String editName = "Edit Name";
+  static const String editPassword = "Edit Password";
+
   // static const String homeCardSearchFieldTitle = "";
 // ---------------------------- Constance Theme ---------------------------- //
   static const String themeString = "theme";
@@ -52,9 +55,14 @@ class AppStrings {
   static const String messageCredentials = "Email or Password Error";
   static const String connection = "No Connection Check Internet";
   static const String passwordMatchedError =
-      "The two password fields didn't match.";
+      "The two password fields didn’t match.";
   static const String passwordLenError =
       "This password is too short. It must contain at least 8 characters.";
+  static const String passwordCommonError = "This password is too common.";
+  static const String usernameExists =
+      "user with this username already exists.";
+  static const String passwordSimilar =
+      "The password is too similar to the email address.";
 //------------------------------ App Bar Title -------------------------------//
   static const List<String> titles = [
     "My Profile",

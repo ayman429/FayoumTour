@@ -139,13 +139,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_barometer_plugin:
-    dependency: "direct main"
-    description:
-      name: flutter_barometer_plugin
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.0.1+3"
   flutter_bloc:
     dependency: "direct main"
     description:
@@ -186,13 +179,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.13"
-  flutter_sensors:
-    dependency: "direct main"
-    description:
-      name: flutter_sensors
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -322,13 +308,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.6.4"
-  light:
-    dependency: "direct main"
-    description:
-      name: light
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.1.0"
   lints:
     dependency: transitive
     description:

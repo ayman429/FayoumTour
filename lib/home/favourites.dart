@@ -1,4 +1,3 @@
-import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../TourismPlaces/presentation/components/favorite_places_details.dart';
 import '../core/local_data_shared_preferences/favourites_shared_preferences.dart';
 import '../hotels/presentation/components/favorite_hotels_details.dart';
-import 'up_bar_image.dart';
 
 class Favorites extends StatefulWidget {
   @override

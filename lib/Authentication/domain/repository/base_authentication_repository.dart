@@ -11,8 +11,7 @@ import '../entities/user_details.dart';
 
 abstract class BaseAuthenticationRepository {
   Future<Either<Failure, UserDetails>> getUserDetails();
-  Future<Either<Failure, UserDetails>> updateUserDetails(
-      UserDetailsModel userDetailsModel);
+  Future<Either<Failure, String>> updateUserDetails(String userName);
   Future<Either<Failure, Unit>> registration(
       RegistrationModel registrationModel);
   Future<Either<Failure, Unit>> login(LoginModel loginModel);

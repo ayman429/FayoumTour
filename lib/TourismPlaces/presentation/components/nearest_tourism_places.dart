@@ -17,7 +17,7 @@ Map<String, dynamic> location = {
   "coordinatesX": 20.545655,
   "coordinatesY": 30.545406,
 };
-List<Map<String, dynamic>> arr = [];
+
 double getDistance(Map<String, dynamic> point) {
   double x1 = location['coordinatesX'];
   double y1 = location['coordinatesY'];
@@ -68,6 +68,9 @@ class NearestTourismPlaces extends StatelessWidget {
             return const SizedBox(
                 height: 200, child: Center(child: CircularProgressIndicator()));
           case RequestState.loaded:
+            // print("-------------------------------------------------------");
+            // print(state.tourismPlace.length);
+            List<Map<String, dynamic>> arr = [];
             for (int i = 0; i < state.tourismPlace.length; i++) {
               arr.add(state.tourismPlace[i].toJson());
             }
@@ -78,15 +81,17 @@ class NearestTourismPlaces extends StatelessWidget {
             // listId.add(sortedArr[0]['id']);
             var data = List<TourismPlaceModel>.from(
                 sortedArr.map((e) => TourismPlaceModel.fromJson(e)));
-            print(data[0].name);
+            // print("-------------------------------------------------------");
+            // print(data[0].name);
+            // print(arr.length);
             return SizedBox(
                 height: MediaQuery.of(context).size.height * 0.25,
                 child: ListView.builder(
                   itemCount: sortedArr.length,
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
+                  itemBuilder: (context, indexdata) {
                     return HomeCard(
-                      data: data[index],
+                      data: data[indexdata],
                       index: 0,
                       type: "places",
                     );

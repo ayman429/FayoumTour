@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../core/local_data_shared_preferences/favourites_shared_preferences.dart';
 import '../../../../core/utils/constance/shared_pref.dart';
 import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/constance/values_manager.dart';
@@ -17,10 +18,35 @@ import '../../controller/authentication_bloc.dart';
 import '../../controller/authentication_event.dart';
 import '../../controller/authentication_state.dart';
 
-class LoginForm extends StatelessWidget {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+class LoginForm extends StatefulWidget {
   LoginForm({Key? key}) : super(key: key);
+
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController passwordController = TextEditingController();
+  var userId;
+  Future<void> saveUserId() async {
+    setState(() async {
+      userId = await FavouritStorage().getUsersDetails();
+    });
+    // String imagePath =
+    //     sharedPreferences!.getString("${userId.id}USERIMAGE") ?? "";
+    // setState(() {
+    //   getImagePath = imagePath;
+    // });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    saveUserId();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(

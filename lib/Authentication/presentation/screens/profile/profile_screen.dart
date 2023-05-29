@@ -1,11 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:fayoumtour/Authentication/domain/entities/user_details.dart';
 import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/local_data_shared_preferences/favourites_shared_preferences.dart';
 import '../../../../core/services/services_locator.dart';
@@ -27,6 +28,16 @@ class profile_screen extends StatefulWidget {
 
 class _profile_screenState extends State<profile_screen> {
   String getImagePath = "";
+
+  UserDetails userDetails =
+      UserDetails(id: "", email: "", firstName: "", lastName: "", username: "");
+  Future<void> updateUIWithUserDetails() async {
+    UserDetails user = await FavouritStorage().getUsersDetails();
+    setState(() async {
+      userDetails = user;
+    });
+  }
+
   Future<void> updateUIWithImagePath() async {
     var userId = await FavouritStorage().getUsersDetails();
     String imagePath =
@@ -69,27 +80,41 @@ class _profile_screenState extends State<profile_screen> {
                 ],
               ),
               const SizedBox(height: 10),
-              BlocBuilder<AuthenticationBloc, AuthenticationState>(
-                  builder: (context, state) {
-                switch (state.userDetailsState) {
-                  case RequestState.loading:
-                    return const Text("welcome");
-                  case RequestState.loaded:
-                    return Column(
-                      children: [
-                        Text(state.userDetails!.username,
-                            style: GoogleFonts.aBeeZee()),
-                        const SizedBox(height: 10),
-                        Text(state.userDetails!.email,
-                            style: GoogleFonts.aBeeZee()),
-                      ],
-                    );
+              // BlocBuilder<AuthenticationBloc, AuthenticationState>(
+              //     builder: (context, state) {
+              //   switch (state.userDetailsState) {
+              //     case RequestState.loading:
+              //       return const Text("welcome");
+              //     case RequestState.loaded:
+              //       return Column(
+              //         children: [
+              //           Text(state.userDetails!.username,
+              //               style: GoogleFonts.aBeeZee()),
+              //           const SizedBox(height: 10),
+              //           Text(state.userDetails!.email,
+              //               style: GoogleFonts.aBeeZee()),
+              //         ],
+              //       );
+              //     case RequestState.error:
+              //       print(state.userDetailsMessage.toString());
+              //       return const Text("data not foud...!");
+              //   }
+              // }),
 
-                  case RequestState.error:
-                    print(state.userDetailsMessage.toString());
-                    return const Text("data not foud...!");
-                }
-              }),
+              FutureBuilder(
+                future: updateUIWithUserDetails(),
+                builder: (context, snapshot) => (userDetails.username != "")
+                    ? Column(
+                        children: [
+                          Text(userDetails.username,
+                              style: GoogleFonts.aBeeZee()),
+                          const SizedBox(height: 10),
+                          Text(userDetails.email, style: GoogleFonts.aBeeZee()),
+                        ],
+                      )
+                    : Text("welcome", style: GoogleFonts.aBeeZee()),
+              ),
+
               const SizedBox(height: 20),
               SizedBox(
                 width: 200,

@@ -21,7 +21,8 @@ class Validation {
       validationMessage = AppStrings.passwordMatchedError;
     } else if (messageError == AppStrings.passwordCommonError) {
       validationMessage = AppStrings.passwordCommonError;
-    } else if (messageError == AppStrings.usernameExists) {
+    } else if (messageError == AppStrings.usernameExists ||
+        messageError == AppStrings.customUserExists) {
       validationMessage = AppStrings.usernameExists;
     } else if (messageError == AppStrings.passwordSimilar) {
       validationMessage = AppStrings.passwordSimilar;

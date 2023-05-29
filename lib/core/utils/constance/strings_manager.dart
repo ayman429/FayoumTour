@@ -63,6 +63,8 @@ class AppStrings {
       "user with this username already exists.";
   static const String passwordSimilar =
       "The password is too similar to the email address.";
+  static const String customUserExists =
+      "CustomUser with this username already exists.";
 //------------------------------ App Bar Title -------------------------------//
   static const List<String> titles = [
     "My Profile",

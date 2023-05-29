@@ -1,17 +1,17 @@
 import 'package:equatable/equatable.dart';
 
 class ImagesP extends Equatable {
-  String imageP;
+  String imageT;
   ImagesP({
-    required this.imageP,
+    required this.imageT,
   });
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['image'] = imageP;
+    data['image'] = imageT;
     return data;
   }
 
   @override
-  List<Object> get props => [imageP];
+  List<Object> get props => [imageT];
 }

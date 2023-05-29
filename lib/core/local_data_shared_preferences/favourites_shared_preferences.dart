@@ -54,7 +54,7 @@ class FavouritStorage extends BaseFavourits {
       "image": data.originalImage,
     };
     favList.add(map);
-    print(favList);
+    // print(favList);
     await prefs.setString(user.id, json.encode(favList));
     return Future.value(unit);
   }
@@ -62,9 +62,9 @@ class FavouritStorage extends BaseFavourits {
   @override
   Future<List<Map<String, dynamic>>> getFavourits() async {
     // final token = await getIt<AccessToken>().getToken();
-    print("--------------------------------");
+    // print("--------------------------------");
     var userId = sharedPreferences!.getString("USERID") ?? "";
-    print(userId);
+    // print(userId);
     if (userId != "") {
       final prefs = await SharedPreferences.getInstance();
       String jsonString = prefs.getString(userId) ?? "";
@@ -79,17 +79,17 @@ class FavouritStorage extends BaseFavourits {
   @override
   Future<bool> searchFavourit(data) async {
     final searchList = await getFavourits();
-    print("======================");
-    print(searchList);
+    // print("======================");
+    // print(searchList);
     bool flag = false;
     for (var element in searchList) {
       if (element.containsValue(data.id.toString())) {
         flag = true;
-        print("--=__=--> $flag");
+        // print("--=__=--> $flag");
         break;
       } else {
         flag = false;
-        print("--=__=--> $flag");
+        // print("--=__=--> $flag");
       }
     }
     return flag;

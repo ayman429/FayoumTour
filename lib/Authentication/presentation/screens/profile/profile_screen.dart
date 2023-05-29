@@ -31,17 +31,29 @@ class _profile_screenState extends State<profile_screen> {
 
   UserDetails userDetails =
       UserDetails(id: "", email: "", firstName: "", lastName: "", username: "");
+  var username;
   Future<void> updateUIWithUserDetails() async {
-    UserDetails user = await FavouritStorage().getUsersDetails();
+    Map<String, dynamic> localUerDetails =
+        await json.decode(sharedPreferences!.getString("USER") ?? "");
+    username = sharedPreferences!.getString("username") ?? "";
     setState(() async {
-      userDetails = user;
+      username = sharedPreferences!.getString("username") ?? "";
+
+      userDetails = UserDetails(
+          id: localUerDetails["id"],
+          email: localUerDetails["email"],
+          firstName: localUerDetails["firstName"],
+          lastName: localUerDetails["lastName"],
+          username: localUerDetails["username"]);
     });
   }
 
   Future<void> updateUIWithImagePath() async {
-    var userId = await FavouritStorage().getUsersDetails();
+    Map<String, dynamic> localUerDetails =
+        await json.decode(sharedPreferences!.getString("USER") ?? "");
+
     String imagePath =
-        sharedPreferences!.getString("${userId.id}USERIMAGE") ?? "";
+        sharedPreferences!.getString("${localUerDetails["id"]}USERIMAGE") ?? "";
     setState(() {
       getImagePath = imagePath;
     });
@@ -51,6 +63,7 @@ class _profile_screenState extends State<profile_screen> {
   void initState() {
     super.initState();
     updateUIWithImagePath();
+    // updateUIWithUserDetails();
   }
 
   @override
@@ -80,41 +93,18 @@ class _profile_screenState extends State<profile_screen> {
                 ],
               ),
               const SizedBox(height: 10),
-              // BlocBuilder<AuthenticationBloc, AuthenticationState>(
-              //     builder: (context, state) {
-              //   switch (state.userDetailsState) {
-              //     case RequestState.loading:
-              //       return const Text("welcome");
-              //     case RequestState.loaded:
-              //       return Column(
-              //         children: [
-              //           Text(state.userDetails!.username,
-              //               style: GoogleFonts.aBeeZee()),
-              //           const SizedBox(height: 10),
-              //           Text(state.userDetails!.email,
-              //               style: GoogleFonts.aBeeZee()),
-              //         ],
-              //       );
-              //     case RequestState.error:
-              //       print(state.userDetailsMessage.toString());
-              //       return const Text("data not foud...!");
-              //   }
-              // }),
-
               FutureBuilder(
                 future: updateUIWithUserDetails(),
-                builder: (context, snapshot) => (userDetails.username != "")
+                builder: (context, snapshot) => (userDetails.email != "")
                     ? Column(
                         children: [
-                          Text(userDetails.username,
-                              style: GoogleFonts.aBeeZee()),
+                          Text(username, style: GoogleFonts.aBeeZee()),
                           const SizedBox(height: 10),
                           Text(userDetails.email, style: GoogleFonts.aBeeZee()),
                         ],
                       )
                     : Text("welcome", style: GoogleFonts.aBeeZee()),
               ),
-
               const SizedBox(height: 20),
               SizedBox(
                 width: 200,

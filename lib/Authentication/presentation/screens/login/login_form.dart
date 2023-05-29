@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +13,7 @@ import '../../../../core/utils/snackbar_message.dart';
 import '../../../../home/BottomBar.dart';
 import '../../../../home/questions.dart';
 import '../../../domain/entities/login.dart';
+import '../../../domain/entities/user_details.dart';
 import '../../components/email_text_form_field.dart';
 import '../../components/password_text_form_field.dart';
 import '../../components/validation.dart';
@@ -29,23 +32,6 @@ class _LoginFormState extends State<LoginForm> {
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
-  var userId;
-  Future<void> saveUserId() async {
-    setState(() async {
-      userId = await FavouritStorage().getUsersDetails();
-    });
-    // String imagePath =
-    //     sharedPreferences!.getString("${userId.id}USERIMAGE") ?? "";
-    // setState(() {
-    //   getImagePath = imagePath;
-    // });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    saveUserId();
-  }
 
   @override
   Widget build(BuildContext context) {

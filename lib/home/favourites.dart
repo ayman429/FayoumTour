@@ -19,7 +19,7 @@ class _FavoritesState extends State<Favorites> {
     FavouritStorage().getFavourits().then((value) => setState(
           () {
             snapshot = value;
-            print(snapshot);
+            // print(snapshot);
           },
         ));
     if (snapshot == null || snapshot!.isEmpty) {

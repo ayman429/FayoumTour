@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:fayoumtour/Authentication/domain/entities/change_password.dart';
 import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
@@ -35,9 +36,14 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   String picked__File = "";
   String getImagePath = "";
   Future<void> updateUIWithImagePath() async {
-    var userId = await FavouritStorage().getUsersDetails();
+    // var userId = await FavouritStorage().getUsersDetails();
+    // String imagePath =
+    //     sharedPreferences!.getString("${userId.id}USERIMAGE") ?? "";
+    Map<String, dynamic> localUerDetails =
+        json.decode(sharedPreferences!.getString("USER") ?? "");
+
     String imagePath =
-        sharedPreferences!.getString("${userId.id}USERIMAGE") ?? "";
+        sharedPreferences!.getString("${localUerDetails["id"]}USERIMAGE") ?? "";
     setState(() {
       getImagePath = imagePath;
     });
@@ -178,7 +184,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   if (state.updateuserDetailsState == RequestState.loaded ||
                       state.changePasswordstate == RequestState.loaded) {
                     print("loaded");
-
+                    String username = state.updateuserDetails ?? "";
+                    sharedPreferences!.setString("username", username);
                     Navigator.pop(context);
                   } else if (state.updateuserDetailsState ==
                       RequestState.error) {

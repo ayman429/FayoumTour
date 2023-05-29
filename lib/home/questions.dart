@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:flutter/material.dart';
 
+import '../Authentication/domain/entities/user_details.dart';
+import '../core/local_data_shared_preferences/favourites_shared_preferences.dart';
 import 'BottomBar.dart';
 
 class TourismScreen extends StatefulWidget {
@@ -15,10 +19,17 @@ class _TourismScreenState extends State<TourismScreen>
   late Animation<double> _opacityAnimation;
 
   String _selectedOption = '';
+  Future<void> saveUserDetails() async {
+    UserDetails userDetails = await FavouritStorage().getUsersDetails();
+
+    sharedPreferences!.setString("USER", json.encode(userDetails.toJson()));
+    sharedPreferences!.setString("username", userDetails.username);
+  }
 
   @override
   void initState() {
     super.initState();
+    saveUserDetails();
     _controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 2),

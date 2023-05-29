@@ -43,6 +43,15 @@ import '../../hotels/domain/usecase/search_by_fields_usecase.dart';
 import '../../hotels/domain/usecase/search_by_rate_usecase.dart';
 import '../../hotels/domain/usecase/update_hotel_usecase.dart';
 import '../../hotels/presentation/controller/hotels_bloc.dart';
+import '../../post/data/datasource/post_remote_data_source.dart';
+import '../../post/data/repository/post_repository.dart';
+import '../../post/domain/repository/base_post_repository.dart';
+import '../../post/domain/usecase/add_post_usecase.dart';
+import '../../post/domain/usecase/delete_post_usecase.dart';
+import '../../post/domain/usecase/get_post_by_id_usecase.dart';
+import '../../post/domain/usecase/get_post_usecase.dart';
+import '../../post/domain/usecase/update_post_usecase.dart';
+import '../../post/presentation/controller/bloc/post_bloc.dart';
 import '../local_data_shared_preferences/access_token_shared_preferences.dart';
 
 final getIt = GetIt.instance;
@@ -116,14 +125,6 @@ class ServicesLocator {
     getIt.registerLazySingleton(() => GetHotelRateByIdUsecase(getIt()));
     getIt.registerLazySingleton(() => UpdateCreateHotelRateUsecase(getIt()));
 
-    // /// Repository
-    // getIt.registerLazySingleton<BaseTourismPlaceRepository>(
-    //     () => TourismPlaceRerpository(getIt()));
-
-    // /// DATA SOURCE
-    // getIt.registerLazySingleton<BaseTourismPlaceRemoteDataSource>(
-    //     () => TourismPlaceRemoteDataSource());
-
     /// Repository
     getIt.registerLazySingleton<BaseHotelRepository>(
         () => HotelRerpository(getIt()));
@@ -170,5 +171,28 @@ class ServicesLocator {
     /// DATA SOURCE
     getIt.registerLazySingleton<BaseTourismPlaceRemoteDataSource>(
         () => TourismPlaceRemoteDataSource());
+
+    /* ****** Posts ServicesLocator ****** */
+    /// Bloc
+    getIt.registerFactory(
+        () => PostBloc(getIt(), getIt(), getIt(), getIt(), getIt()));
+
+    /// Use Cases
+    getIt.registerLazySingleton(() => GetPostUsecase(getIt()));
+    getIt.registerLazySingleton(() => GetPostByIdUsecase(getIt()));
+
+    getIt.registerLazySingleton(() => AddPostUsecase(getIt()));
+    getIt.registerLazySingleton(() => UpdatePostUsecase(getIt()));
+    getIt.registerLazySingleton(() => DeletePostUsecase(getIt()));
+    // getIt.registerLazySingleton(() => SearchByFieldsPostUsecase(getIt()));
+    // getIt.registerLazySingleton(() => OrderingPostByFieldsUsecase(getIt()));
+
+    /// Repository
+    getIt.registerLazySingleton<BasePostRepository>(
+        () => PostRerpository(getIt()));
+
+    /// DATA SOURCE
+    getIt.registerLazySingleton<BasePostRemoteDataSource>(
+        () => PostRemoteDataSource());
   }
 }

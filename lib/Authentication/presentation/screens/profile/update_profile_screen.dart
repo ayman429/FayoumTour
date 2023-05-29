@@ -184,8 +184,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   if (state.updateuserDetailsState == RequestState.loaded ||
                       state.changePasswordstate == RequestState.loaded) {
                     print("loaded");
-                    String username = state.updateuserDetails ?? "";
-                    sharedPreferences!.setString("username", username);
+                    if (state.updateuserDetailsState == RequestState.loaded) {
+                      String username = state.updateuserDetails ?? "";
+                      sharedPreferences!.setString("username", username);
+                    }
                     Navigator.pop(context);
                   } else if (state.updateuserDetailsState ==
                       RequestState.error) {

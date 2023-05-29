@@ -15,7 +15,7 @@ import '../models/user_details_model.dart';
 
 abstract class BaseAuthenticationRemoteDataSource {
   Future<UserDetailsModel> getUsersDetails();
-  Future<String> updateUsersDetails(String userName);
+  Future<String> updateUsersDetails(var userData, String type);
   Future<Unit> registration(RegistrationModel registrationModel);
   Future<Unit> logIn(LoginModel loginModel);
   Future<dynamic> logOut();
@@ -161,16 +161,30 @@ class AuthenticationRemoteDataSource
   }
 
   @override
-  Future<String> updateUsersDetails(String userName) async {
+  Future<String> updateUsersDetails(userData, type) async {
     try {
       // print("==============> $userName");
       Dio dio = (await DioFactory.create()).dio;
       // Get user info , Request and Response
-      final response = await dio
-          .patch(ApiConstance.userDetailsPath, data: {"username": userName});
-      print(response.data["username"].toString());
-      // return user info
-      return response.data["username"].toString();
+      if (type == "username") {
+        final response = await dio
+            .patch(ApiConstance.userDetailsPath, data: {"username": userData});
+        print(response.data["username"].toString());
+        // return user info
+        return response.data["username"].toString();
+      } else if (type == "image") {
+        final response = await dio.patch(
+          ApiConstance.userDetailsPath,
+          data: FormData.fromMap({
+            "image": await MultipartFile.fromFile(userData),
+          }),
+        );
+        print(response.data["image"].toString());
+        // return user info
+        return response.data["image"].toString();
+      } else {
+        return "Have Some error";
+      }
       // return UserDetailsModel.fromJson(response.data);
     } on DioError catch (e) {
       // return Error Message

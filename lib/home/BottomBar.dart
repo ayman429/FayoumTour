@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../core/utils/constance/strings_manager.dart';
+import 'add_post.dart';
 import 'favourites.dart';
 import 'home.dart';
 import 'plan.dart';
@@ -33,6 +34,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> Screens = [
     Profile(),
     Home(tourtismType: tourtismTypes),
+    AddPost(),
     Favorites(),
     Plan(),
   ];
@@ -97,20 +99,24 @@ class _BottomBarState extends State<BottomBar> {
           backgroundColor: Colors.transparent,
           animationDuration: const Duration(milliseconds: 200),
           color: Theme.of(context).colorScheme.tertiaryContainer,
-          items: const [
-            Icon(
+          items: [
+            const Icon(
               Icons.person_outlined,
               size: 25,
             ),
-            Icon(
+            const Icon(
               Icons.home,
               size: 25,
             ),
             Icon(
+              selected == 2 ? Icons.add_circle : Icons.add_circle_outline,
+              size: 25,
+            ),
+            const Icon(
               Icons.favorite_outline,
               size: 25,
             ),
-            Icon(
+            const Icon(
               Icons.padding_outlined,
               size: 25,
             ),

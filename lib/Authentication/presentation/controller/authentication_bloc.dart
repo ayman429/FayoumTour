@@ -117,7 +117,7 @@ class AuthenticationBloc
 
   FutureOr<void> _updateUserDetails(
       UpdateUserDetailsEvent event, Emitter<AuthenticationState> emit) async {
-    (await updateUserDetailsUsecase(event.userName)).fold(
+    (await updateUserDetailsUsecase(event.userData, event.type)).fold(
       (l) {
         return emit(state.copyWith(
             updateuserDetailsState: RequestState.error,

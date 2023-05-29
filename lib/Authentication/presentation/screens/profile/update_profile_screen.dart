@@ -35,6 +35,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
   String picked__File = "";
   String getImagePath = "";
+  String type = "";
   Future<void> updateUIWithImagePath() async {
     // var userId = await FavouritStorage().getUsersDetails();
     // String imagePath =
@@ -169,6 +170,15 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                       .getString("${userId.id}USERIMAGE") ??
                                   "";
                             });
+                            BlocProvider.of<AuthenticationBloc>(context)
+                                .add(UpdateUserDetailsEvent(
+                                    userData: getImagePath,
+                                    // File(getImagePath)
+                                    //     .readAsBytesSync(), //FileImage(File(getImagePath)),
+                                    type: "image"));
+                            setState(() {
+                              type = "image";
+                            });
                             // Navigator.pop(context);
                           },
                         ),
@@ -184,11 +194,12 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   if (state.updateuserDetailsState == RequestState.loaded ||
                       state.changePasswordstate == RequestState.loaded) {
                     print("loaded");
-                    if (state.updateuserDetailsState == RequestState.loaded) {
+                    if (state.updateuserDetailsState == RequestState.loaded &&
+                        type == "username") {
                       String username = state.updateuserDetails ?? "";
                       sharedPreferences!.setString("username", username);
+                      Navigator.pop(context);
                     }
-                    Navigator.pop(context);
                   } else if (state.updateuserDetailsState ==
                       RequestState.error) {
                     print("error: ${state.updateuserDetailsMessage}");
@@ -225,7 +236,11 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   onPressed: () {
                     BlocProvider.of<AuthenticationBloc>(context).add(
                         UpdateUserDetailsEvent(
-                            userName: userNameController.text));
+                            userData: userNameController.text,
+                            type: "username"));
+                    setState(() {
+                      type = "username";
+                    });
                   },
                   style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(

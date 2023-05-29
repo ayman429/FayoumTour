@@ -69,6 +69,7 @@ class AppStrings {
   static const List<String> titles = [
     "My Profile",
     "FayTour",
+    "Post to FayTour",
     "Favourites",
     "Plans"
   ];

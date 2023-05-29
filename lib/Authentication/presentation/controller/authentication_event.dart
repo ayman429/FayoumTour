@@ -26,9 +26,11 @@ class RegistrationEvent extends AuthenticationEvent {
 }
 
 class UpdateUserDetailsEvent extends AuthenticationEvent {
-  String userName;
+  var userData;
+  String type;
   UpdateUserDetailsEvent({
-    required this.userName,
+    required this.userData,
+    required this.type,
   });
 }
 

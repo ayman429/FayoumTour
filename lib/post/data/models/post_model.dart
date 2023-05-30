@@ -4,7 +4,8 @@ import 'img_model.dart';
 
 class PostModel extends Post {
   PostModel(
-      {required super.user,
+      {required super.id,
+      required super.user,
       required super.body,
       required super.imagesP,
       required super.createdBy});
@@ -18,6 +19,7 @@ class PostModel extends Post {
         : [];
 
     return PostModel(
+      id: json['id'].toString(),
       body: json['body'],
       imagesP: image,
       user: json['user'],
@@ -26,6 +28,7 @@ class PostModel extends Post {
   }
   PostModel.castFromEntity(final Post post)
       : super(
+            id: post.id,
             user: post.user,
             body: post.body,
             imagesP: post.imagesP,

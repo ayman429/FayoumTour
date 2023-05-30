@@ -4,12 +4,14 @@ import 'created_by.dart';
 import 'img.dart';
 
 class Post extends Equatable {
+  String? id;
   int user;
   String body;
   List<ImagesP> imagesP;
   CreatedBy? createdBy;
 
   Post({
+    this.id,
     required this.user,
     required this.body,
     required this.imagesP,

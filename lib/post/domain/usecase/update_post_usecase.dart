@@ -13,6 +13,6 @@ class UpdatePostUsecase extends BaseUseCase<Unit, Post> {
   @override
   Future<Either<Failure, Unit>> call(Post parameters) async {
     PostModel postModel = PostModel.castFromEntity(parameters);
-    return await basePostRepository.addPost(postModel);
+    return await basePostRepository.updatePost(postModel);
   }
 }

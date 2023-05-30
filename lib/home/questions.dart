@@ -21,7 +21,7 @@ class _TourismScreenState extends State<TourismScreen>
   String _selectedOption = '';
   Future<void> saveUserDetails() async {
     UserDetails userDetails = await FavouritStorage().getUsersDetails();
-
+    sharedPreferences!.setString("USERID", userDetails.id);
     sharedPreferences!.setString("USER", json.encode(userDetails.toJson()));
     sharedPreferences!.setString("username", userDetails.username);
   }

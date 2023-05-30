@@ -14,9 +14,11 @@ class GetPostByIdEvent extends PostEvent {
 }
 
 class AddPostEvent extends PostEvent {
-  Post post;
+  String body;
+  List<String> images;
   AddPostEvent({
-    required this.post,
+    required this.body,
+    required this.images,
   });
 }
 

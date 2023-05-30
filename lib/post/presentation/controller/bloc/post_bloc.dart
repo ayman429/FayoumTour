@@ -71,7 +71,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
   }
 
   FutureOr<void> _addPost(AddPostEvent event, Emitter<PostState> emit) async {
-    (await addPostUsecase(event.post)).fold((l) {
+    (await addPostUsecase(event.body, event.images)).fold((l) {
       return emit(PostState(
           addPostState: RequestState.error, addPostMessage: l.message));
     }, (r) {

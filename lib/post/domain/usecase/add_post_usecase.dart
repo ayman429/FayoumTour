@@ -6,13 +6,14 @@ import '../../data/models/post_model.dart';
 import '../entities/post.dart';
 import '../repository/base_post_repository.dart';
 
-class AddPostUsecase extends BaseUseCase<Unit, Post> {
+class AddPostUsecase {
+  // extends BaseUseCase<Unit, Post>
   final BasePostRepository baseHotelRepository;
 
   AddPostUsecase(this.baseHotelRepository);
   @override
-  Future<Either<Failure, Unit>> call(Post parameters) async {
-    PostModel postModel = PostModel.castFromEntity(parameters);
-    return await baseHotelRepository.addPost(postModel);
+  Future<Either<Failure, Unit>> call(String body, List<String> images) async {
+    // PostModel postModel = PostModel.castFromEntity(parameters);
+    return await baseHotelRepository.addPost(body, images);
   }
 }

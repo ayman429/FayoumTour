@@ -36,7 +36,7 @@ class _profile_screenState extends State<profile_screen> {
     Map<String, dynamic> localUerDetails =
         await json.decode(sharedPreferences!.getString("USER") ?? "");
     username = sharedPreferences!.getString("username") ?? "";
-    setState(() async {
+    setState(() {
       username = sharedPreferences!.getString("username") ?? "";
 
       userDetails = UserDetails(

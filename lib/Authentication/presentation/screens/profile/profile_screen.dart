@@ -56,6 +56,7 @@ class _profile_screenState extends State<profile_screen> {
         sharedPreferences!.getString("${localUerDetails["id"]}USERIMAGE") ?? "";
     setState(() {
       getImagePath = imagePath;
+      // print("getImagePath: $getImagePath");
     });
   }
 
@@ -179,6 +180,26 @@ Widget displayImage(String imagePath) {
     return Image.file(
       imageFile,
       fit: BoxFit.cover,
+    );
+  } else if (imagePath.contains("https")) {
+    return Image.network(
+      imagePath,
+      fit: BoxFit.cover,
+      errorBuilder: (context, error, stackTrace) {
+        return Image.asset(
+          AppStrings.error1Gif,
+          fit: BoxFit.cover,
+        );
+      },
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress != null) {
+          return Image.asset(
+            AppStrings.loading1Gif,
+            fit: BoxFit.cover,
+          );
+        }
+        return child;
+      },
     );
   } else {
     return Image.asset(

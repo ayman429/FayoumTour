@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../Authentication/domain/entities/user_details.dart';
 import '../core/local_data_shared_preferences/favourites_shared_preferences.dart';
+import '../post/data/datasource/post_remote_data_source.dart';
 import 'BottomBar.dart';
 
 class TourismScreen extends StatefulWidget {
@@ -21,9 +22,16 @@ class _TourismScreenState extends State<TourismScreen>
   String _selectedOption = '';
   Future<void> saveUserDetails() async {
     UserDetails userDetails = await FavouritStorage().getUsersDetails();
-    sharedPreferences!.setString("USERID", userDetails.id);
+    await sharedPreferences!.setString("USERID", userDetails.id);
+    String image = userDetails.image ?? "";
+
     sharedPreferences!.setString("USER", json.encode(userDetails.toJson()));
     sharedPreferences!.setString("username", userDetails.username);
+    // print("=================>");
+    // print(image);
+    // print(userDetails.id);
+    // print("${userDetails.id}USERIMAGE");
+    sharedPreferences!.setString("${userDetails.id}USERIMAGE", image);
   }
 
   @override

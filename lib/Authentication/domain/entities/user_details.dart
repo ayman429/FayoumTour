@@ -6,13 +6,16 @@ class UserDetails extends Equatable {
   String firstName;
   String lastName;
   String username;
+  String? image;
 
-  UserDetails(
-      {required this.id,
-      required this.email,
-      required this.firstName,
-      required this.lastName,
-      required this.username});
+  UserDetails({
+    required this.id,
+    required this.email,
+    required this.firstName,
+    required this.lastName,
+    required this.username,
+    this.image,
+  });
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
@@ -20,6 +23,7 @@ class UserDetails extends Equatable {
     data['username'] = username;
     data['firstName'] = firstName;
     data['lastName'] = lastName;
+    data['image'] = image;
     return data;
   }
 

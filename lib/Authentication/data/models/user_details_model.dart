@@ -24,7 +24,7 @@ class UserDetailsModel extends UserDetails {
         firstName: json['first_name'],
         lastName: json['last_name'],
         username: json['username'],
-        image: json['image'],
+        image: json['image'] ?? "",
       );
 
   UserDetailsModel.castFromEntity(final UserDetails userDetails)

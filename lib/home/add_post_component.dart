@@ -59,8 +59,9 @@ class _AddPostComponentState extends State<AddPostComponent> {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title:
-                  (widget.type == 'add') ? Text('Add Post') : Text('Edit Post'),
+              title: (widget.type == 'add')
+                  ? const Text('Add Post')
+                  : const Text('Edit Post'),
               actions: [
                 Padding(
                   padding: const EdgeInsets.only(right: 20),

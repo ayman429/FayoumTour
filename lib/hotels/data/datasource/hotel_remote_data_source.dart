@@ -11,7 +11,7 @@ import '../models/hotel_rate_model.dart';
 abstract class BaseHotelRemoteDataSource {
   Future<List<HotelModel>> getHotels();
   Future<List<HotelModel>> searchByFields(search);
-  Future<List<HotelModel>> searchByRate(search);
+  Future<List<HotelModel>> searchByRate();
   Future<List<HotelModel>> orderingByFields(search);
   Future<HotelModel> getHotelsById(ID);
   Future<String> deleteHotels(ID);
@@ -123,11 +123,13 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
   }
 
   @override
-  Future<List<HotelModel>> searchByRate(search) async {
+  Future<List<HotelModel>> searchByRate() async {
     try {
       Dio dio = (await DioFactory.create()).dio;
-      final response = await dio
-          .get(ApiConstance.hotelPath, queryParameters: {"RateNamber": search});
+      final response = await dio.get(
+        ApiConstance.hotelsSearchRatePath,
+        //  queryParameters: {"RateNamber": search}
+      );
 
       return List<HotelModel>.from(
           (response.data as List).map((e) => HotelModel.fromJson(e)));

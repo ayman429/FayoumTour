@@ -11,7 +11,7 @@ import '../models/tourism_place_rate_model.dart';
 abstract class BaseTourismPlaceRemoteDataSource {
   Future<List<TourismPlaceModel>> getTourismPlaces();
   Future<List<TourismPlaceModel>> searchByFields(search);
-  Future<List<TourismPlaceModel>> searchByRate(search);
+  Future<List<TourismPlaceModel>> searchByRate();
   Future<List<TourismPlaceModel>> orderingByFields(search);
   Future<TourismPlaceModel> getTourismPlacesById(id);
   Future<String> deleteTourismPlaces(id);
@@ -124,12 +124,14 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
   }
 
   @override
-  Future<List<TourismPlaceModel>> searchByRate(search) async {
+  Future<List<TourismPlaceModel>> searchByRate() async {
     try {
       Dio dio = (await DioFactory.create()).dio;
-      final response = await dio.get(ApiConstance.tourismPlacePath,
-          queryParameters: {"RateNamber": search});
-
+      final response = await dio.get(
+        ApiConstance.tourismPlaceSearchRatePath,
+        // queryParameters: {"RateNamber": search}
+      );
+      // print(response.data);
       return List<TourismPlaceModel>.from(
           (response.data as List).map((e) => TourismPlaceModel.fromJson(e)));
     } on DioError catch (e) {

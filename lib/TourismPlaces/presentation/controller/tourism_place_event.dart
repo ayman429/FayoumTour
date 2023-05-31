@@ -49,12 +49,7 @@ class OrderingTourismPlaceByFieldsEvent extends TourismPlaceEvent {
   });
 }
 
-class SearchTourismPlaceByRateEvent extends TourismPlaceEvent {
-  int tourismPlaceSearchByrate;
-  SearchTourismPlaceByRateEvent({
-    required this.tourismPlaceSearchByrate,
-  });
-}
+class SearchTourismPlaceByRateEvent extends TourismPlaceEvent {}
 
 class GetTourismPlaceRatesEvent extends TourismPlaceEvent {}
 

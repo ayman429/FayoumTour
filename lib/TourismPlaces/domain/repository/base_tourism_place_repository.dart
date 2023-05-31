@@ -10,7 +10,7 @@ abstract class BaseTourismPlaceRepository {
   Future<Either<Failure, List<TourismPlace>>> getTourismPlace();
   Future<Either<Failure, TourismPlace>> getTourismPlaceById(String id);
   Future<Either<Failure, List<TourismPlace>>> searchByField(String search);
-  Future<Either<Failure, List<TourismPlace>>> searchByRate(int search);
+  Future<Either<Failure, List<TourismPlace>>> searchByRate();
   Future<Either<Failure, List<TourismPlace>>> orderingByField(search);
   Future<Either<Failure, String>> deleteTourismPlace(String id);
   Future<Either<Failure, Unit>> addTourismPlace(TourismPlaceModel placeModel);

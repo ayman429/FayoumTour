@@ -15,6 +15,9 @@ class AppStrings {
   static const String logoHeroTag = "logo";
   static const String initialVideoId = 'BBHwtDhfydI';
   static const String homeCardTourismTitle = "Torism Places";
+  static const String topRatedTourismPlaces = "Top Rated Places";
+  static const String topRatedHotels = "Top Rated Hotels";
+
   static const String homeCardHotel = "Hotels";
   static const String seeMore = "See More";
   static const String editName = "Edit Name";

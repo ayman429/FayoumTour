@@ -10,7 +10,7 @@ abstract class BaseHotelRepository {
   Future<Either<Failure, List<Hotel>>> getHotel();
   Future<Either<Failure, Hotel>> getHotelById(String ID);
   Future<Either<Failure, List<Hotel>>> searchByField(String search);
-  Future<Either<Failure, List<Hotel>>> searchByRate(int search);
+  Future<Either<Failure, List<Hotel>>> searchByRate();
   Future<Either<Failure, List<Hotel>>> orderingByField(search);
   Future<Either<Failure, String>> deleteHotel(String ID);
   Future<Either<Failure, Unit>> addHotel(HotelModel hotelModel);

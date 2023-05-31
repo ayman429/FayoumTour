@@ -15,6 +15,10 @@ class ApiConstance {
   // GET All Hotel/TourismPlace Rate , GET By IDs , POST PUT Hotel Rate
   static const String hotelRatePath = "$baseUrl/api/RateHotel/";
   static const String tourismPlaceRatePath = "$baseUrl/api/RateTourismPlace/";
+  static const String tourismPlaceSearchRatePath =
+      "$baseUrl/api/TourismPlace/searchRateNamber/";
+  static const String hotelsSearchRatePath =
+      "$baseUrl/api/Hotel/searchRateNamber/";
 
 /* **************** Posts EndPoints **************** */
   static const String postPath = "$baseUrl/api/Post/";

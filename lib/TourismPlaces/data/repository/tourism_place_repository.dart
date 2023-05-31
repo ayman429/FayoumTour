@@ -83,8 +83,8 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
   }
 
   @override
-  Future<Either<Failure, List<TourismPlace>>> searchByRate(search) async {
-    final result = await baseTourismPlaceRemoteDataSource.searchByRate(search);
+  Future<Either<Failure, List<TourismPlace>>> searchByRate() async {
+    final result = await baseTourismPlaceRemoteDataSource.searchByRate();
 
     try {
       return Right(result);

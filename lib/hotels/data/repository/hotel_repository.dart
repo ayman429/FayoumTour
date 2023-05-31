@@ -78,8 +78,8 @@ class HotelRerpository extends BaseHotelRepository {
   }
 
   @override
-  Future<Either<Failure, List<Hotel>>> searchByRate(search) async {
-    final result = await baseHotelRemoteDataSource.searchByRate(search);
+  Future<Either<Failure, List<Hotel>>> searchByRate() async {
+    final result = await baseHotelRemoteDataSource.searchByRate();
 
     try {
       return Right(result);

@@ -142,15 +142,14 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
 
   FutureOr<void> _searchByRate(SearchTourismPlaceByRateEvent event,
       Emitter<TourismPlaceState> emit) async {
-    (await searchTourismPlaceByRateUsecase(event.tourismPlaceSearchByrate))
-        .fold((l) {
+    (await searchTourismPlaceByRateUsecase(const NoParameters())).fold((l) {
       return emit(TourismPlaceState(
-          searchTourismPlaceState: RequestState.error,
-          searchTourismPlaceMessage: l.message));
+          searchTourismPlaceRateState: RequestState.error,
+          searchTourismPlaceRateMessage: l.message));
     }, (r) {
       return emit(TourismPlaceState(
-        searchTourismPlace: r,
-        searchTourismPlaceState: RequestState.loaded,
+        searchTourismPlaceRate: r,
+        searchTourismPlaceRateState: RequestState.loaded,
       ));
     });
   }

@@ -136,14 +136,14 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
 
   FutureOr<void> _searchHotelByRate(
       SearchHotelByRateEvent event, Emitter<HotelsState> emit) async {
-    (await searchHotelByRateUsecase(event.hotelSearchByRate)).fold((l) {
+    (await searchHotelByRateUsecase(const NoParameters())).fold((l) {
       return emit(HotelsState(
-          searchHotelState: RequestState.error,
-          searchHotelsMessage: l.message));
+          searchHotelRateState: RequestState.error,
+          searchHotelRateMessage: l.message));
     }, (r) {
       return emit(HotelsState(
-        searchHotels: r,
-        searchHotelState: RequestState.loaded,
+        searchHotelRate: r,
+        searchHotelRateState: RequestState.loaded,
       ));
     });
   }

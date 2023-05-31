@@ -42,12 +42,7 @@ class SearchHotelByFieldsEvent extends HotelsEvent {
   });
 }
 
-class SearchHotelByRateEvent extends HotelsEvent {
-  int hotelSearchByRate;
-  SearchHotelByRateEvent({
-    required this.hotelSearchByRate,
-  });
-}
+class SearchHotelByRateEvent extends HotelsEvent {}
 
 class OrderingHotelByFieldsEvent extends HotelsEvent {
   String hotelOrderingByFeild;

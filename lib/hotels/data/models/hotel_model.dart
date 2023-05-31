@@ -63,7 +63,7 @@ class HotelModel extends Hotel {
       totalBeds: json['TotalBeds'],
       noOfRatings: json['no_of_ratings'],
       avgRatings: double.parse(
-          (json['avg_ratings']).toStringAsFixed(2)), //json['avg_ratings'],
+          (json['avg_ratings']).toStringAsFixed(1)), //json['avg_ratings'],
       rateOneByOne: RateOneByOneModel.fromJson(json['rate_one_by_one']),
 
       imagesT: image,

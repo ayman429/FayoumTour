@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 
-import '../TourismPlaces/presentation/components/places_details.dart';
-import '../hotels/presentation/components/hotels_details.dart';
+import '../TourismPlaces/presentation/screens/places_details.dart';
+import '../hotels/presentation/screens/hotels_details.dart';
 
 class SeachBody extends StatelessWidget {
   var data;

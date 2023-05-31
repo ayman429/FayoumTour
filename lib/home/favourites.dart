@@ -2,9 +2,9 @@ import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../TourismPlaces/presentation/components/places_details.dart';
+import '../TourismPlaces/presentation/screens/places_details.dart';
 import '../core/local_data_shared_preferences/favourites_shared_preferences.dart';
-import '../hotels/presentation/components/hotels_details.dart';
+import '../hotels/presentation/screens/hotels_details.dart';
 
 class Favorites extends StatefulWidget {
   @override

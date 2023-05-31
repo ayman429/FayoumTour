@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../TourismPlaces/presentation/components/tourism_places_search.dart';
-import '../hotels/presentation/components/hotels_search.dart';
+import '../TourismPlaces/presentation/screens/tourism_places_search.dart';
 
 class SEARCH extends StatelessWidget {
   String search_ketword;

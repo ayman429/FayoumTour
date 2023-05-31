@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../TourismPlaces/presentation/components/home_cards_tourism_places.dart';
-import '../TourismPlaces/presentation/components/nearest_tourism_places.dart';
-import '../TourismPlaces/presentation/components/search_by_field.dart';
-import '../hotels/presentation/components/home_cards_hotels.dart';
+import '../TourismPlaces/presentation/screens/home_cards_tourism_places.dart';
+import '../TourismPlaces/presentation/screens/nearest_tourism_places.dart';
+import '../TourismPlaces/presentation/screens/search_by_field.dart';
+import '../hotels/presentation/screens/home_cards_hotels.dart';
 import 'fayoum_vedio.dart';
 
 class Home extends StatelessWidget {

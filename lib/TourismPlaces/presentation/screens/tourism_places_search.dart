@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/enums.dart';
 import '../../../home/search_body.dart';
-import '../../../hotels/presentation/components/hotels_search.dart';
+import '../../../hotels/presentation/screens/hotels_search.dart';
 import '../controller/tourism_place_bloc.dart';
 import '../controller/tourism_place_event.dart';
 import '../controller/tourism_place_state.dart';

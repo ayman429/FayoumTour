@@ -1,18 +1,38 @@
-import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
+
+import '../TourismPlaces/presentation/components/places_details.dart';
+import '../hotels/presentation/components/hotels_details.dart';
+
 class SeachBody extends StatelessWidget {
   var data;
+  String type;
   SeachBody({
     Key? key,
     required this.data,
+    required this.type,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigator.push(context,MaterialPageRoute(builder: (context) => BAR(ro: snapshot.data?.docs[index]["name"],index: 0,img: snapshot.data?.docs[index]["images"][0])));
+        if (type == "places") {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      PlacesDetails(tourId: data.id.toString())));
+        } else if (type == "hotels") {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      HotelsDetails(hotelsId: data.id.toString())));
+        } else {
+          print("error");
+        }
       },
       child: Container(
         height: 200,

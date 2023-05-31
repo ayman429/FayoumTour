@@ -32,7 +32,6 @@ class TourismPlacesSearch extends StatelessWidget {
       if (state.searchTourismPlace.isNotEmpty) {
         switch (state.searchTourismPlaceState) {
           case RequestState.loading:
-            print("loading");
             return const SizedBox(
                 height: 200, child: Center(child: CircularProgressIndicator()));
           case RequestState.loaded:
@@ -43,6 +42,7 @@ class TourismPlacesSearch extends StatelessWidget {
 
                 return SeachBody(
                   data: searchTourismPlace,
+                  type: "places",
                 );
               },
             );

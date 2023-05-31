@@ -8,9 +8,9 @@ import '../../../home/up_bar_image.dart';
 import '../controller/tourism_place_bloc.dart';
 import '../controller/tourism_place_event.dart';
 
-class FavoritePlacesDetails extends StatelessWidget {
+class PlacesDetails extends StatelessWidget {
   String tourId;
-  FavoritePlacesDetails({
+  PlacesDetails({
     Key? key,
     required this.tourId,
   }) : super(key: key);

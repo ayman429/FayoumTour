@@ -8,9 +8,9 @@ import '../controller/hotels_bloc.dart';
 import '../controller/hotels_event.dart';
 import '../controller/hotels_state.dart';
 
-class FavoriteHotelsDetails extends StatelessWidget {
+class HotelsDetails extends StatelessWidget {
   String hotelsId;
-  FavoriteHotelsDetails({
+  HotelsDetails({
     Key? key,
     required this.hotelsId,
   }) : super(key: key);

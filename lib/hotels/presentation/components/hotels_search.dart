@@ -40,6 +40,7 @@ class HotelsSearch extends StatelessWidget {
 
                 return SeachBody(
                   data: searchHotel,
+                  type: "hotels",
                 );
               },
             );

@@ -95,7 +95,8 @@ class _AddPostState extends State<AddPost> {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => AddPostComponent(),
+                                      builder: (context) => AddPostComponent(
+                                          type: "add", data: ""),
                                     ),
                                   );
                                 },

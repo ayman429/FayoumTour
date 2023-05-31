@@ -13,7 +13,7 @@ abstract class BasePostRemoteDataSource {
   Future<PostModel> getPostsById(iD);
   Future<String> deletePosts(iD);
   Future<Unit> addPosts(String body, List<String> images);
-  Future<Unit> updatePosts(PostModel postModel);
+  Future<Unit> updatePosts(String body, List<String> images, String posId);
 
   // Future<List<PostModel>> searchByFields(search);
   // Future<List<HotelModel>> orderingByFields(search);
@@ -44,8 +44,8 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
 
     try {
       int user = int.parse(sharedPreferences!.getString("USERID") ?? "0");
-      print("============================>");
-      print(user);
+      // print("============================>");
+      // print(user);
       FormData formData = FormData();
 
       // Add the images to the form data
@@ -76,14 +76,35 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
   }
 
   @override
-  Future<Unit> updatePosts(postModel) async {
-    Map<String, dynamic> postModelsToJson = postModel.toJson();
+  Future<Unit> updatePosts(
+      String body, List<String> images, String posId) async {
     try {
+      int user = int.parse(sharedPreferences!.getString("USERID") ?? "0");
+      // print("============================>");
+      // print(user);
+      FormData formData = FormData();
+
+      // Add the images to the form data
+      for (int i = 0; i < images.length; i++) {
+        String imagePath = images[i];
+        formData.files.add(MapEntry(
+          'uploaded_images',
+          await MultipartFile.fromFile(
+            imagePath,
+          ),
+        ));
+      }
+      // Add user and body as fields to the form data
+      formData.fields.add(MapEntry('user', user.toString()));
+      formData.fields.add(MapEntry('body', body));
       Dio dio = (await DioFactory.create()).dio;
       final response =
-          await dio.put(ApiConstance.postPath, data: postModelsToJson);
+          await dio.patch("${ApiConstance.postPath}/$posId/", data: formData);
+
       return Future.value(unit);
     } on DioError catch (e) {
+      print("================>");
+      print(e);
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),

@@ -34,8 +34,8 @@ class PostRerpository extends BasePostRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updatePost(postModel) async {
-    final add = await basePostRemoteDataSource.updatePosts(postModel);
+  Future<Either<Failure, Unit>> updatePost(body, images, posId) async {
+    final add = await basePostRemoteDataSource.updatePosts(body, images, posId);
     try {
       return Right(add);
     } on ServerException catch (failure) {

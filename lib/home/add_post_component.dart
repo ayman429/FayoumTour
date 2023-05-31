@@ -15,12 +15,20 @@ import '../core/utils/snackbar_message.dart';
 import '../post/presentation/controller/bloc/post_bloc.dart';
 
 class AddPostComponent extends StatefulWidget {
+  String type;
+  var data;
+  AddPostComponent({
+    Key? key,
+    required this.type,
+    required this.data,
+  }) : super(key: key);
   @override
   State<AddPostComponent> createState() => _AddPostComponentState();
 }
 
 class _AddPostComponentState extends State<AddPostComponent> {
   final TextEditingController _textEditingController = TextEditingController();
+
   String getImagePath = "";
   List<File> _imageList = [];
 
@@ -51,7 +59,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Add Post'),
+              title:
+                  (widget.type == 'add') ? Text('Add Post') : Text('Edit Post'),
               actions: [
                 Padding(
                   padding: const EdgeInsets.only(right: 20),
@@ -79,10 +88,19 @@ class _AddPostComponentState extends State<AddPostComponent> {
 
                       String body = "";
                       body = _textEditingController.text;
-                      BlocProvider.of<PostBloc>(context).add(AddPostEvent(
-                        body: body,
-                        images: imagesPath,
-                      ));
+                      if (widget.type == "add") {
+                        BlocProvider.of<PostBloc>(context).add(AddPostEvent(
+                          body: body,
+                          images: imagesPath,
+                        ));
+                      } else if (widget.type == "edit") {
+                        BlocProvider.of<PostBloc>(context).add(UpdatePostEvent(
+                          body: body,
+                          images: imagesPath,
+                          posId: widget.data.id.toString(),
+                        ));
+                      }
+
                       print("---------------------------");
                       print(imagesPath);
                       _textEditingController.clear();
@@ -107,7 +125,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                     padding: const EdgeInsets.all(AppPadding.p16),
                     child: BlocConsumer<PostBloc, PostState>(
                         listener: (context, state) {
-                      if (state.addPostState == RequestState.loaded) {
+                      if (state.addPostState == RequestState.loaded ||
+                          state.updatePostState == RequestState.loaded) {
                         print("Post Loded");
                         BlocProvider.of<PostBloc>(context).add(GetPostEvent());
                         print("Post Loded");
@@ -129,7 +148,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         //         MaterialPageRoute(builder: (context) => TourismScreen()),
                         //         (route) => false);
                         //   }
-                      } else if (state.addPostState == RequestState.error) {
+                      } else if (state.addPostState == RequestState.error ||
+                          state.updatePostState == RequestState.error) {
                         // String message;
                         // message = loginValidationMessage(state.loginMessage);
                         // message = Validation.validationMessage(state.addPostMessage);
@@ -137,7 +157,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                             message: state.addPostMessage, context: context);
                       }
                     }, builder: (context, state) {
-                      if (state.addPostState == RequestState.loading) {
+                      if (state.addPostState == RequestState.loading ||
+                          state.updatePostState == RequestState.loading) {
                         print("Post Loding");
 
                         /// loading
@@ -161,7 +182,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                     const SizedBox(width: 10),
                     // input text post
                     Expanded(
-                      child: TextField(
+                      child: TextFormField(
+                        // initialValue: widget.data.body.toString(),
                         controller: _textEditingController,
                         decoration: InputDecoration(
                           hintText: 'Write your post now!',

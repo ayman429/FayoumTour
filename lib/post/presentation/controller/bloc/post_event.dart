@@ -23,9 +23,13 @@ class AddPostEvent extends PostEvent {
 }
 
 class UpdatePostEvent extends PostEvent {
-  Post post;
+  String body;
+  List<String> images;
+  String posId;
   UpdatePostEvent({
-    required this.post,
+    required this.body,
+    required this.images,
+    required this.posId,
   });
 }
 

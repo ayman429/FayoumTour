@@ -9,7 +9,8 @@ abstract class BasePostRepository {
   Future<Either<Failure, Post>> getPostById(String iD);
   Future<Either<Failure, String>> deletePost(String iD);
   Future<Either<Failure, Unit>> addPost(String body, List<String> images);
-  Future<Either<Failure, Unit>> updatePost(PostModel postModel);
+  Future<Either<Failure, Unit>> updatePost(
+      String body, List<String> images, String posId);
 
   // Future<Either<Failure, List<Post>>> searchByField(String search);
   // Future<Either<Failure, List<Post>>> orderingByField(search);

@@ -8,6 +8,7 @@ import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../core/utils/enums.dart';
 import '../post/presentation/controller/bloc/post_bloc.dart';
+import 'add_post_component.dart';
 import 'image_list.dart';
 
 class ShowPosts extends StatelessWidget {
@@ -106,24 +107,39 @@ class ShowPosts extends StatelessWidget {
                             (int.parse(sharedPreferences!.getString("USERID") ??
                                         "0") ==
                                     state.post[index].createdBy!.id)
-                                ? IconButton(
-                                    onPressed: () {
-                                      // String postId = "0";
-                                      // postId=state.post[index].id!;
-                                      BlocProvider.of<PostBloc>(context).add(
-                                          DeletePostEvent(
-                                              postId: state.post[index].id!));
-                                      BlocProvider.of<PostBloc>(context)
-                                          .add(GetPostEvent());
-
-                                      // DocumentReference documentReference =
-                                      //     FirebaseFirestore.instance
-                                      //         .collection('Posts')
-                                      //         .doc(snapshot
-                                      //             .data?.docs[index].id);
-                                      // documentReference.delete();
-                                    },
-                                    icon: const Icon(Icons.cancel))
+                                ? Row(
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        AddPostComponent(
+                                                          type: "edit",
+                                                          data:
+                                                              state.post[index],
+                                                        )));
+                                            // BlocProvider.of<PostBloc>(context)
+                                            //     .add(DeletePostEvent(
+                                            //         postId:
+                                            //             state.post[index].id!));
+                                            // BlocProvider.of<PostBloc>(context)
+                                            //     .add(GetPostEvent());
+                                          },
+                                          icon: const Icon(Icons.edit)),
+                                      IconButton(
+                                          onPressed: () {
+                                            BlocProvider.of<PostBloc>(context)
+                                                .add(DeletePostEvent(
+                                                    postId:
+                                                        state.post[index].id!));
+                                            // BlocProvider.of<PostBloc>(context)
+                                            //     .add(GetPostEvent());
+                                          },
+                                          icon: const Icon(Icons.cancel)),
+                                    ],
+                                  )
                                 : Container()
                           ],
                         ),

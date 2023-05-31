@@ -2,7 +2,7 @@ import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:location/location.dart';
 import 'RatingStarsBar.dart';
 import 'image_list.dart';
 
@@ -220,7 +220,7 @@ class Details extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                // -------------
+
                 Container(
                   margin: const EdgeInsets.fromLTRB(0, 25, 0, 10),
                   child: SizedBox(
@@ -236,16 +236,25 @@ class Details extends StatelessWidget {
                             elevation: 10),
                         child: InkWell(
                           child: Text(
-                            index == 0 ? "Go to it!" : "Reserve!",
+                            "Go to it!",
                             style: GoogleFonts.rye(
                                 color: Theme.of(context).colorScheme.secondary,
                                 fontSize: 18),
                           ),
                           onTap: () async {
+                            Location location = new Location();
+                            bool _serviceEnabled;
+                            _serviceEnabled = await location.serviceEnabled();
+                            if (!_serviceEnabled) {
+                              _serviceEnabled = await location.requestService();
+                              if (!_serviceEnabled) {
+                                debugPrint('Location Denied once');
+                                return;
+                              }
+                            }
                             final url =
                                 "https://www.google.com/maps/search/?api=1&query=${data.coordinatesX},${data.coordinatesY}";
-                            print(
-                                'cordenatX==${data.coordinatesX},cordenatX==${data.coordinatesY}');
+
                             if (await canLaunch(url)) {
                               await launch(url);
                             } else {
@@ -255,6 +264,36 @@ class Details extends StatelessWidget {
                         )),
                   ),
                 ),
+                index == 1
+                    ? Container(
+                        margin: const EdgeInsets.fromLTRB(0, 25, 0, 10),
+                        child: SizedBox(
+                          height: 55,
+                          width: 260,
+                          child: TextButton(
+                              onPressed: () async {},
+                              style: TextButton.styleFrom(
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.primary,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15)),
+                                  elevation: 10),
+                              child: InkWell(
+                                child: Text(
+                                  "Reserve!",
+                                  style: GoogleFonts.rye(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                      fontSize: 18),
+                                ),
+                                onTap: () async {
+                                  // -----
+                                },
+                              )),
+                        ),
+                      )
+                    : Container(),
 
                 // Align(
                 //     alignment: Alignment.centerLeft,

@@ -220,39 +220,39 @@ class Details extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-
+                // -------------
                 Container(
                   margin: const EdgeInsets.fromLTRB(0, 25, 0, 10),
                   child: SizedBox(
                     height: 55,
                     width: 260,
                     child: TextButton(
-                      onPressed: () async {
-                        print(data.coordinatesY);
-                        print(data
-                            .coordinatesX); //29.405833973995296, 30.4192274478539
-
-                        // final url =
-                        //     "https://www.google.com/maps/search/?api=1&query=${29.405833973995296},${30.4192274478539}";
-                        // if (await canLaunch(url)) {
-                        //   await launch(url);
-                        // } else {
-                        //   throw 'Could not launch $url';
-                        // }
-                      },
-                      style: TextButton.styleFrom(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primary,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          elevation: 10),
-                      child: Text(
-                        index == 0 ? "Go to it!" : "Reserve!",
-                        style: GoogleFonts.rye(
-                            color: Theme.of(context).colorScheme.secondary,
-                            fontSize: 18),
-                      ),
-                    ),
+                        onPressed: () async {},
+                        style: TextButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            elevation: 10),
+                        child: InkWell(
+                          child: Text(
+                            index == 0 ? "Go to it!" : "Reserve!",
+                            style: GoogleFonts.rye(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontSize: 18),
+                          ),
+                          onTap: () async {
+                            final url =
+                                "https://www.google.com/maps/search/?api=1&query=${data.coordinatesX},${data.coordinatesY}";
+                            print(
+                                'cordenatX==${data.coordinatesX},cordenatX==${data.coordinatesY}');
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
+                        )),
                   ),
                 ),
 

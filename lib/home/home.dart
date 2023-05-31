@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../TourismPlaces/presentation/screens/home_cards_tourism_places.dart';
 import '../TourismPlaces/presentation/screens/nearest_tourism_places.dart';
-import '../TourismPlaces/presentation/screens/search_by_field.dart';
+import '../TourismPlaces/presentation/screens/places_search_type_by_field.dart';
 import '../hotels/presentation/screens/home_cards_hotels.dart';
 import 'fayoum_vedio.dart';
 

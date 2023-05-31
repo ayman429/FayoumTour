@@ -10,9 +10,9 @@ import '../controller/tourism_place_bloc.dart';
 import '../controller/tourism_place_event.dart';
 import '../controller/tourism_place_state.dart';
 
-class HomeCardsTourismPlacesSearch extends StatelessWidget {
+class HomeCardsTourismPlacesTypeSearch extends StatelessWidget {
   String tourismPlaceSearchByFeild; //"Pharaonic relics"
-  HomeCardsTourismPlacesSearch({
+  HomeCardsTourismPlacesTypeSearch({
     Key? key,
     required this.tourismPlaceSearchByFeild,
   }) : super(key: key);

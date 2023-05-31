@@ -126,6 +126,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
 
   FutureOr<void> _searchByFields(SearchTourismPlaceByFieldsEvent event,
       Emitter<TourismPlaceState> emit) async {
+    // emit(TourismPlaceState(searchTourismPlaceState: RequestState.loading));
+    // print("===================>");
     (await searchByFieldsUsecase(event.tourismPlaceSearchByFeild)).fold((l) {
       return emit(TourismPlaceState(
           searchTourismPlaceState: RequestState.error,

@@ -7,6 +7,7 @@ import 'favourites.dart';
 import 'home.dart';
 import 'plan.dart';
 import 'profile.dart';
+import 'search.dart';
 
 late String tourtismTypes;
 
@@ -38,7 +39,13 @@ class _BottomBarState extends State<BottomBar> {
     Favorites(),
     Plan(),
   ];
+  final TextEditingController _searchController = TextEditingController();
+
   int selected = 0;
+  bool search = false;
+  int search_counter = 0;
+  String _text = '';
+
   @override
   void initState() {
     super.initState();
@@ -49,51 +56,96 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.onSecondary,
-        appBar: AppBar(
-          title: Text(
-            AppStrings.titles[selected],
-            style: const TextStyle(
-                fontFamily: AppStrings.fontFamily,
-                fontWeight: FontWeight.bold,
-                fontSize: 25),
-          ),
-          foregroundColor: Theme.of(context).colorScheme.onPrimary,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          centerTitle: true,
-          leading: selected == 1
-              ? Container(
-                  margin: const EdgeInsets.only(left: 8),
-                  child: Hero(
-                    tag: AppStrings.loginHeroTag,
-                    child: Image.asset(AppStrings.logoImage),
+        appBar: search
+            ? AppBar(
+                title: TextField(
+                  controller: _searchController,
+                  decoration: const InputDecoration(
+                    hintText: 'Search...',
+                    hintStyle: TextStyle(color: Colors.black),
+                    border: InputBorder.none,
+                    //prefixIcon: Icon(Icons.search)
                   ),
-                )
-              : null,
-          actions: selected == 1
-              ? [
-                  Container(
-                    margin: const EdgeInsets.fromLTRB(0, 5, 8, 5),
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.tertiaryContainer,
-                      boxShadow: const [
-                        BoxShadow(color: Colors.black26, blurRadius: 6)
-                      ],
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: InkWell(
-                      onTap: () {},
-                      child: const Icon(
-                        Icons.search,
-                        size: 26,
-                      ),
-                    ),
-                  ),
-                ]
-              : null,
-        ),
-        body: Screens[selected],
+                  style: const TextStyle(color: Colors.black),
+                  onChanged: (value) {
+                    setState(() {
+                      search_counter = 0;
+                      _text = value;
+                      // print(_text);
+                    });
+                  },
+                ),
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                centerTitle: true,
+                leading: InkWell(
+                  onTap: () {
+                    setState(() {
+                      _searchController.clear();
+                      _text = "";
+                      search = false;
+                    });
+                  },
+                  child: const Icon(Icons.arrow_back),
+                ),
+              )
+            : AppBar(
+                title: Text(
+                  AppStrings.titles[selected],
+                  style: const TextStyle(
+                      fontFamily: AppStrings.fontFamily,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25),
+                ),
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                centerTitle: true,
+                leading: selected == 1
+                    ? Container(
+                        margin: const EdgeInsets.only(left: 8),
+                        child: Hero(
+                          tag: AppStrings.loginHeroTag,
+                          child: Image.asset(AppStrings.logoImage),
+                        ),
+                      )
+                    : null,
+                actions: selected == 1
+                    ? [
+                        Container(
+                          margin: const EdgeInsets.fromLTRB(0, 5, 8, 5),
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color:
+                                Theme.of(context).colorScheme.tertiaryContainer,
+                            boxShadow: const [
+                              BoxShadow(color: Colors.black26, blurRadius: 6)
+                            ],
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                search = true;
+                              });
+                            },
+                            child: const Icon(
+                              Icons.search,
+                              size: 26,
+                            ),
+                          ),
+                        ),
+                      ]
+                    : null,
+              ),
+        body: search
+            ? SEARCH(
+                search_ketword: _text,
+                search_count: search_counter,
+              )
+            : Screens[selected],
         bottomNavigationBar: CurvedNavigationBar(
           height: 65,
           backgroundColor: Colors.transparent,

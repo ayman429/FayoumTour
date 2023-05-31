@@ -15,6 +15,7 @@ class ShowPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
+        BlocProvider.of<PostBloc>(context).add(GetPostEvent());
         print("----------------------------");
         print(state.postState);
         switch (state.postState) {

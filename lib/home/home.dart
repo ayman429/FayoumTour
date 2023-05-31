@@ -26,7 +26,7 @@ class Home extends StatelessWidget {
               HomeCardsTourismPlaces(),
               HomeCardsHotels(),
 
-              HomeCardsTourismPlacesSearch(
+              HomeCardsTourismPlacesTypeSearch(
                   tourismPlaceSearchByFeild:
                       tourtismType), //"Pharaonic antiquities"
               NearestTourismPlaces(),

@@ -52,7 +52,7 @@ class TopRatedHotels extends StatelessWidget {
                   final searchHotelRate = state.searchHotelRate[index];
                   return HomeCard(
                     data: searchHotelRate,
-                    index: 0,
+                    index: 1,
                     type: "hotels",
                   );
                 },

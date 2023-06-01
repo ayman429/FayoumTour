@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fayoumtour/TourismPlaces/domain/usecase/rateUsecases/get_place_rate_by_user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/usecase/base_usecase.dart';
@@ -30,6 +31,7 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
   final GetTourismPlaceRateUsecase getTourismPlaceRateUsecase;
   final GetTourismPlaceRateByIdUsecase getTourismPlaceRateByIdUsecase;
   final UpdateCreateTourismPlaceRateUsecase updateCreateTourismPlaceRateUsecase;
+  final GetTourismPlaceRateByUserUsecase getTourismPlaceRateByUserUsecase;
 
   TourismPlaceBloc(
       this.getTourismPlaceUsecase,
@@ -42,7 +44,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       this.searchTourismPlaceByRateUsecase,
       this.getTourismPlaceRateUsecase,
       this.getTourismPlaceRateByIdUsecase,
-      this.updateCreateTourismPlaceRateUsecase)
+      this.updateCreateTourismPlaceRateUsecase,
+      this.getTourismPlaceRateByUserUsecase)
       : super(TourismPlaceState()) {
     on<GetTourismPlaceEvent>(_getTourismPlace);
     on<GetTourismPlacesByIdEvent>(_getTourismPlaceById);
@@ -55,6 +58,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
     on<GetTourismPlaceRatesEvent>(_getTourismPlaceRates);
     on<GetTourismPlaceRateByIdEvent>(_getTourismPlaceRateById);
     on<UpdateCreateTourismPlaceRatesEvent>(_updateCreateTourismPlaceRates);
+    on<GetTourismPlaceRateByUserEvent>(_getTourismPlaceRateByUserRates);
+    //GetTourismPlaceRateByUser
   }
 
   FutureOr<void> _getTourismPlace(
@@ -208,6 +213,22 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
     }, (r) {
       return emit(TourismPlaceState(
         updateCreateTourismPlaceRateState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _getTourismPlaceRateByUserRates(
+      GetTourismPlaceRateByUserEvent event,
+      Emitter<TourismPlaceState> emit) async {
+    (await getTourismPlaceRateByUserUsecase(event.placeId, event.userId)).fold(
+        (l) {
+      return emit(TourismPlaceState(
+          getTourismPlaceRateByUserState: RequestState.error,
+          getTourismPlaceRateByUserMessage: l.message));
+    }, (r) {
+      return emit(TourismPlaceState(
+        getTourismPlaceRateByUser: r,
+        getTourismPlaceRateByUserState: RequestState.loaded,
       ));
     });
   }

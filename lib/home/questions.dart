@@ -20,24 +20,24 @@ class _TourismScreenState extends State<TourismScreen>
   late Animation<double> _opacityAnimation;
 
   String _selectedOption = '';
-  Future<void> saveUserDetails() async {
-    UserDetails userDetails = await FavouritStorage().getUsersDetails();
-    await sharedPreferences!.setString("USERID", userDetails.id);
-    String image = userDetails.image ?? "";
+  // Future<void> saveUserDetails() async {
+  //   UserDetails userDetails = await FavouritStorage().getUsersDetails();
+  //   await sharedPreferences!.setString("USERID", userDetails.id);
+  //   String image = userDetails.image ?? "";
 
-    sharedPreferences!.setString("USER", json.encode(userDetails.toJson()));
-    sharedPreferences!.setString("username", userDetails.username);
-    // print("=================>");
-    // print(image);
-    // print(userDetails.id);
-    // print("${userDetails.id}USERIMAGE");
-    sharedPreferences!.setString("${userDetails.id}USERIMAGE", image);
-  }
+  //   sharedPreferences!.setString("USER", json.encode(userDetails.toJson()));
+  //   sharedPreferences!.setString("username", userDetails.username);
+  //   // print("=================>");
+  //   // print(image);
+  //   // print(userDetails.id);
+  //   // print("${userDetails.id}USERIMAGE");
+  //   sharedPreferences!.setString("${userDetails.id}USERIMAGE", image);
+  // }
 
   @override
   void initState() {
     super.initState();
-    saveUserDetails();
+    // saveUserDetails();
     _controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 2),
@@ -68,7 +68,8 @@ class _TourismScreenState extends State<TourismScreen>
   void _onOptionSelected(String option) {
     setState(() {
       _selectedOption = option;
-      sharedPreferences!.setString("selectedOption", _selectedOption);
+      var userId = sharedPreferences!.getString("USERID");
+      sharedPreferences!.setString("$userId selectedOption", _selectedOption);
     });
   }
 

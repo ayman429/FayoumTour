@@ -36,19 +36,19 @@ class SigupForm extends StatelessWidget {
               // print("---------- SignUp userId -------------");
               // print(state.userDetails!.id);
               //  sharedPreferences!.setString("USERID",state.userDetails!.id);
-              var _selectedOption =
-                  sharedPreferences!.getString("selectedOption");
-              if (_selectedOption != null) {
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            BottomBar(select: 1, _selectedOption)),
-                    (route) => false);
-              } else {
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => TourismScreen()),
-                    (route) => false);
-              }
+              // var _selectedOption =
+              //     sharedPreferences!.getString("selectedOption");
+              // if (_selectedOption != null) {
+              //   Navigator.of(context).pushAndRemoveUntil(
+              //       MaterialPageRoute(
+              //           builder: (context) =>
+              //               BottomBar(select: 1, _selectedOption)),
+              //       (route) => false);
+              // } else {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => TourismScreen()),
+                  (route) => false);
+              // }
             } else if (state.registrationstate == RequestState.error) {
               String message;
               message = Validation.validationMessage(state.registrationMessage);

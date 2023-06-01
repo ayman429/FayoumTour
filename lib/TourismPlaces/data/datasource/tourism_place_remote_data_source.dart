@@ -22,6 +22,7 @@ abstract class BaseTourismPlaceRemoteDataSource {
   Future<TourismPlaceRateModel> getTourismPlaceRateById(id);
   Future<Unit> updateCreateTourismPlaceRates(
       TourismPlaceRateModel tourismPlaceRateModel, tourismPlaceID);
+  Future<String> getTourismPlaceRateByUser(String placeId, String userId);
 }
 
 class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
@@ -200,6 +201,23 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
           "${ApiConstance.tourismPlacePath}$tourismPlaceID/rate_TourismPlace/",
           data: tourismPlaceRateModelsToJson);
       return Future.value(unit);
+    } on DioError catch (e) {
+      // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<String> getTourismPlaceRateByUser(
+      String placeId, String userId) async {
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.get(ApiConstance.getPlaceRateByUserPath,
+          data: {"placeId": placeId, "userId": userId});
+      print(response.data);
+      return response.data;
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(

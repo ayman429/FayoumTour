@@ -43,6 +43,10 @@ class TourismPlaceState {
   final RequestState updateCreateTourismPlaceRateState;
   final String updateCreateTourismPlaceRateMessage;
 
+  final String getTourismPlaceRateByUser;
+  final RequestState getTourismPlaceRateByUserState;
+  final String getTourismPlaceRateByUserMessage;
+
   TourismPlaceState({
     this.addTourismPlaceState = RequestState.loading,
     this.addTourismPlaceMessage = '',
@@ -73,6 +77,9 @@ class TourismPlaceState {
     this.searchTourismPlace = const [],
     this.searchTourismPlaceState = RequestState.loading,
     this.searchTourismPlaceMessage = '',
+    this.getTourismPlaceRateByUser = '',
+    this.getTourismPlaceRateByUserState = RequestState.loading,
+    this.getTourismPlaceRateByUserMessage = '',
   });
 
   TourismPlaceState copyWith({
@@ -105,6 +112,9 @@ class TourismPlaceState {
     String? getTourismPlaceRateByIdMessage,
     RequestState? updateCreateTourismPlaceRateState,
     String? updateCreateTourismPlaceRateMessage,
+    String? getTourismPlaceRateByUser,
+    RequestState? getTourismPlaceRateByUserState,
+    String? getTourismPlaceRateByUserMessage,
   }) {
     return TourismPlaceState(
       tourismPlace: tourismPlace ?? this.tourismPlace,
@@ -158,6 +168,12 @@ class TourismPlaceState {
       updateCreateTourismPlaceRateMessage:
           updateCreateTourismPlaceRateMessage ??
               this.updateCreateTourismPlaceRateMessage,
+      getTourismPlaceRateByUser:
+          getTourismPlaceRateByUser ?? this.getTourismPlaceRateByUser,
+      getTourismPlaceRateByUserState:
+          getTourismPlaceRateByUserState ?? this.getTourismPlaceRateByUserState,
+      getTourismPlaceRateByUserMessage: getTourismPlaceRateByUserMessage ??
+          this.getTourismPlaceRateByUserMessage,
     );
   }
 }

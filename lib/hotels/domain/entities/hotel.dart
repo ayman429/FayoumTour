@@ -9,6 +9,8 @@ class Hotel extends Equatable {
   int id;
   String name;
   String description;
+  double coordinatesX;
+  double coordinatesY;
   String address;
   String city;
   String phone;
@@ -36,6 +38,8 @@ class Hotel extends Equatable {
       {required this.id,
       required this.name,
       required this.description,
+      required this.coordinatesX,
+      required this.coordinatesY,
       required this.address,
       required this.city,
       required this.phone,
@@ -66,6 +70,8 @@ class Hotel extends Equatable {
     data['id'] = id;
     data['name'] = name;
     data['description'] = description;
+    data['coordinatesX'] = coordinatesX;
+    data['coordinatesY'] = coordinatesY;
     data['address'] = address;
     data['City'] = city;
     data['Phone'] = phone;
@@ -98,6 +104,8 @@ class Hotel extends Equatable {
       id,
       name,
       description,
+      coordinatesX,
+      coordinatesY,
       address,
       city,
       phone,

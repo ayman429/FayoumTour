@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -6,6 +8,8 @@ import '../../../core/local_data_shared_preferences/access_token_shared_preferen
 import '../../../core/network/api_constance.dart';
 import '../../../core/network/dio_factory.dart';
 import '../../../core/network/error_message_model.dart';
+import '../../../core/utils/constance/shared_pref.dart';
+import '../../domain/entities/user_details.dart';
 import '../models/change_password_model.dart';
 import '../models/login_model.dart';
 import '../models/password_reset_confirm_model.dart';
@@ -53,6 +57,21 @@ class AuthenticationRemoteDataSource
       // Store Access Token
       AccessToken accessToken = AccessToken();
       accessToken.saveToken(response.data["key"]);
+
+      // ------------------------------------------
+      UserDetails userDetails = await getUsersDetails();
+      await sharedPreferences!.setString("USERID", userDetails.id);
+      String image = userDetails.image ?? "";
+
+      sharedPreferences!.setString("USER", json.encode(userDetails.toJson()));
+      sharedPreferences!.setString("username", userDetails.username);
+      // print("=================>");
+      // print(image);
+      // print(userDetails.id);
+      // print("${userDetails.id}USERIMAGE");
+      sharedPreferences!.setString("${userDetails.id}USERIMAGE", image);
+      //-------------------------------------------
+
       // return unit
       return Future.value(unit);
     } on DioError catch (e) {
@@ -74,6 +93,19 @@ class AuthenticationRemoteDataSource
       AccessToken accessToken = AccessToken();
       accessToken.saveToken(response.data["key"]);
       print(response.data);
+      // ------------------------------------------
+      UserDetails userDetails = await getUsersDetails();
+      await sharedPreferences!.setString("USERID", userDetails.id);
+      String image = userDetails.image ?? "";
+
+      sharedPreferences!.setString("USER", json.encode(userDetails.toJson()));
+      sharedPreferences!.setString("username", userDetails.username);
+      // print("=================>");
+      // print(image);
+      // print(userDetails.id);
+      // print("${userDetails.id}USERIMAGE");
+      sharedPreferences!.setString("${userDetails.id}USERIMAGE", image);
+      //-------------------------------------------
       // return unit
       return Future.value(unit);
     } on DioError catch (e) {

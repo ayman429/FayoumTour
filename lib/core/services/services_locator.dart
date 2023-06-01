@@ -1,3 +1,4 @@
+import 'package:fayoumtour/TourismPlaces/domain/usecase/rateUsecases/get_place_rate_by_user.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../Authentication/data/datasource/authentication_remote_data_source.dart';
@@ -146,6 +147,7 @@ class ServicesLocator {
         getIt(),
         getIt(),
         getIt(),
+        getIt(),
         getIt()));
 
     /// Use Cases
@@ -163,6 +165,8 @@ class ServicesLocator {
     getIt.registerLazySingleton(() => GetTourismPlaceRateByIdUsecase(getIt()));
     getIt.registerLazySingleton(
         () => UpdateCreateTourismPlaceRateUsecase(getIt()));
+    getIt
+        .registerLazySingleton(() => GetTourismPlaceRateByUserUsecase(getIt()));
 
     /// Repository
     getIt.registerLazySingleton<BaseTourismPlaceRepository>(

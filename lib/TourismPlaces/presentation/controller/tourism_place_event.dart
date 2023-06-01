@@ -68,3 +68,12 @@ class UpdateCreateTourismPlaceRatesEvent extends TourismPlaceEvent {
     required this.tourismPlaceID,
   });
 }
+
+class GetTourismPlaceRateByUserEvent extends TourismPlaceEvent {
+  String placeId;
+  String userId;
+  GetTourismPlaceRateByUserEvent({
+    required this.placeId,
+    required this.userId,
+  });
+}

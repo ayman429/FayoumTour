@@ -140,4 +140,16 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> getTourismPlaceRateByUser(
+      placeId, userId) async {
+    final add = await baseTourismPlaceRemoteDataSource
+        .getTourismPlaceRateByUser(placeId, userId);
+    try {
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
 }

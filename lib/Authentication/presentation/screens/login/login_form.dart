@@ -42,8 +42,9 @@ class _LoginFormState extends State<LoginForm> {
           child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
               listener: (context, state) {
             if (state.loginstate == RequestState.loaded) {
+              var userId = sharedPreferences!.getString("USERID");
               var _selectedOption =
-                  sharedPreferences!.getString("selectedOption");
+                  sharedPreferences!.getString("$userId selectedOption");
               if (_selectedOption != null) {
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(

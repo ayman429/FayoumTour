@@ -20,4 +20,7 @@ abstract class BaseTourismPlaceRepository {
   Future<Either<Failure, TourismPlaceRate>> getTourismPlaceRateById(String id);
   Future<Either<Failure, Unit>> updateCreateTourismPlaceRate(
       TourismPlaceRateModel tourismPlaceRateModel, String tourismPlaceID);
+
+  Future<Either<Failure, String>> getTourismPlaceRateByUser(
+      String placeId, String userId);
 }

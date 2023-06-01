@@ -20,6 +20,10 @@ class ApiConstance {
   static const String hotelsSearchRatePath =
       "$baseUrl/api/Hotel/searchRateNamber/";
 
+  static const String getPlaceRateByUserPath =
+      "/api/TourismPlace/getRate_TourismPlace/";
+  static const String getHotelRateByUserPath = "/api/Hotel/getRate_Hotel/";
+
 /* **************** Posts EndPoints **************** */
   static const String postPath = "$baseUrl/api/Post/";
 

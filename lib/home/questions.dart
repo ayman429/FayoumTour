@@ -1,14 +1,13 @@
-import 'dart:convert';
 
 import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import '../Authentication/domain/entities/user_details.dart';
-import '../core/local_data_shared_preferences/favourites_shared_preferences.dart';
-import '../post/data/datasource/post_remote_data_source.dart';
 import 'BottomBar.dart';
 
 class TourismScreen extends StatefulWidget {
+  const TourismScreen({super.key});
+
   @override
   _TourismScreenState createState() => _TourismScreenState();
 }
@@ -40,10 +39,10 @@ class _TourismScreenState extends State<TourismScreen>
     // saveUserDetails();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     _offsetAnimation = Tween<Offset>(
-      begin: Offset(0, 1),
+      begin: const Offset(0, 1),
       end: Offset.zero,
     ).animate(CurvedAnimation(
       parent: _controller,
@@ -74,13 +73,13 @@ class _TourismScreenState extends State<TourismScreen>
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(
-              'https://media.istockphoto.com/id/1430783122/photo/reflections-in-qarun-lake-in-the-desert-at-faiyum-oasis.jpg?s=612x612&w=0&k=20&c=tqGuuT5nPEBhI7LFkXib0_X_ONd2gjiNk8E5iMaEB3s=',
+            image: AssetImage(
+              'assets/images/backQuestions.jpg',
             ),
             fit: BoxFit.cover,
           ),
@@ -89,7 +88,7 @@ class _TourismScreenState extends State<TourismScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Expanded(
                 child: SlideTransition(
                   position: _offsetAnimation,
@@ -99,7 +98,7 @@ class _TourismScreenState extends State<TourismScreen>
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(100),
                         ),
                         boxShadow: [
@@ -107,7 +106,7 @@ class _TourismScreenState extends State<TourismScreen>
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 3,
                             blurRadius: 7,
-                            offset: Offset(0, 3),
+                            offset: const Offset(0, 3),
                           ),
                         ],
                       ),
@@ -121,18 +120,18 @@ class _TourismScreenState extends State<TourismScreen>
                               child: Padding(
                                 padding: const EdgeInsets.all(20),
                                 child: Column(
-                                  children: const [
+                                  children:  [
                                     Padding(
-                                      padding: EdgeInsets.only(left: 20),
+                                      padding: const EdgeInsets.only(left: 20),
                                       child: Text(
                                         'Select Tourism',
-                                        style: TextStyle(
+                                        style: GoogleFonts.aBeeZee(
                                           fontSize: 23,
                                           color: Colors.black87,
                                         ),
                                       ),
                                     ),
-                                    Divider(
+                                    const Divider(
                                       color: Colors.black26,
                                       thickness: 1.9,
                                       indent: 40,
@@ -143,7 +142,7 @@ class _TourismScreenState extends State<TourismScreen>
                               ),
                             ),
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           Expanded(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -164,16 +163,16 @@ class _TourismScreenState extends State<TourismScreen>
                                         //     (route) => false);
                                       },
                                       child: AnimatedContainer(
-                                        duration: Duration(seconds: 1),
+                                        duration: const Duration(seconds: 1),
                                         curve: Curves.easeInOut,
                                         width: _selectedOption ==
                                                 'Islamic antiquities'
-                                            ? 180
-                                            : 140,
+                                            ? MediaQuery.of(context).size.width*0.40
+                                            : MediaQuery.of(context).size.width*0.35,
                                         height: _selectedOption ==
                                                 'Islamic antiquities'
-                                            ? 180
-                                            : 140,
+                                            ? MediaQuery.of(context).size.height*0.23
+                                            : MediaQuery.of(context).size.height*0.18,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(20),
@@ -183,22 +182,22 @@ class _TourismScreenState extends State<TourismScreen>
                                                   Colors.grey.withOpacity(0.5),
                                               spreadRadius: 3,
                                               blurRadius: 7,
-                                              offset: Offset(0, 3),
+                                              offset: const Offset(0, 3),
                                             ),
                                           ],
                                           image: const DecorationImage(
-                                            image: NetworkImage(
-                                              'https://th.bing.com/th/id/R.3ed9f9cac4343a892c5a623e6b96e386?rik=40rBk65hhMaLXA&pid=ImgRaw&r=0',
+                                            image: AssetImage(
+                                              'assets/images/islamic.jpeg',
                                             ),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 15,
                                     ),
-                                    Text('Islamic antiquities')
+                                    const Text('Islamic antiquities')
                                   ],
                                 ),
                                 Column(
@@ -220,16 +219,16 @@ class _TourismScreenState extends State<TourismScreen>
                                             //         (route) => false);
                                           },
                                           child: AnimatedContainer(
-                                            duration: Duration(seconds: 1),
+                                            duration: const Duration(seconds: 1),
                                             curve: Curves.easeInOut,
                                             width: _selectedOption ==
                                                     'Coptic antiquities'
-                                                ? 180
-                                                : 140,
+                                                ? MediaQuery.of(context).size.width*0.40
+                                                : MediaQuery.of(context).size.width*0.35,
                                             height: _selectedOption ==
                                                     'Coptic antiquities'
-                                                ? 180
-                                                : 140,
+                                                ? MediaQuery.of(context).size.height*0.23
+                                                : MediaQuery.of(context).size.height*0.18,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(20),
@@ -239,22 +238,22 @@ class _TourismScreenState extends State<TourismScreen>
                                                       .withOpacity(0.5),
                                                   spreadRadius: 3,
                                                   blurRadius: 7,
-                                                  offset: Offset(0, 3),
+                                                  offset: const Offset(0, 3),
                                                 ),
                                               ],
-                                              image: DecorationImage(
-                                                image: NetworkImage(
-                                                  'https://english.ahram.org.eg/Media/News/2022/1/9/42_2022-637773397396011486-601.jpg',
-                                                ),
+                                              image: const DecorationImage(
+                                                image: AssetImage(
+                                              'assets/images/coptic.jpg',
+                                            ),
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 15,
                                         ),
-                                        Text('Coptic antiquities')
+                                        const Text('Coptic antiquities')
                                       ],
                                     ),
                                   ],
@@ -273,16 +272,16 @@ class _TourismScreenState extends State<TourismScreen>
                                       onTap: () => _onOptionSelected(
                                           'Greek and Roman Antiquities'),
                                       child: AnimatedContainer(
-                                        duration: Duration(seconds: 1),
+                                        duration: const Duration(seconds: 1),
                                         curve: Curves.easeInOut,
                                         width: _selectedOption ==
                                                 'Greek and Roman Antiquities'
-                                            ? 180
-                                            : 140,
+                                            ? MediaQuery.of(context).size.width*0.40
+                                            : MediaQuery.of(context).size.width*0.35,
                                         height: _selectedOption ==
                                                 'Greek and Roman Antiquities'
-                                            ? 180
-                                            : 140,
+                                            ? MediaQuery.of(context).size.height*0.23
+                                            : MediaQuery.of(context).size.height*0.18,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(20),
@@ -292,22 +291,22 @@ class _TourismScreenState extends State<TourismScreen>
                                                   Colors.grey.withOpacity(0.5),
                                               spreadRadius: 3,
                                               blurRadius: 7,
-                                              offset: Offset(0, 3),
+                                              offset: const Offset(0, 3),
                                             ),
                                           ],
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                              'https://faytourimages.s3.amazonaws.com/image/86bde0a89c20966890af.jpeg',
+                                          image: const DecorationImage(
+                                            image: AssetImage(
+                                              'assets/images/greek.jpeg',
                                             ),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 15,
                                     ),
-                                    Text('Greek and Roman')
+                                    const Text('Greek and Roman')
                                   ],
                                 ),
                                 Column(
@@ -317,16 +316,16 @@ class _TourismScreenState extends State<TourismScreen>
                                       onTap: () =>
                                           _onOptionSelected('Pharaonic relics'),
                                       child: AnimatedContainer(
-                                        duration: Duration(seconds: 1),
+                                        duration: const Duration(seconds: 1),
                                         curve: Curves.easeInOut,
                                         width: _selectedOption ==
                                                 'Pharaonic relics'
-                                            ? 180
-                                            : 140,
+                                            ? MediaQuery.of(context).size.width*0.40
+                                            : MediaQuery.of(context).size.width*0.35,
                                         height: _selectedOption ==
                                                 'Pharaonic relics'
-                                            ? 180
-                                            : 140,
+                                            ? MediaQuery.of(context).size.height*0.23
+                                            : MediaQuery.of(context).size.height*0.18,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(20),
@@ -336,29 +335,30 @@ class _TourismScreenState extends State<TourismScreen>
                                                   Colors.grey.withOpacity(0.5),
                                               spreadRadius: 3,
                                               blurRadius: 7,
-                                              offset: Offset(0, 3),
+                                              offset: const Offset(0, 3),
                                             ),
                                           ],
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                              'https://faytourimages.s3.amazonaws.com/image/lohnenswerte-besichtigung.jpg',
+                                          image: const DecorationImage(
+                                            image: AssetImage(
+                                              'assets/images/pharonic.jpg',
                                             ),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 15,
                                     ),
-                                    Text('Pharaonic relics')
+                                    const Text('Pharaonic relics')
                                   ],
                                 ),
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8, bottom: 10),
+                          Container(
+                            margin: const EdgeInsets.fromLTRB(
+                                          0, 0, 0, 20),
                             child: TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pushAndRemoveUntil(
@@ -367,7 +367,24 @@ class _TourismScreenState extends State<TourismScreen>
                                               select: 1, _selectedOption)),
                                       (route) => false);
                                 },
-                                child: Text("Next")),
+                                style: TextButton.styleFrom(
+                                            backgroundColor: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(25))),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                              vertical: 5, horizontal: 50),
+                                  child: Text("Next",
+                                  style: GoogleFonts.rye(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary,
+                                                    fontSize: 20),
+                                  ),
+                                )),
                           )
                         ],
                       ),

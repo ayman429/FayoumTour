@@ -227,27 +227,13 @@ class Details extends StatelessWidget {
                     height: 55,
                     width: 260,
                     child: TextButton(
-                        onPressed: () async {},
-                        style: TextButton.styleFrom(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.primary,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15)),
-                            elevation: 10),
-                        child: InkWell(
-                          child: Text(
-                            "Go to it!",
-                            style: GoogleFonts.rye(
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 18),
-                          ),
-                          onTap: () async {
-                            Location location = new Location();
-                            bool _serviceEnabled;
-                            _serviceEnabled = await location.serviceEnabled();
-                            if (!_serviceEnabled) {
-                              _serviceEnabled = await location.requestService();
-                              if (!_serviceEnabled) {
+                        onPressed: () async {
+                          Location location = Location();
+                            bool serviceEnabled;
+                            serviceEnabled = await location.serviceEnabled();
+                            if (!serviceEnabled) {
+                              serviceEnabled = await location.requestService();
+                              if (!serviceEnabled) {
                                 debugPrint('Location Denied once');
                                 return;
                               }
@@ -260,8 +246,21 @@ class Details extends StatelessWidget {
                             } else {
                               throw 'Could not launch $url';
                             }
-                          },
-                        )),
+                        },
+                        style: TextButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            elevation: 10),
+                        child: Text(
+                            "Go to it!",
+                            style: GoogleFonts.rye(
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontSize: 18),
+                          ),
+                          
+                        ),
                   ),
                 ),
                 index == 1

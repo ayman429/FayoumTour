@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../core/utils/constance/strings_manager.dart';
+import '../core/utils/youtubeController.dart';
 
 class FayoumVedio extends StatelessWidget {
-  final YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: AppStrings.initialVideoId,
-    flags: const YoutubePlayerFlags(
-      autoPlay: false,
-      mute: false,
-      showLiveFullscreenButton: false,
-      forceHD: true,
-    ),
-  );
+  FayoumVedio({super.key});
+
+  YoutubePlayerController controller = YoutubeControllerSingleton.youtubeController;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -22,15 +16,15 @@ class FayoumVedio extends StatelessWidget {
         player: YoutubePlayer(
           actionsPadding:
               const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-          controller: _controller,
+          controller: controller,
           onReady: () {
             //_controller.fitHeight(Size.fromHeight(MediaQuery.of(context).size.height*0.2608));
             //_controller.fitWidth(Size.fromWidth(MediaQuery.of(context).size.width));
           },
           onEnded: (data) {
-            _controller
+            controller
                 .seekTo(Duration.zero); // Stop the player when the video ends
-            _controller.pause();
+            controller.pause();
           },
           showVideoProgressIndicator: true,
           bottomActions: [

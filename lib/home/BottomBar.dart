@@ -35,7 +35,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> Screens = [
     Profile(),
     Home(tourtismType: tourtismTypes),
-    AddPost(),
+    const AddPost(),
     Favorites(),
     Plan(),
   ];
@@ -62,11 +62,11 @@ class _BottomBarState extends State<BottomBar> {
                   controller: _searchController,
                   decoration: const InputDecoration(
                     hintText: 'Search...',
-                    hintStyle: TextStyle(color: Colors.black),
+
                     border: InputBorder.none,
                     //prefixIcon: Icon(Icons.search)
                   ),
-                  style: const TextStyle(color: Colors.black),
+                  
                   onChanged: (value) {
                     setState(() {
                       search_counter = 0;

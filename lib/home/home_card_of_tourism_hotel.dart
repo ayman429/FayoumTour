@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../core/utils/youtubeController.dart';
 
 import '../core/utils/constance/strings_manager.dart';
 import 'RatingStarsBar.dart';
@@ -15,6 +16,7 @@ class HomeCard extends StatelessWidget {
     required this.index,
     required this.type,
   }) : super(key: key);
+  final controller = YoutubeControllerSingleton.youtubeController;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,6 +35,7 @@ class HomeCard extends StatelessWidget {
           ]),
       child: InkWell(
         onTap: () {
+          controller.pause();
           Navigator.push(
               context,
               MaterialPageRoute(

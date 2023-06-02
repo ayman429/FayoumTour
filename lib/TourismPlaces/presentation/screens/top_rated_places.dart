@@ -10,7 +10,12 @@ import '../controller/tourism_place_bloc.dart';
 import '../controller/tourism_place_event.dart';
 import '../controller/tourism_place_state.dart';
 
+
+
 class TopRatedTourismPlaces extends StatelessWidget {
+  const TopRatedTourismPlaces({super.key});
+
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

@@ -1,24 +1,19 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dio/dio.dart';
-import 'package:fayoumtour/post/domain/entities/post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../core/services/services_locator.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
-import '../core/utils/enums.dart';
 import '../post/presentation/controller/bloc/post_bloc.dart';
 import 'add_post_component.dart';
-import 'image_list.dart';
 import 'show_posts.dart';
 
 class AddPost extends StatefulWidget {
+  const AddPost({super.key});
+
   @override
   State<AddPost> createState() => _AddPostState();
 }
@@ -26,7 +21,7 @@ class AddPost extends StatefulWidget {
 class _AddPostState extends State<AddPost> {
   final TextEditingController _textEditingController = TextEditingController();
   String getImagePath = "";
-  List<File> _imageList = [];
+  final List<File> _imageList = [];
 
   Future<void> updateUIWithImagePath() async {
     Map<String, dynamic> localUerDetails =
@@ -58,9 +53,10 @@ class _AddPostState extends State<AddPost> {
             Column(
               children: [
                 Container(
+                  
                   margin: const EdgeInsets.symmetric(vertical: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.cyan[50],
+                  decoration:  BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary,
                     boxShadow: const [
                       BoxShadow(
                         color: Colors.grey,
@@ -70,14 +66,17 @@ class _AddPostState extends State<AddPost> {
                   ),
                   child: Column(
                     children: [
-                      const SizedBox(height: 10),
-                      Row(children: [
+
+                      Row(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                        
                         // user image
                         Padding(
-                          padding: const EdgeInsets.only(left: 10),
+                          padding: const EdgeInsets.only(left: 5),
                           child: SizedBox(
-                            width: 50,
-                            height: 50,
+                            width: 40,
+                            height: 40,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: displayImage(getImagePath),
@@ -85,7 +84,7 @@ class _AddPostState extends State<AddPost> {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.all(6),
+                          padding: const EdgeInsets.symmetric(horizontal: 6,vertical: 10),
                           child: Column(
                             children: [
                               GestureDetector(
@@ -101,14 +100,14 @@ class _AddPostState extends State<AddPost> {
                                   );
                                 },
                                 child: Container(
-                                  padding: EdgeInsets.all(10.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   decoration: BoxDecoration(
-                                    border: Border.all(),
+                                    border: Border.all(color: Colors.grey),
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                   child: const Padding(
                                     padding:
-                                        EdgeInsets.only(left: 40, right: 60),
+                                        EdgeInsets.only(left: 40, right: 45),
                                     child: Text(
                                       'Write your post now!',
                                       style: TextStyle(fontSize: 18.0),
@@ -119,7 +118,8 @@ class _AddPostState extends State<AddPost> {
                             ],
                           ),
                         ),
-
+                        const Icon(Icons.filter,color: Colors.green,size: 30,),
+                        
                         // const SizedBox(width: 10),
                         // ----------------- input text post -----------------
                         // Expanded(
@@ -222,7 +222,7 @@ class _AddPostState extends State<AddPost> {
                         //   },
                         // ),
                       ]),
-                      const SizedBox(height: 10),
+                      
                     ],
                   ),
                 ),
@@ -395,7 +395,7 @@ class _AddPostState extends State<AddPost> {
 
             // const SizedBox(height: 10),
             // show posts
-            SingleChildScrollView(
+            const SingleChildScrollView(
               child: ShowPosts(),
             ),
           ],

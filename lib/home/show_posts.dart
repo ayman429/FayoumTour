@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../core/services/services_locator.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../core/utils/enums.dart';
@@ -12,6 +11,8 @@ import 'add_post_component.dart';
 import 'image_list.dart';
 
 class ShowPosts extends StatelessWidget {
+  const ShowPosts({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PostBloc, PostState>(
@@ -31,9 +32,9 @@ class ShowPosts extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(vertical: 10),
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 241, 241, 241),
-                    boxShadow: [
+                  decoration:  BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary,
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.grey,
                         blurRadius: 6,

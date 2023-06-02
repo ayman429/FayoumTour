@@ -8,12 +8,16 @@ import '../hotels/presentation/screens/home_cards_hotels.dart';
 import '../hotels/presentation/screens/top_rated_hotels.dart';
 import 'fayoum_vedio.dart';
 
+
 class Home extends StatelessWidget {
   String tourtismType;
   Home({
     Key? key,
     required this.tourtismType,
   }) : super(key: key);
+
+
+
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
@@ -21,18 +25,21 @@ class Home extends StatelessWidget {
           padding: const EdgeInsets.only(top: 20),
           child: Column(children: [
 // ------------------Youtube Player----------------------
+
             FayoumVedio(),
             const SizedBox(height: 10),
             SingleChildScrollView(
                 child: Column(children: [
-              TopRatedTourismPlaces(),
+              const TopRatedTourismPlaces(),
               TopRatedHotels(),
               NearestTourismPlaces(),
               HomeCardsTourismPlacesTypeSearch(
                   tourismPlaceSearchByFeild: tourtismType),
               HomeCardsTourismPlaces(),
               HomeCardsHotels(),
-            ]))
+            ],
+            ),
+            )
           ]))
     ]);
   }

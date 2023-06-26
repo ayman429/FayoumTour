@@ -1,28 +1,46 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
-
 import '../core/utils/constance/strings_manager.dart';
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class Plan extends StatefulWidget {
+  const Plan({super.key});
+
   @override
   _PlanState createState() => _PlanState();
 }
 
-class _PlanState extends State<Plan> {
+class _PlanState extends State<Plan>
+    with SingleTickerProviderStateMixin {
   late List<AssetImage> _images;
+  final List<String> _imageTexts = [
+    "This is the first plan",
+    "This is the second plan",
+    "This is the third plan",
+    "This is the fourth plan",
+  ];
   bool _isDialogOpen = false;
+  bool _isSoundPlaying = false;
+  FlutterTts flutterTts = FlutterTts();
+  AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
-    _images = const [
-      AssetImage(AppStrings.plan1Image),
-      AssetImage(AppStrings.plan2Image),
-      AssetImage(AppStrings.plan3Image),
-      AssetImage(AppStrings.plan4Image),
+    _images = [
+      const AssetImage(AppStrings.plan1Image),
+      const AssetImage(AppStrings.plan2Image),
+      const AssetImage(AppStrings.plan3Image),
+      const AssetImage(AppStrings.plan4Image),
     ];
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    flutterTts.stop();
+    audioPlayer.stop();
   }
 
   @override
@@ -36,7 +54,7 @@ class _PlanState extends State<Plan> {
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(AppStrings.e1),
+                  image: AssetImage("assets/images/e1.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -61,17 +79,8 @@ class _PlanState extends State<Plan> {
               ),
             ),
 
-            // // App bar
-            // Positioned(
-            //   top: 0,
-            //   left: 0,
-            //   right: 0,
-            //   child: AppBar(
-            //     backgroundColor: Colors.transparent,
-            //     elevation: 0,
-            //     title: Center(child: Text("Plans For You")),
-            //   ),
-            // ),
+            // App bar
+            
           ],
         ),
       ),
@@ -103,22 +112,22 @@ class _PlanState extends State<Plan> {
       );
 
       if (i < _images.length - 1) {
-        widgets.add(SizedBox(height: 16.0));
+        widgets.add(const SizedBox(height: 16.0));
         // Delay half second between images
-        widgets.add(DelayedWidget(
+        widgets.add(const DelayedWidget(
           delay: Duration(milliseconds: 500),
           child: Divider(
             color: Colors.black,
           ),
         ));
-        widgets.add(SizedBox(height: 16.0));
+        widgets.add(const SizedBox(height: 16.0));
       }
     }
 
     return widgets;
   }
 
-  void _showImageDialog(int index) {
+  Future<void> _showImageDialog(int index) async {
     _setDialogOpen(true);
 
     showDialog(
@@ -126,24 +135,61 @@ class _PlanState extends State<Plan> {
       builder: (BuildContext context) {
         return Dialog(
           backgroundColor: Colors.transparent,
-          child: Hero(
-            tag: "image$index",
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image(
-                image: _images[index],
-                fit: BoxFit.cover,
+          child: Stack(
+            children: [
+              Hero(
+                tag: "image$index",
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image(
+                    image: _images[index],
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
+              Positioned(
+                top: 16.0,
+                right: 16.0,
+                child: GestureDetector(
+                  onTap: () => _toggleSound(index),
+                  child: Icon(
+                    _isSoundPlaying ? Icons.volume_off : Icons.volume_up,
+                    color: Colors.white,
+                    size: 32.0,
+                  ),
+                ),
+              ),
+            ],
           ),
         );
       },
     ).then((_) => _setDialogOpen(false));
+
+    if (_isSoundPlaying) {
+      await flutterTts.pause();
+      await audioPlayer.pause();
+    } else {
+      await flutterTts.speak(_imageTexts[index]);
+    }
   }
 
-  void _setDialogOpen(bool value) {
+  void _setDialogOpen(bool isOpen) {
     setState(() {
-      _isDialogOpen = value;
+      _isDialogOpen = isOpen;
+    });
+  }
+
+  Future<void> _toggleSound(int index) async {
+    if (_isSoundPlaying) {
+      await flutterTts.pause();
+      await audioPlayer.pause();
+    } else {
+      await flutterTts.speak(_imageTexts[index]);
+      // await audioPlayer.play("assets/sounds/sound1.mp3");
+    }
+
+    setState(() {
+      _isSoundPlaying = !_isSoundPlaying;
     });
   }
 }
@@ -152,10 +198,11 @@ class DelayedWidget extends StatefulWidget {
   final Widget child;
   final Duration delay;
 
-  DelayedWidget({
+  const DelayedWidget({
+    Key? key,
     required this.child,
     required this.delay,
-  });
+  }) : super(key: key);
 
   @override
   _DelayedWidgetState createState() => _DelayedWidgetState();
@@ -164,27 +211,28 @@ class DelayedWidget extends StatefulWidget {
 class _DelayedWidgetState extends State<DelayedWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(duration: widget.delay, vsync: this);
-    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
+    _controller = AnimationController(
+      vsync: this,
+      duration: widget.delay,
+    );
     _controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _controller,
+      child: widget.child,
+    );
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _animation,
-      child: widget.child,
-    );
   }
 }

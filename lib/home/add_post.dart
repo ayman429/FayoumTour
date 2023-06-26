@@ -68,22 +68,25 @@ class _AddPostState extends State<AddPost> {
                     children: [
 
                       Row(
-                        //mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                         
                         // user image
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: SizedBox(
-                            width: 40,
-                            height: 40,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: displayImage(getImagePath),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5),
+                              child: SizedBox(
+                                width: 40,
+                                height: 40,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  child: displayImage(getImagePath),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        Container(
+
+                          Container(
                           padding: const EdgeInsets.symmetric(horizontal: 6,vertical: 10),
                           child: Column(
                             children: [
@@ -100,25 +103,32 @@ class _AddPostState extends State<AddPost> {
                                   );
                                 },
                                 child: Container(
+                                  width: MediaQuery.of(context).size.width*0.742,
                                   padding: const EdgeInsets.all(5.0),
                                   decoration: BoxDecoration(
                                     border: Border.all(color: Colors.grey),
                                     borderRadius: BorderRadius.circular(50),
                                   ),
-                                  child: const Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 40, right: 45),
+                                  child:  const Center(
                                     child: Text(
-                                      'Write your post now!',
-                                      style: TextStyle(fontSize: 18.0),
-                                    ),
+                                        '   Write your post now!   ',
+                                        style: TextStyle(fontSize: 18.0),
+                                      ),
                                   ),
+                                  
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        const Icon(Icons.filter,color: Colors.green,size: 30,),
+                        
+                          ],
+                        ),
+
+                        
+                        Container(
+                          margin: const EdgeInsets.only(right: 5),
+                          child: const Icon(Icons.filter,color: Colors.green,size: 30,)),
                         
                         // const SizedBox(width: 10),
                         // ----------------- input text post -----------------

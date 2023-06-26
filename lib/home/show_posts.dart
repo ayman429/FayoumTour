@@ -8,7 +8,9 @@ import '../core/utils/constance/strings_manager.dart';
 import '../core/utils/enums.dart';
 import '../post/presentation/controller/bloc/post_bloc.dart';
 import 'add_post_component.dart';
+import 'comments.dart';
 import 'image_list.dart';
+import 'my_flutter_app_icons.dart';
 
 class ShowPosts extends StatelessWidget {
   const ShowPosts({super.key});
@@ -165,7 +167,7 @@ class ShowPosts extends StatelessWidget {
                             ),
                       state.post[index].imagesP.isNotEmpty
                           ? SizedBox(
-                              height: 360,
+                              height: MediaQuery.of(context).size.height*0.47,
                               child: GridView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 gridDelegate: state
@@ -246,6 +248,7 @@ class ShowPosts extends StatelessWidget {
                                                     }
                                                     return child;
                                                   },
+                                                  
                                                 ),
                                               ),
                                             ),
@@ -277,6 +280,7 @@ class ShowPosts extends StatelessWidget {
                                           //borderRadius:BorderRadius.circular(10),
                                           child: Image.network(
                                             state.post[index].imagesP[x].imageT,
+                                            
                                             fit: BoxFit.cover,
                                             errorBuilder:
                                                 (context, error, stackTrace) {
@@ -306,6 +310,70 @@ class ShowPosts extends StatelessWidget {
                               ),
                             )
                           : const SizedBox.shrink(),
+                    
+                    Container(
+                      margin: const EdgeInsets.only(top: 10,left: 10,right: 10,bottom: 0),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children:  [
+                              Row(
+                                children: const [
+                                  Icon(MyFlutterApp.like3,color:Colors.blue),
+                                  SizedBox(width: 2,),
+                                  Text("12",style: TextStyle(color: Colors.grey,fontSize: 14),)
+                                ],
+                              ),
+                    
+                              InkWell(
+                                onTap: (){
+                                  Navigator.push(context,MaterialPageRoute(builder: (context) => const CommentList(),
+                        ));
+                                },
+                                child: const Text("6 Comments",style: TextStyle(color: Colors.grey,fontSize: 14),)),
+                            ],
+                          ),
+                        
+                        const SizedBox(height: 10,),
+                        const Divider(color: Color.fromARGB(255, 122, 122, 122),),
+                    
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                        TextButton(onPressed: (){
+
+                        },
+                        style: TextButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),),
+                        child:
+                        Row(children:  const [
+                            Icon(MyFlutterApp.like3,color:Colors.grey,),
+                            SizedBox(width: 5,),
+                            Text("Like",style: TextStyle(color: Colors.grey,),)
+                          ],),
+                        
+                        ),
+                        TextButton(onPressed: (){
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => const CommentList(),
+                        ));
+                        },
+                        style: TextButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),),
+                        child:
+                        Row(children:  const [
+                          Icon(Icons.insert_comment_outlined,color: Colors.grey,),
+                          SizedBox(width: 5,),
+                          Text("Comment",style: TextStyle(color: Colors.grey))
+                        ],)),
+                      ],)
+                        ],
+                      ),
+                    ),
+                    
+                    //const SizedBox(height: 8,),
                     ],
                   ),
                 );

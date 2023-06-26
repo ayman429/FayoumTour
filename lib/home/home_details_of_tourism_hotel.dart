@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:location/location.dart';
 import 'RatingStarsBar.dart';
 import 'image_list.dart';
+import 'reserve.dart';
 
 class Details extends StatelessWidget {
   var data;
@@ -84,6 +85,7 @@ class Details extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
+                
                 Container(
                   margin: const EdgeInsets.only(left: 15),
                   child: Row(
@@ -217,6 +219,7 @@ class Details extends StatelessWidget {
                     ],
                   ),
                 ),
+                
                 const SizedBox(
                   height: 10,
                 ),
@@ -270,15 +273,20 @@ class Details extends StatelessWidget {
                           height: 55,
                           width: 260,
                           child: TextButton(
-                              onPressed: () async {},
+                              onPressed: () async {
+                                Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const HotelReservationScreen()
+                  ));
+                              },
                               style: TextButton.styleFrom(
                                   backgroundColor:
                                       Theme.of(context).colorScheme.primary,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15)),
                                   elevation: 10),
-                              child: InkWell(
-                                child: Text(
+                              child: Text(
                                   "Reserve!",
                                   style: GoogleFonts.rye(
                                       color: Theme.of(context)
@@ -286,10 +294,7 @@ class Details extends StatelessWidget {
                                           .secondary,
                                       fontSize: 18),
                                 ),
-                                onTap: () async {
-                                  // -----
-                                },
-                              )),
+                                ),
                         ),
                       )
                     : Container(),
@@ -307,11 +312,11 @@ class Details extends StatelessWidget {
                 //       ),
                 //     )),
 
-                // // HOTELS(area_name: snapshot.data?.docs[0]["name"]),
+                // HOTELS(area_name: snapshot.data?.docs[0]["name"]),
 
-                // const SizedBox(
-                //   height: 15,
-                // ),
+                const SizedBox(
+                  height: 15,
+                ),
               ],
             ),
           )

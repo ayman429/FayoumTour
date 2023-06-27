@@ -1,7 +1,7 @@
 class ApiConstance {
   // BaseUrl
   static const String baseUrl =
-      "http://faytourapp.pythonanywhere.com"; //"http://10.0.2.2:8000";
+      "https://faytourapp.pythonanywhere.com"; //"http://10.0.2.2:8000";
 
 /* **************** Access Token **************** */
   static const String KeyAccessToken = "KeyAccessToken";
@@ -10,6 +10,14 @@ class ApiConstance {
   // GET POST PUT DEL Hotel/TourismPlace , GET By ID
   static const String hotelPath = "$baseUrl/api/Hotel/";
   static const String tourismPlacePath = "$baseUrl/api/TourismPlace/";
+
+  /* **************** HotelReservation EndPoints **************** */
+  // GET POST PUT DEL HotelReservation
+  static const String hotelReservationPath = "$baseUrl/api/HotelReservation/";
+  static const String getHotelReservationPath =
+      "$baseUrl/api/HotelReservation/getHotelReservation/";
+  static const String getHotelReservationByUserPath =
+      "$baseUrl/api/HotelReservation/getHotelReservationByUser/";
 
 /* **************** Rates EndPoints **************** */
   // GET All Hotel/TourismPlace Rate , GET By IDs , POST PUT Hotel Rate

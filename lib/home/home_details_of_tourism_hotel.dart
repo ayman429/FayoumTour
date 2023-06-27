@@ -85,7 +85,7 @@ class Details extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                
+
                 Container(
                   margin: const EdgeInsets.only(left: 15),
                   child: Row(
@@ -219,7 +219,7 @@ class Details extends StatelessWidget {
                     ],
                   ),
                 ),
-                
+
                 const SizedBox(
                   height: 10,
                 ),
@@ -230,40 +230,39 @@ class Details extends StatelessWidget {
                     height: 55,
                     width: 260,
                     child: TextButton(
-                        onPressed: () async {
-                          Location location = Location();
-                            bool serviceEnabled;
-                            serviceEnabled = await location.serviceEnabled();
-                            if (!serviceEnabled) {
-                              serviceEnabled = await location.requestService();
-                              if (!serviceEnabled) {
-                                debugPrint('Location Denied once');
-                                return;
-                              }
-                            }
-                            final url =
-                                "https://www.google.com/maps/search/?api=1&query=${data.coordinatesX},${data.coordinatesY}";
+                      onPressed: () async {
+                        Location location = Location();
+                        bool serviceEnabled;
+                        serviceEnabled = await location.serviceEnabled();
+                        if (!serviceEnabled) {
+                          serviceEnabled = await location.requestService();
+                          if (!serviceEnabled) {
+                            debugPrint('Location Denied once');
+                            return;
+                          }
+                        }
+                        final url =
+                            "https://www.google.com/maps/search/?api=1&query=${data.coordinatesX},${data.coordinatesY}";
 
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                        },
-                        style: TextButton.styleFrom(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.primary,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15)),
-                            elevation: 10),
-                        child: Text(
-                            "Go to it!",
-                            style: GoogleFonts.rye(
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontSize: 18),
-                          ),
-                          
-                        ),
+                        if (await canLaunch(url)) {
+                          await launch(url);
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      },
+                      style: TextButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          elevation: 10),
+                      child: Text(
+                        "Go to it!",
+                        style: GoogleFonts.rye(
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 18),
+                      ),
+                    ),
                   ),
                 ),
                 index == 1
@@ -273,28 +272,28 @@ class Details extends StatelessWidget {
                           height: 55,
                           width: 260,
                           child: TextButton(
-                              onPressed: () async {
-                                Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const HotelReservationScreen()
-                  ));
-                              },
-                              style: TextButton.styleFrom(
-                                  backgroundColor:
-                                      Theme.of(context).colorScheme.primary,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15)),
-                                  elevation: 10),
-                              child: Text(
-                                  "Reserve!",
-                                  style: GoogleFonts.rye(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                      fontSize: 18),
-                                ),
-                                ),
+                            onPressed: () async {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          HotelReservationScreen(
+                                              hotelId: data.id)));
+                            },
+                            style: TextButton.styleFrom(
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.primary,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                                elevation: 10),
+                            child: Text(
+                              "Reserve!",
+                              style: GoogleFonts.rye(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                  fontSize: 18),
+                            ),
+                          ),
                         ),
                       )
                     : Container(),

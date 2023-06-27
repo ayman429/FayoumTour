@@ -110,6 +110,8 @@ class AuthenticationRemoteDataSource
       return Future.value(unit);
     } on DioError catch (e) {
       // return Error Message
+      print("===============");
+      print(e);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
       );

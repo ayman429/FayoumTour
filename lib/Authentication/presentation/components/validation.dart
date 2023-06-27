@@ -4,32 +4,38 @@ import '../../../core/utils/constance/strings_manager.dart';
 
 class Validation {
   static String validationMessage(dynamic message) {
-    Map<String, dynamic> validationMessageMap = jsonDecode(message.toString());
-    String messageError = validationMessageMap.values.first[0].toString();
-    String validationMessage;
-    print(messageError);
-    if (messageError == AppStrings.apiEmptyString1 ||
-        messageError.contains(AppStrings.apiEmptyString2)) {
-      validationMessage = AppStrings.messageEmptyString;
-    } else if (messageError == AppStrings.emailError) {
-      validationMessage = AppStrings.emailError;
-    } else if (messageError.contains(AppStrings.apiCredentials)) {
-      validationMessage = AppStrings.messageCredentials;
-    } else if (messageError == AppStrings.passwordLenError) {
-      validationMessage = AppStrings.passwordLenError;
-    } else if (messageError == AppStrings.passwordMatchedError) {
-      validationMessage = AppStrings.passwordMatchedError;
-    } else if (messageError == AppStrings.passwordCommonError) {
-      validationMessage = AppStrings.passwordCommonError;
-    } else if (messageError == AppStrings.usernameExists ||
-        messageError == AppStrings.customUserExists) {
-      validationMessage = AppStrings.usernameExists;
-    } else if (messageError == AppStrings.passwordSimilar) {
-      validationMessage = AppStrings.passwordSimilar;
-    } else {
-      validationMessage = "Unexpected Error";
+    message = message.toString();
+    print(message);
+    if (message != "null") {
+      Map<String, dynamic> validationMessageMap =
+          jsonDecode(message.toString());
+      String messageError = validationMessageMap.values.first[0].toString();
+      String validationMessage;
+      // print(messageError);
+      if (messageError == AppStrings.apiEmptyString1 ||
+          messageError.contains(AppStrings.apiEmptyString2)) {
+        validationMessage = AppStrings.messageEmptyString;
+      } else if (messageError == AppStrings.emailError) {
+        validationMessage = AppStrings.emailError;
+      } else if (messageError.contains(AppStrings.apiCredentials)) {
+        validationMessage = AppStrings.messageCredentials;
+      } else if (messageError == AppStrings.passwordLenError) {
+        validationMessage = AppStrings.passwordLenError;
+      } else if (messageError == AppStrings.passwordMatchedError) {
+        validationMessage = AppStrings.passwordMatchedError;
+      } else if (messageError == AppStrings.passwordCommonError) {
+        validationMessage = AppStrings.passwordCommonError;
+      } else if (messageError == AppStrings.usernameExists ||
+          messageError == AppStrings.customUserExists) {
+        validationMessage = AppStrings.usernameExists;
+      } else if (messageError == AppStrings.passwordSimilar) {
+        validationMessage = AppStrings.passwordSimilar;
+      } else {
+        validationMessage = "Unexpected Error";
+      }
+      return validationMessage;
     }
-    return validationMessage;
+    return "null";
   }
 /*{"new_password2":["This password is too short. It must contain at least 8 characters.",
 "This password is too common.","This password is entirely numeric."]} */

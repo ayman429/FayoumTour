@@ -7,6 +7,7 @@ import '../../../core/network/dio_factory.dart';
 import '../../../core/network/error_message_model.dart';
 import '../models/hotel_model.dart';
 import '../models/hotel_rate_model.dart';
+import '../models/hotel_reservation_model.dart';
 
 abstract class BaseHotelRemoteDataSource {
   Future<List<HotelModel>> getHotels();
@@ -21,6 +22,15 @@ abstract class BaseHotelRemoteDataSource {
   Future<List<HotelRateModel>> getHotelRates();
   Future<HotelRateModel> getHotelRateById(ID);
   Future<Unit> addHotelRates(HotelRateModel hotelRateModel, HotelID);
+
+  // HotelReservation
+  Future<List<HotelReservationModel>> getHotelsReservation(int hotelId);
+  Future<List<HotelReservationModel>> getHotelsReservationByUser(int userId);
+  Future<String> deleteHotelsReservation(id);
+  Future<Unit> addHotelsReservation(
+      HotelReservationModel HotelReservationModel);
+  Future<Unit> updateHotelsReservation(
+      HotelReservationModel HotelReservationModel);
 }
 
 class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
@@ -197,6 +207,99 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
           "${ApiConstance.hotelPath}${HotelID}/rate_Hotel/",
           data: hotelRateModelsToJson);
       return Future.value(unit);
+    } on DioError catch (e) {
+      // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  // HotelReservation
+  @override
+  Future<List<HotelReservationModel>> getHotelsReservation(hotelId) async {
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.get(
+        ApiConstance.getHotelReservationPath,
+        data: {"hotelId": hotelId},
+      );
+      return List<HotelReservationModel>.from((response.data as List)
+          .map((e) => HotelReservationModel.fromJson(e)));
+    } on DioError catch (e) {
+      // return Error Message
+      print("====================");
+      print(e.response);
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<List<HotelReservationModel>> getHotelsReservationByUser(userId) async {
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.get(ApiConstance.getHotelReservationByUserPath,
+          data: {"user": userId});
+      print("====================");
+      print(response.data);
+      return List<HotelReservationModel>.from((response.data as List)
+          .map((e) => HotelReservationModel.fromJson(e)));
+    } on DioError catch (e) {
+      // return Error Message
+      print("====================");
+      print(e.response);
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<Unit> addHotelsReservation(hotelReservationModel) async {
+    Map<String, dynamic> hotelReservationModelsToJson =
+        hotelReservationModel.toJson();
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.post(ApiConstance.hotelReservationPath,
+          data: hotelReservationModelsToJson);
+      return Future.value(unit);
+    } on DioError catch (e) {
+      // return Error Message
+      print("=================");
+      print(e.response);
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<Unit> updateHotelsReservation(hotelReservationModel) async {
+    Map<String, dynamic> hotelReservationModelsToJson =
+        hotelReservationModel.toJson();
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.patch(ApiConstance.hotelReservationPath,
+          data: hotelReservationModelsToJson);
+      return Future.value(unit);
+    } on DioError catch (e) {
+      // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<String> deleteHotelsReservation(id) async {
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.delete(
+        "${ApiConstance.hotelReservationPath}$id/",
+      );
+      return "Deleted";
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(

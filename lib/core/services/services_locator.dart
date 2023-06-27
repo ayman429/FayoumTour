@@ -1,4 +1,5 @@
 import 'package:fayoumtour/TourismPlaces/domain/usecase/rateUsecases/get_place_rate_by_user.dart';
+import 'package:fayoumtour/hotels/domain/usecase/hotel_reservation/get_hotel_usecase_by_user.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../Authentication/data/datasource/authentication_remote_data_source.dart';
@@ -36,6 +37,10 @@ import '../../hotels/domain/usecase/add_hotel_usecase.dart';
 import '../../hotels/domain/usecase/delete_hotel_usecase.dart';
 import '../../hotels/domain/usecase/get_hotel_by_id_usecase.dart';
 import '../../hotels/domain/usecase/get_hotel_usecase.dart';
+import '../../hotels/domain/usecase/hotel_reservation/add_hotel_usecase.dart';
+import '../../hotels/domain/usecase/hotel_reservation/delete_hotel_usecase.dart';
+import '../../hotels/domain/usecase/hotel_reservation/get_hotel_usecase.dart';
+import '../../hotels/domain/usecase/hotel_reservation/update_hotel_usecase.dart';
 import '../../hotels/domain/usecase/ordering_by_fields.dart';
 import '../../hotels/domain/usecase/rateUsecases/get_all_hotel_rate_usecase.dart';
 import '../../hotels/domain/usecase/rateUsecases/get_hotel_rate_by_id_usecase.dart';
@@ -109,13 +114,27 @@ class ServicesLocator {
 
 /* ****** Hotel ServicesLocator ****** */
     /// Bloc
-    getIt.registerFactory(() => HotelsBloc(getIt(), getIt(), getIt(), getIt(),
-        getIt(), getIt(), getIt(), getIt(), getIt(), getIt(), getIt()));
+    getIt.registerFactory(() => HotelsBloc(
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt(),
+        getIt()));
 
     /// Use Cases
     getIt.registerLazySingleton(() => GetHotelUsecase(getIt()));
     getIt.registerLazySingleton(() => GetHotelByIdUsecase(getIt()));
-
     getIt.registerLazySingleton(() => AddHotelUsecase(getIt()));
     getIt.registerLazySingleton(() => UpdateHotelUsecase(getIt()));
     getIt.registerLazySingleton(() => DeleteHotelUsecase(getIt()));
@@ -125,6 +144,13 @@ class ServicesLocator {
     getIt.registerLazySingleton(() => GetHotelRateUsecase(getIt()));
     getIt.registerLazySingleton(() => GetHotelRateByIdUsecase(getIt()));
     getIt.registerLazySingleton(() => UpdateCreateHotelRateUsecase(getIt()));
+    // HotelReservation
+    getIt.registerLazySingleton(() => GetHotelReservationUsecase(getIt()));
+    getIt
+        .registerLazySingleton(() => GetHotelReservationByUserUsecase(getIt()));
+    getIt.registerLazySingleton(() => AddHotelReservationUsecase(getIt()));
+    getIt.registerLazySingleton(() => UpdateHotelReservationUsecase(getIt()));
+    getIt.registerLazySingleton(() => DeleteHotelReservationUsecase(getIt()));
 
     /// Repository
     getIt.registerLazySingleton<BaseHotelRepository>(

@@ -2,12 +2,18 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../hotels/domain/usecase/get_hotel_usecase.dart';
+import 'package:fayoumtour/hotels/domain/usecase/hotel_reservation/get_hotel_usecase_by_user.dart';
+
 import '../../../core/usecase/base_usecase.dart';
 import '../../../core/utils/enums.dart';
+import '../../../hotels/domain/usecase/get_hotel_usecase.dart';
 import '../../domain/usecase/add_hotel_usecase.dart';
 import '../../domain/usecase/delete_hotel_usecase.dart';
 import '../../domain/usecase/get_hotel_by_id_usecase.dart';
+import '../../domain/usecase/hotel_reservation/add_hotel_usecase.dart';
+import '../../domain/usecase/hotel_reservation/delete_hotel_usecase.dart';
+import '../../domain/usecase/hotel_reservation/get_hotel_usecase.dart';
+import '../../domain/usecase/hotel_reservation/update_hotel_usecase.dart';
 import '../../domain/usecase/ordering_by_fields.dart';
 import '../../domain/usecase/rateUsecases/get_all_hotel_rate_usecase.dart';
 import '../../domain/usecase/rateUsecases/get_hotel_rate_by_id_usecase.dart';
@@ -21,7 +27,6 @@ import 'hotels_state.dart';
 class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
   final GetHotelUsecase getHotelUsecase;
   final GetHotelByIdUsecase getHotelByIdUsecase;
-
   final AddHotelUsecase addHotelUsecase;
   final UpdateHotelUsecase updateHotelUsecase;
   final DeleteHotelUsecase deleteHotelUsecase;
@@ -31,19 +36,32 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
   final GetHotelRateUsecase getHotelRateUsecase;
   final GetHotelRateByIdUsecase getHotelRateByIdUsecase;
   final UpdateCreateHotelRateUsecase updateCreateHotelRateUsecase;
+
+  // HotelReservation
+  final GetHotelReservationUsecase getHotelReservationUsecase;
+  final GetHotelReservationByUserUsecase getHotelReservationByUserUsecase;
+  final AddHotelReservationUsecase addHotelReservationUsecase;
+  final UpdateHotelReservationUsecase updateHotelReservationUsecase;
+  final DeleteHotelReservationUsecase deleteHotelReservationUsecase;
+
   HotelsBloc(
-      this.getHotelUsecase,
-      this.getHotelByIdUsecase,
-      this.addHotelUsecase,
-      this.updateHotelUsecase,
-      this.deleteHotelUsecase,
-      this.orderingHotelByFieldsUsecase,
-      this.searchHotelByFieldsUsecase,
-      this.searchHotelByRateUsecase,
-      this.getHotelRateUsecase,
-      this.getHotelRateByIdUsecase,
-      this.updateCreateHotelRateUsecase)
-      : super(HotelsState()) {
+    this.getHotelUsecase,
+    this.getHotelByIdUsecase,
+    this.addHotelUsecase,
+    this.updateHotelUsecase,
+    this.deleteHotelUsecase,
+    this.orderingHotelByFieldsUsecase,
+    this.searchHotelByFieldsUsecase,
+    this.searchHotelByRateUsecase,
+    this.getHotelRateUsecase,
+    this.getHotelRateByIdUsecase,
+    this.updateCreateHotelRateUsecase,
+    this.getHotelReservationUsecase,
+    this.getHotelReservationByUserUsecase,
+    this.addHotelReservationUsecase,
+    this.updateHotelReservationUsecase,
+    this.deleteHotelReservationUsecase,
+  ) : super(HotelsState()) {
     on<GetHotelsEvent>(_getHotels);
     on<GetHotelsByIdEvent>(_getHotelsById);
 
@@ -56,6 +74,13 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     on<GetHotelRatesEvent>(_getHotelRates);
     on<GetHotelRateByIdEvent>(_getHotelRateById);
     on<UpdateCreateHotelRatesEvent>(_updateCreateHotelRates);
+
+    // HotelReservation
+    on<GetHotelsReservationEvent>(_getHotelsReservation);
+    on<GetHotelsReservationByUserEvent>(_getHotelsReservationByUser);
+    on<AddHotelReservationEvent>(_addHotelReservation);
+    on<UpdateHotelReservationEvent>(_updateHotelReservation);
+    on<DeleteHotelReservationEvent>(_deleteHotelReservation);
   }
 
   FutureOr<void> _getHotels(
@@ -200,6 +225,74 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     }, (r) {
       return emit(HotelsState(
         updateCreateHotelRateState: RequestState.loaded,
+      ));
+    });
+  }
+
+  // HotelReservation
+  FutureOr<void> _getHotelsReservation(
+      GetHotelsReservationEvent event, Emitter<HotelsState> emit) async {
+    (await getHotelReservationUsecase(event.hotelId)).fold((l) {
+      return emit(HotelsState(
+          hotelReservationState: RequestState.error,
+          hotelReservationMessage: l.message));
+    }, (r) {
+      return emit(HotelsState(
+        hotelsReservation: r,
+        hotelReservationState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _getHotelsReservationByUser(
+      GetHotelsReservationByUserEvent event, Emitter<HotelsState> emit) async {
+    (await getHotelReservationByUserUsecase(event.userId)).fold((l) {
+      return emit(HotelsState(
+          hotelReservationByUserState: RequestState.error,
+          hotelReservationByUserMessage: l.message));
+    }, (r) {
+      return emit(HotelsState(
+        hotelsReservationByUser: r,
+        hotelReservationByUserState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _addHotelReservation(
+      AddHotelReservationEvent event, Emitter<HotelsState> emit) async {
+    (await addHotelReservationUsecase(event.hotelReservation)).fold((l) {
+      return emit(HotelsState(
+          addHotelReservationState: RequestState.error,
+          addHotelReservationMessage: l.message));
+    }, (r) {
+      return emit(HotelsState(
+        addHotelReservationState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _updateHotelReservation(
+      UpdateHotelReservationEvent event, Emitter<HotelsState> emit) async {
+    (await updateHotelReservationUsecase(event.hotelReservation)).fold((l) {
+      return emit(HotelsState(
+          updateHotelReservationState: RequestState.error,
+          updateHotelReservationMessage: l.message));
+    }, (r) {
+      return emit(HotelsState(
+        updateHotelReservationState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _deleteHotelReservation(
+      DeleteHotelReservationEvent event, Emitter<HotelsState> emit) async {
+    (await deleteHotelReservationUsecase(event.hotelsId)).fold((l) {
+      return emit(HotelsState(
+          deleteHotelReservationState: RequestState.error,
+          deleteHotelReservationMessage: l.message));
+    }, (r) {
+      return emit(HotelsState(
+        deleteHotelReservationState: RequestState.loaded,
       ));
     });
   }

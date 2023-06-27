@@ -4,6 +4,7 @@ import '../../../core/error/exceptions.dart';
 import '../../../core/error/faliure.dart';
 import '../../domain/entities/hotel.dart';
 import '../../domain/entities/hotel_rate.dart';
+import '../../domain/entities/hotel_reservation.dart';
 import '../../domain/repository/base_hotel_repository.dart';
 import '../datasource/hotel_remote_data_source.dart';
 
@@ -127,6 +128,68 @@ class HotelRerpository extends BaseHotelRepository {
         await baseHotelRemoteDataSource.addHotelRates(hotelRateModel, HotelID);
     try {
       return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  // HotelReservation
+  @override
+  Future<Either<Failure, List<HotelReservation>>> getHotelReservation(
+      int hotelId) async {
+    final result =
+        await baseHotelRemoteDataSource.getHotelsReservation(hotelId);
+
+    try {
+      return Right(result);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<HotelReservation>>> getHotelReservationByUser(
+      int userId) async {
+    final result =
+        await baseHotelRemoteDataSource.getHotelsReservationByUser(userId);
+
+    try {
+      return Right(result);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> addHotelReservation(
+      hotelModelReservation) async {
+    final add = await baseHotelRemoteDataSource
+        .addHotelsReservation(hotelModelReservation);
+    try {
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> updateHotelReservation(
+      hotelReservationModel) async {
+    final add = await baseHotelRemoteDataSource
+        .updateHotelsReservation(hotelReservationModel);
+    try {
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> deleteHotelReservation(id) async {
+    final result = await baseHotelRemoteDataSource.deleteHotelsReservation(id);
+
+    try {
+      return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
     }

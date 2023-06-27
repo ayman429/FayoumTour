@@ -1,5 +1,6 @@
 import '../../domain/entities/hotel.dart';
 import '../../domain/entities/hotel_rate.dart';
+import '../../domain/entities/hotel_reservation.dart';
 
 abstract class HotelsEvent {
   const HotelsEvent();
@@ -66,5 +67,41 @@ class UpdateCreateHotelRatesEvent extends HotelsEvent {
   UpdateCreateHotelRatesEvent({
     required this.updateCreateHotelRate,
     required this.hotelID,
+  });
+}
+
+// HotelReservation
+class GetHotelsReservationEvent extends HotelsEvent {
+  int hotelId;
+  GetHotelsReservationEvent({
+    required this.hotelId,
+  });
+}
+
+class GetHotelsReservationByUserEvent extends HotelsEvent {
+  int userId;
+  GetHotelsReservationByUserEvent({
+    required this.userId,
+  });
+}
+
+class AddHotelReservationEvent extends HotelsEvent {
+  HotelReservation hotelReservation;
+  AddHotelReservationEvent({
+    required this.hotelReservation,
+  });
+}
+
+class UpdateHotelReservationEvent extends HotelsEvent {
+  HotelReservation hotelReservation;
+  UpdateHotelReservationEvent({
+    required this.hotelReservation,
+  });
+}
+
+class DeleteHotelReservationEvent extends HotelsEvent {
+  String hotelsId;
+  DeleteHotelReservationEvent({
+    required this.hotelsId,
   });
 }

@@ -13,6 +13,8 @@ import 'core/utils/constance/theme_manager.dart';
 import 'core/utils/languages/bloc/app_language_bloc.dart';
 import 'core/utils/theme/bloc/app_theme_bloc.dart';
 import 'home/BottomBar.dart';
+import 'hotels/presentation/screens/hotel_reservation_details_for_manager.dart';
+import 'hotels/presentation/screens/hotel_reservation_details_for_user.dart';
 
 var token;
 var _selectedOption;
@@ -78,6 +80,7 @@ class MyApp extends StatelessWidget {
               home: (token == "0")
                   ? const LoginScreen()
                   : BottomBar(select: 1, _selectedOption));
+          // : HotelsReservationDetailsForManager());
         }));
   }
 }

@@ -2,6 +2,7 @@ import 'package:fayoumtour/hotels/domain/entities/hotel_rate.dart';
 
 import '../../../core/utils/enums.dart';
 import '../../domain/entities/hotel.dart';
+import '../../domain/entities/hotel_reservation.dart';
 
 class HotelsState {
   final List<Hotel> hotels;
@@ -44,6 +45,24 @@ class HotelsState {
   final RequestState updateCreateHotelRateState;
   final String updateCreateHotelRateMessage;
 
+  // HotelReservation
+  final List<HotelReservation> hotelsReservation;
+  final RequestState hotelReservationState;
+  final String hotelReservationMessage;
+
+  final List<HotelReservation> hotelsReservationByUser;
+  final RequestState hotelReservationByUserState;
+  final String hotelReservationByUserMessage;
+
+  final RequestState addHotelReservationState;
+  final String addHotelReservationMessage;
+
+  final RequestState updateHotelReservationState;
+  final String updateHotelReservationMessage;
+
+  final RequestState deleteHotelReservationState;
+  final String deleteHotelReservationMessage;
+
   HotelsState({
     this.addHotelState = RequestState.loading,
     this.addHotelMessage = '',
@@ -74,6 +93,20 @@ class HotelsState {
     this.hotelsById,
     this.hotelStateById = RequestState.loading,
     this.hotelMessageById = '',
+
+    // HotelReservation
+    this.hotelsReservation = const [],
+    this.hotelReservationState = RequestState.loading,
+    this.hotelReservationMessage = '',
+    this.hotelsReservationByUser = const [],
+    this.hotelReservationByUserState = RequestState.loading,
+    this.hotelReservationByUserMessage = '',
+    this.addHotelReservationState = RequestState.loading,
+    this.addHotelReservationMessage = '',
+    this.updateHotelReservationState = RequestState.loading,
+    this.updateHotelReservationMessage = '',
+    this.deleteHotelReservationState = RequestState.loading,
+    this.deleteHotelReservationMessage = '',
   });
 
   HotelsState copyWith({
@@ -106,6 +139,19 @@ class HotelsState {
     String? getHotelRateByIdMessage,
     RequestState? updateCreateHotelRateState,
     String? updateCreateHotelRateMessage,
+    // HotelReservation
+    List<HotelReservation>? hotelsReservation,
+    RequestState? hotelReservationState,
+    String? hotelReservationMessage,
+    List<HotelReservation>? hotelsReservationByUser,
+    RequestState? hotelReservationByUserState,
+    String? hotelReservationByUserMessage,
+    RequestState? addHotelReservationState,
+    String? addHotelReservationMessage,
+    RequestState? updateHotelReservationState,
+    String? updateHotelReservationMessage,
+    RequestState? deleteHotelReservationState,
+    String? deleteHotelReservationMessage,
   }) {
     return HotelsState(
       hotels: hotels ?? this.hotels,
@@ -142,6 +188,31 @@ class HotelsState {
           updateCreateHotelRateMessage ?? this.updateCreateHotelRateMessage,
       updateCreateHotelRateState:
           updateCreateHotelRateState ?? this.updateCreateHotelRateState,
+
+      // HotelReservation
+      hotelsReservation: hotelsReservation ?? this.hotelsReservation,
+      hotelReservationState:
+          hotelReservationState ?? this.hotelReservationState,
+      hotelReservationMessage:
+          hotelReservationMessage ?? this.hotelReservationMessage,
+      hotelsReservationByUser:
+          hotelsReservationByUser ?? this.hotelsReservationByUser,
+      hotelReservationByUserState:
+          hotelReservationByUserState ?? this.hotelReservationByUserState,
+      hotelReservationByUserMessage:
+          hotelReservationByUserMessage ?? this.hotelReservationByUserMessage,
+      addHotelReservationState:
+          addHotelReservationState ?? this.addHotelReservationState,
+      addHotelReservationMessage:
+          addHotelReservationMessage ?? this.addHotelReservationMessage,
+      updateHotelReservationState:
+          updateHotelReservationState ?? this.updateHotelReservationState,
+      updateHotelReservationMessage:
+          updateHotelReservationMessage ?? this.updateHotelReservationMessage,
+      deleteHotelReservationState:
+          deleteHotelReservationState ?? this.deleteHotelReservationState,
+      deleteHotelReservationMessage:
+          deleteHotelReservationMessage ?? this.deleteHotelReservationMessage,
     );
   }
 }

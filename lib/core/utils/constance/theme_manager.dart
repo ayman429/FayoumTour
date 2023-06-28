@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'color_manager.dart';
-import 'values_manager.dart';
 
 ThemeData getApplicationThemeLight() {
   return ThemeData(
@@ -42,6 +40,7 @@ ThemeData getApplicationThemeLight() {
     onTertiary: Colors.white,
     primaryContainer: Colors.white,
     tertiaryContainer: Color.fromARGB(255, 240, 240, 240),
+    onTertiaryContainer: Color.fromARGB(110, 209, 209, 209),
   ));
 }
 
@@ -81,6 +80,7 @@ ThemeData getApplicationThemeDark() {
       onTertiary: Colors.grey,
       primaryContainer: Color.fromARGB(255, 56, 56, 56),
       tertiaryContainer: Color.fromARGB(255, 64, 64, 64),
+      onTertiaryContainer: Color(0xff272727),
     ),
   );
 }

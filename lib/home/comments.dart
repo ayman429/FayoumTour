@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../core/utils/constance/strings_manager.dart';
 
@@ -23,9 +22,9 @@ class _CommentListState extends State<CommentList> {
         
         title:  const Text('Comments',
         style: TextStyle(
-                      fontFamily: AppStrings.fontFamily,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25),
+        fontFamily: AppStrings.fontFamily,
+        fontWeight: FontWeight.bold,
+        fontSize: 25),
         
         ),
         centerTitle: true,

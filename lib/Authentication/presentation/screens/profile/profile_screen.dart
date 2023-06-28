@@ -8,9 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../core/local_data_shared_preferences/favourites_shared_preferences.dart';
 import '../../../../core/services/services_locator.dart';
-import '../../../../core/utils/enums.dart';
 import '../../controller/authentication_bloc.dart';
 import '../../controller/authentication_event.dart';
 import '../../controller/authentication_state.dart';
@@ -18,9 +16,10 @@ import '../login/login_screen.dart';
 import 'ProfileMenuWidget.dart';
 import 'base_update_profile.dart';
 import 'settings.dart';
+import 'package:fayoumtour/home/reservations_list.dart';
 
 class profile_screen extends StatefulWidget {
-  profile_screen({Key? key}) : super(key: key);
+  const profile_screen({Key? key}) : super(key: key);
 
   @override
   State<profile_screen> createState() => _profile_screenState();
@@ -119,7 +118,7 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(("Edit profile"),
@@ -147,6 +146,13 @@ class _profile_screenState extends State<profile_screen> {
                   onPress: () {}),
               const Divider(),
               const SizedBox(height: 10),
+              ProfileMenuWidget(
+                  title: "ٌHotel Reservations", icon: Icons.list_alt_rounded, onPress: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>  const ReservationsScreen()));
+                  }),
               ProfileMenuWidget(
                   title: "Information", icon: Icons.info, onPress: () {}),
               BlocBuilder<AuthenticationBloc, AuthenticationState>(

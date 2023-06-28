@@ -229,7 +229,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                         title: const Text('Photo Library'),
                                         onTap: () async {
                                           final pickedFile = await ImagePicker()
-                                              .getImage(
+                                              .pickImage(
                                                   source: ImageSource.gallery);
                                           // if (pickedFile != null) {
                                           //   var userId = await FavouritStorage()
@@ -249,7 +249,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                         onTap: () async {
                                           final pickedFile =
                                               // ignore: deprecated_member_use
-                                              await ImagePicker().getImage(
+                                              await ImagePicker().pickImage(
                                                   source: ImageSource.camera);
                                           // if (pickedFile != null) {
                                           //   var userId = await FavouritStorage()

@@ -20,7 +20,7 @@ import '../../controller/authentication_event.dart';
 import '../../controller/authentication_state.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
-  UpdateProfileScreen({Key? key}) : super(key: key);
+  const UpdateProfileScreen({Key? key}) : super(key: key);
 
   @override
   State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
@@ -125,7 +125,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                         title: const Text('Photo Library'),
                                         onTap: () async {
                                           final pickedFile = await ImagePicker()
-                                              .getImage(
+                                              .pickImage(
                                                   source: ImageSource.gallery);
                                           if (pickedFile != null) {
                                             var userId = await FavouritStorage()
@@ -145,7 +145,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                         onTap: () async {
                                           final pickedFile =
                                               // ignore: deprecated_member_use
-                                              await ImagePicker().getImage(
+                                              await ImagePicker().pickImage(
                                                   source: ImageSource.camera);
                                           if (pickedFile != null) {
                                             var userId = await FavouritStorage()

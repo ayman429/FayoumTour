@@ -1,6 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-
 import '../core/utils/constance/strings_manager.dart';
 import 'add_post.dart';
 import 'favourites.dart';
@@ -37,7 +36,7 @@ class _BottomBarState extends State<BottomBar> {
     Home(tourtismType: tourtismTypes),
     const AddPost(),
     Favorites(),
-    Plan(),
+    const Plan(),
   ];
   final TextEditingController _searchController = TextEditingController();
 

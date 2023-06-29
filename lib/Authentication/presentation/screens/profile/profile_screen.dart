@@ -9,6 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/services/services_locator.dart';
+import '../../../../hotels/presentation/screens/hotel_reservation_details_for_manager.dart';
+import '../../../../hotels/presentation/screens/hotel_reservation_details_for_user.dart';
 import '../../controller/authentication_bloc.dart';
 import '../../controller/authentication_event.dart';
 import '../../controller/authentication_state.dart';
@@ -118,7 +120,7 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      primary: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(("Edit profile"),
@@ -147,11 +149,20 @@ class _profile_screenState extends State<profile_screen> {
               const Divider(),
               const SizedBox(height: 10),
               ProfileMenuWidget(
-                  title: "ٌHotel Reservations", icon: Icons.list_alt_rounded, onPress: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>  const ReservationsScreen()));
+                  title: "ٌHotel Reservations",
+                  icon: Icons.list_alt_rounded,
+                  onPress: () {
+                    sharedPreferences!.getBool("is_manager") == true
+                        ? Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    HotelsReservationDetailsForManager()))
+                        : Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    HotelsReservationDetailsForUser()));
                   }),
               ProfileMenuWidget(
                   title: "Information", icon: Icons.info, onPress: () {}),

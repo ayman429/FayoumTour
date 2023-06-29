@@ -44,6 +44,8 @@ dependencies:
   shared_preferences:
   image_picker:
   video_player:
+  qr_flutter:
+  qr_code_scanner:
   flutter_localizations:
     sdk: flutter
   # light: ^2.1.0

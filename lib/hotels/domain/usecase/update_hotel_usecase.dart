@@ -13,6 +13,6 @@ class UpdateHotelUsecase extends BaseUseCase<Unit, Hotel> {
   @override
   Future<Either<Failure, Unit>> call(Hotel parameters) async {
     HotelModel hotelModel = HotelModel.castFromEntity(parameters);
-    return await baseHotelRepository.addHotel(hotelModel);
+    return await baseHotelRepository.updateHotel(hotelModel);
   }
 }

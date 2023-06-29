@@ -7,6 +7,8 @@ class UserDetails extends Equatable {
   String lastName;
   String username;
   String? image;
+  bool? is_manager;
+  int? managerId;
 
   UserDetails({
     required this.id,
@@ -15,6 +17,8 @@ class UserDetails extends Equatable {
     required this.lastName,
     required this.username,
     this.image,
+    this.is_manager,
+    this.managerId,
   });
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

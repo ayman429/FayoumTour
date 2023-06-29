@@ -15,6 +15,7 @@ class UpdateHotelReservationUsecase
   Future<Either<Failure, Unit>> call(HotelReservation parameters) async {
     HotelReservationModel hotelReservationModel =
         HotelReservationModel.castFromEntity(parameters);
-    return await baseHotelRepository.addHotelReservation(hotelReservationModel);
+    return await baseHotelRepository
+        .updateHotelReservation(hotelReservationModel);
   }
 }

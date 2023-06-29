@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/services_locator.dart';
+import '../../../core/utils/constance/shared_pref.dart';
+import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
+import '../../../home/reservations_list.dart';
 import '../controller/hotels_bloc.dart';
 import '../controller/hotels_event.dart';
 import '../controller/hotels_state.dart';
@@ -14,43 +17,32 @@ class HotelsReservationDetailsForUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(create: (context) {
-      return getIt<HotelsBloc>()
-        ..add(GetHotelsReservationByUserEvent(userId: 1));
+      return getIt<HotelsBloc>();
     }, child: BlocBuilder<HotelsBloc, HotelsState>(builder: (context, state) {
+      BlocProvider.of<HotelsBloc>(context).add(GetHotelsReservationByUserEvent(
+          userId: int.parse(sharedPreferences!.getString("USERID") ?? "0")));
       switch (state.hotelReservationByUserState) {
         case RequestState.loading:
           return const SizedBox(
               height: 200, child: Center(child: CircularProgressIndicator()));
         case RequestState.loaded:
-          return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.25,
-            child: Scaffold(
-              body: Center(
-                child: Container(
-                    child: ListView.builder(
-                        itemCount: state.hotelsReservationByUser.length,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          final hotelsReservationByUser =
-                              state.hotelsReservationByUser[index];
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("${hotelsReservationByUser.id}"),
-                              Text("${hotelsReservationByUser.phone_number}"),
-                              Text("${hotelsReservationByUser.adulls}"),
-                              Text("${hotelsReservationByUser.kids}"),
-                              Text("${hotelsReservationByUser.check_in}"),
-                              Text("${hotelsReservationByUser.check_out}"),
-                              Text("${hotelsReservationByUser.hotel}"),
-                              Text("${hotelsReservationByUser.hotelImage}"),
-                              Text("${hotelsReservationByUser.hotelName}"),
-                            ],
-                          );
-                        })),
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text(
+                'Reservations',
+                style: TextStyle(
+                    fontFamily: AppStrings.fontFamily,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
               ),
+              centerTitle: true,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
             ),
+            body: GetReservationData(
+                data: state.hotelsReservationByUser, type: "user"),
           );
+
         case RequestState.error:
           return const Center(child: Text("Error"));
       }

@@ -277,11 +277,18 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
 
   @override
   Future<Unit> updateHotelsReservation(hotelReservationModel) async {
+    print("------------------------>");
     Map<String, dynamic> hotelReservationModelsToJson =
         hotelReservationModel.toJson();
+    print(hotelReservationModelsToJson["id"]);
+
     try {
       Dio dio = (await DioFactory.create()).dio;
-      final response = await dio.patch(ApiConstance.hotelReservationPath,
+      final response = await dio.patch(
+          ApiConstance.hotelReservationPath +
+              "/" +
+              hotelReservationModelsToJson["id"] +
+              "/",
           data: hotelReservationModelsToJson);
       return Future.value(unit);
     } on DioError catch (e) {

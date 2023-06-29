@@ -96,6 +96,9 @@ class AuthenticationRemoteDataSource
       // ------------------------------------------
       UserDetails userDetails = await getUsersDetails();
       await sharedPreferences!.setString("USERID", userDetails.id);
+      await sharedPreferences!
+          .setBool("is_manager", userDetails.is_manager ?? false);
+      await sharedPreferences!.setInt("managerId", userDetails.managerId ?? 0);
       String image = userDetails.image ?? "";
 
       sharedPreferences!.setString("USER", json.encode(userDetails.toJson()));

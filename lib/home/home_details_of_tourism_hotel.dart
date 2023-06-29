@@ -278,7 +278,10 @@ class Details extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           HotelReservationScreen(
-                                              hotelId: data.id)));
+                                            hotelId: data.id,
+                                            type: "add",
+                                            data: "",
+                                          )));
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor:

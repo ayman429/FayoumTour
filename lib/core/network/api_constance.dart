@@ -6,10 +6,11 @@ class ApiConstance {
 /* **************** Access Token **************** */
   static const String KeyAccessToken = "KeyAccessToken";
 
-/* **************** Hotels EndPoints **************** */
+/* **************** Hotel/TourismPlac EndPoints **************** */
   // GET POST PUT DEL Hotel/TourismPlace , GET By ID
   static const String hotelPath = "$baseUrl/api/Hotel/";
   static const String tourismPlacePath = "$baseUrl/api/TourismPlace/";
+  static const String model1Path = "$baseUrl/api/TourismPlace/model1/";
 
   /* **************** HotelReservation EndPoints **************** */
   // GET POST PUT DEL HotelReservation

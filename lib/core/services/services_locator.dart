@@ -23,6 +23,7 @@ import '../../TourismPlaces/domain/usecase/add_tourism_place_usecase.dart';
 import '../../TourismPlaces/domain/usecase/delete_tourism_place_usecase.dart';
 import '../../TourismPlaces/domain/usecase/get_tourism_place_by_id_usecase.dart';
 import '../../TourismPlaces/domain/usecase/get_tourism_place_usecase.dart';
+import '../../TourismPlaces/domain/usecase/model1_usecase.dart';
 import '../../TourismPlaces/domain/usecase/ordering_by_fields.dart';
 import '../../TourismPlaces/domain/usecase/rateUsecases/get_all_tourism_place_rate_usecase.dart';
 import '../../TourismPlaces/domain/usecase/rateUsecases/get_tourism_place_rate_by_id_usecase.dart';
@@ -181,6 +182,7 @@ class ServicesLocator {
         getIt(),
         getIt(),
         getIt(),
+        getIt(),
         getIt()));
 
     /// Use Cases
@@ -189,6 +191,8 @@ class ServicesLocator {
     getIt.registerLazySingleton(() => AddTourismPlaceUsecase(getIt()));
     getIt.registerLazySingleton(() => UpdateTourismPlaceUsecase(getIt()));
     getIt.registerLazySingleton(() => DeleteTourismPlaceUsecase(getIt()));
+    //Model1Usecase
+    getIt.registerLazySingleton(() => Model1Usecase(getIt()));
     getIt.registerLazySingleton(
         () => SearchByFieldsTourismPlaceUsecase(getIt()));
     getIt.registerLazySingleton(() => SearchTourismPlaceByRateUsecase(getIt()));

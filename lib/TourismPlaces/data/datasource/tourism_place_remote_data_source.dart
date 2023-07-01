@@ -11,6 +11,7 @@ import '../models/tourism_place_rate_model.dart';
 abstract class BaseTourismPlaceRemoteDataSource {
   Future<List<TourismPlaceModel>> getTourismPlaces();
   Future<List<TourismPlaceModel>> searchByFields(search);
+  Future<List<TourismPlaceModel>> model1Places(String model1Input);
   Future<List<TourismPlaceModel>> searchByRate();
   Future<List<TourismPlaceModel>> orderingByFields(search);
   Future<TourismPlaceModel> getTourismPlacesById(id);
@@ -124,6 +125,23 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     }
   }
 
+  // model1
+  @override
+  Future<List<TourismPlaceModel>> model1Places(model1Input) async {
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.get(ApiConstance.model1Path,
+          queryParameters: {"input": model1Input});
+      return List<TourismPlaceModel>.from(
+          (response.data as List).map((e) => TourismPlaceModel.fromJson(e)));
+    } on DioError catch (e) {
+      // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
   @override
   Future<List<TourismPlaceModel>> searchByRate() async {
     try {
@@ -216,7 +234,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
       final response = await dio.get(ApiConstance.getPlaceRateByUserPath,
           data: {"placeId": placeId, "userId": userId});
       print(response.data);
-      return response.data["star"];
+      return response.data["star"] ?? "0";
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(

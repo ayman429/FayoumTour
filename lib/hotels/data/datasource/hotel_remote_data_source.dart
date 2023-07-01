@@ -223,7 +223,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       final response = await dio.get(ApiConstance.getHotelRateByUserPath,
           data: {"hotelId": hotelId, "userId": userId});
       print(response.data);
-      return response.data["star"];
+      return response.data["star"] ?? "0";
     } on DioError catch (e) {
       // return Error Message
       print("=============>");

@@ -82,6 +82,19 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
     }
   }
 
+  // model1
+  @override
+  Future<Either<Failure, List<TourismPlace>>> model1(model1Input) async {
+    final result =
+        await baseTourismPlaceRemoteDataSource.model1Places(model1Input);
+
+    try {
+      return Right(result);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
   @override
   Future<Either<Failure, List<TourismPlace>>> searchByRate() async {
     final result = await baseTourismPlaceRemoteDataSource.searchByRate();

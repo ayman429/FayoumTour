@@ -24,6 +24,10 @@ class TourismPlaceState {
   final RequestState searchTourismPlaceState;
   final String searchTourismPlaceMessage;
 
+  final List<TourismPlace> model1;
+  final RequestState model1State;
+  final String model1Message;
+
   final List<TourismPlace> searchTourismPlaceRate;
   final RequestState searchTourismPlaceRateState;
   final String searchTourismPlaceRateMessage;
@@ -77,6 +81,9 @@ class TourismPlaceState {
     this.searchTourismPlace = const [],
     this.searchTourismPlaceState = RequestState.loading,
     this.searchTourismPlaceMessage = '',
+    this.model1 = const [],
+    this.model1State = RequestState.loading,
+    this.model1Message = '',
     this.getTourismPlaceRateByUser = '',
     this.getTourismPlaceRateByUserState = RequestState.loading,
     this.getTourismPlaceRateByUserMessage = '',
@@ -98,6 +105,9 @@ class TourismPlaceState {
     List<TourismPlace>? searchTourismPlace,
     RequestState? searchTourismPlaceState,
     String? searchTourismPlaceMessage,
+    List<TourismPlace>? model1,
+    RequestState? model1State,
+    String? model1Message,
     List<TourismPlace>? searchTourismPlaceRate,
     RequestState? searchTourismPlaceRateState,
     String? searchTourismPlaceRateMessage,
@@ -141,6 +151,9 @@ class TourismPlaceState {
           searchTourismPlaceState ?? this.searchTourismPlaceState,
       searchTourismPlaceMessage:
           searchTourismPlaceMessage ?? this.searchTourismPlaceMessage,
+      model1: model1 ?? this.model1,
+      model1State: model1State ?? this.model1State,
+      model1Message: model1Message ?? this.model1Message,
       orderingTourismPlace: orderingTourismPlace ?? this.orderingTourismPlace,
       orderingTourismPlaceState:
           orderingTourismPlaceState ?? this.orderingTourismPlaceState,

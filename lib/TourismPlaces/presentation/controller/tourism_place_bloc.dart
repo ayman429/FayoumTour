@@ -9,6 +9,7 @@ import '../../domain/usecase/add_tourism_place_usecase.dart';
 import '../../domain/usecase/delete_tourism_place_usecase.dart';
 import '../../domain/usecase/get_tourism_place_by_id_usecase.dart';
 import '../../domain/usecase/get_tourism_place_usecase.dart';
+import '../../domain/usecase/model1_usecase.dart';
 import '../../domain/usecase/ordering_by_fields.dart';
 import '../../domain/usecase/rateUsecases/get_all_tourism_place_rate_usecase.dart';
 import '../../domain/usecase/rateUsecases/get_tourism_place_rate_by_id_usecase.dart';
@@ -27,6 +28,7 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
   final DeleteTourismPlaceUsecase deleteTourismPlaceUsecase;
   final OrderingTourismPlaceByFieldsUsecase orderingByFieldsUsecase;
   final SearchByFieldsTourismPlaceUsecase searchByFieldsUsecase;
+  final Model1Usecase model1Usecase;
   final SearchTourismPlaceByRateUsecase searchTourismPlaceByRateUsecase;
   final GetTourismPlaceRateUsecase getTourismPlaceRateUsecase;
   final GetTourismPlaceRateByIdUsecase getTourismPlaceRateByIdUsecase;
@@ -41,6 +43,7 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       this.deleteTourismPlaceUsecase,
       this.orderingByFieldsUsecase,
       this.searchByFieldsUsecase,
+      this.model1Usecase,
       this.searchTourismPlaceByRateUsecase,
       this.getTourismPlaceRateUsecase,
       this.getTourismPlaceRateByIdUsecase,
@@ -54,6 +57,7 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
     on<DeleteTourismPlaceEvent>(_deleteTourismPlace);
     on<OrderingTourismPlaceByFieldsEvent>(_orderingByFields);
     on<SearchTourismPlaceByFieldsEvent>(_searchByFields);
+    on<Model1Event>(_model1);
     on<SearchTourismPlaceByRateEvent>(_searchByRate);
     on<GetTourismPlaceRatesEvent>(_getTourismPlaceRates);
     on<GetTourismPlaceRateByIdEvent>(_getTourismPlaceRateById);
@@ -141,6 +145,19 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       return emit(TourismPlaceState(
         searchTourismPlace: r,
         searchTourismPlaceState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _model1(
+      Model1Event event, Emitter<TourismPlaceState> emit) async {
+    (await model1Usecase(event.model1Input)).fold((l) {
+      return emit(TourismPlaceState(
+          model1State: RequestState.error, model1Message: l.message));
+    }, (r) {
+      return emit(TourismPlaceState(
+        model1: r,
+        model1State: RequestState.loaded,
       ));
     });
   }

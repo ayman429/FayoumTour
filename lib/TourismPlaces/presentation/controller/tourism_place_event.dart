@@ -42,6 +42,13 @@ class SearchTourismPlaceByFieldsEvent extends TourismPlaceEvent {
   });
 }
 
+class Model1Event extends TourismPlaceEvent {
+  String model1Input;
+  Model1Event({
+    required this.model1Input,
+  });
+}
+
 class OrderingTourismPlaceByFieldsEvent extends TourismPlaceEvent {
   String tourismPlaceOrderingByFeild;
   OrderingTourismPlaceByFieldsEvent({

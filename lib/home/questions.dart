@@ -1,8 +1,16 @@
-
 import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Authentication/domain/entities/user_details.dart';
+import '../Authentication/presentation/components/validation.dart';
+import '../Authentication/presentation/controller/authentication_bloc.dart';
+import '../Authentication/presentation/controller/authentication_event.dart';
+import '../Authentication/presentation/controller/authentication_state.dart';
+import '../core/services/services_locator.dart';
+import '../core/utils/enums.dart';
+import '../core/utils/snackbar_message.dart';
 import 'BottomBar.dart';
 
 class TourismScreen extends StatefulWidget {
@@ -67,332 +75,444 @@ class _TourismScreenState extends State<TourismScreen>
   void _onOptionSelected(String option) {
     setState(() {
       _selectedOption = option;
-      var userId = sharedPreferences!.getString("USERID");
-      sharedPreferences!.setString("$userId selectedOption", _selectedOption);
+      print("---------------->");
+      print(option);
+      // var userId = sharedPreferences!.getString("USERID");
+      // sharedPreferences!.setString("$userId selectedOption", _selectedOption);
+      // var selectedOption = sharedPreferences!.getString("placeType");
     });
   }
 
   @override
-  Widget build(BuildContext context) { 
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              'assets/images/backQuestions.jpg',
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<AuthenticationBloc>(),
+      child: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/images/backQuestions.jpg',
+              ),
+              fit: BoxFit.cover,
             ),
-            fit: BoxFit.cover,
           ),
-        ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 20),
-              Expanded(
-                child: SlideTransition(
-                  position: _offsetAnimation,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 70, bottom: 8, right: 40, left: 35),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(100),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 3,
-                            blurRadius: 7,
-                            offset: const Offset(0, 3),
+          child: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 20),
+                Expanded(
+                  child: SlideTransition(
+                    position: _offsetAnimation,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 70, bottom: 8, right: 40, left: 35),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(100),
                           ),
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SlideTransition(
-                            position: _offsetAnimation,
-                            child: FadeTransition(
-                              opacity: _opacityAnimation,
-                              child: Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: Column(
-                                  children:  [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20),
-                                      child: Text(
-                                        'Select Tourism',
-                                        style: GoogleFonts.aBeeZee(
-                                          fontSize: 23,
-                                          color: Colors.black87,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 3,
+                              blurRadius: 7,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SlideTransition(
+                              position: _offsetAnimation,
+                              child: FadeTransition(
+                                opacity: _opacityAnimation,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20),
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20),
+                                        child: Text(
+                                          'Select Tourism',
+                                          style: GoogleFonts.aBeeZee(
+                                            fontSize: 23,
+                                            color: Colors.black87,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    const Divider(
-                                      color: Colors.black26,
-                                      thickness: 1.9,
-                                      indent: 40,
-                                      endIndent: 30,
-                                    ),
-                                  ],
+                                      const Divider(
+                                        color: Colors.black26,
+                                        thickness: 1.9,
+                                        indent: 40,
+                                        endIndent: 30,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 16),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        _onOptionSelected(
-                                            'Islamic antiquities');
-                                        // print("object");
-                                        // Navigator.of(context).pushAndRemoveUntil(
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) => BottomBar(
-                                        //             select: 1,
-                                        //             'Islamic antiquities')),
-                                        //     (route) => false);
-                                      },
-                                      child: AnimatedContainer(
-                                        duration: const Duration(seconds: 1),
-                                        curve: Curves.easeInOut,
-                                        width: _selectedOption ==
-                                                'Islamic antiquities'
-                                            ? MediaQuery.of(context).size.width*0.40
-                                            : MediaQuery.of(context).size.width*0.35,
-                                        height: _selectedOption ==
-                                                'Islamic antiquities'
-                                            ? MediaQuery.of(context).size.height*0.23
-                                            : MediaQuery.of(context).size.height*0.18,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.grey.withOpacity(0.5),
-                                              spreadRadius: 3,
-                                              blurRadius: 7,
-                                              offset: const Offset(0, 3),
+                            const SizedBox(height: 16),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          _onOptionSelected(
+                                              'Islamic antiquities');
+                                          // print("object");
+                                          // Navigator.of(context).pushAndRemoveUntil(
+                                          //     MaterialPageRoute(
+                                          //         builder: (context) => BottomBar(
+                                          //             select: 1,
+                                          //             'Islamic antiquities')),
+                                          //     (route) => false);
+                                        },
+                                        child: AnimatedContainer(
+                                          duration: const Duration(seconds: 1),
+                                          curve: Curves.easeInOut,
+                                          width: _selectedOption ==
+                                                  'Islamic antiquities'
+                                              ? MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.40
+                                              : MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.35,
+                                          height: _selectedOption ==
+                                                  'Islamic antiquities'
+                                              ? MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.23
+                                              : MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.18,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.5),
+                                                spreadRadius: 3,
+                                                blurRadius: 7,
+                                                offset: const Offset(0, 3),
+                                              ),
+                                            ],
+                                            image: const DecorationImage(
+                                              image: AssetImage(
+                                                'assets/images/islamic.jpeg',
+                                              ),
+                                              fit: BoxFit.cover,
                                             ),
-                                          ],
-                                          image: const DecorationImage(
-                                            image: AssetImage(
-                                              'assets/images/islamic.jpeg',
-                                            ),
-                                            fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    const Text('Islamic antiquities')
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            _onOptionSelected(
-                                                'Coptic antiquities');
-                                            // Navigator.of(context)
-                                            //     .pushAndRemoveUntil(
-                                            //         MaterialPageRoute(
-                                            //             builder: (context) =>
-                                            //                 BottomBar(
-                                            //                     select: 1,
-                                            //                     'Coptic antiquities')),
-                                            //         (route) => false);
-                                          },
-                                          child: AnimatedContainer(
-                                            duration: const Duration(seconds: 1),
-                                            curve: Curves.easeInOut,
-                                            width: _selectedOption ==
-                                                    'Coptic antiquities'
-                                                ? MediaQuery.of(context).size.width*0.40
-                                                : MediaQuery.of(context).size.width*0.35,
-                                            height: _selectedOption ==
-                                                    'Coptic antiquities'
-                                                ? MediaQuery.of(context).size.height*0.23
-                                                : MediaQuery.of(context).size.height*0.18,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.5),
-                                                  spreadRadius: 3,
-                                                  blurRadius: 7,
-                                                  offset: const Offset(0, 3),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      const Text('Islamic antiquities')
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              _onOptionSelected(
+                                                  'Coptic antiquities');
+                                              // Navigator.of(context)
+                                              //     .pushAndRemoveUntil(
+                                              //         MaterialPageRoute(
+                                              //             builder: (context) =>
+                                              //                 BottomBar(
+                                              //                     select: 1,
+                                              //                     'Coptic antiquities')),
+                                              //         (route) => false);
+                                            },
+                                            child: AnimatedContainer(
+                                              duration:
+                                                  const Duration(seconds: 1),
+                                              curve: Curves.easeInOut,
+                                              width: _selectedOption ==
+                                                      'Coptic antiquities'
+                                                  ? MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.40
+                                                  : MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.35,
+                                              height: _selectedOption ==
+                                                      'Coptic antiquities'
+                                                  ? MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.23
+                                                  : MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.18,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                    spreadRadius: 3,
+                                                    blurRadius: 7,
+                                                    offset: const Offset(0, 3),
+                                                  ),
+                                                ],
+                                                image: const DecorationImage(
+                                                  image: AssetImage(
+                                                    'assets/images/coptic.jpg',
+                                                  ),
+                                                  fit: BoxFit.cover,
                                                 ),
-                                              ],
-                                              image: const DecorationImage(
-                                                image: AssetImage(
-                                              'assets/images/coptic.jpg',
-                                            ),
-                                                fit: BoxFit.cover,
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 15,
-                                        ),
-                                        const Text('Coptic antiquities')
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () => _onOptionSelected(
-                                          'Greek and Roman Antiquities'),
-                                      child: AnimatedContainer(
-                                        duration: const Duration(seconds: 1),
-                                        curve: Curves.easeInOut,
-                                        width: _selectedOption ==
-                                                'Greek and Roman Antiquities'
-                                            ? MediaQuery.of(context).size.width*0.40
-                                            : MediaQuery.of(context).size.width*0.35,
-                                        height: _selectedOption ==
-                                                'Greek and Roman Antiquities'
-                                            ? MediaQuery.of(context).size.height*0.23
-                                            : MediaQuery.of(context).size.height*0.18,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.grey.withOpacity(0.5),
-                                              spreadRadius: 3,
-                                              blurRadius: 7,
-                                              offset: const Offset(0, 3),
-                                            ),
-                                          ],
-                                          image: const DecorationImage(
-                                            image: AssetImage(
-                                              'assets/images/greek.jpeg',
-                                            ),
-                                            fit: BoxFit.cover,
+                                          const SizedBox(
+                                            height: 15,
                                           ),
-                                        ),
+                                          const Text('Coptic antiquities')
+                                        ],
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    const Text('Greek and Roman')
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () =>
-                                          _onOptionSelected('Pharaonic relics'),
-                                      child: AnimatedContainer(
-                                        duration: const Duration(seconds: 1),
-                                        curve: Curves.easeInOut,
-                                        width: _selectedOption ==
-                                                'Pharaonic relics'
-                                            ? MediaQuery.of(context).size.width*0.40
-                                            : MediaQuery.of(context).size.width*0.35,
-                                        height: _selectedOption ==
-                                                'Pharaonic relics'
-                                            ? MediaQuery.of(context).size.height*0.23
-                                            : MediaQuery.of(context).size.height*0.18,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color:
-                                                  Colors.grey.withOpacity(0.5),
-                                              spreadRadius: 3,
-                                              blurRadius: 7,
-                                              offset: const Offset(0, 3),
-                                            ),
-                                          ],
-                                          image: const DecorationImage(
-                                            image: AssetImage(
-                                              'assets/images/pharonic.jpg',
-                                            ),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    const Text('Pharaonic relics')
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.fromLTRB(
-                                          0, 0, 0, 20),
-                            child: TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (context) => BottomBar(
-                                              select: 1, _selectedOption)),
-                                      (route) => false);
-                                },
-                                style: TextButton.styleFrom(
-                                            backgroundColor: Theme.of(context)
-                                                    .colorScheme
-                                                    .primary,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(25))),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                              vertical: 5, horizontal: 50),
-                                  child: Text("Next",
-                                  style: GoogleFonts.rye(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .secondary,
-                                                    fontSize: 20),
+                                    ],
                                   ),
-                                )),
-                          )
-                        ],
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () => _onOptionSelected(
+                                            'Greek and Roman Antiquities'),
+                                        child: AnimatedContainer(
+                                          duration: const Duration(seconds: 1),
+                                          curve: Curves.easeInOut,
+                                          width: _selectedOption ==
+                                                  'Greek and Roman Antiquities'
+                                              ? MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.40
+                                              : MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.35,
+                                          height: _selectedOption ==
+                                                  'Greek and Roman Antiquities'
+                                              ? MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.23
+                                              : MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.18,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.5),
+                                                spreadRadius: 3,
+                                                blurRadius: 7,
+                                                offset: const Offset(0, 3),
+                                              ),
+                                            ],
+                                            image: const DecorationImage(
+                                              image: AssetImage(
+                                                'assets/images/greek.jpeg',
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      const Text('Greek and Roman')
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () => _onOptionSelected(
+                                            'Pharaonic antiquities'),
+                                        child: AnimatedContainer(
+                                          duration: const Duration(seconds: 1),
+                                          curve: Curves.easeInOut,
+                                          width: _selectedOption ==
+                                                  'Pharaonic antiquities'
+                                              ? MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.40
+                                              : MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.35,
+                                          height: _selectedOption ==
+                                                  'Pharaonic antiquities'
+                                              ? MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.23
+                                              : MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.18,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.5),
+                                                spreadRadius: 3,
+                                                blurRadius: 7,
+                                                offset: const Offset(0, 3),
+                                              ),
+                                            ],
+                                            image: const DecorationImage(
+                                              image: AssetImage(
+                                                'assets/images/pharonic.jpg',
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      const Text('Pharaonic antiquities')
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                              child: BlocBuilder<AuthenticationBloc,
+                                  AuthenticationState>(
+                                builder: (context, state) {
+                                  return TextButton(
+                                      onPressed: () {
+                                        UserDetails userDetails = UserDetails(
+                                            placeType: _selectedOption);
+                                        BlocProvider.of<AuthenticationBloc>(
+                                                context)
+                                            .add(UpdateUserDetailsEvent(
+                                                userDetails: userDetails,
+                                                type: "username"));
+                                        // Navigator.of(context).pushAndRemoveUntil(
+                                        //     MaterialPageRoute(
+                                        //         builder: (context) => BottomBar(
+                                        //             select: 1, _selectedOption)),
+                                        //     (route) => false);
+                                      },
+                                      style: TextButton.styleFrom(
+                                          backgroundColor: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(25))),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 5, horizontal: 50),
+                                        child: Text(
+                                          "Next",
+                                          style: GoogleFonts.rye(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary,
+                                              fontSize: 20),
+                                        ),
+                                      ));
+                                },
+                              ),
+                            ),
+                            BlocConsumer<AuthenticationBloc,
+                                    AuthenticationState>(
+                                listener: (context, state) {
+                              if (state.updateuserDetailsState ==
+                                  RequestState.loaded) {
+                                print("--------------->");
+                                print(_selectedOption);
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) => BottomBar(
+                                            select: 1, _selectedOption)),
+                                    (route) => false);
+                              } else if (state.updateuserDetailsState ==
+                                  RequestState.error) {
+                                print(
+                                    "error: ${state.updateuserDetailsMessage}");
+                                String message;
+                                message = Validation.validationMessage(
+                                    state.updateuserDetailsMessage);
+                                SnackBarMessage().showErrorSnackBar(
+                                    message: message, context: context);
+                              } else if (state.changePasswordstate ==
+                                  RequestState.error) {
+                                print("error: ${state.changePasswordMessage}");
+                                String message;
+                                message = Validation.validationMessage(
+                                    state.changePasswordMessage);
+                                SnackBarMessage().showErrorSnackBar(
+                                    message: message, context: context);
+                              }
+                            }, builder: (context, state) {
+                              if (state.updateuserDetailsState ==
+                                      RequestState.loading ||
+                                  state.changePasswordstate ==
+                                      RequestState.loading) {
+                                print("loading");
+
+                                /// loading
+                                // return Text("Processing");
+                              }
+                              return Container();
+                            }),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

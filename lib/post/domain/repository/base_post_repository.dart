@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:fayoumtour/post/data/models/comment_model.dart';
 
 import '../../../core/error/faliure.dart';
-import '../../data/models/post_model.dart';
+import '../entities/comment.dart';
 import '../entities/post.dart';
 
 abstract class BasePostRepository {
@@ -15,4 +16,9 @@ abstract class BasePostRepository {
   // Future<Either<Failure, List<Post>>> searchByField(String search);
   // Future<Either<Failure, List<Post>>> orderingByField(search);
 
+  // Comment
+  Future<Either<Failure, List<Comment>>> getComment(int postId);
+  Future<Either<Failure, String>> deleteComment(String id);
+  Future<Either<Failure, Unit>> addComment(CommentModel comment);
+  Future<Either<Failure, Unit>> updateComment(CommentModel comment);
 }

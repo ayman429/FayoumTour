@@ -65,7 +65,6 @@ class _BottomBarState extends State<BottomBar> {
                     border: InputBorder.none,
                     //prefixIcon: Icon(Icons.search)
                   ),
-                  
                   onChanged: (value) {
                     setState(() {
                       search_counter = 0;

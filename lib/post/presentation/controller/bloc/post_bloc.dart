@@ -4,8 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/usecase/base_usecase.dart';
 import '../../../../core/utils/enums.dart';
+import '../../../domain/entities/comment.dart';
 import '../../../domain/entities/post.dart';
 import '../../../domain/usecase/add_post_usecase.dart';
+import '../../../domain/usecase/comment/add_comment_usecase.dart';
+import '../../../domain/usecase/comment/delete_comment_usecase.dart';
+import '../../../domain/usecase/comment/get_comment_usecase.dart';
+import '../../../domain/usecase/comment/update_comment_usecase.dart';
 import '../../../domain/usecase/delete_post_usecase.dart';
 import '../../../domain/usecase/get_post_by_id_usecase.dart';
 import '../../../domain/usecase/get_post_usecase.dart';
@@ -22,6 +27,12 @@ class PostBloc extends Bloc<PostEvent, PostState> {
   final UpdatePostUsecase updatePostUsecase;
   final DeletePostUsecase deletePostUsecase;
 
+  // Comment
+  final GetCommentUsecase getCommentUsecase;
+  final AddCommentUsecase addCommentUsecase;
+  final UpdateCommentUsecase updateCommentUsecase;
+  final DeleteCommentUsecase deleteCommentUsecase;
+
   // final OrderingPostByFieldsUsecase orderingPostByFieldsUsecase;
   // final SearchByFieldsPostUsecase searchPostByFieldsUsecase;
   PostBloc(
@@ -30,6 +41,10 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     this.addPostUsecase,
     this.updatePostUsecase,
     this.deletePostUsecase,
+    this.getCommentUsecase,
+    this.addCommentUsecase,
+    this.updateCommentUsecase,
+    this.deleteCommentUsecase,
 
     // this.orderingPostByFieldsUsecase,
     // this.searchPostByFieldsUsecase,
@@ -40,6 +55,11 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<AddPostEvent>(_addPost);
     on<UpdatePostEvent>(_updatePost);
     on<DeletePostEvent>(_deletePost);
+    // Comment
+    on<GetCommentEvent>(_getComment);
+    on<AddCommentEvent>(_addComment);
+    on<UpdateCommentEvent>(_updateComment);
+    on<DeleteCommentEvent>(_deleteComment);
 
     // on<OrderingPostByFieldsEvent>(_orderingPostByFields);
     // on<SearchPostByFieldsEvent>(_searchPostByFields);
@@ -51,6 +71,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       return emit(
           PostState(postState: RequestState.error, postMessage: l.message));
     }, (r) {
+      // print(r);
+
       return emit(PostState(
         post: r,
         postState: RequestState.loaded,
@@ -102,6 +124,63 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     }, (r) {
       return emit(PostState(
         deletePostState: RequestState.loaded,
+      ));
+    });
+  }
+
+  // Comment
+  FutureOr<void> _getComment(
+      GetCommentEvent event, Emitter<PostState> emit) async {
+    // emit(PostState(postState: RequestState.loading));
+    (await getCommentUsecase(event.postId)).fold((l) {
+      return emit(PostState(
+          commentState: RequestState.error, commentMessage: l.message));
+    }, (r) {
+      return emit(PostState(
+        comment: r,
+        commentState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _addComment(
+      AddCommentEvent event, Emitter<PostState> emit) async {
+    (await addCommentUsecase(event.comment)).fold((l) {
+      return emit(PostState(
+          addCommentState: RequestState.error, addCommentMessage: l.message));
+    }, (r) {
+      return emit(PostState(
+        addCommentState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _updateComment(
+      UpdateCommentEvent event, Emitter<PostState> emit) async {
+    (await updateCommentUsecase(event.comment)).fold((l) {
+      return emit(PostState(
+          updateCommentState: RequestState.error,
+          updateCommentMessage: l.message));
+    }, (r) {
+      return emit(PostState(
+        updateCommentState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _deleteComment(
+      DeleteCommentEvent event, Emitter<PostState> emit) async {
+    (await deleteCommentUsecase(event.commentId)).fold((l) {
+      // print("object");
+      // print(l.message);
+      return emit(PostState(
+          deleteCommentState: RequestState.error,
+          deleteCommentMessage: l.message));
+    }, (r) {
+      print("error");
+      print(r);
+      return emit(PostState(
+        deleteCommentState: RequestState.loaded,
       ));
     });
   }

@@ -70,8 +70,8 @@ class UpdateCreateTourismPlaceRatesEvent extends TourismPlaceEvent {
 }
 
 class GetTourismPlaceRateByUserEvent extends TourismPlaceEvent {
-  String placeId;
-  String userId;
+  int placeId;
+  int userId;
   GetTourismPlaceRateByUserEvent({
     required this.placeId,
     required this.userId,

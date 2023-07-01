@@ -7,6 +7,7 @@ import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../core/utils/enums.dart';
 import '../post/presentation/controller/bloc/post_bloc.dart';
+import '../post/presentation/screens/comment_screen.dart';
 import 'add_post_component.dart';
 import 'comments.dart';
 import 'image_list.dart';
@@ -20,8 +21,8 @@ class ShowPosts extends StatelessWidget {
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
         BlocProvider.of<PostBloc>(context).add(GetPostEvent());
-        print("----------------------------");
-        print(state.postState);
+        // print("----------------------------");
+        // print(state.postState);
         switch (state.postState) {
           case RequestState.loading:
             return const SizedBox(
@@ -34,7 +35,7 @@ class ShowPosts extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Container(
                   margin: const EdgeInsets.symmetric(vertical: 10),
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondary,
                     boxShadow: const [
                       BoxShadow(
@@ -167,7 +168,7 @@ class ShowPosts extends StatelessWidget {
                             ),
                       state.post[index].imagesP.isNotEmpty
                           ? SizedBox(
-                              height: MediaQuery.of(context).size.height*0.47,
+                              height: MediaQuery.of(context).size.height * 0.47,
                               child: GridView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
                                 gridDelegate: state
@@ -248,7 +249,6 @@ class ShowPosts extends StatelessWidget {
                                                     }
                                                     return child;
                                                   },
-                                                  
                                                 ),
                                               ),
                                             ),
@@ -280,7 +280,6 @@ class ShowPosts extends StatelessWidget {
                                           //borderRadius:BorderRadius.circular(10),
                                           child: Image.network(
                                             state.post[index].imagesP[x].imageT,
-                                            
                                             fit: BoxFit.cover,
                                             errorBuilder:
                                                 (context, error, stackTrace) {
@@ -310,70 +309,123 @@ class ShowPosts extends StatelessWidget {
                               ),
                             )
                           : const SizedBox.shrink(),
-                    
-                    Container(
-                      margin: const EdgeInsets.only(top: 10,left: 10,right: 10,bottom: 0),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children:  [
-                              Row(
-                                children: const [
-                                  Icon(MyFlutterApp.like3,color:Colors.blue),
-                                  SizedBox(width: 2,),
-                                  Text("12",style: TextStyle(color: Colors.grey,fontSize: 14),)
-                                ],
-                              ),
-                    
-                              InkWell(
-                                onTap: (){
-                                  Navigator.push(context,MaterialPageRoute(builder: (context) => const CommentList(),
-                        ));
-                                },
-                                child: const Text("6 Comments",style: TextStyle(color: Colors.grey,fontSize: 14),)),
-                            ],
-                          ),
-                        
-                        const SizedBox(height: 10,),
-                        const Divider(color: Color.fromARGB(255, 122, 122, 122),),
-                    
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                        TextButton(onPressed: (){
 
-                        },
-                        style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30)),),
-                        child:
-                        Row(children:  const [
-                            Icon(MyFlutterApp.like3,color:Colors.grey,),
-                            SizedBox(width: 5,),
-                            Text("Like",style: TextStyle(color: Colors.grey,),)
-                          ],),
-                        
+                      Container(
+                        margin: const EdgeInsets.only(
+                            top: 10, left: 10, right: 10, bottom: 0),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(MyFlutterApp.like3,
+                                        color: Colors.blue),
+                                    const SizedBox(
+                                      width: 2,
+                                    ),
+                                    Text(
+                                      "${state.post[index].like_numbers}",
+                                      style: const TextStyle(
+                                          color: Colors.grey, fontSize: 14),
+                                    )
+                                  ],
+                                ),
+                                InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CommentScreen(
+                                                      postId: int.parse(state
+                                                              .post[index].id ??
+                                                          "0"))));
+                                    },
+                                    child:
+                                        state.post[index].comment_numbers != "0"
+                                            ? Text(
+                                                "${state.post[index].comment_numbers} Comments",
+                                                style: const TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 14),
+                                              )
+                                            : Container()),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Divider(
+                              color: Color.fromARGB(255, 122, 122, 122),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                TextButton(
+                                  onPressed: () {},
+                                  style: TextButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30)),
+                                  ),
+                                  child: Row(
+                                    children: const [
+                                      Icon(
+                                        MyFlutterApp.like3,
+                                        color: Colors.grey,
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        "Like",
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                TextButton(
+                                    onPressed: () {
+                                      print(state.post[index].id);
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => CommentScreen(
+                                                postId: int.parse(
+                                                    state.post[index].id ??
+                                                        "0")),
+                                          ));
+                                    },
+                                    style: TextButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30)),
+                                    ),
+                                    child: Row(
+                                      children: const [
+                                        Icon(
+                                          Icons.insert_comment_outlined,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text("Comment",
+                                            style:
+                                                TextStyle(color: Colors.grey))
+                                      ],
+                                    )),
+                              ],
+                            )
+                          ],
                         ),
-                        TextButton(onPressed: (){
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => const CommentList(),
-                        ));
-                        },
-                        style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30)),),
-                        child:
-                        Row(children:  const [
-                          Icon(Icons.insert_comment_outlined,color: Colors.grey,),
-                          SizedBox(width: 5,),
-                          Text("Comment",style: TextStyle(color: Colors.grey))
-                        ],)),
-                      ],)
-                        ],
                       ),
-                    ),
-                    
-                    //const SizedBox(height: 8,),
+
+                      //const SizedBox(height: 8,),
                     ],
                   ),
                 );

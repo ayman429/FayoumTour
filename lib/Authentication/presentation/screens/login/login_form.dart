@@ -42,20 +42,23 @@ class _LoginFormState extends State<LoginForm> {
           child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
               listener: (context, state) {
             if (state.loginstate == RequestState.loaded) {
-              var userId = sharedPreferences!.getString("USERID");
-              var _selectedOption =
-                  sharedPreferences!.getString("$userId selectedOption");
-              if (_selectedOption != null) {
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            BottomBar(select: 1, _selectedOption)),
-                    (route) => false);
-              } else {
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => TourismScreen()),
-                    (route) => false);
-              }
+              // var userId = sharedPreferences!.getString("USERID");
+              // var _selectedOption =
+              //     sharedPreferences!.getString("$userId selectedOption");
+              // if (_selectedOption != null) {
+              var selectedOption = sharedPreferences!.getString("placeType") ??
+                  "Islamic antiquities";
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          BottomBar(select: 1, selectedOption)),
+                  (route) => false);
+
+              // } else {
+              //   Navigator.of(context).pushAndRemoveUntil(
+              //       MaterialPageRoute(builder: (context) => TourismScreen()),
+              //       (route) => false);
+              // }
             } else if (state.loginstate == RequestState.error) {
               String message;
               // message = loginValidationMessage(state.loginMessage);

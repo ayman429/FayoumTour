@@ -1,5 +1,6 @@
 import 'package:fayoumtour/TourismPlaces/domain/usecase/rateUsecases/get_place_rate_by_user.dart';
 import 'package:fayoumtour/hotels/domain/usecase/hotel_reservation/get_hotel_usecase_by_user.dart';
+import 'package:fayoumtour/hotels/domain/usecase/rateUsecases/get_hotel_rate_by_user_usecase.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../Authentication/data/datasource/authentication_remote_data_source.dart';
@@ -53,6 +54,10 @@ import '../../post/data/datasource/post_remote_data_source.dart';
 import '../../post/data/repository/post_repository.dart';
 import '../../post/domain/repository/base_post_repository.dart';
 import '../../post/domain/usecase/add_post_usecase.dart';
+import '../../post/domain/usecase/comment/add_comment_usecase.dart';
+import '../../post/domain/usecase/comment/delete_comment_usecase.dart';
+import '../../post/domain/usecase/comment/get_comment_usecase.dart';
+import '../../post/domain/usecase/comment/update_comment_usecase.dart';
 import '../../post/domain/usecase/delete_post_usecase.dart';
 import '../../post/domain/usecase/get_post_by_id_usecase.dart';
 import '../../post/domain/usecase/get_post_usecase.dart';
@@ -130,6 +135,7 @@ class ServicesLocator {
         getIt(),
         getIt(),
         getIt(),
+        getIt(),
         getIt()));
 
     /// Use Cases
@@ -144,6 +150,7 @@ class ServicesLocator {
     getIt.registerLazySingleton(() => GetHotelRateUsecase(getIt()));
     getIt.registerLazySingleton(() => GetHotelRateByIdUsecase(getIt()));
     getIt.registerLazySingleton(() => UpdateCreateHotelRateUsecase(getIt()));
+    getIt.registerLazySingleton(() => GetHotelRateByUserUsecase(getIt()));
     // HotelReservation
     getIt.registerLazySingleton(() => GetHotelReservationUsecase(getIt()));
     getIt
@@ -204,8 +211,8 @@ class ServicesLocator {
 
     /* ****** Posts ServicesLocator ****** */
     /// Bloc
-    getIt.registerFactory(
-        () => PostBloc(getIt(), getIt(), getIt(), getIt(), getIt()));
+    getIt.registerFactory(() => PostBloc(getIt(), getIt(), getIt(), getIt(),
+        getIt(), getIt(), getIt(), getIt(), getIt()));
 
     /// Use Cases
     getIt.registerLazySingleton(() => GetPostUsecase(getIt()));
@@ -214,6 +221,11 @@ class ServicesLocator {
     getIt.registerLazySingleton(() => AddPostUsecase(getIt()));
     getIt.registerLazySingleton(() => UpdatePostUsecase(getIt()));
     getIt.registerLazySingleton(() => DeletePostUsecase(getIt()));
+    // Comment
+    getIt.registerLazySingleton(() => GetCommentUsecase(getIt()));
+    getIt.registerLazySingleton(() => AddCommentUsecase(getIt()));
+    getIt.registerLazySingleton(() => UpdateCommentUsecase(getIt()));
+    getIt.registerLazySingleton(() => DeleteCommentUsecase(getIt()));
     // getIt.registerLazySingleton(() => SearchByFieldsPostUsecase(getIt()));
     // getIt.registerLazySingleton(() => OrderingPostByFieldsUsecase(getIt()));
 

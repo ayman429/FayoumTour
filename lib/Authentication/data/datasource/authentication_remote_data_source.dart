@@ -19,7 +19,8 @@ import '../models/user_details_model.dart';
 
 abstract class BaseAuthenticationRemoteDataSource {
   Future<UserDetailsModel> getUsersDetails();
-  Future<String> updateUsersDetails(var userData, String type);
+  Future<String> updateUsersDetails(
+      UserDetailsModel userDetailsModel, String type);
   Future<Unit> registration(RegistrationModel registrationModel);
   Future<Unit> logIn(LoginModel loginModel);
   Future<dynamic> logOut();
@@ -60,16 +61,18 @@ class AuthenticationRemoteDataSource
 
       // ------------------------------------------
       UserDetails userDetails = await getUsersDetails();
-      await sharedPreferences!.setString("USERID", userDetails.id);
+      await sharedPreferences!.setString("USERID", userDetails.id ?? "0");
       String image = userDetails.image ?? "";
 
-      sharedPreferences!.setString("USER", json.encode(userDetails.toJson()));
-      sharedPreferences!.setString("username", userDetails.username);
+      await sharedPreferences!
+          .setString("USER", json.encode(userDetails.toJson()));
+      await sharedPreferences!
+          .setString("username", userDetails.username ?? "");
       // print("=================>");
       // print(image);
       // print(userDetails.id);
       // print("${userDetails.id}USERIMAGE");
-      sharedPreferences!.setString("${userDetails.id}USERIMAGE", image);
+      await sharedPreferences!.setString("${userDetails.id}USERIMAGE", image);
       //-------------------------------------------
 
       // return unit
@@ -95,19 +98,29 @@ class AuthenticationRemoteDataSource
       print(response.data);
       // ------------------------------------------
       UserDetails userDetails = await getUsersDetails();
-      await sharedPreferences!.setString("USERID", userDetails.id);
+      await sharedPreferences!.setString("USERID", userDetails.id ?? "0");
       await sharedPreferences!
           .setBool("is_manager", userDetails.is_manager ?? false);
       await sharedPreferences!.setInt("managerId", userDetails.managerId ?? 0);
+      userDetails.placeType != ""
+          ? await sharedPreferences!.setString(
+              "placeType", userDetails.placeType ?? "Islamic antiquities")
+          : await sharedPreferences!
+              .setString("placeType", "Islamic antiquities");
+      await sharedPreferences!
+          .setString("model1Input", userDetails.model1Input ?? "");
       String image = userDetails.image ?? "";
 
-      sharedPreferences!.setString("USER", json.encode(userDetails.toJson()));
-      sharedPreferences!.setString("username", userDetails.username);
-      // print("=================>");
-      // print(image);
+      await sharedPreferences!
+          .setString("USER", json.encode(userDetails.toJson()));
+      await sharedPreferences!
+          .setString("username", userDetails.username ?? "");
+      print("=================>");
+      print(image);
+      print(userDetails.toJson());
       // print(userDetails.id);
       // print("${userDetails.id}USERIMAGE");
-      sharedPreferences!.setString("${userDetails.id}USERIMAGE", image);
+      await sharedPreferences!.setString("${userDetails.id}USERIMAGE", image);
       //-------------------------------------------
       // return unit
       return Future.value(unit);
@@ -198,14 +211,18 @@ class AuthenticationRemoteDataSource
   }
 
   @override
-  Future<String> updateUsersDetails(userData, type) async {
+  Future<String> updateUsersDetails(
+      UserDetailsModel userDetailsModel, type) async {
+    final updateUsersDetailsToJson = userDetailsModel.toJson();
+    print("------------------>");
+    print(updateUsersDetailsToJson);
     try {
       // print("==============> $userName");
       Dio dio = (await DioFactory.create()).dio;
       // Get user info , Request and Response
       if (type == "username") {
-        final response = await dio
-            .patch(ApiConstance.userDetailsPath, data: {"username": userData});
+        final response = await dio.patch(ApiConstance.userDetailsPath,
+            data: updateUsersDetailsToJson);
         print(response.data["username"].toString());
         // return user info
         return response.data["username"].toString();
@@ -213,7 +230,8 @@ class AuthenticationRemoteDataSource
         final response = await dio.patch(
           ApiConstance.userDetailsPath,
           data: FormData.fromMap({
-            "image": await MultipartFile.fromFile(userData),
+            "image":
+                await MultipartFile.fromFile(updateUsersDetailsToJson["image"]),
           }),
         );
         print(response.data["image"].toString());

@@ -1,3 +1,4 @@
+import '../../data/models/user_details_model.dart';
 import '../../domain/entities/change_password.dart';
 import '../../domain/entities/login.dart';
 import '../../domain/entities/password_reset_confirm.dart';
@@ -26,10 +27,10 @@ class RegistrationEvent extends AuthenticationEvent {
 }
 
 class UpdateUserDetailsEvent extends AuthenticationEvent {
-  var userData;
+  UserDetails userDetails;
   String type;
   UpdateUserDetailsEvent({
-    required this.userData,
+    required this.userDetails,
     required this.type,
   });
 }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:fayoumtour/Authentication/domain/entities/change_password.dart';
+import 'package:fayoumtour/Authentication/domain/entities/user_details.dart';
 import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -170,9 +171,11 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                       .getString("${userId.id}USERIMAGE") ??
                                   "";
                             });
+                            UserDetails userDetails =
+                                UserDetails(image: getImagePath);
                             BlocProvider.of<AuthenticationBloc>(context)
                                 .add(UpdateUserDetailsEvent(
-                                    userData: getImagePath,
+                                    userDetails: userDetails,
                                     // File(getImagePath)
                                     //     .readAsBytesSync(), //FileImage(File(getImagePath)),
                                     type: "image"));
@@ -234,10 +237,11 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 width: double.infinity,
                 child: TextButton(
                   onPressed: () {
+                    UserDetails userDetails =
+                        UserDetails(username: userNameController.text);
                     BlocProvider.of<AuthenticationBloc>(context).add(
                         UpdateUserDetailsEvent(
-                            userData: userNameController.text,
-                            type: "username"));
+                            userDetails: userDetails, type: "username"));
                     setState(() {
                       type = "username";
                     });

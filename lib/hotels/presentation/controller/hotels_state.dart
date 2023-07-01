@@ -45,6 +45,10 @@ class HotelsState {
   final RequestState updateCreateHotelRateState;
   final String updateCreateHotelRateMessage;
 
+  final String getHotelRateByUser;
+  final RequestState getHotelRateByUserState;
+  final String getHotelRateByUserMessage;
+
   // HotelReservation
   final List<HotelReservation> hotelsReservation;
   final RequestState hotelReservationState;
@@ -84,6 +88,9 @@ class HotelsState {
     this.getHotelRateByIdMessage = '',
     this.updateCreateHotelRateState = RequestState.loading,
     this.updateCreateHotelRateMessage = '',
+    this.getHotelRateByUser = '',
+    this.getHotelRateByUserState = RequestState.loading,
+    this.getHotelRateByUserMessage = '',
     this.searchHotels = const [],
     this.searchHotelState = RequestState.loading,
     this.searchHotelsMessage = '',
@@ -139,6 +146,10 @@ class HotelsState {
     String? getHotelRateByIdMessage,
     RequestState? updateCreateHotelRateState,
     String? updateCreateHotelRateMessage,
+    String? getHotelRateByUser,
+    RequestState? getHotelRateByUserState,
+    String? getHotelRateByUserMessage,
+
     // HotelReservation
     List<HotelReservation>? hotelsReservation,
     RequestState? hotelReservationState,
@@ -188,6 +199,12 @@ class HotelsState {
           updateCreateHotelRateMessage ?? this.updateCreateHotelRateMessage,
       updateCreateHotelRateState:
           updateCreateHotelRateState ?? this.updateCreateHotelRateState,
+
+      getHotelRateByUser: getHotelRateByUser ?? this.getHotelRateByUser,
+      getHotelRateByUserState:
+          getHotelRateByUserState ?? this.getHotelRateByUserState,
+      getHotelRateByUserMessage:
+          getHotelRateByUserMessage ?? this.getHotelRateByUserMessage,
 
       // HotelReservation
       hotelsReservation: hotelsReservation ?? this.hotelsReservation,

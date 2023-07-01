@@ -12,9 +12,11 @@ class UpdateUserDetailsUsecase {
 
   UpdateUserDetailsUsecase(this.baseAuthenticationRepository);
   @override
-  Future<Either<Failure, String>> call(var userData, String type) async {
-    // UserDetailsModel userDetailsModel =
-    //     UserDetailsModel.castFromEntity(parameters);
-    return await baseAuthenticationRepository.updateUserDetails(userData, type);
+  Future<Either<Failure, String>> call(
+      UserDetails userData, String type) async {
+    UserDetailsModel userDetailsModel =
+        UserDetailsModel.castFromEntity(userData);
+    return await baseAuthenticationRepository.updateUserDetails(
+        userDetailsModel, type);
   }
 }

@@ -41,7 +41,7 @@ class FavouritStorage extends BaseFavourits {
     // final token = await getIt<AccessToken>().getToken();
     var user = await getUsersDetails();
     // userId = user.id;
-    sharedPreferences!.setString("USERID", user.id);
+    sharedPreferences!.setString("USERID", user.id ?? "0");
 
     final prefs = await SharedPreferences.getInstance();
     List<dynamic> favList = [];
@@ -55,7 +55,7 @@ class FavouritStorage extends BaseFavourits {
     };
     favList.add(map);
     // print(favList);
-    await prefs.setString(user.id, json.encode(favList));
+    await prefs.setString("${user.id}", json.encode(favList));
     return Future.value(unit);
   }
 

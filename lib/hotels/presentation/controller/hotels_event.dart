@@ -70,6 +70,15 @@ class UpdateCreateHotelRatesEvent extends HotelsEvent {
   });
 }
 
+class GetHotelRateByUserEvent extends HotelsEvent {
+  int hotelId;
+  int userId;
+  GetHotelRateByUserEvent({
+    required this.hotelId,
+    required this.userId,
+  });
+}
+
 // HotelReservation
 class GetHotelsReservationEvent extends HotelsEvent {
   int hotelId;

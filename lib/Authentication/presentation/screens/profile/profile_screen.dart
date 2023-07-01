@@ -102,7 +102,8 @@ class _profile_screenState extends State<profile_screen> {
                         children: [
                           Text(username, style: GoogleFonts.aBeeZee()),
                           const SizedBox(height: 10),
-                          Text(userDetails.email, style: GoogleFonts.aBeeZee()),
+                          Text("${userDetails.email}",
+                              style: GoogleFonts.aBeeZee()),
                         ],
                       )
                     : Text("welcome", style: GoogleFonts.aBeeZee()),

@@ -17,6 +17,7 @@ import '../../domain/usecase/hotel_reservation/update_hotel_usecase.dart';
 import '../../domain/usecase/ordering_by_fields.dart';
 import '../../domain/usecase/rateUsecases/get_all_hotel_rate_usecase.dart';
 import '../../domain/usecase/rateUsecases/get_hotel_rate_by_id_usecase.dart';
+import '../../domain/usecase/rateUsecases/get_hotel_rate_by_user_usecase.dart';
 import '../../domain/usecase/rateUsecases/update_or_create_hotel_rate.dart';
 import '../../domain/usecase/search_by_fields_usecase.dart';
 import '../../domain/usecase/search_by_rate_usecase.dart';
@@ -36,6 +37,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
   final GetHotelRateUsecase getHotelRateUsecase;
   final GetHotelRateByIdUsecase getHotelRateByIdUsecase;
   final UpdateCreateHotelRateUsecase updateCreateHotelRateUsecase;
+  final GetHotelRateByUserUsecase getHotelRateByUserUsecase;
 
   // HotelReservation
   final GetHotelReservationUsecase getHotelReservationUsecase;
@@ -56,6 +58,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     this.getHotelRateUsecase,
     this.getHotelRateByIdUsecase,
     this.updateCreateHotelRateUsecase,
+    this.getHotelRateByUserUsecase,
     this.getHotelReservationUsecase,
     this.getHotelReservationByUserUsecase,
     this.addHotelReservationUsecase,
@@ -74,6 +77,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     on<GetHotelRatesEvent>(_getHotelRates);
     on<GetHotelRateByIdEvent>(_getHotelRateById);
     on<UpdateCreateHotelRatesEvent>(_updateCreateHotelRates);
+    on<GetHotelRateByUserEvent>(_getHotelRateByUserRates);
 
     // HotelReservation
     on<GetHotelsReservationEvent>(_getHotelsReservation);
@@ -225,6 +229,20 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     }, (r) {
       return emit(HotelsState(
         updateCreateHotelRateState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _getHotelRateByUserRates(
+      GetHotelRateByUserEvent event, Emitter<HotelsState> emit) async {
+    (await getHotelRateByUserUsecase(event.hotelId, event.userId)).fold((l) {
+      return emit(HotelsState(
+          getHotelRateByUserState: RequestState.error,
+          getHotelRateByUserMessage: l.message));
+    }, (r) {
+      return emit(HotelsState(
+        getHotelRateByUser: r,
+        getHotelRateByUserState: RequestState.loaded,
       ));
     });
   }

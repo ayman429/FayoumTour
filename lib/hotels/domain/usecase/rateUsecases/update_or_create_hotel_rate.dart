@@ -12,6 +12,7 @@ class UpdateCreateHotelRateUsecase {
   Future<Either<Failure, Unit>> call(
       HotelRate hotelRate, String hotelID) async {
     HotelRateModel hotelRateModel = HotelRateModel.castFromEntity(hotelRate);
-    return await baseHotelRepository.addHotelRate(hotelRateModel, hotelID);
+    return await baseHotelRepository.updateCreateHotelRate(
+        hotelRateModel, hotelID);
   }
 }

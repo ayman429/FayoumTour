@@ -21,7 +21,8 @@ abstract class BaseHotelRemoteDataSource {
 
   Future<List<HotelRateModel>> getHotelRates();
   Future<HotelRateModel> getHotelRateById(ID);
-  Future<Unit> addHotelRates(HotelRateModel hotelRateModel, HotelID);
+  Future<Unit> updateCreateHotelRates(HotelRateModel hotelRateModel, HotelID);
+  Future<String> getHotelRateByUser(int hotelId, int userId);
 
   // HotelReservation
   Future<List<HotelReservationModel>> getHotelsReservation(int hotelId);
@@ -199,7 +200,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
   }
 
   @override
-  Future<Unit> addHotelRates(hotelRateModel, HotelID) async {
+  Future<Unit> updateCreateHotelRates(hotelRateModel, HotelID) async {
     Map<String, dynamic> hotelRateModelsToJson = hotelRateModel.toJson();
     try {
       Dio dio = (await DioFactory.create()).dio;
@@ -209,6 +210,24 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       return Future.value(unit);
     } on DioError catch (e) {
       // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<String> getHotelRateByUser(hotelId, userId) async {
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.get(ApiConstance.getHotelRateByUserPath,
+          data: {"hotelId": hotelId, "userId": userId});
+      print(response.data);
+      return response.data["star"];
+    } on DioError catch (e) {
+      // return Error Message
+      print("=============>");
+      print(e.message);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
       );

@@ -1,44 +1,45 @@
 import 'package:equatable/equatable.dart';
 
 class UserDetails extends Equatable {
-  String id;
-  String email;
-  String firstName;
-  String lastName;
-  String username;
+  String? id;
+  String? email;
+  String? firstName;
+  String? lastName;
+  String? username;
   String? image;
   bool? is_manager;
   int? managerId;
+  String? placeType;
+  String? model1Input;
 
   UserDetails({
-    required this.id,
-    required this.email,
-    required this.firstName,
-    required this.lastName,
-    required this.username,
+    this.id,
+    this.email,
+    this.firstName,
+    this.lastName,
+    this.username,
     this.image,
     this.is_manager,
     this.managerId,
+    this.placeType,
+    this.model1Input,
   });
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['email'] = email;
-    data['username'] = username;
-    data['firstName'] = firstName;
-    data['lastName'] = lastName;
-    data['image'] = image;
+    id != null ? data['id'] = id : null;
+    email != null ? data['email'] = email : null;
+    username != null ? data['username'] = username : null;
+
+    // data['firstName'] = firstName;
+    // data['lastName'] = lastName;
+    image != null ? data['image'] = image : null;
+    placeType != null ? data['placeType'] = placeType : null;
+    model1Input != null ? data['model1Input'] = model1Input : null;
     return data;
   }
 
   @override
   List<Object> get props {
-    return [
-      id,
-      email,
-      firstName,
-      lastName,
-      username,
-    ];
+    return [];
   }
 }

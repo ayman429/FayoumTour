@@ -22,5 +22,5 @@ abstract class BaseTourismPlaceRepository {
       TourismPlaceRateModel tourismPlaceRateModel, String tourismPlaceID);
 
   Future<Either<Failure, String>> getTourismPlaceRateByUser(
-      String placeId, String userId);
+      int placeId, int userId);
 }

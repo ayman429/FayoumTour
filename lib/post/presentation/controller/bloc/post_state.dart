@@ -18,6 +18,20 @@ class PostState {
   final RequestState deletePostState;
   final String deletePostMessage;
 
+  // Comment
+  final List<Comment> comment;
+  final RequestState commentState;
+  final String commentMessage;
+
+  final RequestState addCommentState;
+  final String addCommentMessage;
+
+  final RequestState updateCommentState;
+  final String updateCommentMessage;
+
+  final RequestState deleteCommentState;
+  final String deleteCommentMessage;
+
   // final List<Post> searchPost;
   // final RequestState searchPostState;
   // final String searchPostMessage;
@@ -31,6 +45,12 @@ class PostState {
   // final String orderingPostMessage;
 
   PostState({
+    // this.searchPost = const [],
+    // this.searchPostState = RequestState.loading,
+    // this.searchPostMessage = '',
+    // this.orderingPost = const [],
+    // this.orderingPostState = RequestState.loading,
+    // this.orderingPostMessage = '',
     this.post = const [],
     this.postState = RequestState.loading,
     this.postMessage = '',
@@ -43,13 +63,16 @@ class PostState {
     this.updatePostMessage = '',
     this.deletePostState = RequestState.loading,
     this.deletePostMessage = '',
-
-    // this.searchPost = const [],
-    // this.searchPostState = RequestState.loading,
-    // this.searchPostMessage = '',
-    // this.orderingPost = const [],
-    // this.orderingPostState = RequestState.loading,
-    // this.orderingPostMessage = '',
+    // Comment
+    this.comment = const [],
+    this.commentState = RequestState.loading,
+    this.commentMessage = '',
+    this.addCommentState = RequestState.loading,
+    this.addCommentMessage = '',
+    this.updateCommentState = RequestState.loading,
+    this.updateCommentMessage = '',
+    this.deleteCommentState = RequestState.loading,
+    this.deleteCommentMessage = '',
   });
 
   PostState copyWith({
@@ -65,6 +88,17 @@ class PostState {
     String? updatePostMessage,
     RequestState? deletePostState,
     String? deletePostMessage,
+
+    // Comment
+    List<Comment>? comment,
+    RequestState? commentState,
+    String? commentMessage,
+    RequestState? addCommentState,
+    String? addCommentMessage,
+    RequestState? updateCommentState,
+    String? updateCommentMessage,
+    RequestState? deleteCommentState,
+    String? deleteCommentMessage,
 
     // List<Post>? searchPost,
     // RequestState? searchHotelState,
@@ -91,6 +125,20 @@ class PostState {
 
       deletePostState: deletePostState ?? this.deletePostState,
       deletePostMessage: deletePostMessage ?? this.deletePostMessage,
+
+      // Comment
+      comment: comment ?? this.comment,
+      commentState: commentState ?? this.commentState,
+      commentMessage: commentMessage ?? this.commentMessage,
+
+      addCommentState: addCommentState ?? this.addCommentState,
+      addCommentMessage: addCommentMessage ?? this.addCommentMessage,
+
+      updateCommentState: updateCommentState ?? this.updateCommentState,
+      updateCommentMessage: updateCommentMessage ?? this.updateCommentMessage,
+
+      deleteCommentState: deleteCommentState ?? this.deleteCommentState,
+      deleteCommentMessage: deleteCommentMessage ?? this.deleteCommentMessage,
 
       // searchHotels: searchHotels ?? this.searchHotels,
       // searchHotelState: searchHotelState ?? this.searchHotelState,

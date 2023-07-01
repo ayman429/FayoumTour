@@ -29,11 +29,16 @@ class ApiConstance {
       "$baseUrl/api/Hotel/searchRateNamber/";
 
   static const String getPlaceRateByUserPath =
-      "/api/TourismPlace/getRate_TourismPlace/";
-  static const String getHotelRateByUserPath = "/api/Hotel/getRate_Hotel/";
+      "$baseUrl/api/TourismPlace/getRate_TourismPlace/";
+  static const String getHotelRateByUserPath =
+      "$baseUrl/api/Hotel/getRate_Hotel/";
 
 /* **************** Posts EndPoints **************** */
   static const String postPath = "$baseUrl/api/Post/";
+/* **************** Comments EndPoints **************** */
+  static const String getCommentPath =
+      "$baseUrl/api/comment/getCommentByPostId/";
+  static const String commentPath = "$baseUrl/api/comment/";
 
 /* **************** User EndPoints **************** */
   static const String userDetailsPath = "$baseUrl/rest-auth/user/";

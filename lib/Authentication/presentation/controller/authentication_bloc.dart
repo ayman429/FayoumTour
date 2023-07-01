@@ -59,7 +59,7 @@ class AuthenticationBloc
       },
       (r) {
         // list.add(r);
-        print("userDetails: " + r.email);
+        // print("userDetails: " + r.email);
         // list.add(r);
         return emit(state.copyWith(
           userDetails: r,
@@ -117,7 +117,7 @@ class AuthenticationBloc
 
   FutureOr<void> _updateUserDetails(
       UpdateUserDetailsEvent event, Emitter<AuthenticationState> emit) async {
-    (await updateUserDetailsUsecase(event.userData, event.type)).fold(
+    (await updateUserDetailsUsecase(event.userDetails, event.type)).fold(
       (l) {
         return emit(state.copyWith(
             updateuserDetailsState: RequestState.error,

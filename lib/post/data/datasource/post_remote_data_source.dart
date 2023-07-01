@@ -6,6 +6,8 @@ import '../../../core/network/api_constance.dart';
 import '../../../core/network/dio_factory.dart';
 import '../../../core/network/error_message_model.dart';
 import '../../../core/utils/constance/shared_pref.dart';
+import '../../domain/entities/comment.dart';
+import '../models/comment_model.dart';
 import '../models/post_model.dart';
 
 abstract class BasePostRemoteDataSource {
@@ -18,6 +20,11 @@ abstract class BasePostRemoteDataSource {
   // Future<List<PostModel>> searchByFields(search);
   // Future<List<HotelModel>> orderingByFields(search);
 
+  // comment
+  Future<List<CommentModel>> getComments(int postId);
+  Future<String> deleteComments(id);
+  Future<Unit> addComments(CommentModel commentModel);
+  Future<Unit> updateComments(CommentModel commentModel);
 }
 
 class PostRemoteDataSource extends BasePostRemoteDataSource {
@@ -139,6 +146,88 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
       return PostModel.fromJson(response.data);
     } on DioError catch (e) {
       // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  // Comment
+  @override
+  Future<List<CommentModel>> getComments(postId) async {
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response =
+          await dio.get(ApiConstance.getCommentPath, data: {"postId": postId});
+
+      // print(response.data);
+      return List<CommentModel>.from((response.data as List).map((e) {
+        return CommentModel.fromJson(e);
+      }));
+    } on DioError catch (e) {
+      // return Error Message
+      print("=================");
+      print(e.response);
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<Unit> addComments(commentModel) async {
+    Map<String, dynamic> commentModelsToJson = commentModel.toJson();
+
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response =
+          await dio.post(ApiConstance.commentPath, data: commentModelsToJson);
+
+      return Future.value(unit);
+    } on DioError catch (e) {
+      print("================>");
+      print(e);
+      // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<Unit> updateComments(commentModel) async {
+    Map<String, dynamic> commentModelsToJson = commentModel.toJson();
+
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response =
+          await dio.patch(ApiConstance.commentPath, data: commentModelsToJson);
+
+      return Future.value(unit);
+    } on DioError catch (e) {
+      print("================>");
+      print(e);
+      // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<String> deleteComments(id) async {
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.delete(
+        "${ApiConstance.commentPath}$id/",
+      );
+      // print("-------------->");
+      // print(response);
+      return "Deleted";
+    } on DioError catch (e) {
+      // return Error Message
+      // print("-------------->");
+      // print(e);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
       );

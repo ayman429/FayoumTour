@@ -19,8 +19,10 @@ abstract class BaseHotelRepository {
   Future<Either<Failure, Unit>> updateHotel(HotelModel hotelModel);
   Future<Either<Failure, List<HotelRate>>> getHotelRate();
   Future<Either<Failure, HotelRate>> getHotelRateById(String ID);
-  Future<Either<Failure, Unit>> addHotelRate(
+  Future<Either<Failure, Unit>> updateCreateHotelRate(
       HotelRateModel hotelRateModel, String HotelID);
+
+  Future<Either<Failure, String>> getHotelRateByUser(int hotelId, int userId);
 
   // HotelReservation
   Future<Either<Failure, List<HotelReservation>>> getHotelReservation(

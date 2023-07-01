@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
+import 'package:fayoumtour/post/data/models/comment_model.dart';
 
 import '../../../core/error/exceptions.dart';
 import '../../../core/error/faliure.dart';
+import '../../domain/entities/comment.dart';
 import '../../domain/entities/post.dart';
 import '../../domain/repository/base_post_repository.dart';
 import '../datasource/post_remote_data_source.dart';
@@ -57,6 +59,50 @@ class PostRerpository extends BasePostRepository {
   @override
   Future<Either<Failure, Post>> getPostById(ID) async {
     final result = await basePostRemoteDataSource.getPostsById(ID);
+
+    try {
+      return Right(result);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  // comment
+
+  @override
+  Future<Either<Failure, List<Comment>>> getComment(postId) async {
+    final result = await basePostRemoteDataSource.getComments(postId);
+
+    try {
+      return Right(result);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> addComment(comment) async {
+    final add = await basePostRemoteDataSource.addComments(comment);
+    try {
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> updateComment(CommentModel comment) async {
+    final add = await basePostRemoteDataSource.updateComments(comment);
+    try {
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> deleteComment(id) async {
+    final result = await basePostRemoteDataSource.deleteComments(id);
 
     try {
       return Right(result);

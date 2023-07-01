@@ -1,8 +1,11 @@
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
+import 'package:fayoumtour/home/StarsRating.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:location/location.dart';
+import '../TourismPlaces/presentation/screens/get_rating_places.dart';
+import '../hotels/presentation/screens/get_rating_hotels.dart';
 import 'RatingStarsBar.dart';
 import 'image_list.dart';
 import 'reserve.dart';
@@ -220,6 +223,14 @@ class Details extends StatelessWidget {
                   ),
                 ),
 
+                const SizedBox(
+                  height: 20,
+                ),
+
+                // Rate
+                index == 1
+                    ? GetRatingHotels(hotelId: data.id)
+                    : GetRatingPLaces(placeId: data.id),
                 const SizedBox(
                   height: 10,
                 ),

@@ -8,6 +8,8 @@ class Post extends Equatable {
   int user;
   String body;
   List<ImagesP> imagesP;
+  String? comment_numbers;
+  String? like_numbers;
   CreatedBy? createdBy;
 
   Post({
@@ -15,6 +17,8 @@ class Post extends Equatable {
     required this.user,
     required this.body,
     required this.imagesP,
+    this.comment_numbers,
+    this.like_numbers,
     this.createdBy,
   });
   Map<String, dynamic> toJson() {

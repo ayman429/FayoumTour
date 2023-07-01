@@ -100,7 +100,7 @@ class AuthenticationRerpository extends BaseAuthenticationRepository {
 
   @override
   Future<Either<Failure, String>> updateUserDetails(
-      var userData, String type) async {
+      userData, String type) async {
     try {
       final result = await baseAuthenticationRemoteDataSource
           .updateUsersDetails(userData, type);

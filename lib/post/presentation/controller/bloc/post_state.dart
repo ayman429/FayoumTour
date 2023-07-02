@@ -32,6 +32,14 @@ class PostState {
   final RequestState deleteCommentState;
   final String deleteCommentMessage;
 
+  // Like
+  final String like;
+  final RequestState likeState;
+  final String likeMessage;
+
+  final RequestState addLikeState;
+  final String addLikeMessage;
+
   // final List<Post> searchPost;
   // final RequestState searchPostState;
   // final String searchPostMessage;
@@ -73,6 +81,12 @@ class PostState {
     this.updateCommentMessage = '',
     this.deleteCommentState = RequestState.loading,
     this.deleteCommentMessage = '',
+    // Like
+    this.like = '',
+    this.likeState = RequestState.loading,
+    this.likeMessage = '',
+    this.addLikeState = RequestState.loading,
+    this.addLikeMessage = '',
   });
 
   PostState copyWith({
@@ -99,6 +113,13 @@ class PostState {
     String? updateCommentMessage,
     RequestState? deleteCommentState,
     String? deleteCommentMessage,
+
+    // Like
+    String? like,
+    RequestState? likeState,
+    String? likeMessage,
+    RequestState? addLikeState,
+    String? addLikeMessage,
 
     // List<Post>? searchPost,
     // RequestState? searchHotelState,
@@ -139,6 +160,13 @@ class PostState {
 
       deleteCommentState: deleteCommentState ?? this.deleteCommentState,
       deleteCommentMessage: deleteCommentMessage ?? this.deleteCommentMessage,
+
+      // Like
+      like: like ?? this.like,
+      likeState: likeState ?? this.likeState,
+      likeMessage: likeMessage ?? this.likeMessage,
+      addLikeState: addLikeState ?? this.addLikeState,
+      addLikeMessage: addLikeMessage ?? this.addLikeMessage,
 
       // searchHotels: searchHotels ?? this.searchHotels,
       // searchHotelState: searchHotelState ?? this.searchHotelState,

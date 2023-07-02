@@ -62,6 +62,8 @@ import '../../post/domain/usecase/comment/update_comment_usecase.dart';
 import '../../post/domain/usecase/delete_post_usecase.dart';
 import '../../post/domain/usecase/get_post_by_id_usecase.dart';
 import '../../post/domain/usecase/get_post_usecase.dart';
+import '../../post/domain/usecase/like/add_like.dart';
+import '../../post/domain/usecase/like/get_like.dart';
 import '../../post/domain/usecase/update_post_usecase.dart';
 import '../../post/presentation/controller/bloc/post_bloc.dart';
 import '../local_data_shared_preferences/access_token_shared_preferences.dart';
@@ -216,7 +218,7 @@ class ServicesLocator {
     /* ****** Posts ServicesLocator ****** */
     /// Bloc
     getIt.registerFactory(() => PostBloc(getIt(), getIt(), getIt(), getIt(),
-        getIt(), getIt(), getIt(), getIt(), getIt()));
+        getIt(), getIt(), getIt(), getIt(), getIt(), getIt(), getIt()));
 
     /// Use Cases
     getIt.registerLazySingleton(() => GetPostUsecase(getIt()));
@@ -230,6 +232,11 @@ class ServicesLocator {
     getIt.registerLazySingleton(() => AddCommentUsecase(getIt()));
     getIt.registerLazySingleton(() => UpdateCommentUsecase(getIt()));
     getIt.registerLazySingleton(() => DeleteCommentUsecase(getIt()));
+
+    // Like
+    getIt.registerLazySingleton(() => GetLikeUsecase(getIt()));
+    getIt.registerLazySingleton(() => AddLikeUsecase(getIt()));
+
     // getIt.registerLazySingleton(() => SearchByFieldsPostUsecase(getIt()));
     // getIt.registerLazySingleton(() => OrderingPostByFieldsUsecase(getIt()));
 

@@ -2,7 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:fayoumtour/post/data/models/comment_model.dart';
 
 import '../../../core/error/faliure.dart';
+import '../../data/models/like_model.dart';
 import '../entities/comment.dart';
+import '../entities/like.dart';
 import '../entities/post.dart';
 
 abstract class BasePostRepository {
@@ -21,4 +23,8 @@ abstract class BasePostRepository {
   Future<Either<Failure, String>> deleteComment(String id);
   Future<Either<Failure, Unit>> addComment(CommentModel comment);
   Future<Either<Failure, Unit>> updateComment(CommentModel comment);
+
+  // Like
+  Future<Either<Failure, String>> getLike(int postId, int userId);
+  Future<Either<Failure, Unit>> addLike(LikeModel likeModel);
 }

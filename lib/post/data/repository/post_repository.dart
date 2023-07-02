@@ -111,6 +111,27 @@ class PostRerpository extends BasePostRepository {
     }
   }
 
+  // Like
+  @override
+  Future<Either<Failure, Unit>> addLike(likeModel) async {
+    final add = await basePostRemoteDataSource.addLikes(likeModel);
+    try {
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> getLike(postId, userId) async {
+    final add = await basePostRemoteDataSource.getLikes(postId, userId);
+    try {
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
   // @override
   // Future<Either<Failure, List<Post>>> searchByField(search) async {
   //   final result = await basePostRemoteDataSource.searchByFields(search);

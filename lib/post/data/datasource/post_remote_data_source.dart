@@ -8,6 +8,7 @@ import '../../../core/network/error_message_model.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../domain/entities/comment.dart';
 import '../models/comment_model.dart';
+import '../models/like_model.dart';
 import '../models/post_model.dart';
 
 abstract class BasePostRemoteDataSource {
@@ -25,6 +26,10 @@ abstract class BasePostRemoteDataSource {
   Future<String> deleteComments(id);
   Future<Unit> addComments(CommentModel commentModel);
   Future<Unit> updateComments(CommentModel commentModel);
+
+  // Like
+  Future<Unit> addLikes(LikeModel likeModel);
+  Future<String> getLikes(int postId, int userId);
 }
 
 class PostRemoteDataSource extends BasePostRemoteDataSource {
@@ -228,6 +233,55 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
       // return Error Message
       // print("-------------->");
       // print(e);
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  // Like
+  @override
+  Future<Unit> addLikes(likeModel) async {
+    Map<String, dynamic> likeModelsToJson = likeModel.toJson();
+    // print("------------vvv------------->");
+    // print("${ApiConstance.postPath}${likeModelsToJson["postId"]}/addLike/");
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.post(
+          "${ApiConstance.postPath}${likeModelsToJson["postId"]}/addLike/",
+          data: {
+            "like": likeModelsToJson["like"],
+            "user": likeModelsToJson["username"]
+          });
+      print("------------vvv------------->");
+      print(likeModelsToJson["postId"]);
+      print(likeModelsToJson["like"]);
+      print(likeModelsToJson["username"]);
+      print(response.data);
+      return Future.value(unit);
+    } on DioError catch (e) {
+      // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<String> getLikes(postId, userId) async {
+    // print("=======================");
+    // print(postId);
+    // print(userId);
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.get(ApiConstance.getLikePath,
+          data: {"postId": postId, "userId": userId});
+      // print(response.data);
+      return response.data["like"] ?? "0";
+    } on DioError catch (e) {
+      // return Error Message
+      print("=======================");
+      print(e.message);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
       );

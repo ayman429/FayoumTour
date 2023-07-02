@@ -40,6 +40,7 @@ class ApiConstance {
   static const String getCommentPath =
       "$baseUrl/api/comment/getCommentByPostId/";
   static const String commentPath = "$baseUrl/api/comment/";
+  static const String getLikePath = "$baseUrl/api/Post/getLike/";
 
 /* **************** User EndPoints **************** */
   static const String userDetailsPath = "$baseUrl/rest-auth/user/";

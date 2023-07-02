@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/usecase/base_usecase.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../domain/entities/comment.dart';
+import '../../../domain/entities/like.dart';
 import '../../../domain/entities/post.dart';
 import '../../../domain/usecase/add_post_usecase.dart';
 import '../../../domain/usecase/comment/add_comment_usecase.dart';
@@ -14,6 +15,8 @@ import '../../../domain/usecase/comment/update_comment_usecase.dart';
 import '../../../domain/usecase/delete_post_usecase.dart';
 import '../../../domain/usecase/get_post_by_id_usecase.dart';
 import '../../../domain/usecase/get_post_usecase.dart';
+import '../../../domain/usecase/like/add_like.dart';
+import '../../../domain/usecase/like/get_like.dart';
 import '../../../domain/usecase/update_post_usecase.dart';
 
 part 'post_event.dart';
@@ -33,9 +36,15 @@ class PostBloc extends Bloc<PostEvent, PostState> {
   final UpdateCommentUsecase updateCommentUsecase;
   final DeleteCommentUsecase deleteCommentUsecase;
 
+  // Like
+  final GetLikeUsecase getLikeUsecase;
+  final AddLikeUsecase addLikeUsecase;
   // final OrderingPostByFieldsUsecase orderingPostByFieldsUsecase;
   // final SearchByFieldsPostUsecase searchPostByFieldsUsecase;
   PostBloc(
+    // this.orderingPostByFieldsUsecase,
+    // this.searchPostByFieldsUsecase,
+    // this.searchPostByRateUsecase,
     this.getPostUsecase,
     this.getPostByIdUsecase,
     this.addPostUsecase,
@@ -45,10 +54,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     this.addCommentUsecase,
     this.updateCommentUsecase,
     this.deleteCommentUsecase,
-
-    // this.orderingPostByFieldsUsecase,
-    // this.searchPostByFieldsUsecase,
-    // this.searchPostByRateUsecase,
+    this.getLikeUsecase,
+    this.addLikeUsecase,
   ) : super(PostState()) {
     on<GetPostEvent>(_getPost);
     on<GetPostByIdEvent>(_getPostById);
@@ -60,6 +67,10 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<AddCommentEvent>(_addComment);
     on<UpdateCommentEvent>(_updateComment);
     on<DeleteCommentEvent>(_deleteComment);
+
+    // Like
+    on<GetLikeEvent>(_getLike);
+    on<AddLikeEvent>(_addLike);
 
     // on<OrderingPostByFieldsEvent>(_orderingPostByFields);
     // on<SearchPostByFieldsEvent>(_searchPostByFields);
@@ -181,6 +192,30 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       print(r);
       return emit(PostState(
         deleteCommentState: RequestState.loaded,
+      ));
+    });
+  }
+
+  // Like
+  FutureOr<void> _getLike(GetLikeEvent event, Emitter<PostState> emit) async {
+    (await getLikeUsecase(event.postId, event.userId)).fold((l) {
+      return emit(
+          PostState(likeState: RequestState.error, likeMessage: l.message));
+    }, (r) {
+      return emit(PostState(
+        like: r,
+        likeState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _addLike(AddLikeEvent event, Emitter<PostState> emit) async {
+    (await addLikeUsecase(event.like)).fold((l) {
+      return emit(PostState(
+          addLikeState: RequestState.error, addLikeMessage: l.message));
+    }, (r) {
+      return emit(PostState(
+        addLikeState: RequestState.loaded,
       ));
     });
   }

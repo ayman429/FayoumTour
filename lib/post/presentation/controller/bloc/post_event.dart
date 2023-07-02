@@ -69,6 +69,20 @@ class DeleteCommentEvent extends PostEvent {
   });
 }
 
+//Like
+class AddLikeEvent extends PostEvent {
+  Like like;
+  AddLikeEvent({
+    required this.like,
+  });
+}
+
+class GetLikeEvent extends PostEvent {
+  int postId;
+  int userId;
+  GetLikeEvent({required this.postId, required this.userId});
+}
+
 // class SearchPostByFieldsEvent extends PostEvent {
 //   String postSearchByFeild;
 //   SearchPostByFieldsEvent({

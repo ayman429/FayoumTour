@@ -1,3 +1,4 @@
+import 'package:fayoumtour/post/domain/entities/like.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -8,6 +9,7 @@ import '../core/utils/constance/strings_manager.dart';
 import '../core/utils/enums.dart';
 import '../post/presentation/controller/bloc/post_bloc.dart';
 import '../post/presentation/screens/comment_screen.dart';
+import '../post/presentation/screens/get_like.dart';
 import 'add_post_component.dart';
 import 'comments.dart';
 import 'image_list.dart';
@@ -21,8 +23,7 @@ class ShowPosts extends StatelessWidget {
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
         BlocProvider.of<PostBloc>(context).add(GetPostEvent());
-        // print("----------------------------");
-        // print(state.postState);
+
         switch (state.postState) {
           case RequestState.loading:
             return const SizedBox(
@@ -33,6 +34,11 @@ class ShowPosts extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: state.post.length,
               itemBuilder: (context, index) {
+                // print(index);
+                // BlocProvider.of<PostBloc>(context).add(GetLikeEvent(
+                //     postId: int.parse(state.post[index].id ?? "0"),
+                //     userId: int.parse(
+                //         sharedPreferences!.getString("USERID") ?? "0")));
                 return Container(
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
@@ -363,31 +369,9 @@ class ShowPosts extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                TextButton(
-                                  onPressed: () {},
-                                  style: TextButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(30)),
-                                  ),
-                                  child: Row(
-                                    children: const [
-                                      Icon(
-                                        MyFlutterApp.like3,
-                                        color: Colors.grey,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        "Like",
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
+                                GetLike(
+                                    postId:
+                                        int.parse(state.post[index].id ?? "0")),
                                 TextButton(
                                     onPressed: () {
                                       print(state.post[index].id);

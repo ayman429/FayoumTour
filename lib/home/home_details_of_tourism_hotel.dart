@@ -1,5 +1,4 @@
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
-import 'package:fayoumtour/home/StarsRating.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -252,8 +251,7 @@ class Details extends StatelessWidget {
                             return;
                           }
                         }
-                        final url =
-                            "https://www.google.com/maps/search/?api=1&query=${data.coordinatesX},${data.coordinatesY}";
+                        final url ="https://www.google.com/maps/search/?api=1&query=${data.coordinatesX},${data.coordinatesY}";
 
                         if (await canLaunch(url)) {
                           await launch(url);
@@ -276,6 +274,7 @@ class Details extends StatelessWidget {
                     ),
                   ),
                 ),
+                
                 index == 1
                     ? Container(
                         margin: const EdgeInsets.fromLTRB(0, 25, 0, 10),

@@ -21,7 +21,7 @@ import '../../TourismPlaces/data/repository/tourism_place_repository.dart';
 import '../../TourismPlaces/domain/repository/base_tourism_place_repository.dart';
 import '../../TourismPlaces/domain/usecase/add_tourism_place_usecase.dart';
 import '../../TourismPlaces/domain/usecase/delete_tourism_place_usecase.dart';
-import '../../TourismPlaces/domain/usecase/favorite/get_place_favorite.dart';
+import '../../TourismPlaces/domain/usecase/favorite/get_place_favorite_usecase.dart';
 import '../../TourismPlaces/domain/usecase/favorite/update_or_create_tourism_place_favorite_usecase.dart';
 import '../../TourismPlaces/domain/usecase/get_tourism_place_by_id_usecase.dart';
 import '../../TourismPlaces/domain/usecase/get_tourism_place_usecase.dart';

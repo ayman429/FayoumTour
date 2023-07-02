@@ -7,7 +7,7 @@ import '../../../core/usecase/base_usecase.dart';
 import '../../../core/utils/enums.dart';
 import '../../domain/usecase/add_tourism_place_usecase.dart';
 import '../../domain/usecase/delete_tourism_place_usecase.dart';
-import '../../domain/usecase/favorite/get_place_favorite.dart';
+import '../../domain/usecase/favorite/get_place_favorite_usecase.dart';
 import '../../domain/usecase/favorite/update_or_create_tourism_place_favorite_usecase.dart';
 import '../../domain/usecase/get_tourism_place_by_id_usecase.dart';
 import '../../domain/usecase/get_tourism_place_usecase.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../TourismPlaces/presentation/screens/home_cards_tourism_places.dart';
-import '../TourismPlaces/presentation/screens/nearest_tourism_places.dart';
 import '../TourismPlaces/presentation/screens/places_search_type_by_field.dart';
 import '../TourismPlaces/presentation/screens/top_rated_places.dart';
 import '../hotels/presentation/screens/home_cards_hotels.dart';
@@ -32,7 +31,6 @@ class Home extends StatelessWidget {
                 child: Column(children: [
               const TopRatedTourismPlaces(),
               TopRatedHotels(),
-              NearestTourismPlaces(),
               HomeCardsTourismPlacesTypeSearch(
                   tourismPlaceSearchByFeild: tourtismType),
               HomeCardsTourismPlaces(),

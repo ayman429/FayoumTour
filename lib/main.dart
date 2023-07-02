@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
               home: (token == "0")
                   ? const LoginScreen()
                   : BottomBar(
-                      select: 1,
+                      select: 2,
                       _selectedOption != ""
                           ? _selectedOption
                           : "Islamic antiquities"));

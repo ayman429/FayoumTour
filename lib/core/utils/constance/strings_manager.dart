@@ -71,6 +71,7 @@ class AppStrings {
 //------------------------------ App Bar Title -------------------------------//
   static const List<String> titles = [
     "My Profile",
+    "Nearby",
     "FayTour",
     "FayTour Community",
     "Favourites",

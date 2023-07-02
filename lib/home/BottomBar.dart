@@ -7,6 +7,8 @@ import 'home.dart';
 import 'plan.dart';
 import 'profile.dart';
 import 'search.dart';
+import 'nearst.dart';
+
 
 late String tourtismTypes;
 
@@ -33,6 +35,7 @@ class _BottomBarState extends State<BottomBar> {
 
   List<Widget> Screens = [
     Profile(),
+    NEAR(Loc: loc),
     Home(tourtismType: tourtismTypes),
     const AddPost(),
     Favorites(),
@@ -101,7 +104,7 @@ class _BottomBarState extends State<BottomBar> {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 centerTitle: true,
-                leading: selected == 1
+                leading: selected == 2
                     ? Container(
                         margin: const EdgeInsets.only(left: 8),
                         child: Hero(
@@ -110,7 +113,7 @@ class _BottomBarState extends State<BottomBar> {
                         ),
                       )
                     : null,
-                actions: selected == 1
+                actions: selected == 2
                     ? [
                         Container(
                           margin: const EdgeInsets.fromLTRB(0, 5, 8, 5),
@@ -156,6 +159,11 @@ class _BottomBarState extends State<BottomBar> {
                     Icons.person_outlined,
                     size: 25,
                   ),
+                  const Icon(
+                      Icons.explore,
+                      size: 25,
+                    ),
+                  
                   const Icon(
                     Icons.home,
                     size: 25,

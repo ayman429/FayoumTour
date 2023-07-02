@@ -1,4 +1,5 @@
 import '../../domain/entities/hotel.dart';
+import '../../domain/entities/hotel_favorite.dart';
 import '../../domain/entities/hotel_rate.dart';
 import '../../domain/entities/hotel_reservation.dart';
 
@@ -76,6 +77,20 @@ class GetHotelRateByUserEvent extends HotelsEvent {
   GetHotelRateByUserEvent({
     required this.hotelId,
     required this.userId,
+  });
+}
+
+class UpdateCreateHotelFavoriteEvent extends HotelsEvent {
+  HotelFavorite updateCreateHotelFavorite;
+  UpdateCreateHotelFavoriteEvent({
+    required this.updateCreateHotelFavorite,
+  });
+}
+
+class GetHotelFavoriteEvent extends HotelsEvent {
+  HotelFavorite getHotelFavorite;
+  GetHotelFavoriteEvent({
+    required this.getHotelFavorite,
   });
 }
 

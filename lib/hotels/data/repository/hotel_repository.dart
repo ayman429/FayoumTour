@@ -145,6 +145,29 @@ class HotelRerpository extends BaseHotelRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, Unit>> updateCreateHotelFavorite(
+      hotelFavoriteModel) async {
+    final add = await baseHotelRemoteDataSource
+        .updateCreateHotelFavorites(hotelFavoriteModel);
+    try {
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> getHotelFavorite(hotelFavoriteModel) async {
+    final add =
+        await baseHotelRemoteDataSource.getHotelFavorites(hotelFavoriteModel);
+    try {
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
   // HotelReservation
   @override
   Future<Either<Failure, List<HotelReservation>>> getHotelReservation(

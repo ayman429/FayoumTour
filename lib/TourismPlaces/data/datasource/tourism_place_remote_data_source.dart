@@ -5,6 +5,7 @@ import '../../../core/error/exceptions.dart';
 import '../../../core/network/api_constance.dart';
 import '../../../core/network/dio_factory.dart';
 import '../../../core/network/error_message_model.dart';
+import '../models/tourism_place_favorite_model.dart';
 import '../models/tourism_place_model.dart';
 import '../models/tourism_place_rate_model.dart';
 
@@ -24,6 +25,11 @@ abstract class BaseTourismPlaceRemoteDataSource {
   Future<Unit> updateCreateTourismPlaceRates(
       TourismPlaceRateModel tourismPlaceRateModel, tourismPlaceID);
   Future<String> getTourismPlaceRateByUser(int placeId, int userId);
+
+  Future<Unit> updateCreateTourismPlaceFavorites(
+      TourismPlaceFavoriteModel tourismPlaceFavoriteModel);
+  Future<String> getTourismPlaceFavorites(
+      TourismPlaceFavoriteModel tourismPlaceFavoriteModel);
 }
 
 class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
@@ -235,6 +241,46 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
           data: {"placeId": placeId, "userId": userId});
       print(response.data);
       return response.data["star"] ?? "0";
+    } on DioError catch (e) {
+      // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<Unit> updateCreateTourismPlaceFavorites(
+      tourismPlaceFavoriteModel) async {
+    Map<String, dynamic> tourismPlaceFavoriteModelsToJson =
+        tourismPlaceFavoriteModel.toJson();
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.post(
+          "${ApiConstance.tourismPlacePath}${tourismPlaceFavoriteModelsToJson["placeId"]}/fav/",
+          data: {
+            "fav": tourismPlaceFavoriteModelsToJson["fav"],
+            "user": tourismPlaceFavoriteModelsToJson["username"]
+          });
+      return Future.value(unit);
+    } on DioError catch (e) {
+      // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<String> getTourismPlaceFavorites(tourismPlaceFavoriteModel) async {
+    Map<String, dynamic> tourismPlaceFavoriteModelsToJson =
+        tourismPlaceFavoriteModel.toJson();
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.get(ApiConstance.tourismPlaceFavoritePath,
+          data: tourismPlaceFavoriteModelsToJson);
+      print(response.data);
+      return response.data["favorite"] ?? "0";
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(

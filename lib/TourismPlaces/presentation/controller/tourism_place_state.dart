@@ -51,6 +51,13 @@ class TourismPlaceState {
   final RequestState getTourismPlaceRateByUserState;
   final String getTourismPlaceRateByUserMessage;
 
+  final RequestState updateCreateTourismPlaceFavoriteState;
+  final String updateCreateTourismPlaceFavoriteMessage;
+
+  final String getTourismPlaceFavorite;
+  final RequestState getTourismPlaceFavoriteState;
+  final String getTourismPlaceFavoriteMessage;
+
   TourismPlaceState({
     this.addTourismPlaceState = RequestState.loading,
     this.addTourismPlaceMessage = '',
@@ -87,6 +94,11 @@ class TourismPlaceState {
     this.getTourismPlaceRateByUser = '',
     this.getTourismPlaceRateByUserState = RequestState.loading,
     this.getTourismPlaceRateByUserMessage = '',
+    this.updateCreateTourismPlaceFavoriteState = RequestState.loading,
+    this.updateCreateTourismPlaceFavoriteMessage = '',
+    this.getTourismPlaceFavorite = '',
+    this.getTourismPlaceFavoriteState = RequestState.loading,
+    this.getTourismPlaceFavoriteMessage = '',
   });
 
   TourismPlaceState copyWith({
@@ -125,6 +137,11 @@ class TourismPlaceState {
     String? getTourismPlaceRateByUser,
     RequestState? getTourismPlaceRateByUserState,
     String? getTourismPlaceRateByUserMessage,
+    RequestState? updateCreateTourismPlaceFavoriteState,
+    String? updateCreateTourismPlaceFavoriteMessage,
+    String? getTourismPlaceFavorite,
+    RequestState? getTourismPlaceFavoriteState,
+    String? getTourismPlaceFavoriteMessage,
   }) {
     return TourismPlaceState(
       tourismPlace: tourismPlace ?? this.tourismPlace,
@@ -187,6 +204,18 @@ class TourismPlaceState {
           getTourismPlaceRateByUserState ?? this.getTourismPlaceRateByUserState,
       getTourismPlaceRateByUserMessage: getTourismPlaceRateByUserMessage ??
           this.getTourismPlaceRateByUserMessage,
+      updateCreateTourismPlaceFavoriteState:
+          updateCreateTourismPlaceFavoriteState ??
+              this.updateCreateTourismPlaceFavoriteState,
+      updateCreateTourismPlaceFavoriteMessage:
+          updateCreateTourismPlaceFavoriteMessage ??
+              this.updateCreateTourismPlaceFavoriteMessage,
+      getTourismPlaceFavorite:
+          getTourismPlaceFavorite ?? this.getTourismPlaceFavorite,
+      getTourismPlaceFavoriteState:
+          getTourismPlaceFavoriteState ?? this.getTourismPlaceFavoriteState,
+      getTourismPlaceFavoriteMessage:
+          getTourismPlaceFavoriteMessage ?? this.getTourismPlaceFavoriteMessage,
     );
   }
 }

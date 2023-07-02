@@ -7,6 +7,8 @@ import '../../../core/usecase/base_usecase.dart';
 import '../../../core/utils/enums.dart';
 import '../../domain/usecase/add_tourism_place_usecase.dart';
 import '../../domain/usecase/delete_tourism_place_usecase.dart';
+import '../../domain/usecase/favorite/get_place_favorite.dart';
+import '../../domain/usecase/favorite/update_or_create_tourism_place_favorite_usecase.dart';
 import '../../domain/usecase/get_tourism_place_by_id_usecase.dart';
 import '../../domain/usecase/get_tourism_place_usecase.dart';
 import '../../domain/usecase/model1_usecase.dart';
@@ -35,6 +37,10 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
   final UpdateCreateTourismPlaceRateUsecase updateCreateTourismPlaceRateUsecase;
   final GetTourismPlaceRateByUserUsecase getTourismPlaceRateByUserUsecase;
 
+  final UpdateCreateTourismPlaceFavoriteUsecase
+      updateCreateTourismPlaceFavoriteUsecase;
+  final GetTourismPlaceFavoriteUsecase getTourismPlaceFavoriteUsecase;
+
   TourismPlaceBloc(
       this.getTourismPlaceUsecase,
       this.getTourismPlaceByIdUsecase,
@@ -48,7 +54,9 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       this.getTourismPlaceRateUsecase,
       this.getTourismPlaceRateByIdUsecase,
       this.updateCreateTourismPlaceRateUsecase,
-      this.getTourismPlaceRateByUserUsecase)
+      this.getTourismPlaceRateByUserUsecase,
+      this.getTourismPlaceFavoriteUsecase,
+      this.updateCreateTourismPlaceFavoriteUsecase)
       : super(TourismPlaceState()) {
     on<GetTourismPlaceEvent>(_getTourismPlace);
     on<GetTourismPlacesByIdEvent>(_getTourismPlaceById);
@@ -63,7 +71,10 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
     on<GetTourismPlaceRateByIdEvent>(_getTourismPlaceRateById);
     on<UpdateCreateTourismPlaceRatesEvent>(_updateCreateTourismPlaceRates);
     on<GetTourismPlaceRateByUserEvent>(_getTourismPlaceRateByUserRates);
-    //GetTourismPlaceRateByUser
+
+    on<UpdateCreateTourismPlaceFavoriteEvent>(
+        _updateCreateTourismPlaceFavorite);
+    on<GetTourismPlaceFavoriteEvent>(_getTourismPlaceFavorite);
   }
 
   FutureOr<void> _getTourismPlace(
@@ -246,6 +257,37 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       return emit(TourismPlaceState(
         getTourismPlaceRateByUser: r,
         getTourismPlaceRateByUserState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _updateCreateTourismPlaceFavorite(
+      UpdateCreateTourismPlaceFavoriteEvent event,
+      Emitter<TourismPlaceState> emit) async {
+    (await updateCreateTourismPlaceFavoriteUsecase(
+      event.updateCreateTourFavorite,
+    ))
+        .fold((l) {
+      return emit(TourismPlaceState(
+          updateCreateTourismPlaceFavoriteState: RequestState.error,
+          updateCreateTourismPlaceFavoriteMessage: l.message));
+    }, (r) {
+      return emit(TourismPlaceState(
+        updateCreateTourismPlaceFavoriteState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _getTourismPlaceFavorite(GetTourismPlaceFavoriteEvent event,
+      Emitter<TourismPlaceState> emit) async {
+    (await getTourismPlaceFavoriteUsecase(event.getTourFavorite)).fold((l) {
+      return emit(TourismPlaceState(
+          getTourismPlaceFavoriteState: RequestState.error,
+          getTourismPlaceFavoriteMessage: l.message));
+    }, (r) {
+      return emit(TourismPlaceState(
+        getTourismPlaceFavorite: r,
+        getTourismPlaceFavoriteState: RequestState.loaded,
       ));
     });
   }

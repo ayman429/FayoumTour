@@ -165,4 +165,28 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> updateCreateTourismPlaceFavorite(
+      tourismPlaceFavoriteModel) async {
+    final add = await baseTourismPlaceRemoteDataSource
+        .updateCreateTourismPlaceFavorites(tourismPlaceFavoriteModel);
+    try {
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> getTourismPlaceFavorite(
+      tourismPlaceFavoriteModel) async {
+    final add = await baseTourismPlaceRemoteDataSource
+        .getTourismPlaceFavorites(tourismPlaceFavoriteModel);
+    try {
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
 }

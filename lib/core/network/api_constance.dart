@@ -34,6 +34,12 @@ class ApiConstance {
   static const String getHotelRateByUserPath =
       "$baseUrl/api/Hotel/getRate_Hotel/";
 
+/* **************** Favorites EndPoints **************** */
+  // Get POST Hotel/TourismPlace Favorites
+  static const String hotelFavoritePath = "$baseUrl/api/Hotel/getFav/";
+  static const String tourismPlaceFavoritePath =
+      "$baseUrl/api/TourismPlace/getFav/";
+
 /* **************** Posts EndPoints **************** */
   static const String postPath = "$baseUrl/api/Post/";
 /* **************** Comments EndPoints **************** */

@@ -49,6 +49,13 @@ class HotelsState {
   final RequestState getHotelRateByUserState;
   final String getHotelRateByUserMessage;
 
+  final RequestState updateCreateHotelFavoriteState;
+  final String updateCreateHotelFavoriteMessage;
+
+  final String getHotelFavorite;
+  final RequestState getHotelFavoriteState;
+  final String getHotelFavoriteMessage;
+
   // HotelReservation
   final List<HotelReservation> hotelsReservation;
   final RequestState hotelReservationState;
@@ -100,6 +107,11 @@ class HotelsState {
     this.hotelsById,
     this.hotelStateById = RequestState.loading,
     this.hotelMessageById = '',
+    this.updateCreateHotelFavoriteState = RequestState.loading,
+    this.updateCreateHotelFavoriteMessage = '',
+    this.getHotelFavorite = '',
+    this.getHotelFavoriteState = RequestState.loading,
+    this.getHotelFavoriteMessage = '',
 
     // HotelReservation
     this.hotelsReservation = const [],
@@ -149,6 +161,11 @@ class HotelsState {
     String? getHotelRateByUser,
     RequestState? getHotelRateByUserState,
     String? getHotelRateByUserMessage,
+    RequestState? updateCreateHotelFavoriteState,
+    String? updateCreateHotelFavoriteMessage,
+    String? getHotelFavorite,
+    RequestState? getHotelFavoriteState,
+    String? getHotelFavoriteMessage,
 
     // HotelReservation
     List<HotelReservation>? hotelsReservation,
@@ -205,6 +222,16 @@ class HotelsState {
           getHotelRateByUserState ?? this.getHotelRateByUserState,
       getHotelRateByUserMessage:
           getHotelRateByUserMessage ?? this.getHotelRateByUserMessage,
+
+      updateCreateHotelFavoriteState:
+          updateCreateHotelFavoriteState ?? this.updateCreateHotelFavoriteState,
+      updateCreateHotelFavoriteMessage: updateCreateHotelFavoriteMessage ??
+          this.updateCreateHotelFavoriteMessage,
+      getHotelFavorite: getHotelFavorite ?? this.getHotelFavorite,
+      getHotelFavoriteState:
+          getHotelFavoriteState ?? this.getHotelFavoriteState,
+      getHotelFavoriteMessage:
+          getHotelFavoriteMessage ?? this.getHotelFavoriteMessage,
 
       // HotelReservation
       hotelsReservation: hotelsReservation ?? this.hotelsReservation,

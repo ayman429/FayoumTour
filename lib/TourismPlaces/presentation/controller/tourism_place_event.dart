@@ -1,4 +1,5 @@
 import '../../domain/entities/tourism_place.dart';
+import '../../domain/entities/tourism_place_favorite.dart';
 import '../../domain/entities/tourism_place_rate.dart';
 
 abstract class TourismPlaceEvent {
@@ -82,5 +83,19 @@ class GetTourismPlaceRateByUserEvent extends TourismPlaceEvent {
   GetTourismPlaceRateByUserEvent({
     required this.placeId,
     required this.userId,
+  });
+}
+
+class UpdateCreateTourismPlaceFavoriteEvent extends TourismPlaceEvent {
+  TourismPlaceFavorite updateCreateTourFavorite;
+  UpdateCreateTourismPlaceFavoriteEvent({
+    required this.updateCreateTourFavorite,
+  });
+}
+
+class GetTourismPlaceFavoriteEvent extends TourismPlaceEvent {
+  TourismPlaceFavorite getTourFavorite;
+  GetTourismPlaceFavoriteEvent({
+    required this.getTourFavorite,
   });
 }

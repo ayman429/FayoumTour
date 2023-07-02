@@ -5,6 +5,7 @@ import '../../../core/error/exceptions.dart';
 import '../../../core/network/api_constance.dart';
 import '../../../core/network/dio_factory.dart';
 import '../../../core/network/error_message_model.dart';
+import '../models/hotel_favorite_model.dart';
 import '../models/hotel_model.dart';
 import '../models/hotel_rate_model.dart';
 import '../models/hotel_reservation_model.dart';
@@ -23,6 +24,10 @@ abstract class BaseHotelRemoteDataSource {
   Future<HotelRateModel> getHotelRateById(ID);
   Future<Unit> updateCreateHotelRates(HotelRateModel hotelRateModel, HotelID);
   Future<String> getHotelRateByUser(int hotelId, int userId);
+
+  Future<Unit> updateCreateHotelFavorites(
+      HotelFavoriteModel hotelFavoriteModel);
+  Future<String> getHotelFavorites(HotelFavoriteModel hotelFavoriteModel);
 
   // HotelReservation
   Future<List<HotelReservationModel>> getHotelsReservation(int hotelId);
@@ -228,6 +233,45 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       // return Error Message
       print("=============>");
       print(e.message);
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<Unit> updateCreateHotelFavorites(hotelFavoriteModel) async {
+    Map<String, dynamic> hotelFavoriteModelsToJson =
+        hotelFavoriteModel.toJson();
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.post(
+          "${ApiConstance.hotelPath}${hotelFavoriteModelsToJson["hotelId"]}/fav/",
+          data: {
+            "fav": hotelFavoriteModelsToJson["fav"],
+            "user": hotelFavoriteModelsToJson["username"]
+          });
+      return Future.value(unit);
+    } on DioError catch (e) {
+      // return Error Message
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+      );
+    }
+  }
+
+  @override
+  Future<String> getHotelFavorites(hotelFavoriteModel) async {
+    Map<String, dynamic> hotelFavoriteModelsToJson =
+        hotelFavoriteModel.toJson();
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.get(ApiConstance.hotelFavoritePath,
+          data: hotelFavoriteModelsToJson);
+      print(response.data);
+      return response.data["favorite"] ?? "0";
+    } on DioError catch (e) {
+      // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
       );

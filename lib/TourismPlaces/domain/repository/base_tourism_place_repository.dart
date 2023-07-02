@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../core/error/faliure.dart';
+import '../../data/models/tourism_place_favorite_model.dart';
 import '../../data/models/tourism_place_model.dart';
 import '../../data/models/tourism_place_rate_model.dart';
 import '../entities/tourism_place.dart';
@@ -24,4 +25,10 @@ abstract class BaseTourismPlaceRepository {
 
   Future<Either<Failure, String>> getTourismPlaceRateByUser(
       int placeId, int userId);
+
+  Future<Either<Failure, Unit>> updateCreateTourismPlaceFavorite(
+      TourismPlaceFavoriteModel tourismPlaceFavoriteModel);
+
+  Future<Either<Failure, String>> getTourismPlaceFavorite(
+      TourismPlaceFavoriteModel tourismPlaceFavoriteModel);
 }

@@ -21,6 +21,8 @@ import '../../TourismPlaces/data/repository/tourism_place_repository.dart';
 import '../../TourismPlaces/domain/repository/base_tourism_place_repository.dart';
 import '../../TourismPlaces/domain/usecase/add_tourism_place_usecase.dart';
 import '../../TourismPlaces/domain/usecase/delete_tourism_place_usecase.dart';
+import '../../TourismPlaces/domain/usecase/favorite/get_place_favorite.dart';
+import '../../TourismPlaces/domain/usecase/favorite/update_or_create_tourism_place_favorite_usecase.dart';
 import '../../TourismPlaces/domain/usecase/get_tourism_place_by_id_usecase.dart';
 import '../../TourismPlaces/domain/usecase/get_tourism_place_usecase.dart';
 import '../../TourismPlaces/domain/usecase/model1_usecase.dart';
@@ -37,6 +39,8 @@ import '../../hotels/data/repository/hotel_repository.dart';
 import '../../hotels/domain/repository/base_hotel_repository.dart';
 import '../../hotels/domain/usecase/add_hotel_usecase.dart';
 import '../../hotels/domain/usecase/delete_hotel_usecase.dart';
+import '../../hotels/domain/usecase/favorite/get_hotel_favorite_usecase.dart';
+import '../../hotels/domain/usecase/favorite/update_or_create_hotel_favorite_usecase.dart';
 import '../../hotels/domain/usecase/get_hotel_by_id_usecase.dart';
 import '../../hotels/domain/usecase/get_hotel_usecase.dart';
 import '../../hotels/domain/usecase/hotel_reservation/add_hotel_usecase.dart';
@@ -139,6 +143,8 @@ class ServicesLocator {
         getIt(),
         getIt(),
         getIt(),
+        getIt(),
+        getIt(),
         getIt()));
 
     /// Use Cases
@@ -154,6 +160,9 @@ class ServicesLocator {
     getIt.registerLazySingleton(() => GetHotelRateByIdUsecase(getIt()));
     getIt.registerLazySingleton(() => UpdateCreateHotelRateUsecase(getIt()));
     getIt.registerLazySingleton(() => GetHotelRateByUserUsecase(getIt()));
+    getIt
+        .registerLazySingleton(() => UpdateCreateHotelFavoriteUsecase(getIt()));
+    getIt.registerLazySingleton(() => GetHotelFavoriteUsecase(getIt()));
     // HotelReservation
     getIt.registerLazySingleton(() => GetHotelReservationUsecase(getIt()));
     getIt
@@ -173,6 +182,8 @@ class ServicesLocator {
 /* ****** Tourism Places ServicesLocator ****** */
     /// Bloc
     getIt.registerFactory(() => TourismPlaceBloc(
+        getIt(),
+        getIt(),
         getIt(),
         getIt(),
         getIt(),
@@ -206,6 +217,10 @@ class ServicesLocator {
         () => UpdateCreateTourismPlaceRateUsecase(getIt()));
     getIt
         .registerLazySingleton(() => GetTourismPlaceRateByUserUsecase(getIt()));
+
+    getIt.registerLazySingleton(
+        () => UpdateCreateTourismPlaceFavoriteUsecase(getIt()));
+    getIt.registerLazySingleton(() => GetTourismPlaceFavoriteUsecase(getIt()));
 
     /// Repository
     getIt.registerLazySingleton<BaseTourismPlaceRepository>(

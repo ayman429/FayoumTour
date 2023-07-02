@@ -9,6 +9,8 @@ import '../../../core/utils/enums.dart';
 import '../../../hotels/domain/usecase/get_hotel_usecase.dart';
 import '../../domain/usecase/add_hotel_usecase.dart';
 import '../../domain/usecase/delete_hotel_usecase.dart';
+import '../../domain/usecase/favorite/get_hotel_favorite_usecase.dart';
+import '../../domain/usecase/favorite/update_or_create_hotel_favorite_usecase.dart';
 import '../../domain/usecase/get_hotel_by_id_usecase.dart';
 import '../../domain/usecase/hotel_reservation/add_hotel_usecase.dart';
 import '../../domain/usecase/hotel_reservation/delete_hotel_usecase.dart';
@@ -39,6 +41,9 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
   final UpdateCreateHotelRateUsecase updateCreateHotelRateUsecase;
   final GetHotelRateByUserUsecase getHotelRateByUserUsecase;
 
+  final UpdateCreateHotelFavoriteUsecase updateCreateHotelFavoriteUsecase;
+  final GetHotelFavoriteUsecase getHotelFavoriteUsecase;
+
   // HotelReservation
   final GetHotelReservationUsecase getHotelReservationUsecase;
   final GetHotelReservationByUserUsecase getHotelReservationByUserUsecase;
@@ -59,6 +64,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     this.getHotelRateByIdUsecase,
     this.updateCreateHotelRateUsecase,
     this.getHotelRateByUserUsecase,
+    this.updateCreateHotelFavoriteUsecase,
+    this.getHotelFavoriteUsecase,
     this.getHotelReservationUsecase,
     this.getHotelReservationByUserUsecase,
     this.addHotelReservationUsecase,
@@ -78,6 +85,9 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     on<GetHotelRateByIdEvent>(_getHotelRateById);
     on<UpdateCreateHotelRatesEvent>(_updateCreateHotelRates);
     on<GetHotelRateByUserEvent>(_getHotelRateByUserRates);
+
+    on<UpdateCreateHotelFavoriteEvent>(_updateCreateHotelFavorite);
+    on<GetHotelFavoriteEvent>(_getHotelFavorite);
 
     // HotelReservation
     on<GetHotelsReservationEvent>(_getHotelsReservation);
@@ -243,6 +253,36 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       return emit(HotelsState(
         getHotelRateByUser: r,
         getHotelRateByUserState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _updateCreateHotelFavorite(
+      UpdateCreateHotelFavoriteEvent event, Emitter<HotelsState> emit) async {
+    (await updateCreateHotelFavoriteUsecase(
+      event.updateCreateHotelFavorite,
+    ))
+        .fold((l) {
+      return emit(HotelsState(
+          updateCreateHotelFavoriteState: RequestState.error,
+          updateCreateHotelFavoriteMessage: l.message));
+    }, (r) {
+      return emit(HotelsState(
+        updateCreateHotelFavoriteState: RequestState.loaded,
+      ));
+    });
+  }
+
+  FutureOr<void> _getHotelFavorite(
+      GetHotelFavoriteEvent event, Emitter<HotelsState> emit) async {
+    (await getHotelFavoriteUsecase(event.getHotelFavorite)).fold((l) {
+      return emit(HotelsState(
+          getHotelFavoriteState: RequestState.error,
+          getHotelFavoriteMessage: l.message));
+    }, (r) {
+      return emit(HotelsState(
+        getHotelFavorite: r,
+        getHotelFavoriteState: RequestState.loaded,
       ));
     });
   }

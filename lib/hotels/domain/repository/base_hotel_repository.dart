@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../core/error/faliure.dart';
+import '../../data/models/hotel_favorite_model.dart';
 import '../../data/models/hotel_model.dart';
 import '../../data/models/hotel_rate_model.dart';
 import '../../data/models/hotel_reservation_model.dart';
@@ -23,6 +24,12 @@ abstract class BaseHotelRepository {
       HotelRateModel hotelRateModel, String HotelID);
 
   Future<Either<Failure, String>> getHotelRateByUser(int hotelId, int userId);
+
+  Future<Either<Failure, Unit>> updateCreateHotelFavorite(
+      HotelFavoriteModel hotelFavoriteModel);
+
+  Future<Either<Failure, String>> getHotelFavorite(
+      HotelFavoriteModel hotelFavoriteModel);
 
   // HotelReservation
   Future<Either<Failure, List<HotelReservation>>> getHotelReservation(

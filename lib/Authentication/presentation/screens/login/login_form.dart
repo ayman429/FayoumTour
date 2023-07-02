@@ -51,7 +51,7 @@ class _LoginFormState extends State<LoginForm> {
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                       builder: (context) =>
-                          BottomBar(select: 1, selectedOption)),
+                          BottomBar(select: 2, selectedOption)),
                   (route) => false);
 
               // } else {

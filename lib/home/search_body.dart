@@ -103,6 +103,5 @@ class SeachBody extends StatelessWidget {
         ),
       ),
     );
-    
   }
 }

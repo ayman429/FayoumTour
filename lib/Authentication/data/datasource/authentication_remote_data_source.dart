@@ -68,6 +68,19 @@ class AuthenticationRemoteDataSource
           .setString("USER", json.encode(userDetails.toJson()));
       await sharedPreferences!
           .setString("username", userDetails.username ?? "");
+
+      userDetails.placeType != ""
+          ? await sharedPreferences!.setString(
+              "placeType", userDetails.placeType ?? "Islamic antiquities")
+          : await sharedPreferences!
+              .setString("placeType", "Islamic antiquities");
+      userDetails.model1Input != ""
+          ? await sharedPreferences!.setString(
+              "model1Input",
+              userDetails.model1Input ??
+                  "I Love Historical pyramids, I Enjoy water sports")
+          : await sharedPreferences!.setString("model1Input",
+              "I Love Historical pyramids, I Enjoy water sports");
       // print("=================>");
       // print(image);
       // print(userDetails.id);
@@ -107,8 +120,13 @@ class AuthenticationRemoteDataSource
               "placeType", userDetails.placeType ?? "Islamic antiquities")
           : await sharedPreferences!
               .setString("placeType", "Islamic antiquities");
-      await sharedPreferences!
-          .setString("model1Input", userDetails.model1Input ?? "");
+      userDetails.model1Input != ""
+          ? await sharedPreferences!.setString(
+              "model1Input",
+              userDetails.model1Input ??
+                  "I Love Historical pyramids, I Enjoy water sports")
+          : await sharedPreferences!.setString("model1Input",
+              "I Love Historical pyramids, I Enjoy water sports");
       String image = userDetails.image ?? "";
 
       await sharedPreferences!

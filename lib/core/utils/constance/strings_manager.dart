@@ -17,6 +17,7 @@ class AppStrings {
   static const String homeCardTourismTitle = "Torism Places";
   static const String topRatedTourismPlaces = "Top Rated Places";
   static const String topRatedHotels = "Top Rated Hotels";
+  static const String recommendations = "recommendations";
 
   static const String homeCardHotel = "Hotels";
   static const String seeMore = "See More";

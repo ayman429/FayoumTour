@@ -1,4 +1,3 @@
-import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,25 +25,26 @@ class _TourismScreenState extends State<TourismScreen>
   late Animation<Offset> _offsetAnimation;
   late Animation<double> _opacityAnimation;
 
-  String _selectedOption = '';
-  // Future<void> saveUserDetails() async {
-  //   UserDetails userDetails = await FavouritStorage().getUsersDetails();
-  //   await sharedPreferences!.setString("USERID", userDetails.id);
-  //   String image = userDetails.image ?? "";
+  int route = 0;
+  String title = "Select Tourism Type";
+  List<String> options = [
+    "Islamic antiquities",
+    "Coptic antiquities",
+    "Greek and Roman Antiquities",
+    "Pharaonic relics"
+  ];
+  List<String> images = [
+    "islamic.jpeg",
+    "coptic.jpg",
+    "greek.jpeg",
+    "pharonic.jpg"
+  ];
 
-  //   sharedPreferences!.setString("USER", json.encode(userDetails.toJson()));
-  //   sharedPreferences!.setString("username", userDetails.username);
-  //   // print("=================>");
-  //   // print(image);
-  //   // print(userDetails.id);
-  //   // print("${userDetails.id}USERIMAGE");
-  //   sharedPreferences!.setString("${userDetails.id}USERIMAGE", image);
-  // }
+  List<String> _selectedOption = ['', '', ''];
 
   @override
   void initState() {
     super.initState();
-    // saveUserDetails();
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
@@ -74,12 +74,9 @@ class _TourismScreenState extends State<TourismScreen>
 
   void _onOptionSelected(String option) {
     setState(() {
-      _selectedOption = option;
+      _selectedOption[route] = option;
       print("---------------->");
       print(option);
-      // var userId = sharedPreferences!.getString("USERID");
-      // sharedPreferences!.setString("$userId selectedOption", _selectedOption);
-      // var selectedOption = sharedPreferences!.getString("placeType");
     });
   }
 
@@ -138,7 +135,7 @@ class _TourismScreenState extends State<TourismScreen>
                                         padding:
                                             const EdgeInsets.only(left: 20),
                                         child: Text(
-                                          'Select Tourism',
+                                          title,
                                           style: GoogleFonts.aBeeZee(
                                             fontSize: 23,
                                             color: Colors.black87,
@@ -167,21 +164,13 @@ class _TourismScreenState extends State<TourismScreen>
                                     children: [
                                       GestureDetector(
                                         onTap: () {
-                                          _onOptionSelected(
-                                              'Islamic antiquities');
-                                          // print("object");
-                                          // Navigator.of(context).pushAndRemoveUntil(
-                                          //     MaterialPageRoute(
-                                          //         builder: (context) => BottomBar(
-                                          //             select: 1,
-                                          //             'Islamic antiquities')),
-                                          //     (route) => false);
+                                          _onOptionSelected(options[0]);
                                         },
                                         child: AnimatedContainer(
                                           duration: const Duration(seconds: 1),
                                           curve: Curves.easeInOut,
-                                          width: _selectedOption ==
-                                                  'Islamic antiquities'
+                                          width: _selectedOption[route] ==
+                                                  options[0]
                                               ? MediaQuery.of(context)
                                                       .size
                                                       .width *
@@ -190,8 +179,8 @@ class _TourismScreenState extends State<TourismScreen>
                                                       .size
                                                       .width *
                                                   0.35,
-                                          height: _selectedOption ==
-                                                  'Islamic antiquities'
+                                          height: _selectedOption[route] ==
+                                                  options[0]
                                               ? MediaQuery.of(context)
                                                       .size
                                                       .height *
@@ -212,9 +201,9 @@ class _TourismScreenState extends State<TourismScreen>
                                                 offset: const Offset(0, 3),
                                               ),
                                             ],
-                                            image: const DecorationImage(
+                                            image: DecorationImage(
                                               image: AssetImage(
-                                                'assets/images/islamic.jpeg',
+                                                'assets/images/${images[0]}',
                                               ),
                                               fit: BoxFit.cover,
                                             ),
@@ -224,7 +213,7 @@ class _TourismScreenState extends State<TourismScreen>
                                       const SizedBox(
                                         height: 15,
                                       ),
-                                      const Text('Islamic antiquities')
+                                      Text(options[0])
                                     ],
                                   ),
                                   Column(
@@ -234,23 +223,14 @@ class _TourismScreenState extends State<TourismScreen>
                                         children: [
                                           GestureDetector(
                                             onTap: () {
-                                              _onOptionSelected(
-                                                  'Coptic antiquities');
-                                              // Navigator.of(context)
-                                              //     .pushAndRemoveUntil(
-                                              //         MaterialPageRoute(
-                                              //             builder: (context) =>
-                                              //                 BottomBar(
-                                              //                     select: 1,
-                                              //                     'Coptic antiquities')),
-                                              //         (route) => false);
+                                              _onOptionSelected(options[1]);
                                             },
                                             child: AnimatedContainer(
                                               duration:
                                                   const Duration(seconds: 1),
                                               curve: Curves.easeInOut,
-                                              width: _selectedOption ==
-                                                      'Coptic antiquities'
+                                              width: _selectedOption[route] ==
+                                                      options[1]
                                                   ? MediaQuery.of(context)
                                                           .size
                                                           .width *
@@ -259,8 +239,8 @@ class _TourismScreenState extends State<TourismScreen>
                                                           .size
                                                           .width *
                                                       0.35,
-                                              height: _selectedOption ==
-                                                      'Coptic antiquities'
+                                              height: _selectedOption[route] ==
+                                                      options[1]
                                                   ? MediaQuery.of(context)
                                                           .size
                                                           .height *
@@ -281,9 +261,9 @@ class _TourismScreenState extends State<TourismScreen>
                                                     offset: const Offset(0, 3),
                                                   ),
                                                 ],
-                                                image: const DecorationImage(
+                                                image: DecorationImage(
                                                   image: AssetImage(
-                                                    'assets/images/coptic.jpg',
+                                                    'assets/images/${images[1]}',
                                                   ),
                                                   fit: BoxFit.cover,
                                                 ),
@@ -293,7 +273,7 @@ class _TourismScreenState extends State<TourismScreen>
                                           const SizedBox(
                                             height: 15,
                                           ),
-                                          const Text('Coptic antiquities')
+                                          Text(options[1])
                                         ],
                                       ),
                                     ],
@@ -310,13 +290,13 @@ class _TourismScreenState extends State<TourismScreen>
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       GestureDetector(
-                                        onTap: () => _onOptionSelected(
-                                            'Greek and Roman Antiquities'),
+                                        onTap: () =>
+                                            _onOptionSelected(options[2]),
                                         child: AnimatedContainer(
                                           duration: const Duration(seconds: 1),
                                           curve: Curves.easeInOut,
-                                          width: _selectedOption ==
-                                                  'Greek and Roman Antiquities'
+                                          width: _selectedOption[route] ==
+                                                  options[2]
                                               ? MediaQuery.of(context)
                                                       .size
                                                       .width *
@@ -325,8 +305,8 @@ class _TourismScreenState extends State<TourismScreen>
                                                       .size
                                                       .width *
                                                   0.35,
-                                          height: _selectedOption ==
-                                                  'Greek and Roman Antiquities'
+                                          height: _selectedOption[route] ==
+                                                  options[2]
                                               ? MediaQuery.of(context)
                                                       .size
                                                       .height *
@@ -347,9 +327,9 @@ class _TourismScreenState extends State<TourismScreen>
                                                 offset: const Offset(0, 3),
                                               ),
                                             ],
-                                            image: const DecorationImage(
+                                            image: DecorationImage(
                                               image: AssetImage(
-                                                'assets/images/greek.jpeg',
+                                                'assets/images/${images[2]}',
                                               ),
                                               fit: BoxFit.cover,
                                             ),
@@ -359,20 +339,20 @@ class _TourismScreenState extends State<TourismScreen>
                                       const SizedBox(
                                         height: 15,
                                       ),
-                                      const Text('Greek and Roman')
+                                      Text(options[2])
                                     ],
                                   ),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       GestureDetector(
-                                        onTap: () => _onOptionSelected(
-                                            'Pharaonic antiquities'),
+                                        onTap: () =>
+                                            _onOptionSelected(options[3]),
                                         child: AnimatedContainer(
                                           duration: const Duration(seconds: 1),
                                           curve: Curves.easeInOut,
-                                          width: _selectedOption ==
-                                                  'Pharaonic antiquities'
+                                          width: _selectedOption[route] ==
+                                                  options[3]
                                               ? MediaQuery.of(context)
                                                       .size
                                                       .width *
@@ -381,8 +361,8 @@ class _TourismScreenState extends State<TourismScreen>
                                                       .size
                                                       .width *
                                                   0.35,
-                                          height: _selectedOption ==
-                                                  'Pharaonic antiquities'
+                                          height: _selectedOption[route] ==
+                                                  options[3]
                                               ? MediaQuery.of(context)
                                                       .size
                                                       .height *
@@ -403,9 +383,9 @@ class _TourismScreenState extends State<TourismScreen>
                                                 offset: const Offset(0, 3),
                                               ),
                                             ],
-                                            image: const DecorationImage(
+                                            image: DecorationImage(
                                               image: AssetImage(
-                                                'assets/images/pharonic.jpg',
+                                                'assets/images/${images[3]}',
                                               ),
                                               fit: BoxFit.cover,
                                             ),
@@ -415,7 +395,7 @@ class _TourismScreenState extends State<TourismScreen>
                                       const SizedBox(
                                         height: 15,
                                       ),
-                                      const Text('Pharaonic antiquities')
+                                      Text(options[3])
                                     ],
                                   ),
                                 ],
@@ -428,18 +408,52 @@ class _TourismScreenState extends State<TourismScreen>
                                 builder: (context, state) {
                                   return TextButton(
                                       onPressed: () {
-                                        UserDetails userDetails = UserDetails(
-                                            placeType: _selectedOption);
-                                        BlocProvider.of<AuthenticationBloc>(
-                                                context)
-                                            .add(UpdateUserDetailsEvent(
-                                                userDetails: userDetails,
-                                                type: "username"));
-                                        // Navigator.of(context).pushAndRemoveUntil(
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) => BottomBar(
-                                        //             select: 1, _selectedOption)),
-                                        //     (route) => false);
+                                        if (route == 0) {
+                                          setState(() {
+                                            title = "What do you prefer?";
+                                            options = [
+                                              "Historical pyramids",
+                                              "statues and monuments",
+                                              "temples",
+                                              "temples"
+                                            ];
+                                            images = [
+                                              "Historical.jpg",
+                                              "statues.jpg",
+                                              "temples.jpg",
+                                              "temples.jpg"
+                                            ];
+                                            route++;
+                                          });
+                                        } else if (route == 1) {
+                                          setState(() {
+                                            title = "What do you prefer?";
+                                            options = [
+                                              "water sports",
+                                              "waterfalls area",
+                                              "safari trips and camping",
+                                              "natural gardens"
+                                            ];
+                                            images = [
+                                              "water.jpg",
+                                              "waterfalls.jpg",
+                                              "safari.jpg",
+                                              "natural.jpg"
+                                            ];
+                                            route++;
+                                          });
+                                        } else {
+                                          String model1Input =
+                                              "I Love ${_selectedOption[1]} , I Enjoy ${_selectedOption[2]}";
+                                          UserDetails userDetails = UserDetails(
+                                              placeType: _selectedOption[0],
+                                              model1Input: model1Input);
+                                          BlocProvider.of<AuthenticationBloc>(
+                                                  context)
+                                              .add(UpdateUserDetailsEvent(
+                                                  userDetails: userDetails,
+                                                  type: "username"));
+                                        }
                                       },
                                       style: TextButton.styleFrom(
                                           backgroundColor: Theme.of(context)
@@ -469,11 +483,11 @@ class _TourismScreenState extends State<TourismScreen>
                               if (state.updateuserDetailsState ==
                                   RequestState.loaded) {
                                 print("--------------->");
-                                print(_selectedOption);
+                                print(_selectedOption[0]);
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
                                         builder: (context) => BottomBar(
-                                            select: 1, _selectedOption)),
+                                            select: 2, _selectedOption[0])),
                                     (route) => false);
                               } else if (state.updateuserDetailsState ==
                                   RequestState.error) {
@@ -484,20 +498,10 @@ class _TourismScreenState extends State<TourismScreen>
                                     state.updateuserDetailsMessage);
                                 SnackBarMessage().showErrorSnackBar(
                                     message: message, context: context);
-                              } else if (state.changePasswordstate ==
-                                  RequestState.error) {
-                                print("error: ${state.changePasswordMessage}");
-                                String message;
-                                message = Validation.validationMessage(
-                                    state.changePasswordMessage);
-                                SnackBarMessage().showErrorSnackBar(
-                                    message: message, context: context);
                               }
                             }, builder: (context, state) {
                               if (state.updateuserDetailsState ==
-                                      RequestState.loading ||
-                                  state.changePasswordstate ==
-                                      RequestState.loading) {
+                                  RequestState.loading) {
                                 print("loading");
 
                                 /// loading

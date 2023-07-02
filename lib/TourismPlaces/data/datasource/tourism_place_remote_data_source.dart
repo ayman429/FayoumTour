@@ -134,14 +134,19 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
   // model1
   @override
   Future<List<TourismPlaceModel>> model1Places(model1Input) async {
+    print("---------------------");
+    print(model1Input);
     try {
       Dio dio = (await DioFactory.create()).dio;
-      final response = await dio.get(ApiConstance.model1Path,
-          queryParameters: {"input": model1Input});
+      final response =
+          await dio.get(ApiConstance.model1Path, data: {"input": model1Input});
+      print("---------------------");
+      print(model1Input);
       return List<TourismPlaceModel>.from(
           (response.data as List).map((e) => TourismPlaceModel.fromJson(e)));
     } on DioError catch (e) {
       // return Error Message
+      print(e.message);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
       );

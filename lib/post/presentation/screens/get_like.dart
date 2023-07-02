@@ -6,7 +6,7 @@ import '../../../core/services/services_locator.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/enums.dart';
 import '../../../core/utils/snackbar_message.dart';
-import '../../../home/comments.dart';
+import 'comments.dart';
 import '../../../home/my_flutter_app_icons.dart';
 import '../../domain/entities/like.dart';
 import '../controller/bloc/post_bloc.dart';

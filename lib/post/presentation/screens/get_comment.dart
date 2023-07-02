@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/enums.dart';
-import '../../../home/comments.dart';
+import 'comments.dart';
 import '../controller/bloc/post_bloc.dart';
 
 class GetComment extends StatelessWidget {
@@ -16,7 +16,7 @@ class GetComment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(create: (context) {
-      return getIt<PostBloc>(); 
+      return getIt<PostBloc>();
     }, child: BlocBuilder<PostBloc, PostState>(builder: (context, state) {
       print(state.commentState);
       BlocProvider.of<PostBloc>(context).add(GetCommentEvent(postId: postId));

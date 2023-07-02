@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import '../core/utils/constance/strings_manager.dart';
-import 'add_post.dart';
+import '../post/presentation/screens/add_post.dart';
 import 'favourites.dart';
 import 'home.dart';
 import 'plan.dart';

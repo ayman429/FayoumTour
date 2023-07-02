@@ -2,9 +2,9 @@ import 'package:fayoumtour/post/domain/entities/comment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../core/utils/constance/shared_pref.dart';
-import '../core/utils/constance/strings_manager.dart';
-import '../post/presentation/controller/bloc/post_bloc.dart';
+import '../../../core/utils/constance/shared_pref.dart';
+import '../../../core/utils/constance/strings_manager.dart';
+import '../controller/bloc/post_bloc.dart';
 
 class CommentList extends StatelessWidget {
   List<Comment> data;

@@ -1,19 +1,17 @@
-import 'package:fayoumtour/post/domain/entities/like.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../core/utils/constance/shared_pref.dart';
-import '../core/utils/constance/strings_manager.dart';
-import '../core/utils/enums.dart';
-import '../post/presentation/controller/bloc/post_bloc.dart';
-import '../post/presentation/screens/comment_screen.dart';
-import '../post/presentation/screens/get_like.dart';
+import '../../../core/utils/constance/shared_pref.dart';
+import '../../../core/utils/constance/strings_manager.dart';
+import '../../../core/utils/enums.dart';
+import '../../../home/image_list.dart';
+import '../../../home/my_flutter_app_icons.dart';
+import '../controller/bloc/post_bloc.dart';
 import 'add_post_component.dart';
-import 'comments.dart';
-import 'image_list.dart';
-import 'my_flutter_app_icons.dart';
+import 'comment_screen.dart';
+import 'get_like.dart';
 
 class ShowPosts extends StatelessWidget {
   const ShowPosts({super.key});
@@ -324,20 +322,23 @@ class ShowPosts extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    const Icon(MyFlutterApp.like3,
-                                        color: Colors.blue),
-                                    const SizedBox(
-                                      width: 2,
-                                    ),
-                                    Text(
-                                      "${state.post[index].like_numbers}",
-                                      style: const TextStyle(
-                                          color: Colors.grey, fontSize: 14),
-                                    )
-                                  ],
-                                ),
+                                state.post[index].like_numbers != "0"
+                                    ? Row(
+                                        children: [
+                                          const Icon(MyFlutterApp.like3,
+                                              color: Colors.blue),
+                                          const SizedBox(
+                                            width: 2,
+                                          ),
+                                          Text(
+                                            "${state.post[index].like_numbers}",
+                                            style: const TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 14),
+                                          )
+                                        ],
+                                      )
+                                    : Container(),
                                 InkWell(
                                     onTap: () {
                                       Navigator.push(

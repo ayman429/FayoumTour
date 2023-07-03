@@ -19,6 +19,7 @@ class TourismPlace extends Equatable {
   RateOneByOne rateOneByOne;
   int user;
   CreatedBy? createdBy;
+  int? rate_value;
   TourismPlace({
     required this.id,
     required this.name,
@@ -34,6 +35,7 @@ class TourismPlace extends Equatable {
     required this.rateOneByOne,
     required this.user,
     this.createdBy,
+    this.rate_value,
   });
 
   Map<String, dynamic> toJson() {

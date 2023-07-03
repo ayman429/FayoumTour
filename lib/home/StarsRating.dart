@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../TourismPlaces/domain/entities/tourism_place_rate.dart';
 import '../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
 import '../TourismPlaces/presentation/controller/tourism_place_state.dart';
+import '../core/services/services_locator.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/enums.dart';
 import '../core/utils/snackbar_message.dart';
@@ -15,10 +16,15 @@ import '../hotels/presentation/controller/hotels_state.dart';
 
 class RatingScreen extends StatefulWidget {
   String type;
-  String data;
+  // String data;
   int id;
+  int rate_value;
   RatingScreen(
-      {Key? key, required this.type, required this.data, required this.id})
+      {Key? key,
+      required this.type,
+      // required this.data,
+      required this.id,
+      required this.rate_value})
       : super(key: key);
   @override
   _RatingScreenState createState() => _RatingScreenState();
@@ -65,7 +71,7 @@ class _RatingScreenState extends State<RatingScreen> {
       // rating: _rating,
       type: widget.type,
       id: widget.id,
-      rating: int.parse(widget.data),
+      rating: widget.rate_value,
       onRated: _onRated,
     );
   }
@@ -126,49 +132,60 @@ class StarRating extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return type == "places"
-        ? BlocConsumer<TourismPlaceBloc, TourismPlaceState>(
-            listener: (context, state) {
-            if (state.updateCreateTourismPlaceRateState ==
-                RequestState.loaded) {
-              print("Loded");
-            } else if (state.updateCreateTourismPlaceRateState ==
-                RequestState.loading) {
-              print("Loding");
-            } else if (state.updateCreateTourismPlaceRateState ==
-                RequestState.error) {
-              SnackBarMessage().showErrorSnackBar(
-                  message: state.updateCreateTourismPlaceRateMessage,
-                  context: context);
-            }
-          }, builder: (context, state) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Rating "),
-                for (int i = 0; i < 5; i++) _buildStar(context, i),
-              ],
-            );
-          })
-        : BlocConsumer<HotelsBloc, HotelsState>(listener: (context, state) {
-            if (state.updateCreateHotelRateState == RequestState.loaded) {
-              print("Loded");
-            } else if (state.updateCreateHotelRateState ==
-                RequestState.loading) {
-              print("Loding");
-            } else if (state.updateCreateHotelRateState == RequestState.error) {
-              SnackBarMessage().showErrorSnackBar(
-                  message: state.updateCreateHotelRateMessage,
-                  context: context);
-            }
-          }, builder: (context, state) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Rating "),
-                for (int i = 0; i < 5; i++) _buildStar(context, i),
-              ],
-            );
-          });
-    ;
+        ? BlocProvider(
+            create: (context) {
+              return getIt<TourismPlaceBloc>();
+            },
+            child: BlocConsumer<TourismPlaceBloc, TourismPlaceState>(
+                listener: (context, state) {
+              if (state.updateCreateTourismPlaceRateState ==
+                  RequestState.loaded) {
+                print("Loded");
+              } else if (state.updateCreateTourismPlaceRateState ==
+                  RequestState.loading) {
+                print("Loding");
+              } else if (state.updateCreateTourismPlaceRateState ==
+                  RequestState.error) {
+                SnackBarMessage().showErrorSnackBar(
+                    message: state.updateCreateTourismPlaceRateMessage,
+                    context: context);
+              }
+            }, builder: (context, state) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Rating "),
+                  for (int i = 0; i < 5; i++) _buildStar(context, i),
+                ],
+              );
+            }),
+          )
+        : BlocProvider(
+            create: (context) {
+              return getIt<HotelsBloc>();
+            },
+            child: BlocConsumer<HotelsBloc, HotelsState>(
+                listener: (context, state) {
+              if (state.updateCreateHotelRateState == RequestState.loaded) {
+                print("Loded");
+              } else if (state.updateCreateHotelRateState ==
+                  RequestState.loading) {
+                print("Loding");
+              } else if (state.updateCreateHotelRateState ==
+                  RequestState.error) {
+                SnackBarMessage().showErrorSnackBar(
+                    message: state.updateCreateHotelRateMessage,
+                    context: context);
+              }
+            }, builder: (context, state) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Rating "),
+                  for (int i = 0; i < 5; i++) _buildStar(context, i),
+                ],
+              );
+            }),
+          );
   }
 }

@@ -9,6 +9,7 @@ import '../../../core/utils/enums.dart';
 import '../../../home/image_list.dart';
 import '../../../home/my_flutter_app_icons.dart';
 import '../controller/bloc/post_bloc.dart';
+import 'add_like.dart';
 import 'add_post_component.dart';
 import 'comment_screen.dart';
 import 'get_like.dart';
@@ -370,9 +371,15 @@ class ShowPosts extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                GetLike(
+                                // like_value
+                                AddLike(
+                                    like_value:
+                                        state.post[index].like_value ?? 0,
                                     postId:
                                         int.parse(state.post[index].id ?? "0")),
+                                // GetLike(
+                                //     postId:
+                                //         int.parse(state.post[index].id ?? "0")),
                                 TextButton(
                                     onPressed: () {
                                       print(state.post[index].id);

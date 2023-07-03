@@ -20,6 +20,7 @@ class TourismPlaceModel extends TourismPlace {
     required super.avgRatings,
     required super.rateOneByOne,
     required super.user,
+    required super.rate_value,
     // required super.createdBy
   });
 
@@ -31,22 +32,22 @@ class TourismPlaceModel extends TourismPlace {
           })
         : [];
     return TourismPlaceModel(
-      id: json['id'],
-      name: json['name'],
-      type: json['type'],
-      address: json['address'],
-      description: json['description'],
-      coordinatesX: json['coordinatesX'],
-      coordinatesY: json['coordinatesY'],
-      originalImage: json['originalImage'],
-      imagesT: image,
-      noOfRatings: json['no_of_ratings'],
-      avgRatings: double.parse(
-          (json['avg_ratings']).toStringAsFixed(1)), //json['avg_ratings'],
-      rateOneByOne: RateOneByOneModel.fromJson(json['rate_one_by_one']),
-      user: json['user'],
-      // createdBy: CreatedByModel.fromJson(json['created_by']),
-    );
+        id: json['id'],
+        name: json['name'],
+        type: json['type'],
+        address: json['address'],
+        description: json['description'],
+        coordinatesX: json['coordinatesX'],
+        coordinatesY: json['coordinatesY'],
+        originalImage: json['originalImage'],
+        imagesT: image,
+        noOfRatings: json['no_of_ratings'],
+        avgRatings: double.parse(
+            (json['avg_ratings']).toStringAsFixed(1)), //json['avg_ratings'],
+        rateOneByOne: RateOneByOneModel.fromJson(json['rate_one_by_one']),
+        user: json['user'],
+        // createdBy: CreatedByModel.fromJson(json['created_by']),
+        rate_value: json['rate_value']);
   }
   TourismPlaceModel.castFromEntity(final TourismPlace tourismPlace)
       : super(
@@ -64,5 +65,6 @@ class TourismPlaceModel extends TourismPlace {
           imagesT: tourismPlace.imagesT,
           user: tourismPlace.user,
           createdBy: tourismPlace.createdBy,
+          rate_value: tourismPlace.rate_value,
         );
 }

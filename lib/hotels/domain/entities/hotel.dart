@@ -33,6 +33,7 @@ class Hotel extends Equatable {
   String originalImage;
   int user;
   CreatedBy? createdBy;
+  int? rate_value;
 
   Hotel(
       {required this.id,
@@ -60,6 +61,7 @@ class Hotel extends Equatable {
       required this.imagesT,
       required this.originalImage,
       required this.user,
+      this.rate_value,
       this.createdBy});
 
   Map<String, dynamic> toJson() {

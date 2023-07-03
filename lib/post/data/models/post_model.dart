@@ -10,6 +10,7 @@ class PostModel extends Post {
       required super.imagesP,
       required super.comment_numbers,
       required super.like_numbers,
+      required super.like_value,
       required super.createdBy});
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
@@ -27,6 +28,7 @@ class PostModel extends Post {
       user: json['user'],
       comment_numbers: json['comment_numbers'],
       like_numbers: json['like_numbers'],
+      like_value: json['like_value'],
       createdBy: CreatedByModel.fromJson(json['created_by']),
     );
   }
@@ -38,5 +40,6 @@ class PostModel extends Post {
             imagesP: post.imagesP,
             comment_numbers: post.comment_numbers,
             like_numbers: post.like_numbers,
+            like_value: post.like_value,
             createdBy: post.createdBy);
 }

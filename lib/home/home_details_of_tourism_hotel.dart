@@ -6,6 +6,7 @@ import 'package:location/location.dart';
 import '../TourismPlaces/presentation/screens/get_rating_places.dart';
 import '../hotels/presentation/screens/get_rating_hotels.dart';
 import 'RatingStarsBar.dart';
+import 'StarsRating.dart';
 import 'image_list.dart';
 import 'reserve.dart';
 
@@ -228,8 +229,16 @@ class Details extends StatelessWidget {
 
                 // Rate
                 index == 1
-                    ? GetRatingHotels(hotelId: data.id)
-                    : GetRatingPLaces(placeId: data.id),
+                    ? RatingScreen(
+                        id: data.id,
+                        rate_value: data.rate_value,
+                        type: "hotel",
+                      )
+                    : RatingScreen(
+                        id: data.id,
+                        rate_value: data.rate_value,
+                        type: "places",
+                      ),
                 const SizedBox(
                   height: 10,
                 ),
@@ -251,7 +260,8 @@ class Details extends StatelessWidget {
                             return;
                           }
                         }
-                        final url ="https://www.google.com/maps/search/?api=1&query=${data.coordinatesX},${data.coordinatesY}";
+                        final url =
+                            "https://www.google.com/maps/search/?api=1&query=${data.coordinatesX},${data.coordinatesY}";
 
                         if (await canLaunch(url)) {
                           await launch(url);
@@ -274,7 +284,7 @@ class Details extends StatelessWidget {
                     ),
                   ),
                 ),
-                
+
                 index == 1
                     ? Container(
                         margin: const EdgeInsets.fromLTRB(0, 25, 0, 10),

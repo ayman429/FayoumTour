@@ -22,6 +22,8 @@ import '../../../domain/usecase/update_post_usecase.dart';
 part 'post_event.dart';
 part 'post_state.dart';
 
+Map<int, int> likeMap = {};
+
 class PostBloc extends Bloc<PostEvent, PostState> {
   final GetPostUsecase getPostUsecase;
   final GetPostByIdUsecase getPostByIdUsecase;
@@ -210,7 +212,14 @@ class PostBloc extends Bloc<PostEvent, PostState> {
   }
 
   FutureOr<void> _addLike(AddLikeEvent event, Emitter<PostState> emit) async {
+    int postId = event.like.postId;
+    likeMap[postId] = likeMap[postId] == 0 ? 1 : 0;
+    emit(PostState(
+      addLikeState: RequestState.loaded,
+    ));
     (await addLikeUsecase(event.like)).fold((l) {
+      int postId = event.like.postId;
+      likeMap[postId] = likeMap[postId] == 0 ? 1 : 0;
       return emit(PostState(
           addLikeState: RequestState.error, addLikeMessage: l.message));
     }, (r) {

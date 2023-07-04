@@ -24,9 +24,11 @@ class AddLike extends StatelessWidget {
       child: BlocConsumer<PostBloc, PostState>(
         listener: (context, state) {
           if (state.addLikeState == RequestState.loaded) {
-            // print("Loded");
+            print("Loded");
+            print(likeMap[postId]);
           } else if (state.addLikeState == RequestState.loading) {
-            print(" state.like");
+            print("loding");
+            // print(likeMap[postId]);
           } else if (state.addLikeState == RequestState.error) {
             SnackBarMessage().showErrorSnackBar(
                 message: state.addLikeMessage, context: context);
@@ -35,8 +37,6 @@ class AddLike extends StatelessWidget {
         builder: (context, state) {
           return TextButton(
             onPressed: () {
-              print("like");
-              print(like_value);
               Like like = Like(
                   like: like_value == 0 ? 1 : 0,
                   postId: postId,
@@ -52,7 +52,7 @@ class AddLike extends StatelessWidget {
             ),
             child: Row(
               children: [
-                like_value == 0
+                likeMap[postId] == 0
                     ? const Icon(
                         MyFlutterApp.like3,
                         color: Colors.grey,

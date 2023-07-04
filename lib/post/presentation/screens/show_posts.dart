@@ -21,7 +21,7 @@ class ShowPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
-        BlocProvider.of<PostBloc>(context).add(GetPostEvent());
+        // BlocProvider.of<PostBloc>(context).add(GetPostEvent());
 
         switch (state.postState) {
           case RequestState.loading:
@@ -33,6 +33,14 @@ class ShowPosts extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: state.post.length,
               itemBuilder: (context, index) {
+                state.post.forEach((element) {
+                  likeMap.addAll(
+                      {int.parse(element.id ?? "0"): element.like_value ?? 0});
+                });
+                print("likeMap");
+                print(likeMap);
+                // likeMap[int.parse(state.post[index].id??"0")]=;
+
                 // print(index);
                 // BlocProvider.of<PostBloc>(context).add(GetLikeEvent(
                 //     postId: int.parse(state.post[index].id ?? "0"),

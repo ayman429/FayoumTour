@@ -88,10 +88,10 @@ class _AddPostState extends State<AddPost> {
                                   child: Column(
                                     children: [
                                       GestureDetector(
-                                        onTap: () async {
+                                        onTap: () {
                                           // Navigate to the input screen
 
-                                          await Navigator.push(
+                                          Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>

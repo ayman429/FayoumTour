@@ -44,6 +44,7 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
           (response.data as List).map((e) => PostModel.fromJson(e)));
     } on DioError catch (e) {
       // return Error Message
+
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
       );
@@ -78,8 +79,6 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
 
       return Future.value(unit);
     } on DioError catch (e) {
-      print("================>");
-      print(e);
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),

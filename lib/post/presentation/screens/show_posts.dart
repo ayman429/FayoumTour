@@ -34,10 +34,12 @@ class ShowPosts extends StatelessWidget {
 
           switch (state.postState) {
             case RequestState.loading:
+              print("loading");
               return const SizedBox(
                   height: 200,
                   child: Center(child: CircularProgressIndicator()));
             case RequestState.loaded:
+              print("loaded");
               return ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -469,7 +471,12 @@ class ShowPosts extends StatelessWidget {
 
             case RequestState.error:
               print("error-------------->");
-              return Container();
+              print(state.postMessage);
+              return Center(
+                child: Image(
+                  image: AssetImage('assets/images/net2.jpg'),
+                ),
+              );
           }
         },
       ),

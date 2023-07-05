@@ -42,108 +42,102 @@ class _AddPostState extends State<AddPost> {
 
   @override
   Widget build(context) {
-    return BlocProvider(
-      create: (context) {
-        return getIt<PostBloc>()..add(GetPostEvent());
-      },
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            // add posts
-            Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.secondary,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 6,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            // user image
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  child: SizedBox(
-                                    width: 40,
-                                    height: 40,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(100),
-                                      child: displayImage(getImagePath),
-                                    ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          // add posts
+          Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondary,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 6,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // user image
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 5),
+                                child: SizedBox(
+                                  width: 40,
+                                  height: 40,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: displayImage(getImagePath),
                                   ),
                                 ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 6, vertical: 10),
-                                  child: Column(
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          // Navigate to the input screen
+                              ),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 10),
+                                child: Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        // Navigate to the input screen
 
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  AddPostComponent(
-                                                      type: "add", data: ""),
-                                            ),
-                                          );
-                                        },
-                                        child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.742,
-                                          padding: const EdgeInsets.all(5.0),
-                                          decoration: BoxDecoration(
-                                            border:
-                                                Border.all(color: Colors.grey),
-                                            borderRadius:
-                                                BorderRadius.circular(50),
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                AddPostComponent(
+                                                    type: "add", data: ""),
                                           ),
-                                          child: const Center(
-                                            child: Text(
-                                              '   Write your post now!   ',
-                                              style: TextStyle(fontSize: 18.0),
-                                            ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.742,
+                                        padding: const EdgeInsets.all(5.0),
+                                        decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                        ),
+                                        child: const Center(
+                                          child: Text(
+                                            '   Write your post now!   ',
+                                            style: TextStyle(fontSize: 18.0),
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
+                          ),
 
-                            Container(
-                                margin: const EdgeInsets.only(right: 5),
-                                child: const Icon(
-                                  Icons.filter,
-                                  color: Colors.green,
-                                  size: 30,
-                                )),
-                          ]),
-                    ],
-                  ),
+                          Container(
+                              margin: const EdgeInsets.only(right: 5),
+                              child: const Icon(
+                                Icons.filter,
+                                color: Colors.green,
+                                size: 30,
+                              )),
+                        ]),
+                  ],
                 ),
-              ],
-            ),
-            const SingleChildScrollView(
-              child: ShowPosts(),
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          const SingleChildScrollView(
+            child: ShowPosts(),
+          ),
+        ],
       ),
     );
   }

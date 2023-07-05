@@ -51,7 +51,7 @@ class _RatingScreenState extends State<RatingScreen> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    primary: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                   ),
@@ -154,14 +154,19 @@ class StarRating extends StatelessWidget {
             }, builder: (context, state) {
               return Column(
                 children: [
-                  Text("Rate it !!",style: GoogleFonts.acme(fontSize: 22,color: Colors.green,
-                  fontWeight: FontWeight.bold
-                  ),),
-                  const SizedBox(height: 4,),
+                  Text(
+                    "Rate it !!",
+                    style: GoogleFonts.acme(
+                        fontSize: 22,
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      
                       for (int i = 0; i < 5; i++) _buildStar(context, i),
                     ],
                   ),
@@ -189,9 +194,13 @@ class StarRating extends StatelessWidget {
             }, builder: (context, state) {
               return Column(
                 children: [
-                  Text("Rate it !!",style: GoogleFonts.acme(fontSize: 22,color: Colors.green,
-                  fontWeight: FontWeight.bold
-                  ),),
+                  Text(
+                    "Rate it !!",
+                    style: GoogleFonts.acme(
+                        fontSize: 22,
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[

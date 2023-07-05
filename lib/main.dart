@@ -13,6 +13,7 @@ import 'core/utils/constance/theme_manager.dart';
 import 'core/utils/languages/bloc/app_language_bloc.dart';
 import 'core/utils/theme/bloc/app_theme_bloc.dart';
 import 'home/BottomBar.dart';
+import 'post/presentation/controller/bloc/post_bloc.dart';
 
 var token;
 var _selectedOption;
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) =>
                   AppLanguageBloc()..add(InitialLanguageEvent())),
+          BlocProvider(
+            create: (context) => getIt<PostBloc>()..add(GetPostEvent()),
+          )
         ],
         child: Builder(builder: (context) {
           var themeState = context.select((AppThemeBloc bloc) => bloc.state);

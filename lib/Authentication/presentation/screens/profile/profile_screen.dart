@@ -100,10 +100,13 @@ class _profile_screenState extends State<profile_screen> {
                 builder: (context, snapshot) => (userDetails.email != "")
                     ? Column(
                         children: [
-                          Text(username, style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold,fontSize: 16)),
+                          Text(username,
+                              style: GoogleFonts.aBeeZee(
+                                  fontWeight: FontWeight.bold, fontSize: 16)),
                           const SizedBox(height: 10),
                           Text("${userDetails.email}",
-                              style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold,fontSize: 16)),
+                              style: GoogleFonts.aBeeZee(
+                                  fontWeight: FontWeight.bold, fontSize: 16)),
                         ],
                       )
                     : Text("welcome", style: GoogleFonts.aBeeZee()),
@@ -121,12 +124,15 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      primary: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
-                  child: Text(("Edit profile"),
-                      style: GoogleFonts.rye(
-                          color: Theme.of(context).colorScheme.secondary,fontSize: 16),),
+                  child: Text(
+                    ("Edit profile"),
+                    style: GoogleFonts.rye(
+                        color: Theme.of(context).colorScheme.secondary,
+                        fontSize: 16),
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
@@ -141,7 +147,7 @@ class _profile_screenState extends State<profile_screen> {
                         MaterialPageRoute(
                             builder: (context) => const SSSettings()));
                   }),
-                  ProfileMenuWidget(
+              ProfileMenuWidget(
                   title: "ٌHotel Reservations",
                   icon: Icons.list_alt_rounded,
                   onPress: () {
@@ -157,16 +163,14 @@ class _profile_screenState extends State<profile_screen> {
                                 builder: (context) =>
                                     HotelsReservationDetailsForUser()));
                   }),
-
-
-              
               ProfileMenuWidget(
-                  title: "Information", icon: Icons.info, onPress: () {
+                  title: "Information",
+                  icon: Icons.info,
+                  onPress: () {
                     Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const AboutScreen()));
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AboutScreen()));
                   }),
               BlocBuilder<AuthenticationBloc, AuthenticationState>(
                 builder: (context, state) {

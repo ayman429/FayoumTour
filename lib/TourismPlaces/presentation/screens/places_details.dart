@@ -28,6 +28,11 @@ class PlacesDetails extends StatelessWidget {
           return const SizedBox(
               height: 200, child: Center(child: CircularProgressIndicator()));
         case RequestState.loaded:
+          ratePlaceMap[state.tourismPlaceById!.id] =
+              state.tourismPlaceById!.rate_value ?? 0;
+          // state.tourismPlace.forEach((element) {
+          //         ratePlaceMap.addAll({element.id: element.rate_value ?? 0});
+          //       });
           return SizedBox(
             height: MediaQuery.of(context).size.height * 0.25,
             child: UpBarImage(

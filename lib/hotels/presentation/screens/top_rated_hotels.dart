@@ -50,6 +50,9 @@ class TopRatedHotels extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final searchHotelRate = state.searchHotelRate[index];
+                  state.hotels.forEach((element) {
+                    rateHotelMap.addAll({element.id: element.rate_value ?? 0});
+                  });
                   return HomeCard(
                     data: searchHotelRate,
                     index: 1,

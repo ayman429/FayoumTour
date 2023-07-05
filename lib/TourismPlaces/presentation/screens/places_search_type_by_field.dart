@@ -61,6 +61,10 @@ class HomeCardsTourismPlacesTypeSearch extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final searchTourismPlace =
                           state.searchTourismPlace[index];
+                      state.tourismPlace.forEach((element) {
+                        ratePlaceMap
+                            .addAll({element.id: element.rate_value ?? 0});
+                      });
                       return HomeCard(
                         data: searchTourismPlace,
                         index: 0,

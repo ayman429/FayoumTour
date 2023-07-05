@@ -10,11 +10,8 @@ import '../controller/tourism_place_bloc.dart';
 import '../controller/tourism_place_event.dart';
 import '../controller/tourism_place_state.dart';
 
-
-
 class TopRatedTourismPlaces extends StatelessWidget {
   const TopRatedTourismPlaces({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +54,9 @@ class TopRatedTourismPlaces extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final searchTourismPlaceRate =
                       state.searchTourismPlaceRate[index];
+                  state.tourismPlace.forEach((element) {
+                    ratePlaceMap.addAll({element.id: element.rate_value ?? 0});
+                  });
                   return HomeCard(
                     data: searchTourismPlaceRate,
                     index: 0,

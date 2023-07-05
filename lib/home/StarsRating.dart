@@ -72,7 +72,10 @@ class _RatingScreenState extends State<RatingScreen> {
       // rating: _rating,
       type: widget.type,
       id: widget.id,
-      rating: widget.rate_value,
+      // rating: widget.rate_value,
+      rating: widget.type == "places"
+          ? ratePlaceMap[widget.id] ?? 0
+          : rateHotelMap[widget.id] ?? 0,
       onRated: _onRated,
     );
   }
@@ -153,6 +156,8 @@ class StarRating extends StatelessWidget {
                     context: context);
               }
             }, builder: (context, state) {
+              print("== RATE =");
+
               return Column(
                 children: [
                   Text(

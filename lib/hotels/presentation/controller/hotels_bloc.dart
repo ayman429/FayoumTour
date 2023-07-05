@@ -27,6 +27,8 @@ import '../../domain/usecase/update_hotel_usecase.dart';
 import 'hotels_event.dart';
 import 'hotels_state.dart';
 
+Map<int, int> rateHotelMap = {};
+
 class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
   final GetHotelUsecase getHotelUsecase;
   final GetHotelByIdUsecase getHotelByIdUsecase;
@@ -230,6 +232,13 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
 
   FutureOr<void> _updateCreateHotelRates(
       UpdateCreateHotelRatesEvent event, Emitter<HotelsState> emit) async {
+    print("value hotel ===");
+    print(event.updateCreateHotelRate.stars);
+    int hotelID = int.parse(event.hotelID);
+    rateHotelMap[hotelID] = event.updateCreateHotelRate.stars;
+    emit(HotelsState(
+      updateCreateHotelRateState: RequestState.loaded,
+    ));
     (await updateCreateHotelRateUsecase(
             event.updateCreateHotelRate, event.hotelID))
         .fold((l) {

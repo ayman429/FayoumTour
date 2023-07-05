@@ -39,6 +39,9 @@ class TourismPlacesSearch extends StatelessWidget {
               itemCount: state.searchTourismPlace.length,
               itemBuilder: (context, index) {
                 final searchTourismPlace = state.searchTourismPlace[index];
+                state.tourismPlace.forEach((element) {
+                  ratePlaceMap.addAll({element.id: element.rate_value ?? 0});
+                });
 
                 return SeachBody(
                   data: searchTourismPlace,

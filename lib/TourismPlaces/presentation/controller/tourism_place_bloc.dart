@@ -22,6 +22,8 @@ import '../../domain/usecase/update_tourism_place_usecase.dart';
 import 'tourism_place_event.dart';
 import 'tourism_place_state.dart';
 
+Map<int, int> ratePlaceMap = {};
+
 class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
   final GetTourismPlaceUsecase getTourismPlaceUsecase;
   final GetTourismPlaceByIdUsecase getTourismPlaceByIdUsecase;
@@ -232,6 +234,14 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
   FutureOr<void> _updateCreateTourismPlaceRates(
       UpdateCreateTourismPlaceRatesEvent event,
       Emitter<TourismPlaceState> emit) async {
+    print("value===");
+    print(event.updateCreateTourRate.stars);
+    int tourismPlaceID = int.parse(event.tourismPlaceID);
+    ratePlaceMap[tourismPlaceID] = event.updateCreateTourRate.stars;
+    emit(TourismPlaceState(
+      updateCreateTourismPlaceRateState: RequestState.loaded,
+    ));
+
     (await updateCreateTourismPlaceRateUsecase(
             event.updateCreateTourRate, event.tourismPlaceID))
         .fold((l) {

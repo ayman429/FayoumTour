@@ -59,6 +59,9 @@ class recommendations extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final model1 = state.model1[index];
+                  state.tourismPlace.forEach((element) {
+                    ratePlaceMap.addAll({element.id: element.rate_value ?? 0});
+                  });
                   return HomeCard(
                     data: model1,
                     index: 0,

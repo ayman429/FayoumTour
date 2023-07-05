@@ -133,10 +133,11 @@ class StarRating extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return type == "places"
-        ? BlocProvider(
-            create: (context) {
-              return getIt<TourismPlaceBloc>();
-            },
+        ? BlocProvider.value(
+            value: getIt<TourismPlaceBloc>(),
+            // create: (context) {
+            //   return getIt<TourismPlaceBloc>();
+            // },
             child: BlocConsumer<TourismPlaceBloc, TourismPlaceState>(
                 listener: (context, state) {
               if (state.updateCreateTourismPlaceRateState ==

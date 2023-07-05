@@ -5,6 +5,8 @@ import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 
 import '../TourismPlaces/presentation/screens/places_details.dart';
 import '../hotels/presentation/screens/hotels_details.dart';
+import 'home_details_of_tourism_hotel.dart';
+import 'up_bar_image.dart';
 
 class SeachBody extends StatelessWidget {
   var data;
@@ -22,14 +24,18 @@ class SeachBody extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      PlacesDetails(tourId: data.id.toString())));
+                builder: (context) =>
+                    // PlacesDetails(tourId: data.id.toString())
+                    UpBarImage(data: data, index: 0, type: "places"),
+              ));
         } else if (type == "hotels") {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      HotelsDetails(hotelsId: data.id.toString())));
+                builder: (context) =>
+                    // HotelsDetails(hotelsId: data.id.toString())
+                    UpBarImage(data: data, index: 1, type: "hotel"),
+              ));
         } else {
           print("error");
         }

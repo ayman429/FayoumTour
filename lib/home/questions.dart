@@ -415,13 +415,13 @@ class _TourismScreenState extends State<TourismScreen>
                                               "Historical pyramids",
                                               "statues and monuments",
                                               "temples",
-                                              "temples"
+                                              "sand boarding"
                                             ];
                                             images = [
                                               "Historical.jpg",
                                               "statues.jpg",
                                               "temples.jpg",
-                                              "temples.jpg"
+                                              "sand.jpg"
                                             ];
                                             route++;
                                           });

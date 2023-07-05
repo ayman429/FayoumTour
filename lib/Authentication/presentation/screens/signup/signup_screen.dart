@@ -20,7 +20,7 @@ class SignUpScreen extends StatelessWidget {
                 child: Hero(
                   tag: AppStrings.loginHeroTag,
                   child: Container(
-                    margin: const EdgeInsets.fromLTRB(0, 80, 0, 25),
+                    margin: const EdgeInsets.fromLTRB(0, 80, 0, 0),
                     height: 200,
                     width: 200,
                     child: Image.asset(AppStrings.logoImage),
@@ -59,7 +59,7 @@ class MobileSignupScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
-          margin: const EdgeInsets.fromLTRB(0, 80, 0, 25),
+          margin: const EdgeInsets.fromLTRB(0, 80, 0, 0),
           height: 200,
           width: 200,
           child: Image.asset(AppStrings.logoImage),

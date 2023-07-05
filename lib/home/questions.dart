@@ -40,7 +40,7 @@ class _TourismScreenState extends State<TourismScreen>
     "pharonic.jpg"
   ];
 
-  List<String> _selectedOption = ['', '', ''];
+  final List<String> _selectedOption = ['', '', ''];
 
   @override
   void initState() {
@@ -104,7 +104,7 @@ class _TourismScreenState extends State<TourismScreen>
                     position: _offsetAnimation,
                     child: Padding(
                       padding: const EdgeInsets.only(
-                          top: 70, bottom: 8, right: 40, left: 35),
+                          top: 70, bottom: 0, right: 15, left: 10),
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -339,7 +339,7 @@ class _TourismScreenState extends State<TourismScreen>
                                       const SizedBox(
                                         height: 15,
                                       ),
-                                      Text(options[2])
+                                      Text(options[2] ==  "Greek and Roman Antiquities" ? "Greek and Roman" : options[2])
                                     ],
                                   ),
                                   Column(

@@ -12,7 +12,6 @@ import '../core/utils/enums.dart';
 import '../core/utils/snackbar_message.dart';
 import '../hotels/presentation/controller/hotels_bloc.dart';
 import '../hotels/presentation/controller/hotels_state.dart';
-import '../hotels/presentation/screens/hotel_reservation_details_for_user.dart';
 import 'pay.dart';
 
 class HotelReservationScreen extends StatefulWidget {
@@ -125,7 +124,7 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: Theme.of(context).colorScheme.tertiaryContainer,
                         borderRadius: BorderRadius.circular(13),
                       ),
                       child: GestureDetector(
@@ -167,7 +166,7 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                     const SizedBox(height: 30.0),
                     Container(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: Theme.of(context).colorScheme.tertiaryContainer,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: GestureDetector(
@@ -326,7 +325,7 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MySample(),
+                          builder: (context) => const MySample(),
                         ),
                       );
                     }

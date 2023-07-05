@@ -35,7 +35,7 @@ class _BottomBarState extends State<BottomBar> {
 
   List<Widget> Screens = [
     Profile(),
-    NEAR(Loc: loc),
+    const NEAR(),
     Home(tourtismType: tourtismTypes),
     const AddPost(),
     Favorites(),

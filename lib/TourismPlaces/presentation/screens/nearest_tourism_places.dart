@@ -63,9 +63,9 @@ class NearestTourismPlaces extends StatelessWidget {
           return ListView.builder(
             itemCount: sortedArr.length,
             itemBuilder: (context, indexdata) {
-              state.tourismPlace.forEach((element) {
+              for (var element in state.tourismPlace) {
                 ratePlaceMap.addAll({element.id: element.rate_value ?? 0});
-              });
+              }
               return SeachBody(
                 data: data[indexdata],
                 type: "places",

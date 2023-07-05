@@ -10,14 +10,8 @@ LocationData? locationData;
 double latitude = 0;
 double longitude = 0;
 
-Map<String, dynamic> loc = {
-  "coordinatesX": 20.545655,
-  "coordinatesY": 30.545406,
-};
-
 class NEAR extends StatefulWidget {
-  Map<String, dynamic> Loc;
-  NEAR({super.key, required this.Loc});
+  const NEAR({super.key});
 
   @override
   State<NEAR> createState() => _NEARState();

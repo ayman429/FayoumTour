@@ -235,7 +235,7 @@ class Details extends StatelessWidget {
                       )
                     : RatingScreen(
                         id: data.id,
-                        rate_value: data.rate_value,
+                        rate_value: data.rate_value ?? 0,
                         type: "places",
                       ),
                 const SizedBox(

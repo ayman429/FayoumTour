@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,6 +38,9 @@ class AddLike extends StatelessWidget {
         builder: (context, state) {
           return TextButton(
             onPressed: () {
+              likeMap[postId] == 0
+                  ? AudioPlayer().play(AssetSource('images/like.mp3'))
+                  : null;
               Like like = Like(
                   like: like_value == 0 ? 1 : 0,
                   postId: postId,
@@ -64,24 +68,24 @@ class AddLike extends StatelessWidget {
                 const SizedBox(
                   width: 5,
                 ),
-                likeMap[postId] == 0 ? const Text(
-                  "Like",
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
-                )
-                : const Text(
-                  "Liked",
-                  style: TextStyle(
-                    color: Colors.blue,
-                  ),
-                )
+                likeMap[postId] == 0
+                    ? const Text(
+                        "Like",
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      )
+                    : const Text(
+                        "Liked",
+                        style: TextStyle(
+                          color: Colors.blue,
+                        ),
+                      )
               ],
             ),
           );
         },
       ),
     );
-
   }
 }

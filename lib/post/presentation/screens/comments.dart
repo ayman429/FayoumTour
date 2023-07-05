@@ -58,7 +58,7 @@ class CommentList extends StatelessWidget {
                 ),
                 title: Container(
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 69, 69, 69),
+                      color: Theme.of(context).colorScheme.tertiaryContainer,
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     padding: const EdgeInsets.all(8.0),
@@ -72,7 +72,6 @@ class CommentList extends StatelessWidget {
                               child: Text(
                                 data[index].createdBy!.userName ?? "",
                                 style: const TextStyle(
-                                    color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -82,27 +81,26 @@ class CommentList extends StatelessWidget {
                                         "0")
                                 ? BlocBuilder<PostBloc, PostState>(
                                     builder: (context, state) {
-                                      return IconButton(
-                                          onPressed: () {
-                                            print("-------->");
-                                            print(data[index].id!);
-                                            BlocProvider.of<PostBloc>(context)
-                                                .add(DeleteCommentEvent(
-                                                    commentId:
-                                                        data[index].id!));
-                                          },
-                                          icon: const Icon(Icons.cancel));
+                                      return InkWell(
+                                        onTap: () {
+                                          BlocProvider.of<PostBloc>(context).add(DeleteCommentEvent(commentId:data[index].id!));
+                                        },
+                                        child: const Icon(Icons.cancel),
+                                      );
                                     },
                                   )
-                                : Container(),
+                                : InkWell(
+                                        onTap: () {},
+                                        child: const Icon(Icons.lock,color: Colors.transparent,),
+                                      ),
                           ],
                         ),
                         const SizedBox(
-                          height: 5,
+                          height: 3,
                         ),
                         Text(
                           data[index].comment,
-                          style: TextStyle(color: Colors.white),
+
                         ),
                       ],
                     )),

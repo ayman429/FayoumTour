@@ -87,12 +87,15 @@ class SSSettings extends StatelessWidget {
                     "Language",
                     style: GoogleFonts.aBeeZee(fontSize: 19),
                   ),
-                  trailing: LiteRollingSwitch(
+                  trailing:
+                  LiteRollingSwitch(
                     onChanged: (newValue) {},
                     textSize: 13,
                     onDoubleTap: () {},
                     onSwipe: () {},
-                    onTap: () {},
+                    onTap: () {
+                      print("object");
+                    },
                     animationDuration: const Duration(microseconds: 100),
                     value: true,
                     textOff: "Arabic",
@@ -103,65 +106,21 @@ class SSSettings extends StatelessWidget {
                     iconOn: Icons.language_outlined,
                     width: 100,
                   ),
+                  // Switch(
+                  //   onChanged: (value) {
+                      
+                  //   },
+                  //   value: true,
+                  //     activeColor: Colors.amber,
+                  //     activeTrackColor: Colors.cyan,
+                  //     inactiveThumbColor: Colors.blueGrey.shade600,
+                  //     inactiveTrackColor: Colors.grey.shade400,
+  
+                  // ),
                 ),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 2),
-              child: Card(
-                color: Theme.of(context).colorScheme.secondary,
-                child: ListTile(
-                  leading: Text(
-                    "Price",
-                    style: GoogleFonts.aBeeZee(fontSize: 19),
-                  ),
-                  trailing: LiteRollingSwitch(
-                    onChanged: (newValue) {},
-                    textSize: 13,
-                    onDoubleTap: () {},
-                    onSwipe: () {},
-                    onTap: () {},
-                    animationDuration: const Duration(microseconds: 100),
-                    value: false,
-                    //textOff: "Off",
-                    //textOn: "On",
-                    //colorOff: Colors.grey,
-                    //colorOn: Colors.greenAccent,
-                    //iconOff: Icons.disabled_by_default,
-                    //iconOn: Icons.all_out,
-                    width: 100,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 2),
-              child: Card(
-                color: Theme.of(context).colorScheme.secondary,
-                child: ListTile(
-                  leading: Text(
-                    "Rating",
-                    style: GoogleFonts.aBeeZee(fontSize: 19),
-                  ),
-                  trailing: LiteRollingSwitch(
-                    onChanged: (newValue) {},
-                    textSize: 13,
-                    onDoubleTap: () {},
-                    onSwipe: () {},
-                    onTap: () {},
-                    animationDuration: const Duration(microseconds: 100),
-                    value: true,
-                    //textOff: "Off",
-                    //textOn: "On",
-                    //colorOff: Colors.grey,
-                    //colorOn: Colors.greenAccent,
-                    //iconOff: Icons.disabled_by_default,
-                    //iconOn: Icons.all_out,
-                    width: 100,
-                  ),
-                ),
-              ),
-            ),
+
           ],
         ),
       ),

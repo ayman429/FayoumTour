@@ -46,13 +46,16 @@ class _CommentScreenState extends State<CommentScreen> {
         floatingActionButton: Container(
           margin: const EdgeInsets.only(left: 35),
           child: TextField(
+          
             controller: _textEditingController,
             decoration: InputDecoration(
+              
               filled: true,
-              fillColor: const Color.fromARGB(255, 33, 33, 33),
+              fillColor: Theme.of(context).colorScheme.tertiaryContainer,
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
               hintText: "Write a comment...",
+              hintStyle: const TextStyle(color: Colors.grey),
               border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(50))),
               suffixIcon: BlocConsumer<PostBloc, PostState>(
@@ -99,7 +102,7 @@ class _CommentScreenState extends State<CommentScreen> {
               ),
               suffixIconColor: _textEditingController.text == ""
                   ? Colors.grey
-                  : const Color.fromARGB(255, 0, 255, 13),
+                  : Colors.green,
             ),
             maxLines: 5,
             minLines: 1,

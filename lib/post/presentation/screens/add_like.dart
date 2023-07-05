@@ -58,16 +58,22 @@ class AddLike extends StatelessWidget {
                         color: Colors.grey,
                       )
                     : const Icon(
-                        MyFlutterApp.like2,
+                        MyFlutterApp.like3,
                         color: Colors.blue,
                       ),
                 const SizedBox(
                   width: 5,
                 ),
-                const Text(
+                likeMap[postId] == 0 ? const Text(
                   "Like",
                   style: TextStyle(
                     color: Colors.grey,
+                  ),
+                )
+                : const Text(
+                  "Liked",
+                  style: TextStyle(
+                    color: Colors.blue,
                   ),
                 )
               ],
@@ -77,6 +83,5 @@ class AddLike extends StatelessWidget {
       ),
     );
 
-    ;
   }
 }

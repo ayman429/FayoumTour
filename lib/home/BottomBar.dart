@@ -155,30 +155,36 @@ class _BottomBarState extends State<BottomBar> {
                 animationDuration: const Duration(milliseconds: 200),
                 color: Theme.of(context).colorScheme.tertiaryContainer,
                 items: [
-                  const Icon(
-                    Icons.person_outlined,
+                  Icon(
+                    selected == 0 ? Icons.person : Icons.person_outlined,
                     size: 25,
-                  ),
-                  const Icon(
-                      Icons.explore,
-                      size: 25,
-                    ),
-                  
-                  const Icon(
-                    Icons.home,
-                    size: 25,
+                    color: selected == 0 ? Colors.green : null,
                   ),
                   Icon(
-                    selected == 2 ? Icons.add_circle : Icons.add_circle_outline,
+                      selected == 1 ? Icons.explore : Icons.explore_outlined,
+                      size: 25,
+                      color: selected == 1 ? Colors.green : null,
+                    ),
+                  
+                  Icon(
+                    selected == 2 ? Icons.home : Icons.home_outlined,
                     size: 25,
+                    color: selected == 2 ? Colors.green : null,
                   ),
-                  const Icon(
-                    Icons.favorite_outline,
+                  Icon(
+                    selected == 3 ? Icons.add_circle : Icons.add_circle_outline,
                     size: 25,
+                    color: selected == 3 ? Colors.green : null,
                   ),
-                  const Icon(
-                    Icons.padding_outlined,
+                  Icon(
+                    selected == 4 ? Icons.favorite : Icons.favorite_outline,
                     size: 25,
+                    color: selected == 4 ? Colors.green : null,
+                  ),
+                  Icon(
+                    selected == 5 ? Icons.padding_outlined : Icons.padding,
+                    size: 25,
+                    color: selected == 5 ? Colors.green : null,
                   ),
                 ],
                 onTap: (value) {

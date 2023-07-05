@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/services/services_locator.dart';
+import '../../../../home/info.dart';
 import '../../../../hotels/presentation/screens/hotel_reservation_details_for_manager.dart';
 import '../../../../hotels/presentation/screens/hotel_reservation_details_for_user.dart';
 import '../../controller/authentication_bloc.dart';
@@ -18,7 +19,6 @@ import '../login/login_screen.dart';
 import 'ProfileMenuWidget.dart';
 import 'base_update_profile.dart';
 import 'settings.dart';
-import 'package:fayoumtour/home/reservations_list.dart';
 
 class profile_screen extends StatefulWidget {
   const profile_screen({Key? key}) : super(key: key);
@@ -100,10 +100,10 @@ class _profile_screenState extends State<profile_screen> {
                 builder: (context, snapshot) => (userDetails.email != "")
                     ? Column(
                         children: [
-                          Text(username, style: GoogleFonts.aBeeZee()),
+                          Text(username, style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold,fontSize: 16)),
                           const SizedBox(height: 10),
                           Text("${userDetails.email}",
-                              style: GoogleFonts.aBeeZee()),
+                              style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold,fontSize: 16)),
                         ],
                       )
                     : Text("welcome", style: GoogleFonts.aBeeZee()),
@@ -121,15 +121,15 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(("Edit profile"),
                       style: GoogleFonts.rye(
-                          color: Theme.of(context).colorScheme.secondary)),
+                          color: Theme.of(context).colorScheme.secondary,fontSize: 16),),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               const Divider(),
               const SizedBox(height: 10),
               ProfileMenuWidget(
@@ -141,15 +141,7 @@ class _profile_screenState extends State<profile_screen> {
                         MaterialPageRoute(
                             builder: (context) => const SSSettings()));
                   }),
-              ProfileMenuWidget(
-                  title: "Billing Details", icon: Icons.wallet, onPress: () {}),
-              ProfileMenuWidget(
-                  title: "User Management",
-                  icon: Icons.verified_user_outlined,
-                  onPress: () {}),
-              const Divider(),
-              const SizedBox(height: 10),
-              ProfileMenuWidget(
+                  ProfileMenuWidget(
                   title: "ٌHotel Reservations",
                   icon: Icons.list_alt_rounded,
                   onPress: () {
@@ -165,14 +157,22 @@ class _profile_screenState extends State<profile_screen> {
                                 builder: (context) =>
                                     HotelsReservationDetailsForUser()));
                   }),
+
+
+              
               ProfileMenuWidget(
-                  title: "Information", icon: Icons.info, onPress: () {}),
+                  title: "Information", icon: Icons.info, onPress: () {
+                    Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const AboutScreen()));
+                  }),
               BlocBuilder<AuthenticationBloc, AuthenticationState>(
                 builder: (context, state) {
                   return ProfileMenuWidget(
                       title: "Logout",
                       icon: Icons.logout_outlined,
-                      textColor: Colors.red,
                       endIcon: false,
                       onPress: () {
                         BlocProvider.of<AuthenticationBloc>(context)

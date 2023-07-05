@@ -1,6 +1,7 @@
 import 'package:fayoumtour/TourismPlaces/presentation/controller/tourism_place_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../TourismPlaces/domain/entities/tourism_place_rate.dart';
 import '../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
@@ -50,7 +51,7 @@ class _RatingScreenState extends State<RatingScreen> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                   ),
@@ -151,11 +152,19 @@ class StarRating extends StatelessWidget {
                     context: context);
               }
             }, builder: (context, state) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("Rating "),
-                  for (int i = 0; i < 5; i++) _buildStar(context, i),
+              return Column(
+                children: [
+                  Text("Rate it !!",style: GoogleFonts.acme(fontSize: 22,color: Colors.green,
+                  fontWeight: FontWeight.bold
+                  ),),
+                  const SizedBox(height: 4,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      
+                      for (int i = 0; i < 5; i++) _buildStar(context, i),
+                    ],
+                  ),
                 ],
               );
             }),
@@ -178,11 +187,17 @@ class StarRating extends StatelessWidget {
                     context: context);
               }
             }, builder: (context, state) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("Rating "),
-                  for (int i = 0; i < 5; i++) _buildStar(context, i),
+              return Column(
+                children: [
+                  Text("Rate it !!",style: GoogleFonts.acme(fontSize: 22,color: Colors.green,
+                  fontWeight: FontWeight.bold
+                  ),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      for (int i = 0; i < 5; i++) _buildStar(context, i),
+                    ],
+                  ),
                 ],
               );
             }),

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:location/location.dart';
-import '../TourismPlaces/presentation/screens/get_rating_places.dart';
-import '../hotels/presentation/screens/get_rating_hotels.dart';
 import 'RatingStarsBar.dart';
 import 'StarsRating.dart';
 import 'image_list.dart';
@@ -79,8 +77,9 @@ class Details extends StatelessWidget {
                           horizontal: 20, vertical: 5),
                       child: Text(
                         data.description,
-                        style: GoogleFonts.merriweather(
-                            fontSize: 13,
+                        style: GoogleFonts.acme(
+                            height: 1.45,
+                            fontSize: 17,
                             color: Theme.of(context).colorScheme.onPrimary),
                       ),
                     )),
@@ -262,7 +261,6 @@ class Details extends StatelessWidget {
                         }
                         final url =
                             "https://www.google.com/maps/search/?api=1&query=${data.coordinatesX},${data.coordinatesY}";
-
                         if (await canLaunch(url)) {
                           await launch(url);
                         } else {

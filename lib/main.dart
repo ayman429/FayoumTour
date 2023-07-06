@@ -20,7 +20,7 @@ var token;
 var _selectedOption;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    SystemChrome.setPreferredOrientations([
+  SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
@@ -87,15 +87,18 @@ class MyApp extends StatelessWidget {
               },
               home: AnimatedSplashScreen(
                 backgroundColor: themeState.appTheme == AppStrings.lightString
-                                  ? Colors.white
-                                  : const Color.fromARGB(255, 21, 21, 21),
+                    ? Colors.white
+                    : const Color.fromARGB(255, 21, 21, 21),
                 animationDuration: const Duration(milliseconds: 500),
                 splashTransition: SplashTransition.scaleTransition,
                 splashIconSize: 250,
-                splash: Center(child: Image.asset(AppStrings.logoImage,
-                height: 290,
-                width: 290,
-                ),),
+                splash: Center(
+                  child: Image.asset(
+                    AppStrings.logoImage,
+                    height: 290,
+                    width: 290,
+                  ),
+                ),
                 nextScreen: (token == "0")
                     ? const LoginScreen()
                     : BottomBar(

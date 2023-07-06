@@ -80,47 +80,91 @@ class _AddPostComponentState extends State<AddPostComponent> {
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  child: TextButton(
-                    child: Center(
-                      child: Text(
-                        widget.type == 'add' ? 'Post' : "Update",
-                        style: GoogleFonts.rye(
-                            fontSize: 17,
-                            color: Theme.of(context).colorScheme.onSecondary),
-                      ),
-                    ),
-                    onPressed: () async {
-                      if (_textEditingController.text != "" ||
-                          _imageList.isNotEmpty) {
-                        List<String> imagesPath = [];
-                        for (int i = 0; i < _imageList.length; i++) {
-                          imagesPath.add(_imageList[i].path);
-                        }
-
-                        String body = "";
-                        body = _textEditingController.text;
-                        if (widget.type == "add") {
-                          BlocProvider.of<PostBloc>(context).add(AddPostEvent(
-                            body: body,
-                            images: imagesPath,
-                          ));
-                        } else if (widget.type == "edit") {
-                          BlocProvider.of<PostBloc>(context)
-                              .add(UpdatePostEvent(
-                            body: body,
-                            images: imagesPath,
-                            posId: widget.data.id.toString(),
-                          ));
-                        }
-
-                        print("---------------------------");
-                        print(imagesPath);
-                        _textEditingController.clear();
-                        setState(() {
-                          _imageList = [];
-                        });
-                        // Navigator.pop(context);
+                  child: BlocConsumer<PostBloc, PostState>(
+                    listener: (context, state) {
+                      if (state.addPostState == RequestState.loaded ||
+                          state.updatePostState == RequestState.loaded) {
+                        print("Post Loded");
+                        BlocProvider.of<PostBloc>(context).add(GetPostEvent());
+                        print("Post Loded");
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      } else if (state.addPostState == RequestState.error ||
+                          state.updatePostState == RequestState.error) {
+                        Navigator.pop(context);
+                        SnackBarMessage().showErrorSnackBar(
+                            message: "problem happened try again",
+                            context: context);
                       }
+                    },
+                    builder: (context, state) {
+                      return TextButton(
+                        child: Center(
+                          child: Text(
+                            widget.type == 'add' ? 'Post' : "Update",
+                            style: GoogleFonts.rye(
+                                fontSize: 17,
+                                color:
+                                    Theme.of(context).colorScheme.onSecondary),
+                          ),
+                        ),
+                        onPressed: () async {
+                          if (_textEditingController.text != "" ||
+                              _imageList.isNotEmpty) {
+                            List<String> imagesPath = [];
+                            for (int i = 0; i < _imageList.length; i++) {
+                              imagesPath.add(_imageList[i].path);
+                            }
+
+                            String body = "";
+                            body = _textEditingController.text;
+                            if (widget.type == "add") {
+                              BlocProvider.of<PostBloc>(context)
+                                  .add(AddPostEvent(
+                                body: body,
+                                images: imagesPath,
+                              ));
+                            } else if (widget.type == "edit") {
+                              BlocProvider.of<PostBloc>(context)
+                                  .add(UpdatePostEvent(
+                                body: body,
+                                images: imagesPath,
+                                posId: widget.data.id.toString(),
+                              ));
+                            }
+
+                            print("---------------------------");
+                            print(imagesPath);
+                            _textEditingController.clear();
+                            setState(() {
+                              _imageList = [];
+                            });
+                            // Navigator.pop(context);
+                          }
+
+                          if (state.addPostState == RequestState.loading ||
+                              state.updatePostState == RequestState.loading) {
+                            print("Post Loding");
+
+                            showDialog(
+                              context: context,
+                              builder: (ctx) => const FractionallySizedBox(
+                                widthFactor:
+                                    0.5, // Set the desired width factor (0.0 to 1.0)
+                                child: AlertDialog(
+                                  content: SizedBox(
+                                    width: double.infinity,
+                                    height: 30,
+                                    child: Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                      );
                     },
                   ),
                 ),
@@ -133,54 +177,6 @@ class _AddPostComponentState extends State<AddPostComponent> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(0 //AppPadding.p16
-                        ),
-                    child: BlocConsumer<PostBloc, PostState>(
-                        listener: (context, state) {
-                      if (state.addPostState == RequestState.loaded ||
-                          state.updatePostState == RequestState.loaded) {
-                        print("Post Loded");
-                        BlocProvider.of<PostBloc>(context).add(GetPostEvent());
-                        print("Post Loded");
-                        Navigator.pop(context);
-                        // setState(() {
-                        //   Navigator.pop(context);
-                        // });
-
-                        //   var _selectedOption =
-                        //       sharedPreferences!.getString("selectedOption");
-                        //   if (_selectedOption != null) {
-                        //     Navigator.of(context).pushAndRemoveUntil(
-                        //         MaterialPageRoute(
-                        //             builder: (context) =>
-                        //                 BottomBar(select: 1, _selectedOption)),
-                        //         (route) => false);
-                        //   } else {
-                        //     Navigator.of(context).pushAndRemoveUntil(
-                        //         MaterialPageRoute(builder: (context) => TourismScreen()),
-                        //         (route) => false);
-                        //   }
-                      } else if (state.addPostState == RequestState.error ||
-                          state.updatePostState == RequestState.error) {
-                        // String message;
-                        // message = loginValidationMessage(state.loginMessage);
-                        // message = Validation.validationMessage(state.addPostMessage);
-                        SnackBarMessage().showErrorSnackBar(
-                            message: state.addPostMessage, context: context);
-                      }
-                    }, builder: (context, state) {
-                      if (state.addPostState == RequestState.loading ||
-                          state.updatePostState == RequestState.loading) {
-                        print("Post Loding");
-
-                        /// loading
-                        // return Text("Processing");
-                      }
-                      return Container();
-                    }),
-                  ),
-
                   // user image
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -397,6 +393,64 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         )
                       : const SizedBox.shrink(),
                   const SizedBox(height: 7),
+
+                  // Padding(
+                  //   padding: const EdgeInsets.all(0 //AppPadding.p16
+                  //       ),
+                  //   child: BlocConsumer<PostBloc, PostState>(
+                  //       listener: (context, state) {
+                  //     if (state.addPostState == RequestState.loaded ||
+                  //         state.updatePostState == RequestState.loaded) {
+                  //       print("Post Loded");
+                  //       BlocProvider.of<PostBloc>(context).add(GetPostEvent());
+                  //       print("Post Loded");
+                  //       Navigator.pop(context);
+                  //     } else if (state.addPostState == RequestState.error ||
+                  //         state.updatePostState == RequestState.error) {
+                  //       print("error");
+                  //       // String message;
+                  //       // message = loginValidationMessage(state.loginMessage);
+                  //       // message = Validation.validationMessage(state.addPostMessage);
+                  //       SnackBarMessage().showErrorSnackBar(
+                  //           message: state.addPostMessage, context: context);
+                  //     }
+                  //   }, builder: (context, state) {
+                  //     if (state.addPostState == RequestState.loading ||
+                  //         state.updatePostState == RequestState.loading) {
+                  //       print("Post Loding");
+
+                  //       // return ElevatedButton(
+                  //       //     child: const Text("Show alert Dialog box"),
+                  //       //     onPressed: () {
+                  //       //       showDialog(
+                  //       //         context: context,
+                  //       //         builder: (ctx) => AlertDialog(
+                  //       //           title: const Text("Alert Dialog Box"),
+                  //       //           content: const Text(
+                  //       //               "You have raised a Alert Dialog Box"),
+                  //       //           actions: <Widget>[
+                  //       //             TextButton(
+                  //       //               onPressed: () {
+                  //       //                 Navigator.of(ctx).pop();
+                  //       //               },
+                  //       //               child: Container(
+                  //       //                 color: Colors.green,
+                  //       //                 padding: const EdgeInsets.all(14),
+                  //       //                 child: const Text("okay"),
+                  //       //               ),
+                  //       //             ),
+                  //       //           ],
+                  //       //         ),
+                  //       //       );
+                  //       //     });
+
+                  //       /// loading
+                  //       // return Text("Processing");
+                  //     }
+                  //     return Container();
+                  //   }),
+
+                  // ),
                 ],
               ),
             ),

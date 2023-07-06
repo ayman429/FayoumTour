@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../core/local_data_shared_preferences/access_token_shared_preferences.dart';
 import '../../../../core/services/services_locator.dart';
 import '../../../../home/info.dart';
 import '../../../../hotels/presentation/screens/hotel_reservation_details_for_manager.dart';
@@ -181,6 +182,8 @@ class _profile_screenState extends State<profile_screen> {
                       onPress: () {
                         BlocProvider.of<AuthenticationBloc>(context)
                             .add(LogoutEvent());
+                        AccessToken accessToken = AccessToken();
+                        accessToken.saveToken("0");
                         Navigator.push(
                             context,
                             MaterialPageRoute(

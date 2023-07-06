@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter/services.dart';
 import 'Authentication/presentation/screens/Login/login_screen.dart';
 import 'core/local_data_shared_preferences/access_token_shared_preferences.dart';
 import 'core/utils/app_localizations.dart';
@@ -14,11 +14,16 @@ import 'core/utils/languages/bloc/app_language_bloc.dart';
 import 'core/utils/theme/bloc/app_theme_bloc.dart';
 import 'home/BottomBar.dart';
 import 'post/presentation/controller/bloc/post_bloc.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 var token;
 var _selectedOption;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   ServicesLocator().init();
 
   sharedPreferences = await SharedPreferences.getInstance();
@@ -80,13 +85,25 @@ class MyApp extends StatelessWidget {
                 }
                 return deviceLocale;
               },
-              home: (token == "0")
-                  ? const LoginScreen()
-                  : BottomBar(
-                      select: 2,
-                      _selectedOption != ""
-                          ? _selectedOption
-                          : "Islamic antiquities"));
+              home: AnimatedSplashScreen(
+                backgroundColor: themeState.appTheme == AppStrings.lightString
+                                  ? Colors.white
+                                  : const Color.fromARGB(255, 21, 21, 21),
+                animationDuration: const Duration(milliseconds: 500),
+                splashTransition: SplashTransition.scaleTransition,
+                splashIconSize: 250,
+                splash: Center(child: Image.asset(AppStrings.logoImage,
+                height: 290,
+                width: 290,
+                ),),
+                nextScreen: (token == "0")
+                    ? const LoginScreen()
+                    : BottomBar(
+                        select: 2,
+                        _selectedOption != ""
+                            ? _selectedOption
+                            : "Islamic antiquities"),
+              ));
           // : HotelsReservationDetailsForManager());
         }));
   }

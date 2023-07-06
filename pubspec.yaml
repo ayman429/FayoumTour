@@ -68,6 +68,7 @@ dependencies:
   flutter_credit_card:
   flutter_tts:
   audioplayers:
+  animated_splash_screen:
   
 
 dev_dependencies:

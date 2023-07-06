@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 
 class GetReservationData extends StatelessWidget {
@@ -20,7 +19,13 @@ class GetReservationData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int index = 0;
-    return ListView.builder(
+    return data.length == 0 ? Center(
+        child: Text(
+          "Nothing Yet",
+          style: GoogleFonts.pressStart2p(
+              fontSize: 25, color: Theme.of(context).colorScheme.primary),
+        ),
+      ) : ListView.builder(
       itemCount: data.length,
       scrollDirection: Axis.vertical,
       itemBuilder: (context, index) {

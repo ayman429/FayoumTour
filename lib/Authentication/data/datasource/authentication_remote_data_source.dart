@@ -73,6 +73,11 @@ class AuthenticationRemoteDataSource
           ? await sharedPreferences!
               .setString("placeType", userDetails.placeType ?? "")
           : await sharedPreferences!.setString("placeType", "");
+
+      await sharedPreferences!
+          .setBool("is_manager", userDetails.is_manager ?? false);
+      await sharedPreferences!.setInt("managerId", userDetails.managerId ?? 0);
+
       userDetails.model1Input != ""
           ? await sharedPreferences!.setString(
               "model1Input",

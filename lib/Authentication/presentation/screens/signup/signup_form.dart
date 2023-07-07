@@ -18,24 +18,13 @@ import '../../controller/authentication_bloc.dart';
 import '../../controller/authentication_event.dart';
 import '../../controller/authentication_state.dart';
 
-class SigupForm extends StatefulWidget {
-  SigupForm({Key? key}) : super(key: key);
-
-  @override
-  State<SigupForm> createState() => _SigupFormState();
-}
-
-class _SigupFormState extends State<SigupForm> {
+class SigupForm extends StatelessWidget {
   TextEditingController userNameController = TextEditingController();
-
   TextEditingController emailController = TextEditingController();
-
   TextEditingController password1Controller = TextEditingController();
-
   TextEditingController password2Controller = TextEditingController();
-
+  SigupForm({Key? key}) : super(key: key);
   int indexError = 0;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -64,10 +53,8 @@ class _SigupFormState extends State<SigupForm> {
                   String message;
                   if (indexError == 1) {
                     Navigator.pop(context);
-                    setState(() {
-                      indexError = 0;
-                    });
                   }
+
                   message =
                       Validation.validationMessage(state.registrationMessage);
                   SnackBarMessage()
@@ -85,12 +72,9 @@ class _SigupFormState extends State<SigupForm> {
                     BlocProvider.of<AuthenticationBloc>(context)
                         .add(RegistrationEvent(registration: registration));
 
-                    if (state.loginstate == RequestState.loading) {
+                    if (state.registrationstate == RequestState.loading) {
                       print("signup Loding");
-                      setState(() {
-                        indexError = 1;
-                      });
-
+                      indexError = 1;
                       showDialog(
                         context: context,
                         builder: (ctx) => const FractionallySizedBox(

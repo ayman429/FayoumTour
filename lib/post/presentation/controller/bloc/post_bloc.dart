@@ -229,8 +229,6 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       addLikeState: RequestState.loaded,
     ));
     (await addLikeUsecase(event.like)).fold((l) {
-      int postId = event.like.postId;
-      likeMap[postId] = likeMap[postId] == 0 ? 1 : 0;
       return emit(PostState(
           addLikeState: RequestState.error, addLikeMessage: l.message));
     }, (r) {

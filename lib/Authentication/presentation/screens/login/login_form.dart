@@ -12,6 +12,7 @@ import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snackbar_message.dart';
 import '../../../../home/BottomBar.dart';
 import '../../../../home/DashBoard.dart';
+import '../../../../home/DashBoard2.dart';
 import '../../../../home/profile.dart';
 import '../../../../home/questions.dart';
 import '../../../domain/entities/login.dart';
@@ -59,7 +60,10 @@ class _LoginFormState extends State<LoginForm> {
                       MaterialPageRoute(
                         builder: (context) =>
                             sharedPreferences!.getBool("is_manager") == true
-                                ? DashBoard()
+                                ? DashBoardScreen(
+                                    select: 0,
+                                  )
+                                // ? DashBoard()
                                 : BottomBar(
                                     select: 2,
                                     selectedOption,

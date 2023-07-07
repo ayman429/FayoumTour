@@ -14,6 +14,7 @@ import 'core/utils/languages/bloc/app_language_bloc.dart';
 import 'core/utils/theme/bloc/app_theme_bloc.dart';
 import 'home/BottomBar.dart';
 import 'home/DashBoard.dart';
+import 'home/DashBoard2.dart';
 import 'home/profile.dart';
 import 'home/questions.dart';
 import 'post/presentation/controller/bloc/post_bloc.dart';
@@ -105,7 +106,10 @@ class MyApp extends StatelessWidget {
                 nextScreen: (token == "0")
                     ? const LoginScreen()
                     : sharedPreferences!.getBool("is_manager") == true
-                        ? DashBoard()
+                        ? DashBoardScreen(
+                            select: 0,
+                          )
+                        // ? DashBoard()
                         : _selectedOption == ""
                             ? TourismScreen()
                             : BottomBar(

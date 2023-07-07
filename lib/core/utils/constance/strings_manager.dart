@@ -59,7 +59,7 @@ class AppStrings {
   static const String messageCredentials = "Email or Password Error";
   static const String connection = "No Connection Check Internet";
   static const String passwordMatchedError =
-      "The two password fields didn’t match.";
+      "The two password fields didn't match.";
   static const String passwordLenError =
       "This password is too short. It must contain at least 8 characters.";
   static const String passwordCommonError = "This password is too common.";

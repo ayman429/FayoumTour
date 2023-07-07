@@ -13,6 +13,9 @@ import 'core/utils/constance/theme_manager.dart';
 import 'core/utils/languages/bloc/app_language_bloc.dart';
 import 'core/utils/theme/bloc/app_theme_bloc.dart';
 import 'home/BottomBar.dart';
+import 'home/DashBoard.dart';
+import 'home/profile.dart';
+import 'home/questions.dart';
 import 'post/presentation/controller/bloc/post_bloc.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
@@ -101,11 +104,15 @@ class MyApp extends StatelessWidget {
                 ),
                 nextScreen: (token == "0")
                     ? const LoginScreen()
-                    : BottomBar(
-                        select: 2,
-                        _selectedOption != ""
-                            ? _selectedOption
-                            : "Islamic antiquities"),
+                    : sharedPreferences!.getBool("is_manager") == true
+                        ? DashBoard()
+                        : _selectedOption == ""
+                            ? TourismScreen()
+                            : BottomBar(
+                                select: 2,
+                                _selectedOption != ""
+                                    ? _selectedOption
+                                    : "Islamic antiquities"),
               ));
           // : HotelsReservationDetailsForManager());
         }));

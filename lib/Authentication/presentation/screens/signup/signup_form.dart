@@ -28,41 +28,6 @@ class SigupForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(AppPadding.p16),
-          child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
-              listener: (context, state) {
-            if (state.registrationstate == RequestState.loaded) {
-              // print("---------- SignUp userId -------------");
-              // print(state.userDetails!.id);
-              //  sharedPreferences!.setString("USERID",state.userDetails!.id);
-              // var _selectedOption =
-              //     sharedPreferences!.getString("selectedOption");
-              // if (_selectedOption != null) {
-              //   Navigator.of(context).pushAndRemoveUntil(
-              //       MaterialPageRoute(
-              //           builder: (context) =>
-              //               BottomBar(select: 1, _selectedOption)),
-              //       (route) => false);
-              // } else {
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => TourismScreen()),
-                  (route) => false);
-              // }
-            } else if (state.registrationstate == RequestState.error) {
-              String message;
-              message = Validation.validationMessage(state.registrationMessage);
-              SnackBarMessage()
-                  .showErrorSnackBar(message: message, context: context);
-            }
-          }, builder: (context, state) {
-            if (state.registrationstate == RequestState.loading) {
-              /// loading
-              // return Text("Processing");
-            }
-            return Container();
-          }),
-        ),
         UserNameTextFormField(userNameController: userNameController),
         EmailTextFormField(emailController: emailController),
         PasswordTextFormField(passwordController: password1Controller),
@@ -76,33 +41,66 @@ class SigupForm extends StatelessWidget {
             child: SizedBox(
               height: 55,
               width: 320,
-              child: TextButton(
-                onPressed: () {
-                  // print(userNameController.text);
-                  // print(emailController.text);
-                  // print(password1Controller.text);
-                  // print(password2Controller.text);
-                  Registration registration = Registration(
-                    username: userNameController.text,
-                    email: emailController.text,
-                    password1: password1Controller.text,
-                    password2: password2Controller.text,
-                  );
-                  BlocProvider.of<AuthenticationBloc>(context)
-                      .add(RegistrationEvent(registration: registration));
-                },
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                ),
-                child: Text(
-                  AppStrings.signUpString.toUpperCase(),
-                  style: GoogleFonts.rye(
-                      fontSize: 16,
-                      color: Theme.of(context).colorScheme.secondary),
-                ),
-              ),
+              child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
+                  listener: (context, state) {
+                if (state.registrationstate == RequestState.loaded) {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => TourismScreen()),
+                      (route) => false);
+                  // }
+                } else if (state.registrationstate == RequestState.error) {
+                  String message;
+                  message =
+                      Validation.validationMessage(state.registrationMessage);
+                  SnackBarMessage()
+                      .showErrorSnackBar(message: message, context: context);
+                }
+              }, builder: (context, state) {
+                return TextButton(
+                  onPressed: () {
+                    Registration registration = Registration(
+                      username: userNameController.text,
+                      email: emailController.text,
+                      password1: password1Controller.text,
+                      password2: password2Controller.text,
+                    );
+                    BlocProvider.of<AuthenticationBloc>(context)
+                        .add(RegistrationEvent(registration: registration));
+
+                    if (state.loginstate == RequestState.loading) {
+                      print("signup Loding");
+
+                      showDialog(
+                        context: context,
+                        builder: (ctx) => const FractionallySizedBox(
+                          widthFactor:
+                              0.5, // Set the desired width factor (0.0 to 1.0)
+                          child: AlertDialog(
+                            content: SizedBox(
+                              width: double.infinity,
+                              height: 30,
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                  ),
+                  child: Text(
+                    AppStrings.signUpString.toUpperCase(),
+                    style: GoogleFonts.rye(
+                        fontSize: 16,
+                        color: Theme.of(context).colorScheme.secondary),
+                  ),
+                );
+              }),
             ),
           ),
         ),

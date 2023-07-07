@@ -70,10 +70,9 @@ class AuthenticationRemoteDataSource
           .setString("username", userDetails.username ?? "");
 
       userDetails.placeType != ""
-          ? await sharedPreferences!.setString(
-              "placeType", userDetails.placeType ?? "Islamic antiquities")
-          : await sharedPreferences!
-              .setString("placeType", "Islamic antiquities");
+          ? await sharedPreferences!
+              .setString("placeType", userDetails.placeType ?? "")
+          : await sharedPreferences!.setString("placeType", "");
       userDetails.model1Input != ""
           ? await sharedPreferences!.setString(
               "model1Input",

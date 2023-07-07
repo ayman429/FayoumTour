@@ -39,7 +39,7 @@ class Validation {
       }
       return validationMessage;
     }
-    return "null";
+    return "problem happened try again";
   }
 /*{"new_password2":["This password is too short. It must contain at least 8 characters.",
 "This password is too common.","This password is entirely numeric."]} */

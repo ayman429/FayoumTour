@@ -9,7 +9,6 @@ import 'profile.dart';
 import 'search.dart';
 import 'nearst.dart';
 
-
 late String tourtismTypes;
 
 class BottomBar extends StatefulWidget {
@@ -161,11 +160,10 @@ class _BottomBarState extends State<BottomBar> {
                     color: selected == 0 ? Colors.green : null,
                   ),
                   Icon(
-                      selected == 1 ? Icons.explore : Icons.explore_outlined,
-                      size: 25,
-                      color: selected == 1 ? Colors.green : null,
-                    ),
-                  
+                    selected == 1 ? Icons.explore : Icons.explore_outlined,
+                    size: 25,
+                    color: selected == 1 ? Colors.green : null,
+                  ),
                   Icon(
                     selected == 2 ? Icons.home : Icons.home_outlined,
                     size: 25,

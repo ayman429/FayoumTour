@@ -8,6 +8,7 @@ import '../Authentication/presentation/controller/authentication_bloc.dart';
 import '../Authentication/presentation/controller/authentication_event.dart';
 import '../Authentication/presentation/controller/authentication_state.dart';
 import '../core/services/services_locator.dart';
+import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/enums.dart';
 import '../core/utils/snackbar_message.dart';
 import 'BottomBar.dart';
@@ -339,7 +340,10 @@ class _TourismScreenState extends State<TourismScreen>
                                       const SizedBox(
                                         height: 15,
                                       ),
-                                      Text(options[2] ==  "Greek and Roman Antiquities" ? "Greek and Roman" : options[2])
+                                      Text(options[2] ==
+                                              "Greek and Roman Antiquities"
+                                          ? "Greek and Roman"
+                                          : options[2])
                                     ],
                                   ),
                                   Column(
@@ -403,112 +407,132 @@ class _TourismScreenState extends State<TourismScreen>
                             ),
                             Container(
                               margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                              child: BlocBuilder<AuthenticationBloc,
+                              child: BlocConsumer<AuthenticationBloc,
                                   AuthenticationState>(
+                                listener: (context, state) {
+                                  if (state.updateuserDetailsState ==
+                                      RequestState.loaded) {
+                                    print("--------------->");
+                                    print(_selectedOption[0]);
+                                    sharedPreferences!.setString(
+                                        "placeType", _selectedOption[0]);
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) => BottomBar(
+                                                select: 2, _selectedOption[0])),
+                                        (route) => false);
+                                  } else if (state.updateuserDetailsState ==
+                                      RequestState.error) {
+                                    print(
+                                        "error: ${state.updateuserDetailsMessage}");
+                                    String message;
+                                    message = Validation.validationMessage(
+                                        state.updateuserDetailsMessage);
+                                    SnackBarMessage().showErrorSnackBar(
+                                        message: message, context: context);
+                                  }
+                                },
                                 builder: (context, state) {
-                                  return TextButton(
-                                      onPressed: () {
-                                        if (route == 0) {
-                                          setState(() {
-                                            title = "What do you prefer?";
-                                            options = [
-                                              "Historical pyramids",
-                                              "statues and monuments",
-                                              "temples",
-                                              "sand boarding"
-                                            ];
-                                            images = [
-                                              "Historical.jpg",
-                                              "statues.jpg",
-                                              "temples.jpg",
-                                              "sand.jpg"
-                                            ];
-                                            route++;
-                                          });
-                                        } else if (route == 1) {
-                                          setState(() {
-                                            title = "What do you prefer?";
-                                            options = [
-                                              "water sports",
-                                              "waterfalls area",
-                                              "safari trips and camping",
-                                              "natural gardens"
-                                            ];
-                                            images = [
-                                              "water.jpg",
-                                              "waterfalls.jpg",
-                                              "safari.jpg",
-                                              "natural.jpg"
-                                            ];
-                                            route++;
-                                          });
-                                        } else {
-                                          String model1Input =
-                                              "I Love ${_selectedOption[1]} , I Enjoy ${_selectedOption[2]}";
-                                          UserDetails userDetails = UserDetails(
-                                              placeType: _selectedOption[0],
-                                              model1Input: model1Input);
-                                          BlocProvider.of<AuthenticationBloc>(
-                                                  context)
-                                              .add(UpdateUserDetailsEvent(
-                                                  userDetails: userDetails,
-                                                  type: "username"));
-                                        }
-                                      },
-                                      style: TextButton.styleFrom(
-                                          backgroundColor: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(25))),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 5, horizontal: 50),
-                                        child: Text(
-                                          "Next",
-                                          style: GoogleFonts.rye(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .secondary,
-                                              fontSize: 20),
-                                        ),
-                                      ));
+                                  return Opacity(
+                                    opacity:
+                                        _selectedOption[route] == '' ? 0.5 : 1,
+                                    child: TextButton(
+                                        onPressed: () {
+                                          if (route == 0) {
+                                            setState(() {
+                                              title = "What do you prefer?";
+                                              options = [
+                                                "Historical pyramids",
+                                                "statues and monuments",
+                                                "temples",
+                                                "sand boarding"
+                                              ];
+                                              images = [
+                                                "Historical.jpg",
+                                                "statues.jpg",
+                                                "temples.jpg",
+                                                "sand.jpg"
+                                              ];
+                                              route++;
+                                            });
+                                          } else if (route == 1) {
+                                            setState(() {
+                                              title = "What do you prefer?";
+                                              options = [
+                                                "water sports",
+                                                "waterfalls area",
+                                                "safari trips and camping",
+                                                "natural gardens"
+                                              ];
+                                              images = [
+                                                "water.jpg",
+                                                "waterfalls.jpg",
+                                                "safari.jpg",
+                                                "natural.jpg"
+                                              ];
+                                              route++;
+                                            });
+                                          } else {
+                                            print("-------------------------");
+                                            print(route);
+                                            String model1Input =
+                                                "I Love ${_selectedOption[1]} , I Enjoy ${_selectedOption[2]}";
+                                            UserDetails userDetails =
+                                                UserDetails(
+                                                    placeType:
+                                                        _selectedOption[0],
+                                                    model1Input: model1Input);
+                                            BlocProvider.of<AuthenticationBloc>(
+                                                    context)
+                                                .add(UpdateUserDetailsEvent(
+                                                    userDetails: userDetails,
+                                                    type: "username"));
+                                            if (state.loginstate ==
+                                                RequestState.loading) {
+                                              showDialog(
+                                                context: context,
+                                                builder: (ctx) =>
+                                                    const FractionallySizedBox(
+                                                  widthFactor:
+                                                      0.5, // Set the desired width factor (0.0 to 1.0)
+                                                  child: AlertDialog(
+                                                    content: SizedBox(
+                                                      width: double.infinity,
+                                                      height: 30,
+                                                      child: Center(
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                          }
+                                        },
+                                        style: TextButton.styleFrom(
+                                            backgroundColor: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(25))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 5, horizontal: 50),
+                                          child: Text(
+                                            "Next",
+                                            style: GoogleFonts.rye(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
+                                                fontSize: 20),
+                                          ),
+                                        )),
+                                  );
                                 },
                               ),
                             ),
-                            BlocConsumer<AuthenticationBloc,
-                                    AuthenticationState>(
-                                listener: (context, state) {
-                              if (state.updateuserDetailsState ==
-                                  RequestState.loaded) {
-                                print("--------------->");
-                                print(_selectedOption[0]);
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (context) => BottomBar(
-                                            select: 2, _selectedOption[0])),
-                                    (route) => false);
-                              } else if (state.updateuserDetailsState ==
-                                  RequestState.error) {
-                                print(
-                                    "error: ${state.updateuserDetailsMessage}");
-                                String message;
-                                message = Validation.validationMessage(
-                                    state.updateuserDetailsMessage);
-                                SnackBarMessage().showErrorSnackBar(
-                                    message: message, context: context);
-                              }
-                            }, builder: (context, state) {
-                              if (state.updateuserDetailsState ==
-                                  RequestState.loading) {
-                                print("loading");
-
-                                /// loading
-                                // return Text("Processing");
-                              }
-                              return Container();
-                            }),
                           ],
                         ),
                       ),

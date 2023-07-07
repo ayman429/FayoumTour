@@ -11,6 +11,8 @@ import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snackbar_message.dart';
 import '../../../../home/BottomBar.dart';
+import '../../../../home/DashBoard.dart';
+import '../../../../home/profile.dart';
 import '../../../../home/questions.dart';
 import '../../../domain/entities/login.dart';
 import '../../../domain/entities/user_details.dart';
@@ -37,43 +39,6 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(AppPadding.p16),
-          child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
-              listener: (context, state) {
-            if (state.loginstate == RequestState.loaded) {
-              // var userId = sharedPreferences!.getString("USERID");
-              // var _selectedOption =
-              //     sharedPreferences!.getString("$userId selectedOption");
-              // if (_selectedOption != null) {
-              var selectedOption = sharedPreferences!.getString("placeType") ??
-                  "Islamic antiquities";
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          BottomBar(select: 2, selectedOption)),
-                  (route) => false);
-
-              // } else {
-              //   Navigator.of(context).pushAndRemoveUntil(
-              //       MaterialPageRoute(builder: (context) => TourismScreen()),
-              //       (route) => false);
-              // }
-            } else if (state.loginstate == RequestState.error) {
-              String message;
-              // message = loginValidationMessage(state.loginMessage);
-              message = Validation.validationMessage(state.loginMessage);
-              SnackBarMessage()
-                  .showErrorSnackBar(message: message, context: context);
-            }
-          }, builder: (context, state) {
-            if (state.loginstate == RequestState.loading) {
-              /// loading
-              // return Text("Processing");
-            }
-            return Container();
-          }),
-        ),
         EmailTextFormField(emailController: emailController),
         PasswordTextFormField(passwordController: passwordController),
         const SizedBox(height: AppPadding.p16),
@@ -84,28 +49,75 @@ class _LoginFormState extends State<LoginForm> {
             child: SizedBox(
               height: 55,
               width: 320,
-              child: TextButton(
-                onPressed: () {
-                  Login login = Login(
-                      // email: "newUser2@gmail.com",
-                      // password: "passwordnewUser2");
-                      email: emailController.text,
-                      password: passwordController.text);
-                  BlocProvider.of<AuthenticationBloc>(context)
-                      .add(LoginEvent(login: login));
-                },
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                ),
-                child: Text(
-                  AppStrings.loginString.toUpperCase(),
-                  style: GoogleFonts.rye(
-                      fontSize: 16,
-                      color: Theme.of(context).colorScheme.secondary),
-                ),
-              ),
+              child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
+                  listener: (context, state) {
+                if (state.loginstate == RequestState.loaded) {
+                  var selectedOption =
+                      sharedPreferences!.getString("placeType") ??
+                          "Islamic antiquities";
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            sharedPreferences!.getBool("is_manager") == true
+                                ? DashBoard()
+                                : BottomBar(
+                                    select: 2,
+                                    selectedOption,
+                                  ),
+                      ),
+                      (route) => false);
+                } else if (state.loginstate == RequestState.error) {
+                  String message;
+                  // message = loginValidationMessage(state.loginMessage);
+                  message = Validation.validationMessage(state.loginMessage);
+                  SnackBarMessage()
+                      .showErrorSnackBar(message: message, context: context);
+                }
+              }, builder: (context, state) {
+                return TextButton(
+                  onPressed: () {
+                    Login login = Login(
+                        // email: "newUser2@gmail.com",
+                        // password: "passwordnewUser2");
+                        email: emailController.text,
+                        password: passwordController.text);
+                    BlocProvider.of<AuthenticationBloc>(context)
+                        .add(LoginEvent(login: login));
+
+                    if (state.loginstate == RequestState.loading) {
+                      print("Login Loding");
+
+                      showDialog(
+                        context: context,
+                        builder: (ctx) => const FractionallySizedBox(
+                          widthFactor:
+                              0.5, // Set the desired width factor (0.0 to 1.0)
+                          child: AlertDialog(
+                            content: SizedBox(
+                              width: double.infinity,
+                              height: 30,
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                  ),
+                  child: Text(
+                    AppStrings.loginString.toUpperCase(),
+                    style: GoogleFonts.rye(
+                        fontSize: 16,
+                        color: Theme.of(context).colorScheme.secondary),
+                  ),
+                );
+              }),
             ),
           ),
         ),

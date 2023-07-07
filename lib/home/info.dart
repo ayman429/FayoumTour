@@ -79,7 +79,7 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(height: 32),
               Center(
                 child: Text(
-                  'Cooperation with:',
+                  'Cooperation with',
                   style: GoogleFonts.acme(
                       fontSize: 25, fontWeight: FontWeight.bold),
                 ),
@@ -115,70 +115,9 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const CircleAvatar(
-                          backgroundImage: AssetImage('assets/images/m1.jpg'),
-                          radius: 30,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Dr. Moataz Ahmed",
-                                  style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold)),
-                              Text("Director of Fayoum Tourism Authority",
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.grey)),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const CircleAvatar(
-                          backgroundImage: AssetImage('assets/images/m2.jpg'),
-                          radius: 30,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text("Mr. Mahmoud Kamel",
-                                  style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold)),
-                              Text("Researcher at Fayoum Tourism Authority",
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.grey)),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 32),
               Center(
                 child: Text(
-                  'Supervised by:',
+                  'Supervised by',
                   style: GoogleFonts.acme(
                       fontSize: 25, fontWeight: FontWeight.bold),
                 ),
@@ -213,7 +152,7 @@ class AboutScreen extends StatelessWidget {
                                 fontSize: 17, fontWeight: FontWeight.bold),
                           ),
                           Text(
-                              "Doctor at the Faculty of Computers and Artificial Intelligence, Fayoum University",
+                              "Lecturer at the Faculty of Computers and Artificial Intelligence, Fayoum University",
                               style:
                                   TextStyle(fontSize: 12, color: Colors.grey)),
                         ],
@@ -225,7 +164,7 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(height: 32),
               Center(
                 child: Text(
-                  'Developed by:',
+                  'Developed by',
                   style: GoogleFonts.acme(
                       fontSize: 25, fontWeight: FontWeight.bold),
                 ),

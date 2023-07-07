@@ -35,6 +35,7 @@ class _LoginFormState extends State<LoginForm> {
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
+  int indexError = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +74,13 @@ class _LoginFormState extends State<LoginForm> {
                 } else if (state.loginstate == RequestState.error) {
                   String message;
                   // message = loginValidationMessage(state.loginMessage);
+                  if (indexError == 1) {
+                    Navigator.pop(context);
+                    setState(() {
+                      indexError = 0;
+                    });
+                  }
+                  print(state.loginMessage);
                   message = Validation.validationMessage(state.loginMessage);
                   SnackBarMessage()
                       .showErrorSnackBar(message: message, context: context);
@@ -90,7 +98,10 @@ class _LoginFormState extends State<LoginForm> {
 
                     if (state.loginstate == RequestState.loading) {
                       print("Login Loding");
-
+                      setState(() {
+                        indexError = 1;
+                      });
+                      print(state.loginstate);
                       showDialog(
                         context: context,
                         builder: (ctx) => const FractionallySizedBox(

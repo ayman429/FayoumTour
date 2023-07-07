@@ -470,7 +470,7 @@ class ShowPosts extends StatelessWidget {
               );
 
             case RequestState.error:
-              print("error-------------->");
+              print("error-------------000>");
               print(state.postMessage);
               return const Center(
                 child: Image(

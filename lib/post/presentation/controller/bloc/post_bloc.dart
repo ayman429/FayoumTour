@@ -93,7 +93,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         ));
       });
     } catch (e) {
-      // print("l.message ${e}");
+      print("l.message ${e}");
       return emit(PostState(
           postState: RequestState.error, postMessage: "No Connection"));
     }

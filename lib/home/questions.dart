@@ -423,6 +423,7 @@ class _TourismScreenState extends State<TourismScreen>
                                         (route) => false);
                                   } else if (state.updateuserDetailsState ==
                                       RequestState.error) {
+                                    Navigator.pop(context);
                                     print(
                                         "error: ${state.updateuserDetailsMessage}");
                                     String message;

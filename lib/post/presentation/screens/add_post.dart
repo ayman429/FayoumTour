@@ -107,11 +107,20 @@ class _AddPostState extends State<AddPost> {
                                           borderRadius:
                                               BorderRadius.circular(50),
                                         ),
-                                        child: const Center(
-                                          child: Text(
-                                            '   Write your post now!   ',
-                                            style: TextStyle(fontSize: 18.0),
-                                          ),
+                                        child: Center(
+                                          child: sharedPreferences!
+                                                      .getBool("is_manager") ==
+                                                  true
+                                              ? const Text(
+                                                  '   write your offer now!   ',
+                                                  style:
+                                                      TextStyle(fontSize: 18.0),
+                                                )
+                                              : const Text(
+                                                  '   Write your post now!   ',
+                                                  style:
+                                                      TextStyle(fontSize: 18.0),
+                                                ),
                                         ),
                                       ),
                                     ),

@@ -18,12 +18,24 @@ import '../../controller/authentication_bloc.dart';
 import '../../controller/authentication_event.dart';
 import '../../controller/authentication_state.dart';
 
-class SigupForm extends StatelessWidget {
-  TextEditingController userNameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController password1Controller = TextEditingController();
-  TextEditingController password2Controller = TextEditingController();
+class SigupForm extends StatefulWidget {
   SigupForm({Key? key}) : super(key: key);
+
+  @override
+  State<SigupForm> createState() => _SigupFormState();
+}
+
+class _SigupFormState extends State<SigupForm> {
+  TextEditingController userNameController = TextEditingController();
+
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController password1Controller = TextEditingController();
+
+  TextEditingController password2Controller = TextEditingController();
+
+  int indexError = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -50,6 +62,12 @@ class SigupForm extends StatelessWidget {
                   // }
                 } else if (state.registrationstate == RequestState.error) {
                   String message;
+                  if (indexError == 1) {
+                    Navigator.pop(context);
+                    setState(() {
+                      indexError = 0;
+                    });
+                  }
                   message =
                       Validation.validationMessage(state.registrationMessage);
                   SnackBarMessage()
@@ -69,6 +87,9 @@ class SigupForm extends StatelessWidget {
 
                     if (state.loginstate == RequestState.loading) {
                       print("signup Loding");
+                      setState(() {
+                        indexError = 1;
+                      });
 
                       showDialog(
                         context: context,

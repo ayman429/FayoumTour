@@ -145,7 +145,8 @@ class _BottomBarState extends State<BottomBar> {
                 search_ketword: _text,
                 search_count: search_counter,
               )
-            : Screens[selected],
+            // : Screens[selected],
+            : IndexedStack(index: selected, children: Screens),
         bottomNavigationBar: search
             ? null
             : CurvedNavigationBar(

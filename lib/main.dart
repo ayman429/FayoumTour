@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
                   AppLanguageBloc()..add(InitialLanguageEvent())),
           BlocProvider(
             create: (context) => getIt<PostBloc>()..add(GetPostEvent()),
-          )
+          ),
         ],
         child: Builder(builder: (context) {
           var themeState = context.select((AppThemeBloc bloc) => bloc.state);

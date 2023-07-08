@@ -13,11 +13,8 @@ class BaseLoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => ObscureBloc()),
-        BlocProvider(create: (context) => getIt<AuthenticationBloc>()),
-      ],
+    return BlocProvider(
+      create: (context) => ObscureBloc(),
       child: Column(
         children: [
           LoginForm(),

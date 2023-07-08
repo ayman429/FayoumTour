@@ -53,7 +53,7 @@ class MobileLoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
+      children: [
         Container(
           margin: const EdgeInsets.fromLTRB(0, 80, 0, 0),
           height: 200,

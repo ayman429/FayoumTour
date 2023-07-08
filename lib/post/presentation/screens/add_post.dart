@@ -25,12 +25,13 @@ class _AddPostState extends State<AddPost> {
 
   Future<void> updateUIWithImagePath() async {
     Map<String, dynamic> localUerDetails =
-        json.decode(sharedPreferences!.getString("USER") ?? "");
+        await json.decode(sharedPreferences!.getString("USER") ?? "");
 
     String imagePath =
         sharedPreferences!.getString("${localUerDetails["id"]}USERIMAGE") ?? "";
     setState(() {
       getImagePath = imagePath;
+      // print("getImagePath: $getImagePath");
     });
   }
 
@@ -38,6 +39,7 @@ class _AddPostState extends State<AddPost> {
   void initState() {
     super.initState();
     updateUIWithImagePath();
+    // updateUIWithUserDetails();
   }
 
   @override
@@ -74,7 +76,10 @@ class _AddPostState extends State<AddPost> {
                                   height: 40,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
-                                    child: displayImage(getImagePath),
+                                    child: FutureBuilder(
+                                        future: updateUIWithImagePath(),
+                                        builder: (context, snapshot) =>
+                                            displayImage(getImagePath)),
                                   ),
                                 ),
                               ),

@@ -75,24 +75,33 @@ class CommentList extends StatelessWidget {
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
-                            data[index].createdBy!.id ==
-                                    int.parse(sharedPreferences!
-                                            .getString("USERID") ??
-                                        "0")
+                            (data[index].createdBy!.id ==
+                                        int.parse(sharedPreferences!
+                                                .getString("USERID") ??
+                                            "0")) ||
+                                    (int.parse(sharedPreferences!
+                                                .getString("USERID") ??
+                                            "0") ==
+                                        5)
                                 ? BlocBuilder<PostBloc, PostState>(
                                     builder: (context, state) {
                                       return InkWell(
                                         onTap: () {
-                                          BlocProvider.of<PostBloc>(context).add(DeleteCommentEvent(commentId:data[index].id!));
+                                          BlocProvider.of<PostBloc>(context)
+                                              .add(DeleteCommentEvent(
+                                                  commentId: data[index].id!));
                                         },
                                         child: const Icon(Icons.cancel),
                                       );
                                     },
                                   )
                                 : InkWell(
-                                        onTap: () {},
-                                        child: const Icon(Icons.lock,color: Colors.transparent,),
-                                      ),
+                                    onTap: () {},
+                                    child: const Icon(
+                                      Icons.lock,
+                                      color: Colors.transparent,
+                                    ),
+                                  ),
                           ],
                         ),
                         const SizedBox(
@@ -100,7 +109,6 @@ class CommentList extends StatelessWidget {
                         ),
                         Text(
                           data[index].comment,
-
                         ),
                       ],
                     )),

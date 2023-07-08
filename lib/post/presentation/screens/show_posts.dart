@@ -136,9 +136,13 @@ class ShowPosts extends StatelessWidget {
                                 ),
                               ),
                               (int.parse(sharedPreferences!
-                                              .getString("USERID") ??
-                                          "0") ==
-                                      state.post[index].createdBy!.id)
+                                                  .getString("USERID") ??
+                                              "0") ==
+                                          state.post[index].createdBy!.id) ||
+                                      (int.parse(sharedPreferences!
+                                                  .getString("USERID") ??
+                                              "0") ==
+                                          5)
                                   ? Row(
                                       children: [
                                         IconButton(

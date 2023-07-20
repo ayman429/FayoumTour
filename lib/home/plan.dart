@@ -15,13 +15,15 @@ class _PlanState extends State<Plan>
     with SingleTickerProviderStateMixin {
   late List<AssetImage> _images;
   final List<String> _imageTexts = [
-    "This is the first plan",
+    "Allow us to elucidate that this application was conceived as the graduation project at the Faculty of Computer Science.",
     "This is the second plan",
     "This is the third plan",
     "This is the fourth plan",
   ];
+
   bool _isDialogOpen = false;
-  bool _isSoundPlaying = false;
+  bool _soundPlaying = false;
+
   FlutterTts flutterTts = FlutterTts();
   AudioPlayer audioPlayer = AudioPlayer();
 
@@ -45,20 +47,18 @@ class _PlanState extends State<Plan>
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         body: Stack(
           children: [
             // Background image
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/e1.jpg"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+            // Container(
+            //   decoration: const BoxDecoration(
+            //     image: DecorationImage(
+            //       image: AssetImage("assets/images/e1.jpg"),
+            //       fit: BoxFit.cover,
+            //     ),
+            //   ),
+            // ),
 
             // Blurred background when dialog is open
             AnimatedOpacity(
@@ -83,8 +83,7 @@ class _PlanState extends State<Plan>
             
           ],
         ),
-      ),
-    );
+      );
   }
 
   List<Widget> _buildImageWidgets() {
@@ -96,7 +95,11 @@ class _PlanState extends State<Plan>
           padding:
               const EdgeInsets.only(top: 25, bottom: 25, left: 40, right: 40),
           child: GestureDetector(
-            onTap: () => _showImageDialog(i),
+            onTap: () {
+              _soundPlaying = true;
+              _showImageDialog(i);
+              
+            },
             child: Hero(
               tag: "image$i",
               child: ClipRRect(
@@ -132,8 +135,8 @@ class _PlanState extends State<Plan>
 
     showDialog(
       context: context,
-      builder: (BuildContext context) {
-        return Dialog(
+      builder: (BuildContext context) => StatefulBuilder(
+        builder:(context,setState) => Dialog(
           backgroundColor: Colors.transparent,
           child: Stack(
             children: [
@@ -151,9 +154,42 @@ class _PlanState extends State<Plan>
                 top: 16.0,
                 right: 16.0,
                 child: GestureDetector(
-                  onTap: () => _toggleSound(index),
-                  child: Icon(
-                    _isSoundPlaying ? Icons.volume_off : Icons.volume_up,
+                  onTap: () async{
+                  
+                  if(_soundPlaying)
+                  {
+                    setState(() {
+                      _soundPlaying = false;
+                    });
+                    flutterTts.pause();
+                    audioPlayer.pause();
+                  }
+                  else{
+                    setState(() {
+                      _soundPlaying = true;
+                    });
+                    
+                    await flutterTts.speak(_imageTexts[index]);
+                  }
+                  },
+                  child:  Icon(_soundPlaying ? Icons.volume_up :Icons.volume_off,color: Colors.white,size: 32.0,)
+                ),
+              ),
+
+              Positioned(
+                top: 16.0,
+                left: 16.0,
+                child: InkWell(
+                  onTap: () async {
+                    if(_soundPlaying)
+                    {
+                      flutterTts.stop();
+                    audioPlayer.stop();
+                    await flutterTts.speak(_imageTexts[index]);
+                    }
+                  },
+                  child: const Icon(
+                    Icons.repeat,
                     color: Colors.white,
                     size: 32.0,
                   ),
@@ -161,37 +197,31 @@ class _PlanState extends State<Plan>
               ),
             ],
           ),
-        );
-      },
-    ).then((_) => _setDialogOpen(false));
+        )
+      )
+    ).then((_) => _setDialogOpen(false)
+    );
 
-    if (_isSoundPlaying) {
-      await flutterTts.pause();
-      await audioPlayer.pause();
-    } else {
-      await flutterTts.speak(_imageTexts[index]);
-    }
+
+    await flutterTts.speak(_imageTexts[index]);
+
+    
+    
+    
+    
   }
 
   void _setDialogOpen(bool isOpen) {
     setState(() {
+      if(!isOpen )
+      {
+        flutterTts.stop();
+        audioPlayer.stop();
+      }
       _isDialogOpen = isOpen;
     });
   }
 
-  Future<void> _toggleSound(int index) async {
-    if (_isSoundPlaying) {
-      await flutterTts.pause();
-      await audioPlayer.pause();
-    } else {
-      await flutterTts.speak(_imageTexts[index]);
-      // await audioPlayer.play("assets/sounds/sound1.mp3");
-    }
-
-    setState(() {
-      _isSoundPlaying = !_isSoundPlaying;
-    });
-  }
 }
 
 class DelayedWidget extends StatefulWidget {

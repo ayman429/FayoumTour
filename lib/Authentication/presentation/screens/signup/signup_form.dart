@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/services/services_locator.dart';
-import '../../../../core/utils/constance/shared_pref.dart';
 import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snackbar_message.dart';
-import '../../../../home/BottomBar.dart';
 import '../../../../home/questions.dart';
 import '../../../domain/entities/registration.dart';
 import '../../components/email_text_form_field.dart';
@@ -48,7 +45,7 @@ class SigupForm extends StatelessWidget {
                   if (state.registrationstate == RequestState.loaded) {
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
-                            builder: (context) => TourismScreen()),
+                            builder: (context) => const TourismScreen()),
                         (route) => false);
                     // }
                   } else if (state.registrationstate == RequestState.error) {
@@ -102,7 +99,8 @@ class SigupForm extends StatelessWidget {
                     ),
                     child: Text(
                       AppStrings.signUpString.toUpperCase(),
-                      style: GoogleFonts.rye(
+                      style: TextStyle(
+                          fontFamily: "rye",
                           fontSize: 16,
                           color: Theme.of(context).colorScheme.secondary),
                     ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../core/local_data_shared_preferences/favourites_shared_preferences.dart';
 
 class CheckFavorite extends StatefulWidget {
@@ -61,9 +60,11 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                       barrierDismissible: false,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text(
+                          title: const Text(
                             "Adding Successful",
-                            style: GoogleFonts.merriweather(),
+                            style: TextStyle(
+                              fontFamily: "merriweather"
+                            ),
                           ),
                           actions: [
                             Center(
@@ -72,14 +73,16 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
+                                    backgroundColor: Colors.green,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                   ),
-                                  child: Text(
+                                  child: const Text(
                                     "Okay",
-                                    style: GoogleFonts.rye(color: Colors.black),
+                                    style: TextStyle(
+                                      fontFamily: "rye",
+                                      color: Colors.black),
                                   )),
                             )
                           ],

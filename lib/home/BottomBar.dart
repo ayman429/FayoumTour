@@ -37,9 +37,19 @@ class _BottomBarState extends State<BottomBar> {
     const NEAR(),
     Home(tourtismType: tourtismTypes),
     const AddPost(),
-    Favorites(),
+    const Favorites(),
     const Plan(),
   ];
+
+  List upIcons = [
+    "assets/images/profileIconUp.png",
+    "assets/images/nearbyIconUp.png",
+    AppStrings.logoImage,
+    "assets/images/comIconUp.png",
+    "assets/images/favIconUp.png",
+    "assets/images/plansIconUp.png"
+  ];
+
   final TextEditingController _searchController = TextEditingController();
 
   int selected = 0;
@@ -103,15 +113,15 @@ class _BottomBarState extends State<BottomBar> {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 centerTitle: true,
-                leading: selected == 2 || selected == 3
-                    ? Container(
-                        margin: const EdgeInsets.only(left: 8),
+                leading: Container(
+                        
+                        margin: const EdgeInsets.only(left: 8,),
                         child: Hero(
                           tag: AppStrings.loginHeroTag,
                           child: Image.asset(AppStrings.logoImage),
                         ),
-                      )
-                    : null,
+                      ),
+                    
                 actions: selected == 2
                     ? [
                         Container(
@@ -138,7 +148,18 @@ class _BottomBarState extends State<BottomBar> {
                           ),
                         ),
                       ]
-                    : null,
+                    : [
+                      Container(
+                        height: 42,
+                        width:45,
+                        margin: const EdgeInsets.only(right: 6),
+                        child: Hero(
+                          tag: AppStrings.loginHeroTag,
+                          child: Image.asset(upIcons[selected]),
+                        ),
+                      ),
+                    ],
+
               ),
         body: search
             ? SEARCH(

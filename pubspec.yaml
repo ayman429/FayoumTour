@@ -44,7 +44,6 @@ dependencies:
   shared_preferences:
   image_picker:
   video_player:
-  
   qr_flutter:
   qr_code_scanner:
   flutter_localizations:
@@ -56,7 +55,6 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   atmospeed: ^1.0.2
   youtube_player_flutter:
-  google_fonts: ^4.0.4
   lite_rolling_switch:
   flutter_fadein:
   photo_view:
@@ -69,7 +67,6 @@ dependencies:
   flutter_tts:
   audioplayers:
   animated_splash_screen:
-  
 
 dev_dependencies:
   flutter_test:
@@ -118,6 +115,33 @@ flutter:
   - family: MyFlutterApp
     fonts:
       - asset: assets/fonts/MyFlutterApp.ttf
+  - family: rye
+    fonts:
+      - asset: assets/fonts/Rye-Regular.ttf
+  - family: acme
+    fonts:
+      - asset: assets/fonts/Acme-Regular.ttf
+  - family: aBeeZee
+    fonts:
+      - asset: assets/fonts/ABeeZee-Regular.ttf
+      - asset: assets/fonts/ABeeZee-Italic.ttf
+        style: italic
+  - family: aclonica
+    fonts:
+      - asset: assets/fonts/Aclonica-Regular.ttf
+  - family: alata
+    fonts:
+      - asset: assets/fonts/Alata-Regular.ttf
+  - family: domine
+    fonts:
+      - asset: assets/fonts/Domine-VariableFont_wght.ttf
+  - family: pressStart2p
+    fonts:
+      - asset: assets/fonts/PressStart2P-Regular.ttf
+  - family: merriweather
+    fonts:
+      - asset: assets/fonts/Merriweather-Regular.ttf
+      
   # fonts:
   #   - family: Schyler
   #     fonts:

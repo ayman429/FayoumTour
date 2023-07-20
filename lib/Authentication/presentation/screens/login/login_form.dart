@@ -1,10 +1,7 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../core/local_data_shared_preferences/favourites_shared_preferences.dart';
 import '../../../../core/services/services_locator.dart';
 import '../../../../core/utils/constance/shared_pref.dart';
 import '../../../../core/utils/constance/strings_manager.dart';
@@ -12,12 +9,8 @@ import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snackbar_message.dart';
 import '../../../../home/BottomBar.dart';
-import '../../../../home/DashBoard.dart';
 import '../../../../home/DashBoard2.dart';
-import '../../../../home/profile.dart';
-import '../../../../home/questions.dart';
 import '../../../domain/entities/login.dart';
-import '../../../domain/entities/user_details.dart';
 import '../../components/email_text_form_field.dart';
 import '../../components/password_text_form_field.dart';
 import '../../components/validation.dart';
@@ -26,7 +19,7 @@ import '../../controller/authentication_event.dart';
 import '../../controller/authentication_state.dart';
 
 class LoginForm extends StatefulWidget {
-  LoginForm({Key? key}) : super(key: key);
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -130,9 +123,11 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                       child: Text(
                         AppStrings.loginString.toUpperCase(),
-                        style: GoogleFonts.rye(
+                        style: TextStyle(
                             fontSize: 16,
+                            fontFamily: "rye",
                             color: Theme.of(context).colorScheme.secondary),
+                            
                       ),
                     );
                   },

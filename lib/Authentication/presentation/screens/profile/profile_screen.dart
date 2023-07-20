@@ -6,7 +6,6 @@ import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/local_data_shared_preferences/access_token_shared_preferences.dart';
 import '../../../../core/services/services_locator.dart';
@@ -102,15 +101,17 @@ class _profile_screenState extends State<profile_screen> {
                     ? Column(
                         children: [
                           Text(username,
-                              style: GoogleFonts.aBeeZee(
+                              style: const TextStyle(
+                                  fontFamily: "aBeeZee",
                                   fontWeight: FontWeight.bold, fontSize: 16)),
                           const SizedBox(height: 10),
                           Text("${userDetails.email}",
-                              style: GoogleFonts.aBeeZee(
+                              style: const TextStyle(
+                                fontFamily: "aBeeZee",
                                   fontWeight: FontWeight.bold, fontSize: 16)),
                         ],
                       )
-                    : Text("welcome", style: GoogleFonts.aBeeZee()),
+                    : const Text("welcome", style: TextStyle(fontFamily: "aBeeZee")),
               ),
               const SizedBox(height: 20),
               SizedBox(
@@ -125,12 +126,13 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(
-                    ("Edit profile"),
-                    style: GoogleFonts.rye(
+                    (AppStrings.editProfile),
+                    style: TextStyle(
+                      fontFamily: "rye",
                         color: Theme.of(context).colorScheme.secondary,
                         fontSize: 16),
                   ),
@@ -140,7 +142,7 @@ class _profile_screenState extends State<profile_screen> {
               const Divider(),
               const SizedBox(height: 10),
               ProfileMenuWidget(
-                  title: "Settings",
+                  title: AppStrings.settings,
                   icon: Icons.settings,
                   onPress: () {
                     Navigator.push(
@@ -149,7 +151,7 @@ class _profile_screenState extends State<profile_screen> {
                             builder: (context) => const SSSettings()));
                   }),
               ProfileMenuWidget(
-                  title: "ٌHotel Reservations",
+                  title: AppStrings.hotelReservations,
                   icon: Icons.list_alt_rounded,
                   onPress: () {
                     sharedPreferences!.getBool("is_manager") == true
@@ -165,7 +167,7 @@ class _profile_screenState extends State<profile_screen> {
                                     HotelsReservationDetailsForUser()));
                   }),
               ProfileMenuWidget(
-                  title: "Information",
+                  title: AppStrings.information,
                   icon: Icons.info,
                   onPress: () {
                     Navigator.push(
@@ -176,7 +178,7 @@ class _profile_screenState extends State<profile_screen> {
               BlocBuilder<AuthenticationBloc, AuthenticationState>(
                 builder: (context, state) {
                   return ProfileMenuWidget(
-                      title: "Logout",
+                      title: AppStrings.logOut,
                       icon: Icons.logout_outlined,
                       endIcon: false,
                       onPress: () {
@@ -184,7 +186,7 @@ class _profile_screenState extends State<profile_screen> {
                             .add(LogoutEvent());
                         AccessToken accessToken = AccessToken();
                         accessToken.saveToken("0");
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const LoginScreen()));

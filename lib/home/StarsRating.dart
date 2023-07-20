@@ -1,7 +1,6 @@
 import 'package:fayoumtour/TourismPlaces/presentation/controller/tourism_place_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../TourismPlaces/domain/entities/tourism_place_rate.dart';
 import '../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
@@ -42,8 +41,11 @@ class _RatingScreenState extends State<RatingScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Rating submitted'),
-          content: Text('You rated this app $_rating stars.'),
+          title: const Text('Rating submitted',
+          style: TextStyle(fontFamily: "merriweather"),
+          ),
+          content: Text('You rated this app $_rating stars.',
+          style: const TextStyle(fontFamily: "merriweather"),),
           actions: <Widget>[
             Center(
               child: ElevatedButton(
@@ -51,11 +53,13 @@ class _RatingScreenState extends State<RatingScreen> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                   ),
-                  child: const Text('OK')),
+                  child:  Text('Okay',
+                  style: TextStyle(fontFamily: "rye",color: Theme.of(context).colorScheme.onSecondary),
+                  )),
             ),
           ],
           shape:
@@ -160,9 +164,10 @@ class StarRating extends StatelessWidget {
 
               return Column(
                 children: [
-                  Text(
+                  const Text(
                     "Rate it !!",
-                    style: GoogleFonts.acme(
+                    style: TextStyle(
+                      fontFamily: "acme",
                         fontSize: 22,
                         color: Colors.green,
                         fontWeight: FontWeight.bold),
@@ -200,9 +205,10 @@ class StarRating extends StatelessWidget {
             }, builder: (context, state) {
               return Column(
                 children: [
-                  Text(
+                  const Text(
                     "Rate it !!",
-                    style: GoogleFonts.acme(
+                    style: TextStyle(
+                      fontFamily: "acme",
                         fontSize: 22,
                         color: Colors.green,
                         fontWeight: FontWeight.bold),

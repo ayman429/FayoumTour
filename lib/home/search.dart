@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../TourismPlaces/presentation/screens/tourism_places_search.dart';
 
@@ -18,7 +17,8 @@ class SEARCH extends StatelessWidget {
         ? Center(
             child: Text(
               "Please Write Something!",
-              style: GoogleFonts.pressStart2p(
+              style: TextStyle(
+                fontFamily: "pressStart2p",
                   fontSize: 13, color: Theme.of(context).colorScheme.primary),
             ),
           )

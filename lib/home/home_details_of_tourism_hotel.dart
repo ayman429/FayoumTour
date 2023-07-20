@@ -1,6 +1,5 @@
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:location/location.dart';
 import 'RatingStarsBar.dart';
@@ -44,7 +43,8 @@ class Details extends StatelessWidget {
                             horizontal: 20, vertical: 5),
                         child: Text(
                           data.name,
-                          style: GoogleFonts.acme(
+                          style: TextStyle(
+                            fontFamily: "acme",
                               fontSize: 22,
                               color: Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.bold),
@@ -77,7 +77,8 @@ class Details extends StatelessWidget {
                           horizontal: 20, vertical: 5),
                       child: Text(
                         data.description,
-                        style: GoogleFonts.acme(
+                        style: TextStyle(
+                          fontFamily: "acme",
                             height: 1.45,
                             fontSize: 17,
                             color: Theme.of(context).colorScheme.onPrimary),
@@ -275,7 +276,8 @@ class Details extends StatelessWidget {
                           elevation: 10),
                       child: Text(
                         "Go to it!",
-                        style: GoogleFonts.rye(
+                        style: TextStyle(
+                          fontFamily: "rye",
                             color: Theme.of(context).colorScheme.secondary,
                             fontSize: 18),
                       ),
@@ -309,7 +311,8 @@ class Details extends StatelessWidget {
                                 elevation: 10),
                             child: Text(
                               "Reserve!",
-                              style: GoogleFonts.rye(
+                              style: TextStyle(
+                                fontFamily: "rye",
                                   color:
                                       Theme.of(context).colorScheme.secondary,
                                   fontSize: 18),

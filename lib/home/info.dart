@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../core/utils/constance/strings_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -29,21 +28,25 @@ class AboutScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: Text(
                       "Our Greetings and foremost, we sincerely hope that the application has successfully garnered your utmost satisfaction.\n",
-                      style: GoogleFonts.domine(height: 1.45, fontSize: 16),
+                      style: TextStyle(
+                        fontFamily: "domine",
+                        height: 1.45, fontSize: 16),
                     ),
                   ),
                   Expanded(child: Image.asset(AppStrings.logoImage)),
                 ],
               ),
-              Text(
+              const Text(
                 "Allow us to elucidate that this application was conceived as the graduation project at the Faculty of Computer Science. "
                 "It served as a magnificent culmination of our academic journey. The underlying concept behind this app "
                 "revolved around amalgamating all the splendid tourist destinations nestled within the embrace of Fayoum Governorate in the land of Egypt. "
                 "Our primary objective was to acquaint visitors and all people with these extraordinary locales while also streamlining their accessibility.\n",
-                style: GoogleFonts.domine(height: 1.45, fontSize: 16),
+                style: TextStyle(
+                  fontFamily: "domine",
+                  height: 1.45, fontSize: 16),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -68,19 +71,22 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text(
+              const Text(
                 "Unquestionably, our ardent aspiration was to invigorate the realm of tourism in this enchanting region. "
                 "Our choice to embark upon this venture was primarily inspired by the focus on numerous untapped and abandoned tourist havens "
                 "that yearned for rejuvenation. It also became apparent that the custodians entrusted with developing and preserving this remarkable "
                 "expanse were in dire need of a dynamic mobile application for tourists. Such a platform would undoubtedly serve as an indispensable tool "
                 "for disseminating captivating advertisements and diligently promoting the vast potential for tourism within this resplendent domain.",
-                style: GoogleFonts.domine(height: 1.45, fontSize: 16),
+                style: TextStyle(
+                  fontFamily: "domine",
+                  height: 1.45, fontSize: 16),
               ),
               const SizedBox(height: 32),
-              Center(
+              const Center(
                 child: Text(
                   'Cooperation with',
-                  style: GoogleFonts.acme(
+                  style: TextStyle(
+                    fontFamily: "acme",
                       fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -115,10 +121,11 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Center(
+              const Center(
                 child: Text(
                   'Supervised by',
-                  style: GoogleFonts.acme(
+                  style: TextStyle(
+                    fontFamily: "acme",
                       fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -162,10 +169,11 @@ class AboutScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              Center(
+              const Center(
                 child: Text(
                   'Developed by',
-                  style: GoogleFonts.acme(
+                  style: TextStyle(
+                    fontFamily: "acme",
                       fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),

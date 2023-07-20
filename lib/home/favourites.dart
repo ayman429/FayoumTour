@@ -1,12 +1,13 @@
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../TourismPlaces/presentation/screens/places_details.dart';
 import '../core/local_data_shared_preferences/favourites_shared_preferences.dart';
 import '../hotels/presentation/screens/hotels_details.dart';
 
 class Favorites extends StatefulWidget {
+  const Favorites({super.key});
+
   @override
   State<Favorites> createState() => _FavoritesState();
 }
@@ -26,7 +27,8 @@ class _FavoritesState extends State<Favorites> {
       return Center(
         child: Text(
           "Nothing Yet",
-          style: GoogleFonts.pressStart2p(
+          style: TextStyle(
+            fontFamily: "pressStart2p",
               fontSize: 25, color: Theme.of(context).colorScheme.primary),
         ),
       );
@@ -132,7 +134,8 @@ class _FavoritesState extends State<Favorites> {
                     children: [
                       Text(
                         snapshot![index]["name"],
-                        style: GoogleFonts.merriweather(
+                        style: TextStyle(
+                          fontFamily: "merriweather",
                           fontSize: 18,
                           color: Theme.of(context).colorScheme.onPrimary,
                         ),

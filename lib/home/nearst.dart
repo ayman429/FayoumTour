@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../TourismPlaces/presentation/screens/nearest_tourism_places.dart';
 import 'package:location/location.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 
 Location location = Location();
@@ -52,7 +51,8 @@ class _NEARState extends State<NEAR> {
         child:  Padding(
           padding: const EdgeInsets.symmetric(vertical: 10 , horizontal: 40),
           child: Text("Get Nearest Places!",
-          style: GoogleFonts.rye(
+          style: TextStyle(
+            fontFamily: "rye",
                               color: Theme.of(context).colorScheme.secondary,
                               fontSize: 18),),
         ),

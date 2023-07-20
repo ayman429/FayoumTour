@@ -9,8 +9,8 @@ class AppStrings {
   static const String rightBracket = "[";
   static const String leftBracket = "]";
   static const String authenticationWelcomeString = "WELCOME TO EDU";
-  static const String dontHaveAccount = "Don’t have an Account ? ";
-  static const String alreadyHaveAccount = "Already have an Account ? ";
+  static const String dontHaveAccount = "Don’t have an Account? ";
+  static const String alreadyHaveAccount = "Already have an Account? ";
   static const String fontFamily = 'KaushanScript';
   static const String logoHeroTag = "logo";
   static const String initialVideoId = 'BBHwtDhfydI';
@@ -18,6 +18,19 @@ class AppStrings {
   static const String topRatedTourismPlaces = "Top Rated Places";
   static const String topRatedHotels = "Top Rated Hotels";
   static const String recommendations = "Recommendations";
+  static const String editProfile = "Edit Profile";
+  static const String settings = "Settings";
+  static const String hotelReservations = "Hotel Reservations";
+  static const String information = "Information";
+  static const String logOut = "Logout";
+  static const String photoLibrary = "Photo Library";
+  static const String camera = "Camera";
+  static const String appTheme = "App Theme";
+  static const String language = "Language";
+  static const String appThemeLight = "Light";
+  static const String appThemeDark = "Dark";
+  static const String languageArabic = "Arabic";
+  static const String languageEnglish = "English";
 
   static const String homeCardHotel = "Hotels";
   static const String seeMore = "See More";
@@ -72,9 +85,9 @@ class AppStrings {
 //------------------------------ App Bar Title -------------------------------//
   static const List<String> titles = [
     "My Profile",
-    "Nearby",
+    " Nearby",
     "FayTour",
-    "FayTour Community",
+    " FayTour Community",
     "Favourites",
     "Plans"
   ];

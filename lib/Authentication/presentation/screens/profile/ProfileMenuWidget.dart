@@ -1,8 +1,8 @@
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ProfileMenuWidget extends StatelessWidget {
-   const ProfileMenuWidget({
+  const ProfileMenuWidget({
     Key? key,
     required this.title,
     required this.icon,
@@ -32,7 +32,9 @@ class ProfileMenuWidget extends StatelessWidget {
         child: Icon(icon, color: endIcon ? iconColor : Colors.red),
       ),
       title: Text(title,
-          style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold, color: endIcon ? Theme.of(context).colorScheme.onPrimary : Colors.red)
+          style: TextStyle(
+            fontFamily: "aBeeZee",
+            fontWeight: FontWeight.bold, color: endIcon ? Theme.of(context).colorScheme.onPrimary : Colors.red)
           ),
       trailing: endIcon
           ? Container(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/constance/strings_manager.dart';
@@ -11,6 +11,8 @@ import '../controller/tourism_place_event.dart';
 import '../controller/tourism_place_state.dart';
 
 class HomeCardsTourismPlaces extends StatelessWidget {
+  const HomeCardsTourismPlaces({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -19,17 +21,21 @@ class HomeCardsTourismPlaces extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 AppStrings.homeCardTourismTitle,
-                style: GoogleFonts.alata(fontSize: 18),
+                style: TextStyle(
+                  fontFamily: "alata",
+                  fontSize: 18),
               ),
               Row(
-                children: [
+                children: const [
                   Text(
                     AppStrings.seeMore,
-                    style: GoogleFonts.alata(fontSize: 18),
+                    style: TextStyle(
+                      fontFamily: "alata",
+                      fontSize: 18),
                   ),
-                  const Icon(Icons.arrow_right)
+                  Icon(Icons.arrow_right)
                 ],
               ),
             ],
@@ -50,9 +56,9 @@ class HomeCardsTourismPlaces extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final tourismPlace = state.tourismPlace[index];
-                  state.tourismPlace.forEach((element) {
+                  for (var element in state.tourismPlace) {
                     ratePlaceMap.addAll({element.id: element.rate_value ?? 0});
-                  });
+                  }
                   return HomeCard(
                     data: tourismPlace,
                     index: 0,

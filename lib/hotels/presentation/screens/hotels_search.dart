@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/enums.dart';
@@ -55,7 +54,8 @@ class HotelsSearch extends StatelessWidget {
           child: Center(
             child: Text(
               "Not Found!",
-              style: GoogleFonts.pressStart2p(
+              style: TextStyle(
+                fontFamily: "pressStart2p",
                   fontSize: 25, color: Theme.of(context).colorScheme.primary),
             ),
           ));

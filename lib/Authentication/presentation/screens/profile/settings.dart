@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/theme/bloc/app_theme_bloc.dart';
@@ -16,18 +15,14 @@ class SSSettings extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.onSecondary,
       appBar: AppBar(
         elevation: 0,
-        title: Row(
-          children: [
-            const Icon(Icons.settings),
-            const SizedBox(
-              width: 10,
+        centerTitle: true,
+        title: const Text(
+              AppStrings.settings,
+              style: TextStyle(
+                      fontFamily: AppStrings.fontFamily,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25),
             ),
-            Text(
-              "Settings",
-              style: GoogleFonts.acme(fontSize: 23),
-            ),
-          ],
-        ),
         backgroundColor: Colors.transparent,
       ),
       body: FadeIn(
@@ -38,9 +33,11 @@ class SSSettings extends StatelessWidget {
               child: Card(
                 color: Theme.of(context).colorScheme.secondary,
                 child: ListTile(
-                  leading: Text(
-                    "App Theme",
-                    style: GoogleFonts.aBeeZee(fontSize: 19),
+                  leading: const Text(
+                    AppStrings.appTheme,
+                    style: TextStyle(
+                      fontFamily: "aBeeZee",
+                      fontSize: 19),
                   ),
                   trailing: BlocBuilder<AppThemeBloc, AppThemeState>(
                       builder: (context, state) {
@@ -52,8 +49,8 @@ class SSSettings extends StatelessWidget {
                               ? true
                               : false,
                           // value: _themeManager.themeMode == ThemeMode.dark,
-                          textOff: "Light",
-                          textOn: "Dark",
+                          textOff: AppStrings.appThemeLight,
+                          textOn: AppStrings.appThemeDark,
                           //colorOff: Colors.grey,
                           //colorOn: Colors.greenAccent,
                           iconOff: Icons.light_mode,
@@ -83,9 +80,11 @@ class SSSettings extends StatelessWidget {
               child: Card(
                 color: Theme.of(context).colorScheme.secondary,
                 child: ListTile(
-                  leading: Text(
-                    "Language",
-                    style: GoogleFonts.aBeeZee(fontSize: 19),
+                  leading: const Text(
+                    AppStrings.language,
+                    style: TextStyle(
+                      fontFamily: "aBeeZee",
+                      fontSize: 19),
                   ),
                   trailing:
                   LiteRollingSwitch(
@@ -98,8 +97,8 @@ class SSSettings extends StatelessWidget {
                     },
                     animationDuration: const Duration(microseconds: 100),
                     value: true,
-                    textOff: "Arabic",
-                    textOn: "English",
+                    textOff: AppStrings.languageArabic,
+                    textOn: AppStrings.languageEnglish,
                     //colorOff: Colors.grey,
                     //colorOn: Colors.greenAccent,
                     iconOff: Icons.language,

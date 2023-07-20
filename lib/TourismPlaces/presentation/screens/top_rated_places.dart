@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/constance/strings_manager.dart';
@@ -21,17 +20,21 @@ class TopRatedTourismPlaces extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 AppStrings.topRatedTourismPlaces,
-                style: GoogleFonts.alata(fontSize: 18),
+                style: TextStyle(
+                  fontFamily: "alata",
+                  fontSize: 18),
               ),
               Row(
-                children: [
+                children: const [
                   Text(
                     AppStrings.seeMore,
-                    style: GoogleFonts.alata(fontSize: 18),
+                    style: TextStyle(
+                      fontFamily: "alata",
+                      fontSize: 18),
                   ),
-                  const Icon(Icons.arrow_right)
+                  Icon(Icons.arrow_right)
                 ],
               ),
             ],
@@ -54,9 +57,9 @@ class TopRatedTourismPlaces extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final searchTourismPlaceRate =
                       state.searchTourismPlaceRate[index];
-                  state.tourismPlace.forEach((element) {
+                  for (var element in state.tourismPlace) {
                     ratePlaceMap.addAll({element.id: element.rate_value ?? 0});
-                  });
+                  }
                   return HomeCard(
                     data: searchTourismPlaceRate,
                     index: 0,

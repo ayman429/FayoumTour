@@ -5,7 +5,6 @@ import 'package:fayoumtour/Authentication/domain/entities/user_details.dart';
 import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -64,21 +63,15 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 25),
-          child: Row(
-            children: [
-              const Icon(Icons.edit),
-              const SizedBox(
-                width: 10,
+        centerTitle: true,
+        title: const Text(
+                AppStrings.editProfile,
+                style: TextStyle(
+                      fontFamily: AppStrings.fontFamily,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25),
               ),
-              Text(
-                "Edit Profile",
-                style: GoogleFonts.acme(fontSize: 23),
-              ),
-            ],
-          ),
-        ),
+        
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -123,7 +116,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                       ListTile(
                                         leading:
                                             const Icon(Icons.photo_library),
-                                        title: const Text('Photo Library'),
+                                        title: const Text(AppStrings.photoLibrary),
                                         onTap: () async {
                                           final pickedFile = await ImagePicker()
                                               .pickImage(
@@ -142,7 +135,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                       ),
                                       ListTile(
                                         leading: const Icon(Icons.photo_camera),
-                                        title: const Text('Camera'),
+                                        title: const Text(AppStrings.camera),
                                         onTap: () async {
                                           final pickedFile =
                                               // ignore: deprecated_member_use
@@ -253,7 +246,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   ),
                   child: Text(
                     AppStrings.editName.toUpperCase(),
-                    style: GoogleFonts.rye(
+                    style: TextStyle(
+                        fontFamily: "rye",
                         fontSize: 16,
                         color: Theme.of(context).colorScheme.secondary),
                   ),
@@ -281,7 +275,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   ),
                   child: Text(
                     AppStrings.editPassword.toUpperCase(),
-                    style: GoogleFonts.rye(
+                    style: TextStyle(
+                      fontFamily: "rye",
                         fontSize: 16,
                         color: Theme.of(context).colorScheme.secondary),
                   ),

@@ -3,10 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../core/services/services_locator.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
@@ -30,6 +28,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
 
   String getImagePath = "";
   String _text = "";
+  bool upload = true;
   List<File> _imageList = [];
   final username = sharedPreferences!.getString("username") ?? "";
   Future<void> updateUIWithImagePath() async {
@@ -102,15 +101,25 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         child: Center(
                           child: Text(
                             widget.type == 'add' ? 'Post' : "Update",
-                            style: GoogleFonts.rye(
+                            style: TextStyle(
+                              fontFamily: "rye",
                                 fontSize: 17,
                                 color:
                                     Theme.of(context).colorScheme.onSecondary),
                           ),
                         ),
                         onPressed: () async {
-                          if (_textEditingController.text != "" ||
-                              _imageList.isNotEmpty) {
+                          if(widget.type != 'add' && _textEditingController.text == widget.data.body)
+                          {
+                            upload = false;
+                          }
+                          else{
+                            upload = true;
+                          }
+                          
+                          if(upload)
+                          {
+                            if (_textEditingController.text != "" || _imageList.isNotEmpty ) {
                             List<String> imagesPath = [];
                             for (int i = 0; i < _imageList.length; i++) {
                               imagesPath.add(_imageList[i].path);
@@ -139,9 +148,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                             setState(() {
                               _imageList = [];
                             });
-                            // Navigator.pop(context);
-                          }
-
+                          
                           if (state.addPostState == RequestState.loading ||
                               state.updatePostState == RequestState.loading) {
                             print("Post Loding");
@@ -163,6 +170,12 @@ class _AddPostComponentState extends State<AddPostComponent> {
                               ),
                             );
                           }
+                          
+                          }
+
+                          
+                          }
+                          
                         },
                       );
                     },
@@ -196,7 +209,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           ),
                           Text(
                             username,
-                            style: GoogleFonts.aBeeZee(
+                            style: const TextStyle(
+                              fontFamily: "aBeeZee",
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 
-import '../TourismPlaces/presentation/screens/places_details.dart';
-import '../hotels/presentation/screens/hotels_details.dart';
-import 'home_details_of_tourism_hotel.dart';
 import 'up_bar_image.dart';
 
 class SeachBody extends StatelessWidget {
@@ -96,7 +92,8 @@ class SeachBody extends StatelessWidget {
               children: [
                 Text(
                   data.name,
-                  style: GoogleFonts.merriweather(
+                  style: TextStyle(
+                    fontFamily: "merriweather",
                     fontSize: 18,
                     color: Theme.of(context).colorScheme.onPrimary,
                   ),

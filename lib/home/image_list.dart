@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:photo_view/photo_view.dart';
 
 class ImageList extends StatefulWidget {
@@ -75,9 +74,10 @@ class _ImageListState extends State<ImageList> {
                       child: Center(
                         child: Text(
                           "Photo: ${index + 1}/${widget.imageList.length}",
-                          style: GoogleFonts.aclonica(
+                          style: TextStyle(
+                            fontFamily: "aclonica",
                               color: Theme.of(context).colorScheme.primary,
-                              fontSize: 20),
+                              fontSize: 18),
                         ),
                       )),
                 ],

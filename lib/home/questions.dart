@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../Authentication/domain/entities/user_details.dart';
 import '../Authentication/presentation/components/validation.dart';
@@ -90,7 +89,7 @@ class _TourismScreenState extends State<TourismScreen>
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                'assets/images/backQuestions.jpg',
+                'assets/images/backQuestions.png',
               ),
               fit: BoxFit.cover,
             ),
@@ -108,7 +107,9 @@ class _TourismScreenState extends State<TourismScreen>
                           top: 70, bottom: 0, right: 15, left: 10),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context)
+                                                .colorScheme
+                                                .primaryContainer,
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(100),
                           ),
@@ -137,14 +138,15 @@ class _TourismScreenState extends State<TourismScreen>
                                             const EdgeInsets.only(left: 20),
                                         child: Text(
                                           title,
-                                          style: GoogleFonts.aBeeZee(
+                                          style: const TextStyle(
+                                            fontFamily: "aBeeZee",
                                             fontSize: 23,
-                                            color: Colors.black87,
+                                            
                                           ),
                                         ),
                                       ),
                                       const Divider(
-                                        color: Colors.black26,
+                                        
                                         thickness: 1.9,
                                         indent: 40,
                                         endIndent: 30,
@@ -214,7 +216,7 @@ class _TourismScreenState extends State<TourismScreen>
                                       const SizedBox(
                                         height: 15,
                                       ),
-                                      Text(options[0])
+                                      Text(options[0],)
                                     ],
                                   ),
                                   Column(
@@ -274,7 +276,7 @@ class _TourismScreenState extends State<TourismScreen>
                                           const SizedBox(
                                             height: 15,
                                           ),
-                                          Text(options[1])
+                                          Text(options[1],)
                                         ],
                                       ),
                                     ],
@@ -343,7 +345,7 @@ class _TourismScreenState extends State<TourismScreen>
                                       Text(options[2] ==
                                               "Greek and Roman Antiquities"
                                           ? "Greek and Roman"
-                                          : options[2])
+                                          : options[2],)
                                     ],
                                   ),
                                   Column(
@@ -399,7 +401,7 @@ class _TourismScreenState extends State<TourismScreen>
                                       const SizedBox(
                                         height: 15,
                                       ),
-                                      Text(options[3])
+                                      Text(options[3],)
                                     ],
                                   ),
                                 ],
@@ -439,14 +441,16 @@ class _TourismScreenState extends State<TourismScreen>
                                         _selectedOption[route] == '' ? 0.5 : 1,
                                     child: TextButton(
                                         onPressed: () {
-                                          if (route == 0) {
+                                          if(_selectedOption[route] != '')
+                                          {
+                                            if (route == 0) {
                                             setState(() {
                                               title = "What do you prefer?";
                                               options = [
                                                 "Historical pyramids",
-                                                "statues and monuments",
-                                                "temples",
-                                                "sand boarding"
+                                                "Statues and Monuments",
+                                                "Temples",
+                                                "Sand Boarding"
                                               ];
                                               images = [
                                                 "Historical.jpg",
@@ -460,10 +464,10 @@ class _TourismScreenState extends State<TourismScreen>
                                             setState(() {
                                               title = "What do you prefer?";
                                               options = [
-                                                "water sports",
-                                                "waterfalls area",
-                                                "safari trips and camping",
-                                                "natural gardens"
+                                                "Water Sports",
+                                                "Waterfalls Area",
+                                                "Safari Trips and Camping",
+                                                "Natural Gardens"
                                               ];
                                               images = [
                                                 "water.jpg",
@@ -510,6 +514,8 @@ class _TourismScreenState extends State<TourismScreen>
                                               );
                                             }
                                           }
+                                          }
+                                          
                                         },
                                         style: TextButton.styleFrom(
                                             backgroundColor: Theme.of(context)
@@ -518,15 +524,16 @@ class _TourismScreenState extends State<TourismScreen>
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(25))),
-                                        child: Padding(
+                                        child:  Padding(
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 5, horizontal: 50),
                                           child: Text(
                                             "Next",
-                                            style: GoogleFonts.rye(
-                                                color: Theme.of(context)
+                                            style: TextStyle(
+                                              fontFamily: "rye",
+                                              color: Theme.of(context)
                                                     .colorScheme
-                                                    .secondary,
+                                                    .onSecondary,
                                                 fontSize: 20),
                                           ),
                                         )),

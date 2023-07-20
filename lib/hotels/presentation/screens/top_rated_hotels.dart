@@ -1,7 +1,6 @@
 import 'package:fayoumtour/hotels/presentation/controller/hotels_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/constance/strings_manager.dart';
@@ -11,6 +10,8 @@ import '../controller/hotels_bloc.dart';
 import '../controller/hotels_state.dart';
 
 class TopRatedHotels extends StatelessWidget {
+  const TopRatedHotels({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -19,17 +20,21 @@ class TopRatedHotels extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 AppStrings.topRatedHotels,
-                style: GoogleFonts.alata(fontSize: 18),
+                style: TextStyle(
+                  fontFamily: "alata",
+                  fontSize: 18),
               ),
               Row(
-                children: [
+                children: const [
                   Text(
                     AppStrings.seeMore,
-                    style: GoogleFonts.alata(fontSize: 18),
+                    style: TextStyle(
+                      fontFamily: "alata",
+                      fontSize: 18),
                   ),
-                  const Icon(Icons.arrow_right)
+                  Icon(Icons.arrow_right)
                 ],
               ),
             ],
@@ -50,9 +55,9 @@ class TopRatedHotels extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final searchHotelRate = state.searchHotelRate[index];
-                  state.hotels.forEach((element) {
+                  for (var element in state.hotels) {
                     rateHotelMap.addAll({element.id: element.rate_value ?? 0});
-                  });
+                  }
                   return HomeCard(
                     data: searchHotelRate,
                     index: 1,

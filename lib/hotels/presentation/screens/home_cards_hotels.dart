@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/constance/strings_manager.dart';
@@ -12,6 +11,8 @@ import '../controller/hotels_event.dart';
 import '../controller/hotels_state.dart';
 
 class HomeCardsHotels extends StatelessWidget {
+  const HomeCardsHotels({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -20,17 +21,21 @@ class HomeCardsHotels extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 AppStrings.homeCardHotel,
-                style: GoogleFonts.alata(fontSize: 18),
+                style: TextStyle(
+                  fontFamily: "alata",
+                  fontSize: 18),
               ),
               Row(
-                children: [
+                children: const [
                   Text(
                     AppStrings.seeMore,
-                    style: GoogleFonts.alata(fontSize: 18),
+                    style: TextStyle(
+                      fontFamily: "alata",
+                      fontSize: 18),
                   ),
-                  const Icon(Icons.arrow_right)
+                  Icon(Icons.arrow_right)
                 ],
               ),
             ],
@@ -50,9 +55,9 @@ class HomeCardsHotels extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final hotels = state.hotels[index];
-                  state.hotels.forEach((element) {
+                  for (var element in state.hotels) {
                     rateHotelMap.addAll({element.id: element.rate_value ?? 0});
-                  });
+                  }
                   return HomeCard(
                     data: hotels,
                     index: 1,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:fayoumtour/hotels/domain/entities/hotel_reservation.dart';
 import 'package:fayoumtour/hotels/presentation/controller/hotels_event.dart';
@@ -102,6 +101,7 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
 
                 const SizedBox(height: 30.0),
                 TextFormField(
+                  keyboardType: TextInputType.phone,
                   controller: _textEditingController,
                   decoration: const InputDecoration(
                     labelText: 'Phone Number',
@@ -133,12 +133,12 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                             context: context,
                             initialDate: _checkInDate,
                             firstDate: DateTime.now(),
-                            lastDate:
-                                _checkOutDate.subtract(const Duration(days: 1)),
+                            lastDate: DateTime(2100),
                           );
                           if (date != null) {
                             setState(() {
                               _checkInDate = date;
+                              _checkOutDate = date.add(const Duration(days: 1));
                             });
                           }
                         },
@@ -148,14 +148,17 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text(
+                              const Text(
                                 'Check-In',
-                                style: GoogleFonts.acme(fontSize: 22.0),
+                                style: TextStyle(
+                                  fontFamily: "acme",
+                                  fontSize: 22.0),
                               ),
                               const SizedBox(width: 8.0),
                               Text(
                                 '${_checkInDate.day}/${_checkInDate.month}/${_checkInDate.year}',
-                                style: GoogleFonts.acme(
+                                style: const TextStyle(
+                                  fontFamily: "acme",
                                     fontSize: 22.0, color: Colors.green),
                               ),
                             ],
@@ -174,10 +177,10 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                           final date = await showDatePicker(
                             context: context,
                             initialDate: _checkOutDate,
-                            firstDate:
-                                _checkInDate.add(const Duration(days: 1)),
+                            firstDate: _checkInDate.add(const Duration(days: 1)),
                             lastDate: DateTime(2100),
                           );
+                          
                           if (date != null) {
                             setState(() {
                               _checkOutDate = date;
@@ -190,14 +193,17 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text(
+                              const Text(
                                 'Check-Out',
-                                style: GoogleFonts.acme(fontSize: 22.0),
+                                style: TextStyle(
+                                  fontFamily: "acme",
+                                  fontSize: 22.0),
                               ),
                               const SizedBox(height: 8.0),
                               Text(
                                 '${_checkOutDate.day}/${_checkOutDate.month}/${_checkOutDate.year}',
-                                style: GoogleFonts.acme(
+                                style: const TextStyle(
+                                  fontFamily: "acme",
                                     fontSize: 22.0, color: Colors.green),
                               ),
                             ],
@@ -283,8 +289,6 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                               AddHotelReservationEvent(
                                   hotelReservation: hotelReservation));
                         }
-
-                        // --------------
                         else if (widget.type == "edit") {
                           HotelReservation hotelReservation = HotelReservation(
                             id: widget.data.id,
@@ -300,6 +304,39 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                               UpdateHotelReservationEvent(
                                   hotelReservation: hotelReservation));
                         }
+
+                      //   showDialog(
+                      // context: context,
+                      // barrierDismissible: false,
+                      // builder: (context) {
+                      //   return AlertDialog(
+                      //     title: Text(
+                      //       "Your Request is subimtted!",
+                      //       style: GoogleFonts.merriweather(),
+                      //     ),
+                      //     actions: [
+                      //       Center(
+                      //         child: ElevatedButton(
+                      //             onPressed: () {
+                      //               Navigator.of(context).pop();
+                      //             },
+                      //             style: ElevatedButton.styleFrom(
+                      //               backgroundColor: Colors.green,
+                      //               shape: RoundedRectangleBorder(
+                      //                   borderRadius:
+                      //                       BorderRadius.circular(15)),
+                      //             ),
+                      //             child: Text(
+                      //               "Okay",
+                      //               style: GoogleFonts.rye(color: Colors.black),
+                      //             )),
+                      //       )
+                      //     ],
+                      //     shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(15)),
+                      //   );
+                      // });
+
                       }
                     },
                     style: TextButton.styleFrom(
@@ -309,7 +346,8 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                         elevation: 10),
                     child: Text(
                       "Submit!",
-                      style: GoogleFonts.rye(
+                      style: TextStyle(
+                        fontFamily: "rye",
                           color: Theme.of(context).colorScheme.secondary,
                           fontSize: 18),
                     ),
@@ -337,7 +375,8 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                       elevation: 10),
                   child: Text(
                     "Pay!",
-                    style: GoogleFonts.rye(
+                    style: TextStyle(
+                      fontFamily: "rye",
                         color: Theme.of(context).colorScheme.secondary,
                         fontSize: 18),
                   ),

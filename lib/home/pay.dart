@@ -1,5 +1,4 @@
 import '../core/utils/constance/strings_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
@@ -176,9 +175,10 @@ class MySampleState extends State<MySample> {
                             padding: const EdgeInsets.symmetric(vertical: 15),
                             width: double.infinity,
                             alignment: Alignment.center,
-                            child:  Text(
+                            child:  const Text(
                               'Validate',
-                              style: GoogleFonts.rye(
+                              style: TextStyle(
+                                fontFamily: "rye",
                                 color: Colors.black,
                                 fontSize: 18,
                                 //package: 'flutter_credit_card',
@@ -200,6 +200,39 @@ class MySampleState extends State<MySample> {
   void _onValidate() {
     if (formKey.currentState!.validate()) {
       print('valid!');
+      showDialog(
+                      context: context,
+                      barrierDismissible: false,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text(
+                            "This feature will be available soon!",
+                            style: TextStyle(fontFamily: "merriweather"),
+                          ),
+                          actions: [
+                            Center(
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.green,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                  ),
+                                  child: const Text(
+                                    "Okay",
+                                    style: TextStyle(
+                                      fontFamily: "rye",
+                                      color: Colors.black),
+                                  )),
+                            )
+                          ],
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                        );
+                      });
     } else {
       print('invalid!');
     }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../core/utils/youtubeController.dart';
 
 import '../core/utils/constance/strings_manager.dart';
@@ -95,7 +94,9 @@ class HomeCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       data.name,
-                      style: GoogleFonts.alata(fontSize: 15),
+                      style: const TextStyle(
+                        fontFamily: "alata",
+                        fontSize: 15),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),

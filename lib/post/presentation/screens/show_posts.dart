@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
@@ -12,7 +11,6 @@ import '../controller/bloc/post_bloc.dart';
 import 'add_like.dart';
 import 'add_post_component.dart';
 import 'comment_screen.dart';
-import 'get_like.dart';
 
 class ShowPosts extends StatelessWidget {
   const ShowPosts({super.key});
@@ -119,7 +117,8 @@ class ShowPosts extends StatelessWidget {
                                   children: [
                                     Text(
                                       '${state.post[index].createdBy!.userName}',
-                                      style: GoogleFonts.aBeeZee(
+                                      style: const TextStyle(
+                                        fontFamily: "aBeeZee",
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18,
                                       ),
@@ -478,7 +477,7 @@ class ShowPosts extends StatelessWidget {
               print(state.postMessage);
               return const Center(
                 child: Image(
-                  image: AssetImage('assets/images/NoWiFi.png'),
+                  image: AssetImage('assets/images/noWifi.gif'),
                 ),
               );
           }

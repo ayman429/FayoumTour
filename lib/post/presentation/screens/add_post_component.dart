@@ -102,80 +102,79 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           child: Text(
                             widget.type == 'add' ? 'Post' : "Update",
                             style: TextStyle(
-                              fontFamily: "rye",
+                                fontFamily: "rye",
                                 fontSize: 17,
                                 color:
                                     Theme.of(context).colorScheme.onSecondary),
                           ),
                         ),
                         onPressed: () async {
-                          if(widget.type != 'add' && _textEditingController.text == widget.data.body)
-                          {
+                          print("{{{{{{{{{{{{{{{{object}}}}}}}}}}}}}}}}");
+                          print(upload);
+                          if (widget.type != 'add' &&
+                              _textEditingController.text == widget.data.body) {
                             upload = false;
-                          }
-                          else{
+                          } else {
                             upload = true;
                           }
-                          
-                          if(upload)
-                          {
-                            if (_textEditingController.text != "" || _imageList.isNotEmpty ) {
-                            List<String> imagesPath = [];
-                            for (int i = 0; i < _imageList.length; i++) {
-                              imagesPath.add(_imageList[i].path);
-                            }
 
-                            String body = "";
-                            body = _textEditingController.text;
-                            if (widget.type == "add") {
-                              BlocProvider.of<PostBloc>(context)
-                                  .add(AddPostEvent(
-                                body: body,
-                                images: imagesPath,
-                              ));
-                            } else if (widget.type == "edit") {
-                              BlocProvider.of<PostBloc>(context)
-                                  .add(UpdatePostEvent(
-                                body: body,
-                                images: imagesPath,
-                                posId: widget.data.id.toString(),
-                              ));
-                            }
+                          if (upload) {
+                            if (_textEditingController.text != "" ||
+                                _imageList.isNotEmpty) {
+                              List<String> imagesPath = [];
+                              for (int i = 0; i < _imageList.length; i++) {
+                                imagesPath.add(_imageList[i].path);
+                              }
 
-                            print("---------------------------");
-                            print(imagesPath);
-                            _textEditingController.clear();
-                            setState(() {
-                              _imageList = [];
-                            });
-                          
-                          if (state.addPostState == RequestState.loading ||
-                              state.updatePostState == RequestState.loading) {
-                            print("Post Loding");
+                              String body = "";
+                              body = _textEditingController.text;
+                              if (widget.type == "add") {
+                                BlocProvider.of<PostBloc>(context)
+                                    .add(AddPostEvent(
+                                  body: body,
+                                  images: imagesPath,
+                                ));
+                              } else if (widget.type == "edit") {
+                                print("edit");
+                                BlocProvider.of<PostBloc>(context)
+                                    .add(UpdatePostEvent(
+                                  body: body,
+                                  images: imagesPath,
+                                  posId: widget.data.id.toString(),
+                                ));
+                              }
 
-                            showDialog(
-                              context: context,
-                              builder: (ctx) => const FractionallySizedBox(
-                                widthFactor:
-                                    0.5, // Set the desired width factor (0.0 to 1.0)
-                                child: AlertDialog(
-                                  content: SizedBox(
-                                    width: double.infinity,
-                                    height: 30,
-                                    child: Center(
-                                      child: CircularProgressIndicator(),
+                              print("---------------------------");
+                              print(imagesPath);
+                              _textEditingController.clear();
+                              setState(() {
+                                _imageList = [];
+                              });
+
+                              if (state.addPostState == RequestState.loading ||
+                                  state.updatePostState ==
+                                      RequestState.loading) {
+                                print("Post Loding");
+
+                                showDialog(
+                                  context: context,
+                                  builder: (ctx) => const FractionallySizedBox(
+                                    widthFactor:
+                                        0.5, // Set the desired width factor (0.0 to 1.0)
+                                    child: AlertDialog(
+                                      content: SizedBox(
+                                        width: double.infinity,
+                                        height: 30,
+                                        child: Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            );
+                                );
+                              }
+                            }
                           }
-                          
-                          }
-
-                          
-                          }
-                          
                         },
                       );
                     },

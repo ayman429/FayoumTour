@@ -31,7 +31,7 @@ class _TourismScreenState extends State<TourismScreen>
     "Islamic antiquities",
     "Coptic antiquities",
     "Greek and Roman Antiquities",
-    "Pharaonic relics"
+    "Pharaonic antiquities"
   ];
   List<String> images = [
     "islamic.jpeg",
@@ -107,9 +107,7 @@ class _TourismScreenState extends State<TourismScreen>
                           top: 70, bottom: 0, right: 15, left: 10),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Theme.of(context)
-                                                .colorScheme
-                                                .primaryContainer,
+                          color: Theme.of(context).colorScheme.primaryContainer,
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(100),
                           ),
@@ -141,12 +139,10 @@ class _TourismScreenState extends State<TourismScreen>
                                           style: const TextStyle(
                                             fontFamily: "aBeeZee",
                                             fontSize: 23,
-                                            
                                           ),
                                         ),
                                       ),
                                       const Divider(
-                                        
                                         thickness: 1.9,
                                         indent: 40,
                                         endIndent: 30,
@@ -216,7 +212,9 @@ class _TourismScreenState extends State<TourismScreen>
                                       const SizedBox(
                                         height: 15,
                                       ),
-                                      Text(options[0],)
+                                      Text(
+                                        options[0],
+                                      )
                                     ],
                                   ),
                                   Column(
@@ -276,7 +274,9 @@ class _TourismScreenState extends State<TourismScreen>
                                           const SizedBox(
                                             height: 15,
                                           ),
-                                          Text(options[1],)
+                                          Text(
+                                            options[1],
+                                          )
                                         ],
                                       ),
                                     ],
@@ -342,10 +342,12 @@ class _TourismScreenState extends State<TourismScreen>
                                       const SizedBox(
                                         height: 15,
                                       ),
-                                      Text(options[2] ==
-                                              "Greek and Roman Antiquities"
-                                          ? "Greek and Roman"
-                                          : options[2],)
+                                      Text(
+                                        options[2] ==
+                                                "Greek and Roman Antiquities"
+                                            ? "Greek and Roman"
+                                            : options[2],
+                                      )
                                     ],
                                   ),
                                   Column(
@@ -401,7 +403,9 @@ class _TourismScreenState extends State<TourismScreen>
                                       const SizedBox(
                                         height: 15,
                                       ),
-                                      Text(options[3],)
+                                      Text(
+                                        options[3],
+                                      )
                                     ],
                                   ),
                                 ],
@@ -441,81 +445,81 @@ class _TourismScreenState extends State<TourismScreen>
                                         _selectedOption[route] == '' ? 0.5 : 1,
                                     child: TextButton(
                                         onPressed: () {
-                                          if(_selectedOption[route] != '')
-                                          {
+                                          if (_selectedOption[route] != '') {
                                             if (route == 0) {
-                                            setState(() {
-                                              title = "What do you prefer?";
-                                              options = [
-                                                "Historical pyramids",
-                                                "Statues and Monuments",
-                                                "Temples",
-                                                "Sand Boarding"
-                                              ];
-                                              images = [
-                                                "Historical.jpg",
-                                                "statues.jpg",
-                                                "temples.jpg",
-                                                "sand.jpg"
-                                              ];
-                                              route++;
-                                            });
-                                          } else if (route == 1) {
-                                            setState(() {
-                                              title = "What do you prefer?";
-                                              options = [
-                                                "Water Sports",
-                                                "Waterfalls Area",
-                                                "Safari Trips and Camping",
-                                                "Natural Gardens"
-                                              ];
-                                              images = [
-                                                "water.jpg",
-                                                "waterfalls.jpg",
-                                                "safari.jpg",
-                                                "natural.jpg"
-                                              ];
-                                              route++;
-                                            });
-                                          } else {
-                                            print("-------------------------");
-                                            print(route);
-                                            String model1Input =
-                                                "I Love ${_selectedOption[1]} , I Enjoy ${_selectedOption[2]}";
-                                            UserDetails userDetails =
-                                                UserDetails(
-                                                    placeType:
-                                                        _selectedOption[0],
-                                                    model1Input: model1Input);
-                                            BlocProvider.of<AuthenticationBloc>(
-                                                    context)
-                                                .add(UpdateUserDetailsEvent(
-                                                    userDetails: userDetails,
-                                                    type: "username"));
-                                            if (state.loginstate ==
-                                                RequestState.loading) {
-                                              showDialog(
-                                                context: context,
-                                                builder: (ctx) =>
-                                                    const FractionallySizedBox(
-                                                  widthFactor:
-                                                      0.5, // Set the desired width factor (0.0 to 1.0)
-                                                  child: AlertDialog(
-                                                    content: SizedBox(
-                                                      width: double.infinity,
-                                                      height: 30,
-                                                      child: Center(
-                                                        child:
-                                                            CircularProgressIndicator(),
+                                              setState(() {
+                                                title = "What do you prefer?";
+                                                options = [
+                                                  "Historical pyramids",
+                                                  "Statues and Monuments",
+                                                  "Temples",
+                                                  "Sand Boarding"
+                                                ];
+                                                images = [
+                                                  "Historical.jpg",
+                                                  "statues.jpg",
+                                                  "temples.jpg",
+                                                  "sand.jpg"
+                                                ];
+                                                route++;
+                                              });
+                                            } else if (route == 1) {
+                                              setState(() {
+                                                title = "What do you prefer?";
+                                                options = [
+                                                  "Water Sports",
+                                                  "Waterfalls Area",
+                                                  "Safari Trips and Camping",
+                                                  "Natural Gardens"
+                                                ];
+                                                images = [
+                                                  "water.jpg",
+                                                  "waterfalls.jpg",
+                                                  "safari.jpg",
+                                                  "natural.jpg"
+                                                ];
+                                                route++;
+                                              });
+                                            } else {
+                                              print(
+                                                  "-------------------------");
+                                              print(route);
+                                              String model1Input =
+                                                  "I Love ${_selectedOption[1]} , I Enjoy ${_selectedOption[2]}";
+                                              UserDetails userDetails =
+                                                  UserDetails(
+                                                      placeType:
+                                                          _selectedOption[0],
+                                                      model1Input: model1Input);
+                                              BlocProvider.of<
+                                                          AuthenticationBloc>(
+                                                      context)
+                                                  .add(UpdateUserDetailsEvent(
+                                                      userDetails: userDetails,
+                                                      type: "username"));
+                                              if (state.loginstate ==
+                                                  RequestState.loading) {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (ctx) =>
+                                                      const FractionallySizedBox(
+                                                    widthFactor:
+                                                        0.5, // Set the desired width factor (0.0 to 1.0)
+                                                    child: AlertDialog(
+                                                      content: SizedBox(
+                                                        width: double.infinity,
+                                                        height: 30,
+                                                        child: Center(
+                                                          child:
+                                                              CircularProgressIndicator(),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              );
+                                                );
+                                              }
                                             }
                                           }
-                                          }
-                                          
                                         },
                                         style: TextButton.styleFrom(
                                             backgroundColor: Theme.of(context)
@@ -524,14 +528,14 @@ class _TourismScreenState extends State<TourismScreen>
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(25))),
-                                        child:  Padding(
+                                        child: Padding(
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 5, horizontal: 50),
                                           child: Text(
                                             "Next",
                                             style: TextStyle(
-                                              fontFamily: "rye",
-                                              color: Theme.of(context)
+                                                fontFamily: "rye",
+                                                color: Theme.of(context)
                                                     .colorScheme
                                                     .onSecondary,
                                                 fontSize: 20),

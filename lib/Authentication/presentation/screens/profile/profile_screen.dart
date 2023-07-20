@@ -103,15 +103,18 @@ class _profile_screenState extends State<profile_screen> {
                           Text(username,
                               style: const TextStyle(
                                   fontFamily: "aBeeZee",
-                                  fontWeight: FontWeight.bold, fontSize: 16)),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16)),
                           const SizedBox(height: 10),
                           Text("${userDetails.email}",
                               style: const TextStyle(
-                                fontFamily: "aBeeZee",
-                                  fontWeight: FontWeight.bold, fontSize: 16)),
+                                  fontFamily: "aBeeZee",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16)),
                         ],
                       )
-                    : const Text("welcome", style: TextStyle(fontFamily: "aBeeZee")),
+                    : const Text("welcome",
+                        style: TextStyle(fontFamily: "aBeeZee")),
               ),
               const SizedBox(height: 20),
               SizedBox(
@@ -126,13 +129,13 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      primary: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(
                     (AppStrings.editProfile),
                     style: TextStyle(
-                      fontFamily: "rye",
+                        fontFamily: "rye",
                         color: Theme.of(context).colorScheme.secondary,
                         fontSize: 16),
                   ),

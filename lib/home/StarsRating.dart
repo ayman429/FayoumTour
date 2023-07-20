@@ -41,11 +41,14 @@ class _RatingScreenState extends State<RatingScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Rating submitted',
-          style: TextStyle(fontFamily: "merriweather"),
+          title: const Text(
+            'Rating submitted',
+            style: TextStyle(fontFamily: "merriweather"),
           ),
-          content: Text('You rated this app $_rating stars.',
-          style: const TextStyle(fontFamily: "merriweather"),),
+          content: Text(
+            'You rated this app $_rating stars.',
+            style: const TextStyle(fontFamily: "merriweather"),
+          ),
           actions: <Widget>[
             Center(
               child: ElevatedButton(
@@ -53,12 +56,15 @@ class _RatingScreenState extends State<RatingScreen> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    primary: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                   ),
-                  child:  Text('Okay',
-                  style: TextStyle(fontFamily: "rye",color: Theme.of(context).colorScheme.onSecondary),
+                  child: Text(
+                    'Okay',
+                    style: TextStyle(
+                        fontFamily: "rye",
+                        color: Theme.of(context).colorScheme.onSecondary),
                   )),
             ),
           ],
@@ -167,7 +173,7 @@ class StarRating extends StatelessWidget {
                   const Text(
                     "Rate it !!",
                     style: TextStyle(
-                      fontFamily: "acme",
+                        fontFamily: "acme",
                         fontSize: 22,
                         color: Colors.green,
                         fontWeight: FontWeight.bold),
@@ -208,7 +214,7 @@ class StarRating extends StatelessWidget {
                   const Text(
                     "Rate it !!",
                     style: TextStyle(
-                      fontFamily: "acme",
+                        fontFamily: "acme",
                         fontSize: 22,
                         color: Colors.green,
                         fontWeight: FontWeight.bold),

@@ -39,200 +39,192 @@ class MySampleState extends State<MySample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-              appBar: AppBar(
-        title: const Text('Payment',
-        
-        style: TextStyle(
-                      fontFamily: AppStrings.fontFamily,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25),
+      appBar: AppBar(
+        title: const Text(
+          'Payment',
+          style: TextStyle(
+              fontFamily: AppStrings.fontFamily,
+              fontWeight: FontWeight.bold,
+              fontSize: 25),
         ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          decoration: const BoxDecoration(
-            
-            
-          ),
-          child: SafeArea(
-            child: Column(
-              children: <Widget>[
-                const SizedBox(
-                  height: 30,
-                ),
-                CreditCardWidget(
-                
-                  chipColor: Colors.amber,
-                  cardNumber: cardNumber,
-                  expiryDate: expiryDate,
-                  cardHolderName: cardHolderName,
-                  cvvCode: cvvCode,
-                  bankName: 'Axis Bank',
-                  showBackView: isCvvFocused,
-                  obscureCardNumber: true,
-                  obscureCardCvv: true,
-                  isHolderNameVisible: true,
-                  cardBgColor: const Color.fromARGB(255, 0, 0, 0),
-                  backgroundImage:
-                      useBackgroundImage ? 'assets/images/mastercard.png' : null,
-                  isSwipeGestureEnabled: true,
-                  onCreditCardWidgetChange:
-                      (CreditCardBrand creditCardBrand) {},
-                  customCardTypeIcons: <CustomCardTypeIcon>[
-                    CustomCardTypeIcon(
-                      cardType: CardType.mastercard,
-                      cardImage: Image.asset(
-                        'assets/images/mastercard.png',
-                        height: 48,
-                        width: 48,
-                      ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        CreditCardForm(
-                          formKey: formKey,
-                          obscureCvv: true,
-                          obscureNumber: true,
-                          cardNumber: cardNumber,
-                          cvvCode: cvvCode,
-                          isHolderNameVisible: true,
-                          isCardNumberVisible: true,
-                          isExpiryDateVisible: true,
-                          cardHolderName: cardHolderName,
-                          expiryDate: expiryDate,
-                          themeColor: Colors.green,
-                          textColor: Theme.of(context).colorScheme.onPrimary,
-                          cardNumberDecoration:  InputDecoration(
-                            
-                            //border: const OutlineInputBorder( borderRadius: BorderRadius.all(Radius.circular(20)) ),
-                            labelText: 'Number',
-                            hintText: 'XXXX XXXX XXXX XXXX',
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            labelStyle: const TextStyle(color: Colors.grey),
-                            focusedBorder: border,
-                            enabledBorder: border,
-                          ),
-                          expiryDateDecoration: InputDecoration(
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            labelStyle: const TextStyle(color: Colors.grey),
-                            focusedBorder: border,
-                            enabledBorder: border,
-                            labelText: 'Expired Date',
-                            hintText: 'XX/XX',
-                          ),
-                          cvvCodeDecoration: InputDecoration(
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            labelStyle: const TextStyle(color: Colors.grey),
-                            focusedBorder: border,
-                            enabledBorder: border,
-                            labelText: 'CVV',
-                            hintText: 'XXX',
-                          ),
-                          cardHolderDecoration: InputDecoration(
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            labelStyle: const TextStyle(color: Colors.grey),
-                            focusedBorder: border,
-                            enabledBorder: border,
-                            labelText: 'Card Holder',
-                          ),
-                          onCreditCardModelChange: onCreditCardModelChange,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              hintStyle: const TextStyle(color: Colors.grey),
-                              labelStyle: const TextStyle(color: Colors.grey),
-                              focusedBorder: border,
-                              enabledBorder: border,
-                              labelText: 'phone number',
-                            ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Please enter your phone number';
-                              }
-                              // Add more validation rules here if needed
-                              return null;
-                            },
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: _onValidate,
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 8),
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 15),
-                            width: double.infinity,
-                            alignment: Alignment.center,
-                            child:  const Text(
-                              'Validate',
-                              style: TextStyle(
-                                fontFamily: "rye",
-                                color: Colors.black,
-                                fontSize: 18,
-                                //package: 'flutter_credit_card',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        decoration: const BoxDecoration(),
+        child: SafeArea(
+          child: Column(
+            children: <Widget>[
+              const SizedBox(
+                height: 30,
+              ),
+              CreditCardWidget(
+                chipColor: Colors.amber,
+                cardNumber: cardNumber,
+                expiryDate: expiryDate,
+                cardHolderName: cardHolderName,
+                cvvCode: cvvCode,
+                bankName: 'Axis Bank',
+                showBackView: isCvvFocused,
+                obscureCardNumber: true,
+                obscureCardCvv: true,
+                isHolderNameVisible: true,
+                cardBgColor: const Color.fromARGB(255, 0, 0, 0),
+                backgroundImage:
+                    useBackgroundImage ? 'assets/images/mastercard.png' : null,
+                isSwipeGestureEnabled: true,
+                onCreditCardWidgetChange: (CreditCardBrand creditCardBrand) {},
+                customCardTypeIcons: <CustomCardTypeIcon>[
+                  CustomCardTypeIcon(
+                    cardType: CardType.mastercard,
+                    cardImage: Image.asset(
+                      'assets/images/mastercard.png',
+                      height: 48,
+                      width: 48,
                     ),
                   ),
+                ],
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      CreditCardForm(
+                        formKey: formKey,
+                        obscureCvv: true,
+                        obscureNumber: true,
+                        cardNumber: cardNumber,
+                        cvvCode: cvvCode,
+                        isHolderNameVisible: true,
+                        isCardNumberVisible: true,
+                        isExpiryDateVisible: true,
+                        cardHolderName: cardHolderName,
+                        expiryDate: expiryDate,
+                        themeColor: Colors.green,
+                        textColor: Theme.of(context).colorScheme.onPrimary,
+                        cardNumberDecoration: InputDecoration(
+                          //border: const OutlineInputBorder( borderRadius: BorderRadius.all(Radius.circular(20)) ),
+                          labelText: 'Number',
+                          hintText: 'XXXX XXXX XXXX XXXX',
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          labelStyle: const TextStyle(color: Colors.grey),
+                          focusedBorder: border,
+                          enabledBorder: border,
+                        ),
+                        expiryDateDecoration: InputDecoration(
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          labelStyle: const TextStyle(color: Colors.grey),
+                          focusedBorder: border,
+                          enabledBorder: border,
+                          labelText: 'Expired Date',
+                          hintText: 'XX/XX',
+                        ),
+                        cvvCodeDecoration: InputDecoration(
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          labelStyle: const TextStyle(color: Colors.grey),
+                          focusedBorder: border,
+                          enabledBorder: border,
+                          labelText: 'CVV',
+                          hintText: 'XXX',
+                        ),
+                        cardHolderDecoration: InputDecoration(
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          labelStyle: const TextStyle(color: Colors.grey),
+                          focusedBorder: border,
+                          enabledBorder: border,
+                          labelText: 'Card Holder',
+                        ),
+                        onCreditCardModelChange: onCreditCardModelChange,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            hintStyle: const TextStyle(color: Colors.grey),
+                            labelStyle: const TextStyle(color: Colors.grey),
+                            focusedBorder: border,
+                            enabledBorder: border,
+                            labelText: 'phone number',
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your phone number';
+                            }
+                            // Add more validation rules here if needed
+                            return null;
+                          },
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: _onValidate,
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'Validate',
+                            style: TextStyle(
+                              fontFamily: "rye",
+                              color: Colors.black,
+                              fontSize: 18,
+                              //package: 'flutter_credit_card',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-      );
-    }
+      ),
+    );
+  }
 
   void _onValidate() {
     if (formKey.currentState!.validate()) {
       print('valid!');
       showDialog(
-                      context: context,
-                      barrierDismissible: false,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text(
-                            "This feature will be available soon!",
-                            style: TextStyle(fontFamily: "merriweather"),
-                          ),
-                          actions: [
-                            Center(
-                              child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.green,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                  ),
-                                  child: const Text(
-                                    "Okay",
-                                    style: TextStyle(
-                                      fontFamily: "rye",
-                                      color: Colors.black),
-                                  )),
-                            )
-                          ],
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                        );
-                      });
+          context: context,
+          barrierDismissible: false,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text(
+                "This feature will be available soon!",
+                style: TextStyle(fontFamily: "merriweather"),
+              ),
+              actions: [
+                Center(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                      ),
+                      child: const Text(
+                        "Okay",
+                        style:
+                            TextStyle(fontFamily: "rye", color: Colors.black),
+                      )),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+            );
+          });
     } else {
       print('invalid!');
     }

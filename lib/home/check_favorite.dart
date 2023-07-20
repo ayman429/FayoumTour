@@ -62,9 +62,7 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                         return AlertDialog(
                           title: const Text(
                             "Adding Successful",
-                            style: TextStyle(
-                              fontFamily: "merriweather"
-                            ),
+                            style: TextStyle(fontFamily: "merriweather"),
                           ),
                           actions: [
                             Center(
@@ -73,7 +71,7 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.green,
+                                    primary: Colors.green,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(15)),
@@ -81,8 +79,7 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                                   child: const Text(
                                     "Okay",
                                     style: TextStyle(
-                                      fontFamily: "rye",
-                                      color: Colors.black),
+                                        fontFamily: "rye", color: Colors.black),
                                   )),
                             )
                           ],

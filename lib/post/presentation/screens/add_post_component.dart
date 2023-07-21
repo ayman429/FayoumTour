@@ -109,12 +109,13 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           ),
                         ),
                         onPressed: () async {
-                          print("{{{{{{{{{{{{{{{{object}}}}}}}}}}}}}}}}");
-                          print(upload);
                           if (widget.type != 'add' &&
                               _textEditingController.text == widget.data.body) {
                             upload = false;
                           } else {
+                            upload = true;
+                          }
+                          if (_imageList.isNotEmpty) {
                             upload = true;
                           }
 
@@ -135,7 +136,6 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                   images: imagesPath,
                                 ));
                               } else if (widget.type == "edit") {
-                                print("edit");
                                 BlocProvider.of<PostBloc>(context)
                                     .add(UpdatePostEvent(
                                   body: body,

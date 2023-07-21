@@ -89,8 +89,10 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
   @override
   Future<Unit> updatePosts(
       String body, List<String> images, String posId) async {
+    print("////////////////////////");
+    print(images);
     try {
-      int user = int.parse(sharedPreferences!.getString("USERID") ?? "0");
+      // int user = int.parse(sharedPreferences!.getString("USERID") ?? "0");
       // print("============================>");
       // print(user);
       FormData formData = FormData();
@@ -106,7 +108,7 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
         ));
       }
       // Add user and body as fields to the form data
-      formData.fields.add(MapEntry('user', user.toString()));
+      // formData.fields.add(MapEntry('user', user.toString()));
       formData.fields.add(MapEntry('body', body));
       Dio dio = (await DioFactory.create()).dio;
       final response =

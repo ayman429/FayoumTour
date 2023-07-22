@@ -2,6 +2,8 @@ import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:location/location.dart';
+import '../core/utils/app_localizations.dart';
+import '../core/utils/constance/shared_pref.dart';
 import 'RatingStarsBar.dart';
 import 'StarsRating.dart';
 import 'image_list.dart';
@@ -42,9 +44,11 @@ class Details extends StatelessWidget {
                         margin: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 5),
                         child: Text(
-                          data.name,
+                          sharedPreferences!.getString("Language") == "AR"
+                              ? data.nameAR
+                              : data.name,
                           style: TextStyle(
-                            fontFamily: "acme",
+                              fontFamily: "acme",
                               fontSize: 22,
                               color: Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.bold),
@@ -76,9 +80,11 @@ class Details extends StatelessWidget {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 5),
                       child: Text(
-                        data.description,
+                        sharedPreferences!.getString("Language") == "AR"
+                            ? data.descriptionAR
+                            : data.description,
                         style: TextStyle(
-                          fontFamily: "acme",
+                            fontFamily: "acme",
                             height: 1.45,
                             fontSize: 17,
                             color: Theme.of(context).colorScheme.onPrimary),
@@ -275,9 +281,10 @@ class Details extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15)),
                           elevation: 10),
                       child: Text(
-                        "Go to it!",
+                        // "Go to it!",
+                        AppLocalizations.of(context)!.translate("Go to it!"),
                         style: TextStyle(
-                          fontFamily: "rye",
+                            fontFamily: "rye",
                             color: Theme.of(context).colorScheme.secondary,
                             fontSize: 18),
                       ),
@@ -310,9 +317,11 @@ class Details extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(15)),
                                 elevation: 10),
                             child: Text(
-                              "Reserve!",
+                              // "Reserve!",
+                              AppLocalizations.of(context)!
+                                  .translate("Reserve!"),
                               style: TextStyle(
-                                fontFamily: "rye",
+                                  fontFamily: "rye",
                                   color:
                                       Theme.of(context).colorScheme.secondary,
                                   fontSize: 18),

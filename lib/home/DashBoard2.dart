@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../post/presentation/screens/add_post.dart';
 import 'favourites.dart';
@@ -24,9 +25,13 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     Profile(),
     const AddPost(),
   ];
-  static const List<String> titles2 = [
-    "My Profile",
-    "FayTour Community",
+  static List<String> titles2 = [
+    sharedPreferences!.getString("Language") == "AR"
+        ? "الملف الشخصي"
+        : "My Profile",
+    sharedPreferences!.getString("Language") == "AR"
+        ? "مجتمع فايتور"
+        : "FayTour Community",
   ];
   int selected = 0;
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/services_locator.dart';
+import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/enums.dart';
 import '../../../core/utils/snackbar_message.dart';
@@ -69,15 +70,15 @@ class AddLike extends StatelessWidget {
                   width: 5,
                 ),
                 likeMap[postId] == 0
-                    ? const Text(
-                        "Like",
-                        style: TextStyle(
+                    ? Text(
+                        AppLocalizations.of(context)!.translate("Like"),
+                        style: const TextStyle(
                           color: Colors.grey,
                         ),
                       )
-                    : const Text(
-                        "Liked",
-                        style: TextStyle(
+                    : Text(
+                        AppLocalizations.of(context)!.translate("Liked"),
+                        style: const TextStyle(
                           color: Colors.blue,
                         ),
                       )

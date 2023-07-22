@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/local_data_shared_preferences/access_token_shared_preferences.dart';
 import '../../../../core/services/services_locator.dart';
+import '../../../../core/utils/app_localizations.dart';
 import '../../../../home/info.dart';
 import '../../../../hotels/presentation/screens/hotel_reservation_details_for_manager.dart';
 import '../../../../hotels/presentation/screens/hotel_reservation_details_for_user.dart';
@@ -133,7 +134,8 @@ class _profile_screenState extends State<profile_screen> {
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(
-                    (AppStrings.editProfile),
+                    // (AppStrings.editProfile),
+                    AppLocalizations.of(context)!.translate("Edit Profile"),
                     style: TextStyle(
                         fontFamily: "rye",
                         color: Theme.of(context).colorScheme.secondary,
@@ -145,7 +147,7 @@ class _profile_screenState extends State<profile_screen> {
               const Divider(),
               const SizedBox(height: 10),
               ProfileMenuWidget(
-                  title: AppStrings.settings,
+                  title: AppLocalizations.of(context)!.translate("Settings"),
                   icon: Icons.settings,
                   onPress: () {
                     Navigator.push(
@@ -154,7 +156,8 @@ class _profile_screenState extends State<profile_screen> {
                             builder: (context) => const SSSettings()));
                   }),
               ProfileMenuWidget(
-                  title: AppStrings.hotelReservations,
+                  title: AppLocalizations.of(context)!
+                      .translate("Hotel Reservations"),
                   icon: Icons.list_alt_rounded,
                   onPress: () {
                     sharedPreferences!.getBool("is_manager") == true
@@ -170,7 +173,7 @@ class _profile_screenState extends State<profile_screen> {
                                     HotelsReservationDetailsForUser()));
                   }),
               ProfileMenuWidget(
-                  title: AppStrings.information,
+                  title: AppLocalizations.of(context)!.translate("Information"),
                   icon: Icons.info,
                   onPress: () {
                     Navigator.push(
@@ -181,7 +184,7 @@ class _profile_screenState extends State<profile_screen> {
               BlocBuilder<AuthenticationBloc, AuthenticationState>(
                 builder: (context, state) {
                   return ProfileMenuWidget(
-                      title: AppStrings.logOut,
+                      title: AppLocalizations.of(context)!.translate("Logout"),
                       icon: Icons.logout_outlined,
                       endIcon: false,
                       onPress: () {

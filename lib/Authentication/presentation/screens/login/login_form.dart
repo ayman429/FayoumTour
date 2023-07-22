@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/services_locator.dart';
+import '../../../../core/utils/app_localizations.dart';
 import '../../../../core/utils/constance/shared_pref.dart';
 import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/constance/values_manager.dart';
@@ -122,12 +122,11 @@ class _LoginFormState extends State<LoginForm> {
                         backgroundColor: Theme.of(context).colorScheme.primary,
                       ),
                       child: Text(
-                        AppStrings.loginString.toUpperCase(),
+                        AppLocalizations.of(context)!.translate("SIGN IN"),
                         style: TextStyle(
                             fontSize: 16,
                             fontFamily: "rye",
                             color: Theme.of(context).colorScheme.secondary),
-                            
                       ),
                     );
                   },

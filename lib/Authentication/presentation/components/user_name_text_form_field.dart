@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/color_manager.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/constance/values_manager.dart';
@@ -17,7 +18,7 @@ class UserNameTextFormField extends StatelessWidget {
       // cursorColor: ColorManager.kPrimaryColor,
       controller: userNameController,
       decoration: InputDecoration(
-        hintText: AppStrings.userNameHint,
+        hintText: AppLocalizations.of(context)!.translate("Your name"),
         prefixIcon: const Padding(
           padding: EdgeInsets.all(AppPadding.p16),
           child: Icon(Icons.person),

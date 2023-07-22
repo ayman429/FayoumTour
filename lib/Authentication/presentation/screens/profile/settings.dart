@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
+import '../../../../core/utils/app_localizations.dart';
+import '../../../../core/utils/constance/shared_pref.dart';
 import '../../../../core/utils/constance/strings_manager.dart';
+import '../../../../core/utils/languages/bloc/app_language_bloc.dart';
 import '../../../../core/utils/theme/bloc/app_theme_bloc.dart';
 
 class SSSettings extends StatelessWidget {
@@ -16,13 +19,14 @@ class SSSettings extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: const Text(
-              AppStrings.settings,
-              style: TextStyle(
-                      fontFamily: AppStrings.fontFamily,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25),
-            ),
+        title: Text(
+          // AppStrings.settings,
+          AppLocalizations.of(context)!.translate("Settings"),
+          style: const TextStyle(
+              fontFamily: AppStrings.fontFamily,
+              fontWeight: FontWeight.bold,
+              fontSize: 25),
+        ),
         backgroundColor: Colors.transparent,
       ),
       body: FadeIn(
@@ -33,11 +37,9 @@ class SSSettings extends StatelessWidget {
               child: Card(
                 color: Theme.of(context).colorScheme.secondary,
                 child: ListTile(
-                  leading: const Text(
-                    AppStrings.appTheme,
-                    style: TextStyle(
-                      fontFamily: "aBeeZee",
-                      fontSize: 19),
+                  leading: Text(
+                    AppLocalizations.of(context)!.translate("App Theme"),
+                    style: const TextStyle(fontFamily: "aBeeZee", fontSize: 19),
                   ),
                   trailing: BlocBuilder<AppThemeBloc, AppThemeState>(
                       builder: (context, state) {
@@ -49,8 +51,10 @@ class SSSettings extends StatelessWidget {
                               ? true
                               : false,
                           // value: _themeManager.themeMode == ThemeMode.dark,
-                          textOff: AppStrings.appThemeLight,
-                          textOn: AppStrings.appThemeDark,
+                          textOff:
+                              AppLocalizations.of(context)!.translate("Light"),
+                          textOn:
+                              AppLocalizations.of(context)!.translate("Dark"),
                           //colorOff: Colors.grey,
                           //colorOn: Colors.greenAccent,
                           iconOff: Icons.light_mode,
@@ -80,46 +84,63 @@ class SSSettings extends StatelessWidget {
               child: Card(
                 color: Theme.of(context).colorScheme.secondary,
                 child: ListTile(
-                  leading: const Text(
-                    AppStrings.language,
-                    style: TextStyle(
-                      fontFamily: "aBeeZee",
-                      fontSize: 19),
+                  leading: Text(
+                    // AppStrings.language,
+                    AppLocalizations.of(context)!.translate("Language"),
+                    style: const TextStyle(fontFamily: "aBeeZee", fontSize: 19),
                   ),
-                  trailing:
-                  LiteRollingSwitch(
-                    onChanged: (newValue) {},
-                    textSize: 13,
-                    onDoubleTap: () {},
-                    onSwipe: () {},
-                    onTap: () {
-                      print("object");
+                  trailing: BlocBuilder<AppLanguageBloc, AppLanguageState>(
+                    builder: (context, state) {
+                      return LiteRollingSwitch(
+                        onChanged: (newValue) {
+                          // print(AppLocalizations.of(context)!
+                          //     .translate("Settings"));
+                          if (newValue) {
+                            BlocProvider.of<AppLanguageBloc>(context)
+                                .add(EnglishLanguageEvent());
+                            sharedPreferences!.setString("Language", "EN");
+                          } else {
+                            BlocProvider.of<AppLanguageBloc>(context)
+                                .add(ArabicLanguageEvent());
+                            sharedPreferences!.setString("Language", "AR");
+                          }
+                        },
+                        textSize: 13,
+                        onDoubleTap: () {},
+                        onSwipe: () {},
+                        onTap: () {
+                          print("object");
+                        },
+                        animationDuration: const Duration(microseconds: 100),
+                        value: (state.languageCode == AppStrings.enCode)
+                            ? true
+                            : false,
+                        textOff:
+                            AppLocalizations.of(context)!.translate("Arabic"),
+                        textOn:
+                            AppLocalizations.of(context)!.translate("English"),
+                        //colorOff: Colors.grey,
+                        //colorOn: Colors.greenAccent,
+                        iconOff: Icons.language,
+                        iconOn: Icons.language_outlined,
+                        width: 100,
+                      );
                     },
-                    animationDuration: const Duration(microseconds: 100),
-                    value: true,
-                    textOff: AppStrings.languageArabic,
-                    textOn: AppStrings.languageEnglish,
-                    //colorOff: Colors.grey,
-                    //colorOn: Colors.greenAccent,
-                    iconOff: Icons.language,
-                    iconOn: Icons.language_outlined,
-                    width: 100,
                   ),
                   // Switch(
                   //   onChanged: (value) {
-                      
+
                   //   },
                   //   value: true,
                   //     activeColor: Colors.amber,
                   //     activeTrackColor: Colors.cyan,
                   //     inactiveThumbColor: Colors.blueGrey.shade600,
                   //     inactiveTrackColor: Colors.grey.shade400,
-  
+
                   // ),
                 ),
               ),
             ),
-
           ],
         ),
       ),

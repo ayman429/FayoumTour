@@ -1,5 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import '../core/utils/app_localizations.dart';
+import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../post/presentation/screens/add_post.dart';
 import 'favourites.dart';
@@ -71,8 +73,9 @@ class _BottomBarState extends State<BottomBar> {
             ? AppBar(
                 title: TextField(
                   controller: _searchController,
-                  decoration: const InputDecoration(
-                    hintText: 'Search...',
+                  decoration: InputDecoration(
+                    hintText:
+                        AppLocalizations.of(context)!.translate("Search..."),
 
                     border: InputBorder.none,
                     //prefixIcon: Icon(Icons.search)
@@ -103,7 +106,7 @@ class _BottomBarState extends State<BottomBar> {
               )
             : AppBar(
                 title: Text(
-                  AppStrings.titles[selected],
+                  AppStrings.titlesFunc(context, selected),
                   style: const TextStyle(
                       fontFamily: AppStrings.fontFamily,
                       fontWeight: FontWeight.bold,
@@ -114,14 +117,18 @@ class _BottomBarState extends State<BottomBar> {
                 elevation: 0,
                 centerTitle: true,
                 leading: Container(
-                        
-                        margin: const EdgeInsets.only(left: 8,),
-                        child: Hero(
-                          tag: AppStrings.loginHeroTag,
-                          child: Image.asset(AppStrings.logoImage),
+                  margin: sharedPreferences!.getString("Language") == "AR"
+                      ? const EdgeInsets.only(
+                          right: 8,
+                        )
+                      : const EdgeInsets.only(
+                          left: 8,
                         ),
-                      ),
-                    
+                  child: Hero(
+                    tag: AppStrings.loginHeroTag,
+                    child: Image.asset(AppStrings.logoImage),
+                  ),
+                ),
                 actions: selected == 2
                     ? [
                         Container(
@@ -149,17 +156,19 @@ class _BottomBarState extends State<BottomBar> {
                         ),
                       ]
                     : [
-                      Container(
-                        height: 42,
-                        width:45,
-                        margin: const EdgeInsets.only(right: 6),
-                        child: Hero(
-                          tag: AppStrings.loginHeroTag,
-                          child: Image.asset(upIcons[selected]),
+                        Container(
+                          height: 42,
+                          width: 45,
+                          margin:
+                              sharedPreferences!.getString("Language") == "AR"
+                                  ? const EdgeInsets.only(left: 6)
+                                  : const EdgeInsets.only(right: 6),
+                          child: Hero(
+                            tag: AppStrings.loginHeroTag,
+                            child: Image.asset(upIcons[selected]),
+                          ),
                         ),
-                      ),
-                    ],
-
+                      ],
               ),
         body: search
             ? SEARCH(

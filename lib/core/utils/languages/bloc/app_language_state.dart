@@ -1,6 +1,8 @@
 part of 'app_language_bloc.dart';
 
-abstract class AppLanguageState {}
+abstract class AppLanguageState {
+  final String? languageCode = AppStrings.enCode;
+}
 
 class AppLanguageInitial extends AppLanguageState {}
 

@@ -6,6 +6,7 @@ import '../TourismPlaces/domain/entities/tourism_place_rate.dart';
 import '../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
 import '../TourismPlaces/presentation/controller/tourism_place_state.dart';
 import '../core/services/services_locator.dart';
+import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/enums.dart';
 import '../core/utils/snackbar_message.dart';
@@ -170,9 +171,9 @@ class StarRating extends StatelessWidget {
 
               return Column(
                 children: [
-                  const Text(
-                    "Rate it !!",
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context)!.translate("Rate it !!"),
+                    style: const TextStyle(
                         fontFamily: "acme",
                         fontSize: 22,
                         color: Colors.green,
@@ -211,9 +212,10 @@ class StarRating extends StatelessWidget {
             }, builder: (context, state) {
               return Column(
                 children: [
-                  const Text(
-                    "Rate it !!",
-                    style: TextStyle(
+                  Text(
+                    // "Rate it !!",
+                    AppLocalizations.of(context)!.translate("Rate it !!"),
+                    style: const TextStyle(
                         fontFamily: "acme",
                         fontSize: 22,
                         color: Colors.green,

@@ -19,7 +19,7 @@ class BaseLoginForm extends StatelessWidget {
         children: [
           LoginForm(),
           AlreadyHaveAnAccountCheck(
-            login: false,
+            login: true,
             press: () {
               Navigator.push(
                 context,

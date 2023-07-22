@@ -1,3 +1,5 @@
+import '../app_localizations.dart';
+
 class AppStrings {
 // ---------------------------- Constance String --------------------------- //
   static const String userNameHint = "Your name";
@@ -83,12 +85,26 @@ class AppStrings {
   static const String customUserExists =
       "CustomUser with this username already exists.";
 //------------------------------ App Bar Title -------------------------------//
-  static const List<String> titles = [
-    "My Profile",
-    " Nearby",
-    "FayTour",
-    " FayTour Community",
-    "Favourites",
-    "Plans"
-  ];
+  static String titlesFunc(context, index) {
+    List<String> titles = [
+      // AppLocalizations.of(context)!.translate("App Theme"),
+      "My Profile",
+      "Nearby",
+      "FayTour",
+      "FayTour Community",
+      "Favourites",
+      "Plans"
+    ];
+    return AppLocalizations.of(context)!.translate(titles[index]);
+  }
+
+  // static List<String> titles = [
+  //   // AppLocalizations.of(context)!.translate("App Theme"),
+  //   "My Profile",
+  //   " Nearby",
+  //   "FayTour",
+  //   " FayTour Community",
+  //   "Favourites",
+  //   "Plans"
+  // ];
 }

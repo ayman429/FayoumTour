@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
@@ -191,7 +192,7 @@ class ShowPosts extends StatelessWidget {
                                 margin: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 12),
                                 child: Align(
-                                  alignment: Alignment.centerLeft,
+                                  alignment: Alignment.centerRight,
                                   child: Text(
                                     state.post[index].body,
                                     style: const TextStyle(
@@ -400,7 +401,7 @@ class ShowPosts extends StatelessWidget {
                                           state.post[index].comment_numbers !=
                                                   "0"
                                               ? Text(
-                                                  "${state.post[index].comment_numbers} Comments",
+                                                  "${state.post[index].comment_numbers} ${AppLocalizations.of(context)!.translate("Comments")}",
                                                   style: const TextStyle(
                                                       color: Colors.grey,
                                                       fontSize: 14),
@@ -446,17 +447,19 @@ class ShowPosts extends StatelessWidget {
                                                 BorderRadius.circular(30)),
                                       ),
                                       child: Row(
-                                        children: const [
-                                          Icon(
+                                        children: [
+                                          const Icon(
                                             Icons.insert_comment_outlined,
                                             color: Colors.grey,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 5,
                                           ),
-                                          Text("Comment",
-                                              style:
-                                                  TextStyle(color: Colors.grey))
+                                          Text(
+                                              AppLocalizations.of(context)!
+                                                  .translate("Comment"),
+                                              style: const TextStyle(
+                                                  color: Colors.grey))
                                         ],
                                       )),
                                 ],

@@ -7,9 +7,11 @@ import 'rate_one_by_one.dart';
 class TourismPlace extends Equatable {
   int id;
   String name;
+  String nameAR;
   String type;
   String address;
   String description;
+  String descriptionAR;
   double coordinatesX;
   double coordinatesY;
   String originalImage;
@@ -23,9 +25,11 @@ class TourismPlace extends Equatable {
   TourismPlace({
     required this.id,
     required this.name,
+    required this.nameAR,
     required this.type,
     required this.address,
     required this.description,
+    required this.descriptionAR,
     required this.coordinatesX,
     required this.coordinatesY,
     required this.originalImage,
@@ -42,9 +46,11 @@ class TourismPlace extends Equatable {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = id;
     data['name'] = name;
+    data['nameAR'] = nameAR;
     data['type'] = type;
     data['address'] = address;
     data['description'] = description;
+    data['descriptionAR'] = descriptionAR;
     data['coordinatesX'] = coordinatesX;
     data['coordinatesY'] = coordinatesY;
     data['originalImage'] = originalImage;
@@ -62,9 +68,11 @@ class TourismPlace extends Equatable {
     return [
       id,
       name,
+      nameAR,
       type,
       address,
       description,
+      descriptionAR,
       coordinatesX,
       coordinatesY,
       originalImage,

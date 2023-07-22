@@ -8,7 +8,9 @@ import 'rate_one_by_one.dart';
 class Hotel extends Equatable {
   int id;
   String name;
+  String nameAR;
   String description;
+  String descriptionAR;
   double coordinatesX;
   double coordinatesY;
   String address;
@@ -38,7 +40,9 @@ class Hotel extends Equatable {
   Hotel(
       {required this.id,
       required this.name,
+      required this.nameAR,
       required this.description,
+      required this.descriptionAR,
       required this.coordinatesX,
       required this.coordinatesY,
       required this.address,
@@ -71,7 +75,9 @@ class Hotel extends Equatable {
     // Map<String, dynamic> rate = rateOneByOne.toJson();
     data['id'] = id;
     data['name'] = name;
+    data['nameAR'] = nameAR;
     data['description'] = description;
+    data['descriptionAR'] = descriptionAR;
     data['coordinatesX'] = coordinatesX;
     data['coordinatesY'] = coordinatesY;
     data['address'] = address;
@@ -105,7 +111,9 @@ class Hotel extends Equatable {
     return [
       id,
       name,
+      nameAR,
       description,
+      descriptionAR,
       coordinatesX,
       coordinatesY,
       address,

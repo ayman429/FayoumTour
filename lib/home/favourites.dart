@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../TourismPlaces/presentation/screens/places_details.dart';
 import '../core/local_data_shared_preferences/favourites_shared_preferences.dart';
+import '../core/utils/app_localizations.dart';
 import '../hotels/presentation/screens/hotels_details.dart';
 
 class Favorites extends StatefulWidget {
@@ -26,10 +27,11 @@ class _FavoritesState extends State<Favorites> {
     if (snapshot == null || snapshot!.isEmpty) {
       return Center(
         child: Text(
-          "Nothing Yet",
+          AppLocalizations.of(context)!.translate("Nothing Yet fav"),
           style: TextStyle(
-            fontFamily: "pressStart2p",
-              fontSize: 25, color: Theme.of(context).colorScheme.primary),
+              fontFamily: "pressStart2p",
+              fontSize: 25,
+              color: Theme.of(context).colorScheme.primary),
         ),
       );
     } else {

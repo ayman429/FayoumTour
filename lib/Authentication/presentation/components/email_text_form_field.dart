@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/color_manager.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/constance/values_manager.dart';
@@ -19,7 +20,7 @@ class EmailTextFormField extends StatelessWidget {
         // cursorColor: ColorManager.kPrimaryColor,
         controller: emailController,
         decoration: InputDecoration(
-            hintText: AppStrings.emailHint,
+            hintText: AppLocalizations.of(context)!.translate("Your email"),
             prefixIcon: const Padding(
               padding: EdgeInsets.all(AppPadding.p16),
               child: Icon(Icons.mail),

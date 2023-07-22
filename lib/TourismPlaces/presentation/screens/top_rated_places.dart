@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/services_locator.dart';
+import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
 import '../../../home/home_card_of_tourism_hotel.dart';
@@ -20,19 +21,15 @@ class TopRatedTourismPlaces extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                AppStrings.topRatedTourismPlaces,
-                style: TextStyle(
-                  fontFamily: "alata",
-                  fontSize: 18),
+              Text(
+                AppLocalizations.of(context)!.translate("Top Rated Places"),
+                style: const TextStyle(fontFamily: "alata", fontSize: 18),
               ),
               Row(
-                children: const [
+                children: [
                   Text(
-                    AppStrings.seeMore,
-                    style: TextStyle(
-                      fontFamily: "alata",
-                      fontSize: 18),
+                    AppLocalizations.of(context)!.translate("See More"),
+                    style: const TextStyle(fontFamily: "alata", fontSize: 18),
                   ),
                   Icon(Icons.arrow_right)
                 ],

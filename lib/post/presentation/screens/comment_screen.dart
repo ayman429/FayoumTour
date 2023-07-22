@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/services_locator.dart';
+import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
@@ -34,9 +35,9 @@ class _CommentScreenState extends State<CommentScreen> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: const Text(
-            'Comments',
-            style: TextStyle(
+          title: Text(
+            AppLocalizations.of(context)!.translate("Comments"),
+            style: const TextStyle(
                 fontFamily: AppStrings.fontFamily,
                 fontWeight: FontWeight.bold,
                 fontSize: 25),
@@ -44,17 +45,18 @@ class _CommentScreenState extends State<CommentScreen> {
           centerTitle: true,
         ),
         floatingActionButton: Container(
-          margin: const EdgeInsets.only(left: 35),
+          margin: sharedPreferences!.getString("Language") == "AR"
+              ? const EdgeInsets.only(right: 35)
+              : const EdgeInsets.only(left: 35),
           child: TextField(
-          
             controller: _textEditingController,
             decoration: InputDecoration(
-              
               filled: true,
               fillColor: Theme.of(context).colorScheme.tertiaryContainer,
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-              hintText: "Write a comment...",
+              hintText:
+                  AppLocalizations.of(context)!.translate("Write a comment..."),
               hintStyle: const TextStyle(color: Colors.grey),
               border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(50))),

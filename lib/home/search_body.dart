@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 
+import '../core/utils/constance/shared_pref.dart';
 import 'up_bar_image.dart';
 
 class SeachBody extends StatelessWidget {
@@ -91,7 +92,9 @@ class SeachBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  data.name,
+                  sharedPreferences!.getString("Language") == "AR"
+                      ? data.nameAR
+                      : data.name,
                   style: TextStyle(
                     fontFamily: "merriweather",
                     fontSize: 18,

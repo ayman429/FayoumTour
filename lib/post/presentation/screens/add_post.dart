@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/services_locator.dart';
+import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../controller/bloc/post_bloc.dart';
@@ -116,15 +117,21 @@ class _AddPostState extends State<AddPost> {
                                           child: sharedPreferences!
                                                       .getBool("is_manager") ==
                                                   true
-                                              ? const Text(
-                                                  '   write your offer now!   ',
-                                                  style:
-                                                      TextStyle(fontSize: 18.0),
+                                              ? Text(
+                                                  // '   write your offer now!   ',
+                                                  AppLocalizations.of(context)!
+                                                      .translate(
+                                                          "   write your offer now!   "),
+                                                  style: const TextStyle(
+                                                      fontSize: 18.0),
                                                 )
-                                              : const Text(
-                                                  '   Write your post now!   ',
-                                                  style:
-                                                      TextStyle(fontSize: 18.0),
+                                              : Text(
+                                                  // '   Write your post now!   ',
+                                                  AppLocalizations.of(context)!
+                                                      .translate(
+                                                          "   Write your post now!   "),
+                                                  style: const TextStyle(
+                                                      fontSize: 18.0),
                                                 ),
                                         ),
                                       ),

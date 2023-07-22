@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/youtubeController.dart';
 
 import '../core/utils/constance/strings_manager.dart';
@@ -93,10 +94,10 @@ class HomeCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      data.name,
-                      style: const TextStyle(
-                        fontFamily: "alata",
-                        fontSize: 15),
+                      sharedPreferences!.getString("Language") == "AR"
+                          ? data.nameAR
+                          : data.name,
+                      style: const TextStyle(fontFamily: "alata", fontSize: 15),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),

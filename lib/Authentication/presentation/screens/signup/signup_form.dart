@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/services_locator.dart';
+import '../../../../core/utils/app_localizations.dart';
 import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
@@ -98,7 +99,7 @@ class SigupForm extends StatelessWidget {
                       backgroundColor: Theme.of(context).colorScheme.primary,
                     ),
                     child: Text(
-                      AppStrings.signUpString.toUpperCase(),
+                      AppLocalizations.of(context)!.translate("SIGN UP"),
                       style: TextStyle(
                           fontFamily: "rye",
                           fontSize: 16,

@@ -5,6 +5,7 @@ import 'package:fayoumtour/hotels/domain/entities/hotel_reservation.dart';
 import 'package:fayoumtour/hotels/presentation/controller/hotels_event.dart';
 
 import '../core/services/services_locator.dart';
+import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../core/utils/enums.dart';
@@ -60,9 +61,10 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Reservation',
-          style: TextStyle(
+        title: Text(
+          // 'Reservation',
+          AppLocalizations.of(context)!.translate("Reservation"),
+          style: const TextStyle(
               fontFamily: AppStrings.fontFamily,
               fontWeight: FontWeight.bold,
               fontSize: 25),
@@ -103,14 +105,16 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                 TextFormField(
                   keyboardType: TextInputType.phone,
                   controller: _textEditingController,
-                  decoration: const InputDecoration(
-                    labelText: 'Phone Number',
-                    border: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    labelText:
+                        AppLocalizations.of(context)!.translate("Phone Number"),
+                    border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your phone number';
+                      return AppLocalizations.of(context)!
+                          .translate("Please enter your phone number");
                     }
                     return null;
                   },
@@ -148,18 +152,20 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              const Text(
-                                'Check-In',
-                                style: TextStyle(
-                                  fontFamily: "acme",
-                                  fontSize: 22.0),
+                              Text(
+                                // 'Check-In',
+                                AppLocalizations.of(context)!
+                                    .translate("Check-In"),
+                                style: const TextStyle(
+                                    fontFamily: "acme", fontSize: 22.0),
                               ),
                               const SizedBox(width: 8.0),
                               Text(
                                 '${_checkInDate.day}/${_checkInDate.month}/${_checkInDate.year}',
                                 style: const TextStyle(
-                                  fontFamily: "acme",
-                                    fontSize: 22.0, color: Colors.green),
+                                    fontFamily: "acme",
+                                    fontSize: 22.0,
+                                    color: Colors.green),
                               ),
                             ],
                           ),
@@ -177,10 +183,11 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                           final date = await showDatePicker(
                             context: context,
                             initialDate: _checkOutDate,
-                            firstDate: _checkInDate.add(const Duration(days: 1)),
+                            firstDate:
+                                _checkInDate.add(const Duration(days: 1)),
                             lastDate: DateTime(2100),
                           );
-                          
+
                           if (date != null) {
                             setState(() {
                               _checkOutDate = date;
@@ -193,18 +200,19 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              const Text(
-                                'Check-Out',
-                                style: TextStyle(
-                                  fontFamily: "acme",
-                                  fontSize: 22.0),
+                              Text(
+                                AppLocalizations.of(context)!
+                                    .translate("Check-Out"),
+                                style: const TextStyle(
+                                    fontFamily: "acme", fontSize: 22.0),
                               ),
                               const SizedBox(height: 8.0),
                               Text(
                                 '${_checkOutDate.day}/${_checkOutDate.month}/${_checkOutDate.year}',
                                 style: const TextStyle(
-                                  fontFamily: "acme",
-                                    fontSize: 22.0, color: Colors.green),
+                                    fontFamily: "acme",
+                                    fontSize: 22.0,
+                                    color: Colors.green),
                               ),
                             ],
                           ),
@@ -221,11 +229,12 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                       child: DropdownButtonFormField<int>(
                         borderRadius: BorderRadius.circular(30),
                         value: _adults,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
-                          labelText: 'Adults',
+                          labelText:
+                              AppLocalizations.of(context)!.translate("Adults"),
                         ),
                         items: List.generate(10, (index) => index + 1)
                             .map((value) => DropdownMenuItem(
@@ -245,11 +254,12 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                       child: DropdownButtonFormField<int>(
                         borderRadius: BorderRadius.circular(30),
                         value: _kids,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))),
-                          labelText: 'Kids',
+                          labelText:
+                              AppLocalizations.of(context)!.translate("Kids"),
                         ),
                         items: List.generate(10, (index) => index)
                             .map((value) => DropdownMenuItem(
@@ -288,8 +298,7 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                           BlocProvider.of<HotelsBloc>(context).add(
                               AddHotelReservationEvent(
                                   hotelReservation: hotelReservation));
-                        }
-                        else if (widget.type == "edit") {
+                        } else if (widget.type == "edit") {
                           HotelReservation hotelReservation = HotelReservation(
                             id: widget.data.id,
                             hotel: widget.hotelId,
@@ -305,37 +314,37 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                                   hotelReservation: hotelReservation));
                         }
 
-                      //   showDialog(
-                      // context: context,
-                      // barrierDismissible: false,
-                      // builder: (context) {
-                      //   return AlertDialog(
-                      //     title: Text(
-                      //       "Your Request is subimtted!",
-                      //       style: GoogleFonts.merriweather(),
-                      //     ),
-                      //     actions: [
-                      //       Center(
-                      //         child: ElevatedButton(
-                      //             onPressed: () {
-                      //               Navigator.of(context).pop();
-                      //             },
-                      //             style: ElevatedButton.styleFrom(
-                      //               backgroundColor: Colors.green,
-                      //               shape: RoundedRectangleBorder(
-                      //                   borderRadius:
-                      //                       BorderRadius.circular(15)),
-                      //             ),
-                      //             child: Text(
-                      //               "Okay",
-                      //               style: GoogleFonts.rye(color: Colors.black),
-                      //             )),
-                      //       )
-                      //     ],
-                      //     shape: RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(15)),
-                      //   );
-                      // });
+                        //   showDialog(
+                        // context: context,
+                        // barrierDismissible: false,
+                        // builder: (context) {
+                        //   return AlertDialog(
+                        //     title: Text(
+                        //       "Your Request is subimtted!",
+                        //       style: GoogleFonts.merriweather(),
+                        //     ),
+                        //     actions: [
+                        //       Center(
+                        //         child: ElevatedButton(
+                        //             onPressed: () {
+                        //               Navigator.of(context).pop();
+                        //             },
+                        //             style: ElevatedButton.styleFrom(
+                        //               backgroundColor: Colors.green,
+                        //               shape: RoundedRectangleBorder(
+                        //                   borderRadius:
+                        //                       BorderRadius.circular(15)),
+                        //             ),
+                        //             child: Text(
+                        //               "Okay",
+                        //               style: GoogleFonts.rye(color: Colors.black),
+                        //             )),
+                        //       )
+                        //     ],
+                        //     shape: RoundedRectangleBorder(
+                        //         borderRadius: BorderRadius.circular(15)),
+                        //   );
+                        // });
 
                       }
                     },
@@ -345,9 +354,9 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                             borderRadius: BorderRadius.circular(15)),
                         elevation: 10),
                     child: Text(
-                      "Submit!",
+                      AppLocalizations.of(context)!.translate("Submit!"),
                       style: TextStyle(
-                        fontFamily: "rye",
+                          fontFamily: "rye",
                           color: Theme.of(context).colorScheme.secondary,
                           fontSize: 18),
                     ),
@@ -374,9 +383,9 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                           borderRadius: BorderRadius.circular(15)),
                       elevation: 10),
                   child: Text(
-                    "Pay!",
+                    AppLocalizations.of(context)!.translate("Pay!"),
                     style: TextStyle(
-                      fontFamily: "rye",
+                        fontFamily: "rye",
                         color: Theme.of(context).colorScheme.secondary,
                         fontSize: 18),
                   ),

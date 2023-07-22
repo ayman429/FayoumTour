@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/services_locator.dart';
+import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
@@ -28,9 +29,9 @@ class HotelsReservationDetailsForManager extends StatelessWidget {
         case RequestState.loaded:
           return Scaffold(
             appBar: AppBar(
-              title: const Text(
-                'Reservations',
-                style: TextStyle(
+              title: Text(
+                AppLocalizations.of(context)!.translate("Reservation"),
+                style: const TextStyle(
                     fontFamily: AppStrings.fontFamily,
                     fontWeight: FontWeight.bold,
                     fontSize: 25),

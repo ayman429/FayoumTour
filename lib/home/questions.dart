@@ -7,6 +7,7 @@ import '../Authentication/presentation/controller/authentication_bloc.dart';
 import '../Authentication/presentation/controller/authentication_event.dart';
 import '../Authentication/presentation/controller/authentication_state.dart';
 import '../core/services/services_locator.dart';
+import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/enums.dart';
 import '../core/utils/snackbar_message.dart';
@@ -26,12 +27,20 @@ class _TourismScreenState extends State<TourismScreen>
   late Animation<double> _opacityAnimation;
 
   int route = 0;
-  String title = "Select Tourism Type";
+  String title = sharedPreferences!.getString("Language") == "AR"
+      ? "حدد نوع السياحة"
+      : "Select Tourism Type";
   List<String> options = [
     "Islamic antiquities",
     "Coptic antiquities",
     "Greek and Roman Antiquities",
     "Pharaonic antiquities"
+  ];
+  List<String> optionsAR = [
+    "الآثار الإسلامية",
+    "الآثار القبطية",
+    "الآثار الرومانية",
+    "الاثار الفرعونية"
   ];
   List<String> images = [
     "islamic.jpeg",
@@ -213,7 +222,11 @@ class _TourismScreenState extends State<TourismScreen>
                                         height: 15,
                                       ),
                                       Text(
-                                        options[0],
+                                        sharedPreferences!
+                                                    .getString("Language") ==
+                                                "AR"
+                                            ? optionsAR[0]
+                                            : options[0],
                                       )
                                     ],
                                   ),
@@ -275,7 +288,11 @@ class _TourismScreenState extends State<TourismScreen>
                                             height: 15,
                                           ),
                                           Text(
-                                            options[1],
+                                            sharedPreferences!.getString(
+                                                        "Language") ==
+                                                    "AR"
+                                                ? optionsAR[1]
+                                                : options[1],
                                           )
                                         ],
                                       ),
@@ -343,10 +360,14 @@ class _TourismScreenState extends State<TourismScreen>
                                         height: 15,
                                       ),
                                       Text(
-                                        options[2] ==
-                                                "Greek and Roman Antiquities"
-                                            ? "Greek and Roman"
-                                            : options[2],
+                                        sharedPreferences!
+                                                    .getString("Language") ==
+                                                "AR"
+                                            ? optionsAR[2]
+                                            : options[2] ==
+                                                    "Greek and Roman Antiquities"
+                                                ? "Greek and Roman"
+                                                : options[2],
                                       )
                                     ],
                                   ),
@@ -404,7 +425,11 @@ class _TourismScreenState extends State<TourismScreen>
                                         height: 15,
                                       ),
                                       Text(
-                                        options[3],
+                                        sharedPreferences!
+                                                    .getString("Language") ==
+                                                "AR"
+                                            ? optionsAR[3]
+                                            : options[3],
                                       )
                                     ],
                                   ),
@@ -448,12 +473,23 @@ class _TourismScreenState extends State<TourismScreen>
                                           if (_selectedOption[route] != '') {
                                             if (route == 0) {
                                               setState(() {
-                                                title = "What do you prefer?";
+                                                title = sharedPreferences!
+                                                            .getString(
+                                                                "Language") ==
+                                                        "AR"
+                                                    ? "ماذا تفضل؟"
+                                                    : "What do you prefer?";
                                                 options = [
                                                   "Historical pyramids",
                                                   "Statues and Monuments",
                                                   "Temples",
                                                   "Sand Boarding"
+                                                ];
+                                                optionsAR = [
+                                                  "الأهرامات التاريخية",
+                                                  "التماثيل والآثار",
+                                                  "المعابد",
+                                                  "التزحلق على الرمال"
                                                 ];
                                                 images = [
                                                   "Historical.jpg",
@@ -465,12 +501,23 @@ class _TourismScreenState extends State<TourismScreen>
                                               });
                                             } else if (route == 1) {
                                               setState(() {
-                                                title = "What do you prefer?";
+                                                title = sharedPreferences!
+                                                            .getString(
+                                                                "Language") ==
+                                                        "AR"
+                                                    ? "ماذا تفضل؟"
+                                                    : "What do you prefer?";
                                                 options = [
                                                   "Water Sports",
                                                   "Waterfalls Area",
                                                   "Safari Trips and Camping",
                                                   "Natural Gardens"
+                                                ];
+                                                optionsAR = [
+                                                  "رياضات مائيه",
+                                                  "منطقة الشلالات",
+                                                  "رحلات السفاري والتخييم",
+                                                  "الحدائق الطبيعية"
                                                 ];
                                                 images = [
                                                   "water.jpg",
@@ -532,7 +579,9 @@ class _TourismScreenState extends State<TourismScreen>
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 5, horizontal: 50),
                                           child: Text(
-                                            "Next",
+                                            // "Next",
+                                            AppLocalizations.of(context)!
+                                                .translate("Next"),
                                             style: TextStyle(
                                                 fontFamily: "rye",
                                                 color: Theme.of(context)

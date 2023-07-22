@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/services_locator.dart';
+import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/enums.dart';
 import '../../../home/search_body.dart';
 import '../controller/hotels_bloc.dart';
@@ -53,10 +54,11 @@ class HotelsSearch extends StatelessWidget {
               EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25),
           child: Center(
             child: Text(
-              "Not Found!",
+              AppLocalizations.of(context)!.translate("Not Found!"),
               style: TextStyle(
-                fontFamily: "pressStart2p",
-                  fontSize: 25, color: Theme.of(context).colorScheme.primary),
+                  fontFamily: "pressStart2p",
+                  fontSize: 25,
+                  color: Theme.of(context).colorScheme.primary),
             ),
           ));
     }));

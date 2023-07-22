@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constance/shared_pref.dart';
+import '../../constance/strings_manager.dart';
 
 part 'app_language_event.dart';
 part 'app_language_state.dart';

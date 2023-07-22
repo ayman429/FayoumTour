@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
@@ -68,7 +69,9 @@ class _AddPostComponentState extends State<AddPostComponent> {
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
-            title: Text(widget.type == 'add' ? "Create Post" : "Edit Post"),
+            title: Text(widget.type == 'add'
+                ? AppLocalizations.of(context)!.translate("Create Post")
+                : AppLocalizations.of(context)!.translate("Edit Post")),
             actions: [
               Opacity(
                 opacity: _textEditingController.text == "" && _imageList.isEmpty
@@ -108,7 +111,11 @@ class _AddPostComponentState extends State<AddPostComponent> {
                       return TextButton(
                         child: Center(
                           child: Text(
-                            widget.type == 'add' ? 'Post' : "Update",
+                            widget.type == 'add'
+                                ? AppLocalizations.of(context)!
+                                    .translate("Post")
+                                : AppLocalizations.of(context)!
+                                    .translate("Update"),
                             style: TextStyle(
                                 fontFamily: "rye",
                                 fontSize: 17,
@@ -312,8 +319,9 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         style: const TextStyle(fontSize: 25),
                         // initialValue: widget.data.body.toString(),
                         controller: _textEditingController,
-                        decoration: const InputDecoration(
-                          hintText: 'Write your post now!',
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)!
+                              .translate("Write your post now!"),
                           // border: OutlineInputBorder(
                           //     borderRadius: BorderRadius.circular(30)),
                           border: InputBorder.none,

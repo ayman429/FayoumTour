@@ -16,7 +16,8 @@ abstract class BasePostRemoteDataSource {
   Future<PostModel> getPostsById(iD);
   Future<String> deletePosts(iD);
   Future<Unit> addPosts(String body, List<String> images);
-  Future<Unit> updatePosts(String body, List<String> images, String posId);
+  Future<Unit> updatePosts(
+      String body, List<String> images, String posId, String index);
 
   // Future<List<PostModel>> searchByFields(search);
   // Future<List<HotelModel>> orderingByFields(search);
@@ -88,7 +89,7 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
 
   @override
   Future<Unit> updatePosts(
-      String body, List<String> images, String posId) async {
+      String body, List<String> images, String posId, String index) async {
     print("////////////////////////");
     print(images);
     try {
@@ -110,6 +111,7 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
       // Add user and body as fields to the form data
       // formData.fields.add(MapEntry('user', user.toString()));
       formData.fields.add(MapEntry('body', body));
+      formData.fields.add(MapEntry('index', index));
       Dio dio = (await DioFactory.create()).dio;
       final response =
           await dio.patch("${ApiConstance.postPath}/$posId/", data: formData);

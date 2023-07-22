@@ -55,7 +55,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
       // {
       //   _ProvidedimageList.add(widget.data.imagesP[i].imageT);
       // }
-      
+
     }
     updateUIWithImagePath();
   }
@@ -75,7 +75,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                     ? 0.5
                     : widget.type == 'add'
                         ? 1
-                        : _textEditingController.text == widget.data.body /*&& !changeInImages*/
+                        : _textEditingController.text ==
+                                widget.data.body /*&& !changeInImages*/
                             ? 0.5
                             : 1,
                 child: Container(
@@ -116,12 +117,13 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           ),
                         ),
                         onPressed: () async {
-                          if (widget.type != 'add' && _textEditingController.text == widget.data.body /*&& !changeInImages*/) {
+                          if (widget.type != 'add' &&
+                              _textEditingController.text ==
+                                  widget.data.body /*&& !changeInImages*/) {
                             upload = false;
                           } else {
                             upload = true;
                           }
-                          
 
                           if (upload) {
                             if (_textEditingController.text != "" ||
@@ -145,6 +147,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                   body: body,
                                   images: imagesPath,
                                   posId: widget.data.id.toString(),
+                                  index: "-1",
                                 ));
                               }
 
@@ -221,74 +224,82 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         ],
                       ),
                       // input images post
-                      widget.type == "add" ? IconButton(
-                        color: Colors.green,
-                        iconSize: 35,
-                        icon: const Icon(Icons.filter),
-                        onPressed: () async {
-                          {
-                            final pickedFile = await showModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return SafeArea(
-                                  child: Wrap(
-                                    children: <Widget>[
-                                      ListTile(
-                                        leading:
-                                            const Icon(Icons.photo_library),
-                                        title: const Text('Photo Library'),
-                                        onTap: () async {
-                                          final pickedFile = await ImagePicker()
-                                              .pickImage(
-                                                  source: ImageSource.gallery);
-                                          // if (pickedFile != null) {
-                                          //   var userId = await FavouritStorage()
-                                          //       .getUsersDetails();
-                                          //   sharedPreferences!.setString(
-                                          //       "${userId.id}USERIMAGE",
-                                          //       pickedFile.path);
-                                          //   print(
-                                          //       "path====> ${pickedFile.path}");
-                                          // }
-                                          Navigator.pop(context, pickedFile);
-                                        },
-                                      ),
-                                      ListTile(
-                                        leading: const Icon(Icons.photo_camera),
-                                        title: const Text('Camera'),
-                                        onTap: () async {
-                                          final pickedFile =
-                                              // ignore: deprecated_member_use
-                                              await ImagePicker().pickImage(
-                                                  source: ImageSource.camera);
-                                          // if (pickedFile != null) {
-                                          //   var userId = await FavouritStorage()
-                                          //       .getUsersDetails();
-                                          //   sharedPreferences!.setString(
-                                          //       "${userId.id}USERIMAGE",
-                                          //       pickedFile.path);
-                                          // }
-                                          Navigator.pop(context, pickedFile);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                );
+                      widget.type == "add"
+                          ? IconButton(
+                              color: Colors.green,
+                              iconSize: 35,
+                              icon: const Icon(Icons.filter),
+                              onPressed: () async {
+                                {
+                                  final pickedFile = await showModalBottomSheet(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return SafeArea(
+                                        child: Wrap(
+                                          children: <Widget>[
+                                            ListTile(
+                                              leading: const Icon(
+                                                  Icons.photo_library),
+                                              title:
+                                                  const Text('Photo Library'),
+                                              onTap: () async {
+                                                final pickedFile =
+                                                    await ImagePicker()
+                                                        .pickImage(
+                                                            source: ImageSource
+                                                                .gallery);
+                                                // if (pickedFile != null) {
+                                                //   var userId = await FavouritStorage()
+                                                //       .getUsersDetails();
+                                                //   sharedPreferences!.setString(
+                                                //       "${userId.id}USERIMAGE",
+                                                //       pickedFile.path);
+                                                //   print(
+                                                //       "path====> ${pickedFile.path}");
+                                                // }
+                                                Navigator.pop(
+                                                    context, pickedFile);
+                                              },
+                                            ),
+                                            ListTile(
+                                              leading: const Icon(
+                                                  Icons.photo_camera),
+                                              title: const Text('Camera'),
+                                              onTap: () async {
+                                                final pickedFile =
+                                                    // ignore: deprecated_member_use
+                                                    await ImagePicker()
+                                                        .pickImage(
+                                                            source: ImageSource
+                                                                .camera);
+                                                // if (pickedFile != null) {
+                                                //   var userId = await FavouritStorage()
+                                                //       .getUsersDetails();
+                                                //   sharedPreferences!.setString(
+                                                //       "${userId.id}USERIMAGE",
+                                                //       pickedFile.path);
+                                                // }
+                                                Navigator.pop(
+                                                    context, pickedFile);
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                  setState(() {
+                                    if (pickedFile != null) {
+                                      _imageList.add(File(pickedFile.path));
+                                      //changeInImages = true;
+                                    } else {
+                                      print('No image selected.');
+                                    }
+                                  });
+                                }
                               },
-                            );
-                            setState(() {
-                              if (pickedFile != null) {
-                                _imageList.add(File(pickedFile.path));
-                                //changeInImages = true;
-                              } else {
-                                print('No image selected.');
-                              }
-                            });
-                          }
-                        },
-                      )
-                      : Container(),
-                    
+                            )
+                          : Container(),
                     ],
                   ),
 
@@ -326,27 +337,28 @@ class _AddPostComponentState extends State<AddPostComponent> {
                       ),
                     ),
                   ),
- 
+
                   // show images selected
                   const SizedBox(height: 10),
 
                   SizedBox(
-  height: 120,
-  child: ListView.builder(
-    scrollDirection: Axis.horizontal,
-    itemCount: /*widget.type == 'add' ?*/ _imageList.length /*: _calculateMaxItemCount()*/,
-    itemBuilder: (context, index) {
-      return Row(
-        children: [
-          /*widget.type != 'add' ? index < _ProvidedimageList.length ?
+                    height: 120,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: /*widget.type == 'add' ?*/ _imageList
+                          .length /*: _calculateMaxItemCount()*/,
+                      itemBuilder: (context, index) {
+                        return Row(
+                          children: [
+                            /*widget.type != 'add' ? index < _ProvidedimageList.length ?
             _buildImageContainer(_ProvidedimageList[index],File(""),index): Container(): Container(),
           if (index < _imageList.length)*/
-            _buildImageContainer("",_imageList[index],index),
-        ],
-      );
-    },
-  ),
-),
+                            _buildImageContainer("", _imageList[index], index),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 7),
                 ],
               ),
@@ -361,102 +373,87 @@ class _AddPostComponentState extends State<AddPostComponent> {
 //   return max(_ProvidedimageList.length, _imageList.length);
 // }
 
-Widget _buildImageContainer(String imageProvider, File image, int pos) {
-  return Container(
-    height: 120,
-    margin: const EdgeInsets.symmetric(horizontal: 3),
-    child: Stack(
-      fit: StackFit.passthrough,
-      children: [
-        ShaderMask(
-          shaderCallback: (rect) {
-                              return const LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.transparent,
-                                  Colors.black,
-                                  Colors.black,
-                                  Colors.transparent,
-                                ],
-                                stops: [0, 0.3, 1, 1],
-                              ).createShader(Rect.fromLTRB(
-                                  0, 0, rect.width, rect.height));
-                            },
-                            blendMode: BlendMode.dstIn,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: imageProvider == "" ? Image.file(
-                                image,
-                                fit: BoxFit.cover,
-                                width: 100,
-                              )
-                              : Image.network(
-                                  imageProvider,
-                                  fit: BoxFit.cover,
-                                  width: 100,
-                                  errorBuilder: (context,
-                                      error, stackTrace) {
-                                    return Image.asset(
-                                      AppStrings.error1Gif,
-                                      fit: BoxFit.cover,
-                                    );
-                                  },
-                                  loadingBuilder: (context,
-                                      child,
-                                      loadingProgress) {
-                                    if (loadingProgress !=
-                                        null) {
-                                      return Image.asset(
-                                        AppStrings
-                                            .loading2Gif,
-                                        fit: BoxFit.cover,
-                                      );
-                                    }
-                                    return child;
-                                  },
-                                ),
-                            ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            InkWell(
-              onTap: () {
-                setState(() {
-                  if(imageProvider == "")
-                  {
-                    _imageList.removeAt(pos);
-                    //changeInImages = true;
-                  }
-                  else
-                  {
-                    // _ProvidedimageList.removeAt(pos);
-                    // _RemovedProvidedimageIndexList.add(pos);
-                    // changeInImages = true;
-                  }
-                  
-                });
-              },
-              child: Icon(
-                Icons.cancel,
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
+  Widget _buildImageContainer(String imageProvider, File image, int pos) {
+    return Container(
+      height: 120,
+      margin: const EdgeInsets.symmetric(horizontal: 3),
+      child: Stack(
+        fit: StackFit.passthrough,
+        children: [
+          ShaderMask(
+            shaderCallback: (rect) {
+              return const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.transparent,
+                  Colors.black,
+                  Colors.black,
+                  Colors.transparent,
+                ],
+                stops: [0, 0.3, 1, 1],
+              ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
+            },
+            blendMode: BlendMode.dstIn,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: imageProvider == ""
+                  ? Image.file(
+                      image,
+                      fit: BoxFit.cover,
+                      width: 100,
+                    )
+                  : Image.network(
+                      imageProvider,
+                      fit: BoxFit.cover,
+                      width: 100,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          AppStrings.error1Gif,
+                          fit: BoxFit.cover,
+                        );
+                      },
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress != null) {
+                          return Image.asset(
+                            AppStrings.loading2Gif,
+                            fit: BoxFit.cover,
+                          );
+                        }
+                        return child;
+                      },
+                    ),
             ),
-          ],
-        ),
-      ],
-    ),
-  );
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    if (imageProvider == "") {
+                      _imageList.removeAt(pos);
+                      //changeInImages = true;
+                    } else {
+                      // _ProvidedimageList.removeAt(pos);
+                      // _RemovedProvidedimageIndexList.add(pos);
+                      // changeInImages = true;
+                    }
+                  });
+                },
+                child: Icon(
+                  Icons.cancel,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
-
-
-}
-
-
-
-
 
 Widget displayImage(String imagePath) {
   final File imageFile = File(imagePath);

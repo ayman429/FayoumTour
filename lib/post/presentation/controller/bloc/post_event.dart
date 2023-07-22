@@ -26,10 +26,12 @@ class UpdatePostEvent extends PostEvent {
   String body;
   List<String> images;
   String posId;
+  String index;
   UpdatePostEvent({
     required this.body,
     required this.images,
     required this.posId,
+    required this.index,
   });
 }
 

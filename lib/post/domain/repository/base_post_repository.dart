@@ -13,7 +13,7 @@ abstract class BasePostRepository {
   Future<Either<Failure, String>> deletePost(String iD);
   Future<Either<Failure, Unit>> addPost(String body, List<String> images);
   Future<Either<Failure, Unit>> updatePost(
-      String body, List<String> images, String posId);
+      String body, List<String> images, String posId, String index);
 
   // Future<Either<Failure, List<Post>>> searchByField(String search);
   // Future<Either<Failure, List<Post>>> orderingByField(search);

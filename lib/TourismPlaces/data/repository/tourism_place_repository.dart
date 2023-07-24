@@ -6,6 +6,7 @@ import '../../domain/entities/tourism_place.dart';
 import '../../domain/entities/tourism_place_rate.dart';
 import '../../domain/repository/base_tourism_place_repository.dart';
 import '../datasource/tourism_place_remote_data_source.dart';
+import '../models/tourism_place_model.dart';
 
 class TourismPlaceRerpository extends BaseTourismPlaceRepository {
   final BaseTourismPlaceRemoteDataSource baseTourismPlaceRemoteDataSource;
@@ -179,10 +180,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
   }
 
   @override
-  Future<Either<Failure, String>> getTourismPlaceFavorite(
-      tourismPlaceFavoriteModel) async {
-    final add = await baseTourismPlaceRemoteDataSource
-        .getTourismPlaceFavorites(tourismPlaceFavoriteModel);
+  Future<Either<Failure, List<TourismPlace>>> getTourismPlaceFavorite() async {
+    final add =
+        await baseTourismPlaceRemoteDataSource.getTourismPlaceFavorites();
     try {
       return Right(add);
     } on ServerException catch (failure) {

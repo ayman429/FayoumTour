@@ -54,7 +54,7 @@ class TourismPlaceState {
   final RequestState updateCreateTourismPlaceFavoriteState;
   final String updateCreateTourismPlaceFavoriteMessage;
 
-  final String getTourismPlaceFavorite;
+  final List<TourismPlace> getTourismPlaceFavorite;
   final RequestState getTourismPlaceFavoriteState;
   final String getTourismPlaceFavoriteMessage;
 
@@ -96,7 +96,7 @@ class TourismPlaceState {
     this.getTourismPlaceRateByUserMessage = '',
     this.updateCreateTourismPlaceFavoriteState = RequestState.loading,
     this.updateCreateTourismPlaceFavoriteMessage = '',
-    this.getTourismPlaceFavorite = '',
+    this.getTourismPlaceFavorite = const [],
     this.getTourismPlaceFavoriteState = RequestState.loading,
     this.getTourismPlaceFavoriteMessage = '',
   });
@@ -139,7 +139,7 @@ class TourismPlaceState {
     String? getTourismPlaceRateByUserMessage,
     RequestState? updateCreateTourismPlaceFavoriteState,
     String? updateCreateTourismPlaceFavoriteMessage,
-    String? getTourismPlaceFavorite,
+    List<TourismPlace>? getTourismPlaceFavorite,
     RequestState? getTourismPlaceFavoriteState,
     String? getTourismPlaceFavoriteMessage,
   }) {

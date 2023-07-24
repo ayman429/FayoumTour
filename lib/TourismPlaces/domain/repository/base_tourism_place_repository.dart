@@ -29,6 +29,5 @@ abstract class BaseTourismPlaceRepository {
   Future<Either<Failure, Unit>> updateCreateTourismPlaceFavorite(
       TourismPlaceFavoriteModel tourismPlaceFavoriteModel);
 
-  Future<Either<Failure, String>> getTourismPlaceFavorite(
-      TourismPlaceFavoriteModel tourismPlaceFavoriteModel);
+  Future<Either<Failure, List<TourismPlace>>> getTourismPlaceFavorite();
 }

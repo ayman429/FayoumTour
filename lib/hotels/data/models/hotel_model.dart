@@ -35,6 +35,7 @@ class HotelModel extends Hotel {
       required super.originalImage,
       required super.user,
       required super.rate_value,
+      required super.fav_value,
       required super.createdBy});
 
   factory HotelModel.fromJson(Map<String, dynamic> json) {
@@ -86,6 +87,7 @@ class HotelModel extends Hotel {
       originalImage: json['originalImage'],
       user: json['user'],
       rate_value: json['rate_value'],
+      fav_value: json['fav_value'],
       createdBy: CreatedByModel.fromJson(json['created_by']),
     );
   }
@@ -119,5 +121,6 @@ class HotelModel extends Hotel {
             villa: hotel.villa,
             web: hotel.web,
             rate_value: hotel.rate_value,
+            fav_value: hotel.fav_value,
             createdBy: hotel.createdBy);
 }

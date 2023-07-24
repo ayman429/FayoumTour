@@ -87,12 +87,7 @@ class UpdateCreateHotelFavoriteEvent extends HotelsEvent {
   });
 }
 
-class GetHotelFavoriteEvent extends HotelsEvent {
-  HotelFavorite getHotelFavorite;
-  GetHotelFavoriteEvent({
-    required this.getHotelFavorite,
-  });
-}
+class GetHotelFavoriteEvent extends HotelsEvent {}
 
 // HotelReservation
 class GetHotelsReservationEvent extends HotelsEvent {

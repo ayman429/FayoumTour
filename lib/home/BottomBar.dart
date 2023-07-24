@@ -4,6 +4,7 @@ import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../post/presentation/screens/add_post.dart';
+import 'FavoritesPlacesAndHotels.dart';
 import 'favourites.dart';
 import 'home.dart';
 import 'plan.dart';
@@ -39,7 +40,7 @@ class _BottomBarState extends State<BottomBar> {
     const NEAR(),
     Home(tourtismType: tourtismTypes),
     const AddPost(),
-    const Favorites(),
+    FavoritesPlacesAndHotels(),
     const Plan(),
   ];
 
@@ -68,6 +69,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        extendBody: true,
         backgroundColor: Theme.of(context).colorScheme.onSecondary,
         appBar: search
             ? AppBar(

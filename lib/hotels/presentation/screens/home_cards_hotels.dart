@@ -55,6 +55,9 @@ class HomeCardsHotels extends StatelessWidget {
                   for (var element in state.hotels) {
                     rateHotelMap.addAll({element.id: element.rate_value ?? 0});
                   }
+                  for (var element in state.hotels) {
+                    favHotelMap.addAll({element.id: element.fav_value ?? 0});
+                  }
                   return HomeCard(
                     data: hotels,
                     index: 1,

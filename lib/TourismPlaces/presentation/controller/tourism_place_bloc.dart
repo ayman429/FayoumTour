@@ -23,6 +23,7 @@ import 'tourism_place_event.dart';
 import 'tourism_place_state.dart';
 
 Map<int, int> ratePlaceMap = {};
+Map<int, int> favPlaceMap = {};
 
 class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
   final GetTourismPlaceUsecase getTourismPlaceUsecase;
@@ -274,6 +275,11 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
   FutureOr<void> _updateCreateTourismPlaceFavorite(
       UpdateCreateTourismPlaceFavoriteEvent event,
       Emitter<TourismPlaceState> emit) async {
+    int? placeId = event.updateCreateTourFavorite.placeId;
+    favPlaceMap[placeId ?? 0] = favPlaceMap[placeId] == 0 ? 1 : 0;
+    emit(TourismPlaceState(
+      updateCreateTourismPlaceFavoriteState: RequestState.loaded,
+    ));
     (await updateCreateTourismPlaceFavoriteUsecase(
       event.updateCreateTourFavorite,
     ))
@@ -282,6 +288,10 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
           updateCreateTourismPlaceFavoriteState: RequestState.error,
           updateCreateTourismPlaceFavoriteMessage: l.message));
     }, (r) {
+      print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+      print(favPlaceMap[placeId]);
+      print(event.updateCreateTourFavorite.fav);
+      print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
       return emit(TourismPlaceState(
         updateCreateTourismPlaceFavoriteState: RequestState.loaded,
       ));
@@ -290,7 +300,7 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
 
   FutureOr<void> _getTourismPlaceFavorite(GetTourismPlaceFavoriteEvent event,
       Emitter<TourismPlaceState> emit) async {
-    (await getTourismPlaceFavoriteUsecase(event.getTourFavorite)).fold((l) {
+    (await getTourismPlaceFavoriteUsecase(const NoParameters())).fold((l) {
       return emit(TourismPlaceState(
           getTourismPlaceFavoriteState: RequestState.error,
           getTourismPlaceFavoriteMessage: l.message));

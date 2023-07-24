@@ -7,6 +7,7 @@ import '../../domain/entities/hotel_rate.dart';
 import '../../domain/entities/hotel_reservation.dart';
 import '../../domain/repository/base_hotel_repository.dart';
 import '../datasource/hotel_remote_data_source.dart';
+import '../models/hotel_model.dart';
 
 class HotelRerpository extends BaseHotelRepository {
   final BaseHotelRemoteDataSource baseHotelRemoteDataSource;
@@ -158,9 +159,8 @@ class HotelRerpository extends BaseHotelRepository {
   }
 
   @override
-  Future<Either<Failure, String>> getHotelFavorite(hotelFavoriteModel) async {
-    final add =
-        await baseHotelRemoteDataSource.getHotelFavorites(hotelFavoriteModel);
+  Future<Either<Failure, List<Hotel>>> getHotelFavorite() async {
+    final add = await baseHotelRemoteDataSource.getHotelFavorites();
     try {
       return Right(add);
     } on ServerException catch (failure) {

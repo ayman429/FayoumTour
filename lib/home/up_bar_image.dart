@@ -1,7 +1,9 @@
 //This file is for the upbar of the hotels pages
 import 'package:flutter/material.dart';
 
+import '../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
 import '../core/utils/constance/strings_manager.dart';
+import '../hotels/presentation/controller/hotels_bloc.dart';
 import 'check_favorite.dart';
 import 'home_details_of_tourism_hotel.dart';
 
@@ -67,7 +69,20 @@ class UpBarImage extends StatelessWidget {
                   ),
                 ),
                 actions: [
-                  CheckFavorite(data: data, type: type),
+                  if (index == 0)
+                    CheckFavorite(
+                      id: data.id,
+                      // fav_value: favPlaceMap[data.id],
+                      fav_value: data.fav_value,
+                      index: index,
+                    )
+                  else
+                    CheckFavorite(
+                      id: data.id,
+                      // fav_value: favHotelMap[data.id],
+                      fav_value: data.fav_value,
+                      index: index,
+                    )
                 ],
               ),
             ],

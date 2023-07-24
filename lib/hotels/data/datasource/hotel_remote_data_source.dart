@@ -5,6 +5,7 @@ import '../../../core/error/exceptions.dart';
 import '../../../core/network/api_constance.dart';
 import '../../../core/network/dio_factory.dart';
 import '../../../core/network/error_message_model.dart';
+import '../../../core/utils/constance/shared_pref.dart';
 import '../models/hotel_favorite_model.dart';
 import '../models/hotel_model.dart';
 import '../models/hotel_rate_model.dart';
@@ -27,7 +28,7 @@ abstract class BaseHotelRemoteDataSource {
 
   Future<Unit> updateCreateHotelFavorites(
       HotelFavoriteModel hotelFavoriteModel);
-  Future<String> getHotelFavorites(HotelFavoriteModel hotelFavoriteModel);
+  Future<List<HotelModel>> getHotelFavorites();
 
   // HotelReservation
   Future<List<HotelReservationModel>> getHotelsReservation(int hotelId);
@@ -261,15 +262,14 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
   }
 
   @override
-  Future<String> getHotelFavorites(hotelFavoriteModel) async {
-    Map<String, dynamic> hotelFavoriteModelsToJson =
-        hotelFavoriteModel.toJson();
+  Future<List<HotelModel>> getHotelFavorites() async {
     try {
       Dio dio = (await DioFactory.create()).dio;
-      final response = await dio.get(ApiConstance.hotelFavoritePath,
-          data: hotelFavoriteModelsToJson);
-      print(response.data);
-      return response.data["favorite"] ?? "0";
+      final response = await dio.get(ApiConstance.hotelFavoritePath, data: {
+        "userId": int.parse(sharedPreferences!.getString("USERID") ?? "0")
+      });
+      return List<HotelModel>.from(
+          (response.data as List).map((e) => HotelModel.fromJson(e)));
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(

@@ -6,25 +6,26 @@ import 'img_model.dart';
 import 'rate_on_by_one_model.dart';
 
 class TourismPlaceModel extends TourismPlace {
-  TourismPlaceModel({
-    required super.id,
-    required super.name,
-    required super.nameAR,
-    required super.type,
-    required super.address,
-    required super.description,
-    required super.descriptionAR,
-    required super.coordinatesX,
-    required super.coordinatesY,
-    required super.originalImage,
-    required super.imagesT,
-    required super.noOfRatings,
-    required super.avgRatings,
-    required super.rateOneByOne,
-    required super.user,
-    required super.rate_value,
-    // required super.createdBy
-  });
+  TourismPlaceModel(
+      {required super.id,
+      required super.name,
+      required super.nameAR,
+      required super.type,
+      required super.address,
+      required super.description,
+      required super.descriptionAR,
+      required super.coordinatesX,
+      required super.coordinatesY,
+      required super.originalImage,
+      required super.imagesT,
+      required super.noOfRatings,
+      required super.avgRatings,
+      required super.rateOneByOne,
+      required super.user,
+      required super.rate_value,
+      required super.fav_value
+      // required super.createdBy
+      });
 
   factory TourismPlaceModel.fromJson(Map<String, dynamic> json) {
     List<ImagesTModel> image = <ImagesTModel>[];
@@ -34,24 +35,26 @@ class TourismPlaceModel extends TourismPlace {
           })
         : [];
     return TourismPlaceModel(
-        id: json['id'],
-        name: json['name'],
-        nameAR: json['nameAR'],
-        type: json['type'],
-        address: json['address'],
-        description: json['description'],
-        descriptionAR: json['descriptionAR'],
-        coordinatesX: json['coordinatesX'],
-        coordinatesY: json['coordinatesY'],
-        originalImage: json['originalImage'],
-        imagesT: image,
-        noOfRatings: json['no_of_ratings'],
-        avgRatings: double.parse(
-            (json['avg_ratings']).toStringAsFixed(1)), //json['avg_ratings'],
-        rateOneByOne: RateOneByOneModel.fromJson(json['rate_one_by_one']),
-        user: json['user'],
-        // createdBy: CreatedByModel.fromJson(json['created_by']),
-        rate_value: json['rate_value']);
+      id: json['id'],
+      name: json['name'],
+      nameAR: json['nameAR'],
+      type: json['type'],
+      address: json['address'],
+      description: json['description'],
+      descriptionAR: json['descriptionAR'],
+      coordinatesX: json['coordinatesX'],
+      coordinatesY: json['coordinatesY'],
+      originalImage: json['originalImage'],
+      imagesT: image,
+      noOfRatings: json['no_of_ratings'],
+      avgRatings: double.parse(
+          (json['avg_ratings']).toStringAsFixed(1)), //json['avg_ratings'],
+      rateOneByOne: RateOneByOneModel.fromJson(json['rate_one_by_one']),
+      user: json['user'],
+      // createdBy: CreatedByModel.fromJson(json['created_by']),
+      rate_value: json['rate_value'],
+      fav_value: json['fav_value'],
+    );
   }
   TourismPlaceModel.castFromEntity(final TourismPlace tourismPlace)
       : super(
@@ -72,5 +75,6 @@ class TourismPlaceModel extends TourismPlace {
           user: tourismPlace.user,
           createdBy: tourismPlace.createdBy,
           rate_value: tourismPlace.rate_value,
+          fav_value: tourismPlace.fav_value,
         );
 }

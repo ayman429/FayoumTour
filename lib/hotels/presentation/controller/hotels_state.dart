@@ -52,7 +52,7 @@ class HotelsState {
   final RequestState updateCreateHotelFavoriteState;
   final String updateCreateHotelFavoriteMessage;
 
-  final String getHotelFavorite;
+  final List<Hotel> getHotelFavorite;
   final RequestState getHotelFavoriteState;
   final String getHotelFavoriteMessage;
 
@@ -109,7 +109,7 @@ class HotelsState {
     this.hotelMessageById = '',
     this.updateCreateHotelFavoriteState = RequestState.loading,
     this.updateCreateHotelFavoriteMessage = '',
-    this.getHotelFavorite = '',
+    this.getHotelFavorite = const [],
     this.getHotelFavoriteState = RequestState.loading,
     this.getHotelFavoriteMessage = '',
 
@@ -163,7 +163,7 @@ class HotelsState {
     String? getHotelRateByUserMessage,
     RequestState? updateCreateHotelFavoriteState,
     String? updateCreateHotelFavoriteMessage,
-    String? getHotelFavorite,
+    List<Hotel>? getHotelFavorite,
     RequestState? getHotelFavoriteState,
     String? getHotelFavoriteMessage,
 

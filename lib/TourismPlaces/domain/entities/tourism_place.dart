@@ -22,25 +22,26 @@ class TourismPlace extends Equatable {
   int user;
   CreatedBy? createdBy;
   int? rate_value;
-  TourismPlace({
-    required this.id,
-    required this.name,
-    required this.nameAR,
-    required this.type,
-    required this.address,
-    required this.description,
-    required this.descriptionAR,
-    required this.coordinatesX,
-    required this.coordinatesY,
-    required this.originalImage,
-    required this.imagesT,
-    required this.noOfRatings,
-    required this.avgRatings,
-    required this.rateOneByOne,
-    required this.user,
-    this.createdBy,
-    this.rate_value,
-  });
+  int? fav_value;
+  TourismPlace(
+      {required this.id,
+      required this.name,
+      required this.nameAR,
+      required this.type,
+      required this.address,
+      required this.description,
+      required this.descriptionAR,
+      required this.coordinatesX,
+      required this.coordinatesY,
+      required this.originalImage,
+      required this.imagesT,
+      required this.noOfRatings,
+      required this.avgRatings,
+      required this.rateOneByOne,
+      required this.user,
+      this.createdBy,
+      this.rate_value,
+      this.fav_value});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

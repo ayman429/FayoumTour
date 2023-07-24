@@ -42,7 +42,9 @@ class TourismPlacesSearch extends StatelessWidget {
                 state.tourismPlace.forEach((element) {
                   ratePlaceMap.addAll({element.id: element.rate_value ?? 0});
                 });
-
+                for (var element in state.tourismPlace) {
+                  favPlaceMap.addAll({element.id: element.fav_value ?? 0});
+                }
                 return SeachBody(
                   data: searchTourismPlace,
                   type: "places",

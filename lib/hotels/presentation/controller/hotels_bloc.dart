@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fayoumtour/hotels/domain/usecase/hotel_reservation/get_hotel_usecase_by_user.dart';
 
+import '../../../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
 import '../../../core/usecase/base_usecase.dart';
 import '../../../core/utils/enums.dart';
 import '../../../hotels/domain/usecase/get_hotel_usecase.dart';
@@ -28,6 +29,7 @@ import 'hotels_event.dart';
 import 'hotels_state.dart';
 
 Map<int, int> rateHotelMap = {};
+Map<int, int> favHotelMap = {};
 
 class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
   final GetHotelUsecase getHotelUsecase;
@@ -268,6 +270,11 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
 
   FutureOr<void> _updateCreateHotelFavorite(
       UpdateCreateHotelFavoriteEvent event, Emitter<HotelsState> emit) async {
+    int? hotelId = event.updateCreateHotelFavorite.hotelId;
+    favHotelMap[hotelId ?? 0] = favHotelMap[hotelId] == 0 ? 1 : 0;
+    emit(HotelsState(
+      updateCreateHotelFavoriteState: RequestState.loaded,
+    ));
     (await updateCreateHotelFavoriteUsecase(
       event.updateCreateHotelFavorite,
     ))
@@ -276,6 +283,10 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
           updateCreateHotelFavoriteState: RequestState.error,
           updateCreateHotelFavoriteMessage: l.message));
     }, (r) {
+      print("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+      print(favHotelMap[hotelId]);
+      print("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+
       return emit(HotelsState(
         updateCreateHotelFavoriteState: RequestState.loaded,
       ));
@@ -284,7 +295,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
 
   FutureOr<void> _getHotelFavorite(
       GetHotelFavoriteEvent event, Emitter<HotelsState> emit) async {
-    (await getHotelFavoriteUsecase(event.getHotelFavorite)).fold((l) {
+    (await getHotelFavoriteUsecase(const NoParameters())).fold((l) {
       return emit(HotelsState(
           getHotelFavoriteState: RequestState.error,
           getHotelFavoriteMessage: l.message));

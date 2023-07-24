@@ -5,6 +5,7 @@ import '../../../core/error/exceptions.dart';
 import '../../../core/network/api_constance.dart';
 import '../../../core/network/dio_factory.dart';
 import '../../../core/network/error_message_model.dart';
+import '../../../core/utils/constance/shared_pref.dart';
 import '../models/tourism_place_favorite_model.dart';
 import '../models/tourism_place_model.dart';
 import '../models/tourism_place_rate_model.dart';
@@ -28,8 +29,7 @@ abstract class BaseTourismPlaceRemoteDataSource {
 
   Future<Unit> updateCreateTourismPlaceFavorites(
       TourismPlaceFavoriteModel tourismPlaceFavoriteModel);
-  Future<String> getTourismPlaceFavorites(
-      TourismPlaceFavoriteModel tourismPlaceFavoriteModel);
+  Future<List<TourismPlaceModel>> getTourismPlaceFavorites();
 }
 
 class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
@@ -277,15 +277,16 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
   }
 
   @override
-  Future<String> getTourismPlaceFavorites(tourismPlaceFavoriteModel) async {
-    Map<String, dynamic> tourismPlaceFavoriteModelsToJson =
-        tourismPlaceFavoriteModel.toJson();
+  Future<List<TourismPlaceModel>> getTourismPlaceFavorites() async {
+    print(int.parse(sharedPreferences!.getString("USERID") ?? "0"));
     try {
       Dio dio = (await DioFactory.create()).dio;
       final response = await dio.get(ApiConstance.tourismPlaceFavoritePath,
-          data: tourismPlaceFavoriteModelsToJson);
-      print(response.data);
-      return response.data["favorite"] ?? "0";
+          data: {
+            "userId": int.parse(sharedPreferences!.getString("USERID") ?? "0")
+          });
+      return List<TourismPlaceModel>.from(
+          (response.data as List).map((e) => TourismPlaceModel.fromJson(e)));
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(

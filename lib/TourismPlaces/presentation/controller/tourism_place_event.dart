@@ -93,9 +93,4 @@ class UpdateCreateTourismPlaceFavoriteEvent extends TourismPlaceEvent {
   });
 }
 
-class GetTourismPlaceFavoriteEvent extends TourismPlaceEvent {
-  TourismPlaceFavorite getTourFavorite;
-  GetTourismPlaceFavoriteEvent({
-    required this.getTourFavorite,
-  });
-}
+class GetTourismPlaceFavoriteEvent extends TourismPlaceEvent {}

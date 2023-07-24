@@ -57,6 +57,9 @@ class TopRatedTourismPlaces extends StatelessWidget {
                   for (var element in state.tourismPlace) {
                     ratePlaceMap.addAll({element.id: element.rate_value ?? 0});
                   }
+                  for (var element in state.tourismPlace) {
+                    favPlaceMap.addAll({element.id: element.fav_value ?? 0});
+                  }
                   return HomeCard(
                     data: searchTourismPlaceRate,
                     index: 0,

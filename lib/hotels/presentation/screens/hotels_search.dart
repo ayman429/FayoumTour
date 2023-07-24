@@ -37,7 +37,12 @@ class HotelsSearch extends StatelessWidget {
               itemCount: state.searchHotels.length,
               itemBuilder: (context, index) {
                 final searchHotel = state.searchHotels[index];
-
+                for (var element in state.hotels) {
+                  rateHotelMap.addAll({element.id: element.rate_value ?? 0});
+                }
+                for (var element in state.hotels) {
+                  favHotelMap.addAll({element.id: element.fav_value ?? 0});
+                }
                 return SeachBody(
                   data: searchHotel,
                   type: "hotels",

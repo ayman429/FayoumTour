@@ -30,6 +30,8 @@ class PlacesDetails extends StatelessWidget {
         case RequestState.loaded:
           ratePlaceMap[state.tourismPlaceById!.id] =
               state.tourismPlaceById!.rate_value ?? 0;
+          favPlaceMap[state.tourismPlaceById!.id] =
+              state.tourismPlaceById!.fav_value ?? 0;
           // state.tourismPlace.forEach((element) {
           //         ratePlaceMap.addAll({element.id: element.rate_value ?? 0});
           //       });

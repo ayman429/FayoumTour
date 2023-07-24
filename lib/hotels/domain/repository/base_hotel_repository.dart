@@ -28,8 +28,7 @@ abstract class BaseHotelRepository {
   Future<Either<Failure, Unit>> updateCreateHotelFavorite(
       HotelFavoriteModel hotelFavoriteModel);
 
-  Future<Either<Failure, String>> getHotelFavorite(
-      HotelFavoriteModel hotelFavoriteModel);
+  Future<Either<Failure, List<Hotel>>> getHotelFavorite();
 
   // HotelReservation
   Future<Either<Failure, List<HotelReservation>>> getHotelReservation(

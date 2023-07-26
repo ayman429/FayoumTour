@@ -67,6 +67,7 @@ dependencies:
   flutter_tts:
   audioplayers:
   animated_splash_screen:
+  multi_image_picker:
 
 dev_dependencies:
   flutter_test:

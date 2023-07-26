@@ -57,19 +57,31 @@ class Details extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          data.avgRatings.toString(),
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Container(
-                            margin: const EdgeInsets.only(right: 15),
-                            child: RatingBar(
-                              rating: data.avgRatings,
-                              size: 22,
-                            )),
-                      ],
+                    Padding(
+                      padding:  EdgeInsets.only(
+                        right: sharedPreferences!.getString("Language") == "AR" ? 0 : 7,
+                        left: sharedPreferences!.getString("Language") == "AR" ? 7 : 0,
+                      ),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                        right: sharedPreferences!.getString("Language") == "AR" ? 0 : 3,
+                        left: sharedPreferences!.getString("Language") == "AR" ? 3 : 0,
+                      ),
+                            child: Text(
+                              data.avgRatings.toString(),
+                              style: const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Container(
+                              margin:  const EdgeInsets.only(),
+                              child: RatingBar(
+                                rating: data.avgRatings,
+                                size: 22,
+                              )),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -96,83 +108,120 @@ class Details extends StatelessWidget {
                 ),
 
                 Container(
-                  margin: const EdgeInsets.only(left: 15),
+                  margin:  EdgeInsets.only(
+                    left: sharedPreferences!.getString("Language") == "AR" ? 0 : 15,
+                    right: sharedPreferences!.getString("Language") == "AR" ? 15 : 0,
+                    ),
                   child: Row(
                     children: [
                       Padding(
-                          padding: const EdgeInsets.only(right: 5),
+                          padding: EdgeInsets.only(
+                            left: sharedPreferences!.getString("Language") == "AR" ? 5 : 0,
+                            right: sharedPreferences!.getString("Language") == "AR" ? 0 : 5,
+                            ),
                           child: InkWell(
                             onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ImageList(
                                         imageList: data.imagesT, index: 0))),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.30,
-                              height: MediaQuery.of(context).size.width * 0.3,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
-                                child: Image.network(
-                                  data.imagesT[0].imageT,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return Image.asset(
-                                      AppStrings.error1Gif,
-                                      fit: BoxFit.cover,
-                                    );
-                                  },
-                                  loadingBuilder:
-                                      (context, child, loadingProgress) {
-                                    if (loadingProgress != null) {
-                                      return Image.asset(
-                                        AppStrings.loading2Gif,
-                                        fit: BoxFit.cover,
-                                      );
-                                    }
-                                    return child;
-                                  },
+                            child: Stack(
+                          
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width * 0.30,
+                                    height: MediaQuery.of(context).size.width * 0.3,
+                                    color: Colors.grey,
+                                  ),
                                 ),
-                              ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width * 0.30,
+                                  height: MediaQuery.of(context).size.width * 0.3,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: Image.network(
+                                          data.imagesT[0].imageT,
+                                          fit: BoxFit.cover,
+                                          errorBuilder: (context, error, stackTrace) {
+                                            return Image.asset(
+                                              AppStrings.error1Gif,
+                                              fit: BoxFit.cover,
+                                            );
+                                          },
+                                          loadingBuilder:
+                                              (context, child, loadingProgress) {
+                                            if (loadingProgress != null) {
+                                              return Image.asset(
+                                                AppStrings.loading2Gif,
+                                                fit: BoxFit.cover,
+                                              );
+                                            }
+                                            return child;
+                                          },
+                                        ),
+                                  ),
+                                ),
+                              ],
                             ),
                           )),
                       Padding(
-                          padding: const EdgeInsets.only(right: 5),
+                          padding:  EdgeInsets.only(
+                            left: sharedPreferences!.getString("Language") == "AR" ? 5 : 0,
+                            right: sharedPreferences!.getString("Language") == "AR" ? 0 : 5,
+                            ),
                           child: InkWell(
                             onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ImageList(
                                         imageList: data.imagesT, index: 1))),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.30,
-                              height: MediaQuery.of(context).size.width * 0.3,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
-                                child: Image.network(
-                                  data.imagesT[1].imageT,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return Image.asset(
-                                      AppStrings.error1Gif,
-                                      fit: BoxFit.cover,
-                                    );
-                                  },
-                                  loadingBuilder:
-                                      (context, child, loadingProgress) {
-                                    if (loadingProgress != null) {
-                                      return Image.asset(
-                                        AppStrings.loading2Gif,
-                                        fit: BoxFit.cover,
-                                      );
-                                    }
-                                    return child;
-                                  },
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width * 0.30,
+                                    height: MediaQuery.of(context).size.width * 0.3,
+                                    color: Colors.grey,
+                                  ),
                                 ),
-                              ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width * 0.30,
+                                  height: MediaQuery.of(context).size.width * 0.3,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: Image.network(
+                                      data.imagesT[1].imageT,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (context, error, stackTrace) {
+                                        return Image.asset(
+                                          AppStrings.error1Gif,
+                                          fit: BoxFit.cover,
+                                        );
+                                      },
+                                      loadingBuilder:
+                                          (context, child, loadingProgress) {
+                                        if (loadingProgress != null) {
+                                          return Image.asset(
+                                            AppStrings.loading2Gif,
+                                            fit: BoxFit.cover,
+                                          );
+                                        }
+                                        return child;
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           )),
                       Padding(
-                          padding: const EdgeInsets.only(right: 5),
+                          padding:  EdgeInsets.only(
+                            left: sharedPreferences!.getString("Language") == "AR" ? 5 : 0,
+                            right: sharedPreferences!.getString("Language") == "AR" ? 0 : 5,
+                            ),
                           child: InkWell(
                             onTap: () => Navigator.push(
                                 context,
@@ -180,47 +229,59 @@ class Details extends StatelessWidget {
                                     builder: (context) => ImageList(
                                         imageList: data.imagesT, index: 2))),
                             child: Stack(
-                              alignment: Alignment.center,
                               children: [
-                                Opacity(
-                                  opacity: 0.6,
-                                  child: SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.30,
-                                    height:
-                                        MediaQuery.of(context).size.width * 0.3,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: Image.network(
-                                        data.imagesT[2].imageT,
-                                        fit: BoxFit.cover,
-                                        errorBuilder:
-                                            (context, error, stackTrace) {
-                                          return Image.asset(
-                                            AppStrings.error1Gif,
-                                            fit: BoxFit.cover,
-                                          );
-                                        },
-                                        loadingBuilder:
-                                            (context, child, loadingProgress) {
-                                          if (loadingProgress != null) {
-                                            return Image.asset(
-                                              AppStrings.loading2Gif,
-                                              fit: BoxFit.cover,
-                                            );
-                                          }
-                                          return child;
-                                        },
-                                      ),
-                                    ),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width * 0.30,
+                                    height: MediaQuery.of(context).size.width * 0.3,
+                                    color: Colors.grey,
                                   ),
                                 ),
-                                Text(
-                                  "+${data.imagesT.length - 2}",
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 23,
-                                      fontWeight: FontWeight.w600),
+                                Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Opacity(
+                                      opacity: 0.5,
+                                      child: SizedBox(
+                                        width: MediaQuery.of(context).size.width *
+                                            0.30,
+                                        height:
+                                            MediaQuery.of(context).size.width * 0.3,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(15),
+                                          child: Image.network(
+                                            data.imagesT[2].imageT,
+                                            fit: BoxFit.cover,
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              return Image.asset(
+                                                AppStrings.error1Gif,
+                                                fit: BoxFit.cover,
+                                              );
+                                            },
+                                            loadingBuilder:
+                                                (context, child, loadingProgress) {
+                                              if (loadingProgress != null) {
+                                                return Image.asset(
+                                                  AppStrings.loading2Gif,
+                                                  fit: BoxFit.cover,
+                                                );
+                                              }
+                                              return child;
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      "+${data.imagesT.length - 2}",
+                                      style:  TextStyle(
+                                          color: Theme.of(context).colorScheme.onPrimary,
+                                          fontSize: 27,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),

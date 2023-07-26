@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../core/utils/constance/shared_pref.dart';
+
+
 class RatingBar extends StatelessWidget {
   final double rating;
   final double size;
@@ -10,16 +13,16 @@ class RatingBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _starList = [];
+    List<Widget> starList = [];
 
     int realNumber = rating.floor();
     int partNumber = ((rating - realNumber) * 10).ceil();
 
     for (int i = 0; i < 5; i++) {
       if (i < realNumber) {
-        _starList.add(Icon(Icons.star, color: Colors.amber, size: size));
+        starList.add(Icon(Icons.star, color: Colors.amber, size: size));
       } else if (i == realNumber) {
-        _starList.add(SizedBox(
+        starList.add(SizedBox(
           height: size,
           width: size,
           child: Stack(
@@ -34,11 +37,11 @@ class RatingBar extends StatelessWidget {
           ),
         ));
       } else {
-        _starList.add(Icon(Icons.star, color: Colors.grey, size: size));
+        starList.add(Icon(Icons.star, color: Colors.grey, size: size));
       }
     }
     ratingCount != 0
-        ? _starList.add(
+        ? starList.add(
             Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Text('($ratingCount)',
@@ -50,7 +53,7 @@ class RatingBar extends StatelessWidget {
 
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: _starList,
+      children: starList,
     );
   }
 }
@@ -62,12 +65,25 @@ class _Clipper extends CustomClipper<Rect> {
 
   @override
   Rect getClip(Size size) {
-    return Rect.fromLTRB(
+    if(sharedPreferences!.getString("Language") == "AR")
+    {
+      return  Rect.fromLTRB(
+    0.0,
+    0.0,
+    size.width - ((size.width / 10) * part),
+    size.height,
+  );
+    }
+    else
+    {
+      return Rect.fromLTRB(
       (size.width / 10) * part,
       0.0,
       size.width,
       size.height,
-    );
+      );
+    }
+    
   }
 
   @override

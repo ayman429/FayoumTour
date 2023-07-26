@@ -73,7 +73,9 @@ class ShowPosts extends StatelessWidget {
                       children: [
                         const SizedBox(height: 16),
                         Container(
-                          margin: const EdgeInsets.only(left: 5),
+                          margin: sharedPreferences!.getString("Language") == "AR"
+                          ? const EdgeInsets.only(right: 5)
+                          : const EdgeInsets.only(left: 5),
                           child: Row(
                             children: [
                               SizedBox(
@@ -265,13 +267,12 @@ class ShowPosts extends StatelessWidget {
                                                 opacity: state.post[index]
                                                             .imagesP.length >
                                                         4
-                                                    ? 0.6
+                                                    ? 0.4
                                                     : 1.0,
                                                 child: ClipRRect(
                                                   //borderRadius:BorderRadius.circular(10),
                                                   child: Image.network(
-                                                    state.post[index]
-                                                        .imagesP[index].imageT,
+                                                    state.post[index].imagesP[x].imageT,
                                                     fit: BoxFit.cover,
                                                     errorBuilder: (context,
                                                         error, stackTrace) {
@@ -301,8 +302,8 @@ class ShowPosts extends StatelessWidget {
                                                   ? Center(
                                                       child: Text(
                                                         "+${state.post[index].imagesP.length - 4}",
-                                                        style: const TextStyle(
-                                                            color: Colors.white,
+                                                        style:  TextStyle(
+                                                            color: Theme.of(context).colorScheme.onPrimary,
                                                             fontSize: 40,
                                                             fontWeight:
                                                                 FontWeight
@@ -327,8 +328,7 @@ class ShowPosts extends StatelessWidget {
                                           child: ClipRRect(
                                             //borderRadius:BorderRadius.circular(10),
                                             child: Image.network(
-                                              state.post[index].imagesP[x]
-                                                  .imageT,
+                                              state.post[index].imagesP[x].imageT,
                                               fit: BoxFit.cover,
                                               errorBuilder:
                                                   (context, error, stackTrace) {

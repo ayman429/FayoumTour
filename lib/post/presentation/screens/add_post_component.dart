@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
@@ -30,10 +30,11 @@ class _AddPostComponentState extends State<AddPostComponent> {
   String getImagePath = "";
   String _text = "";
   bool upload = true;
-  //bool changeInImages = false;
+  bool changeInImages = false;
   final List<File> _imageList = [];
-  //final List<String> _ProvidedimageList = [];
-  //final List<int> _RemovedProvidedimageIndexList = [];
+  List<XFile> pickedFiles = [];
+  final List<String> _providedimageList = [];
+  final List<int> _removedProvidedimageIndexList = [];
   final username = sharedPreferences!.getString("username") ?? "";
   Future<void> updateUIWithImagePath() async {
     Map<String, dynamic> localUerDetails =
@@ -52,13 +53,23 @@ class _AddPostComponentState extends State<AddPostComponent> {
     if (widget.type != 'add') {
       _textEditingController.text = widget.data.body;
 
-      // for(int i = 0; i < widget.data.imagesP.length; i++)
-      // {
-      //   _ProvidedimageList.add(widget.data.imagesP[i].imageT);
-      // }
+      for(int i = 0; i < widget.data.imagesP.length; i++)
+      {
+        _providedimageList.add(widget.data.imagesP[i].imageT);
+      }
 
     }
     updateUIWithImagePath();
+    _textEditingController.addListener(_onTextChanged);
+  }
+
+  void _onTextChanged() {
+    if (_textEditingController.selection.baseOffset == 0 && _textEditingController.selection.extentOffset == _textEditingController.text.length)
+    {
+      setState(() {
+        
+      });
+    }
   }
 
   @override
@@ -79,11 +90,13 @@ class _AddPostComponentState extends State<AddPostComponent> {
                     : widget.type == 'add'
                         ? 1
                         : _textEditingController.text ==
-                                widget.data.body /*&& !changeInImages*/
+                                widget.data.body && !changeInImages
                             ? 0.5
                             : 1,
                 child: Container(
-                  margin: const EdgeInsets.fromLTRB(0, 6, 8, 6),
+                  margin: sharedPreferences!.getString("Language") == "AR"
+                  ? const EdgeInsets.fromLTRB(8, 6, 0, 6)
+                  : const EdgeInsets.fromLTRB(0, 6, 8, 6),
                   height: 45,
                   width: 100,
                   decoration: BoxDecoration(
@@ -125,8 +138,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         ),
                         onPressed: () async {
                           if (widget.type != 'add' &&
-                              _textEditingController.text ==
-                                  widget.data.body /*&& !changeInImages*/) {
+                              _textEditingController.text == widget.data.body && !changeInImages) {
                             upload = false;
                           } else {
                             upload = true;
@@ -149,12 +161,28 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                   images: imagesPath,
                                 ));
                               } else if (widget.type == "edit") {
+                                String removeString = "-1";
+                                if(_removedProvidedimageIndexList.isNotEmpty)
+                                {
+                                  removeString = "";
+                                  for(int i = 0 ; i < _removedProvidedimageIndexList.length ; i++)
+                                  {
+                                    if(i == _removedProvidedimageIndexList.length-1)
+                                    {
+                                      removeString += "${_removedProvidedimageIndexList[i]}";
+                                    }
+                                    else
+                                    {
+                                      removeString += "${_removedProvidedimageIndexList[i]},";
+                                    }
+                                  }
+                                }
                                 BlocProvider.of<PostBloc>(context)
                                     .add(UpdatePostEvent(
                                   body: body,
                                   images: imagesPath,
                                   posId: widget.data.id.toString(),
-                                  index: "-1",
+                                  index: removeString,
                                 ));
                               }
 
@@ -231,8 +259,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         ],
                       ),
                       // input images post
-                      widget.type == "add"
-                          ? IconButton(
+                      IconButton(
                               color: Colors.green,
                               iconSize: 35,
                               icon: const Icon(Icons.filter),
@@ -248,46 +275,22 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                               leading: const Icon(
                                                   Icons.photo_library),
                                               title:
-                                                  const Text('Photo Library'),
+                                                  Text(AppLocalizations.of(context)!.translate('Photo Library')),
                                               onTap: () async {
-                                                final pickedFile =
-                                                    await ImagePicker()
-                                                        .pickImage(
-                                                            source: ImageSource
-                                                                .gallery);
-                                                // if (pickedFile != null) {
-                                                //   var userId = await FavouritStorage()
-                                                //       .getUsersDetails();
-                                                //   sharedPreferences!.setString(
-                                                //       "${userId.id}USERIMAGE",
-                                                //       pickedFile.path);
-                                                //   print(
-                                                //       "path====> ${pickedFile.path}");
-                                                // }
-                                                Navigator.pop(
-                                                    context, pickedFile);
+                                                pickedFiles = await ImagePicker().pickMultiImage();
+                                                Navigator.pop(context);
+                                                setState(() {
+                                                  
+                                                });
                                               },
                                             ),
                                             ListTile(
                                               leading: const Icon(
                                                   Icons.photo_camera),
-                                              title: const Text('Camera'),
+                                              title: Text(AppLocalizations.of(context)!.translate('Camera')),
                                               onTap: () async {
-                                                final pickedFile =
-                                                    // ignore: deprecated_member_use
-                                                    await ImagePicker()
-                                                        .pickImage(
-                                                            source: ImageSource
-                                                                .camera);
-                                                // if (pickedFile != null) {
-                                                //   var userId = await FavouritStorage()
-                                                //       .getUsersDetails();
-                                                //   sharedPreferences!.setString(
-                                                //       "${userId.id}USERIMAGE",
-                                                //       pickedFile.path);
-                                                // }
-                                                Navigator.pop(
-                                                    context, pickedFile);
+                                              final pickedFile =await ImagePicker().pickImage(source: ImageSource.camera);
+                                              Navigator.pop(context, pickedFile);
                                               },
                                             ),
                                           ],
@@ -295,18 +298,32 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                       );
                                     },
                                   );
+
+                                  // _pickedimageList = await MultiImagePicker.pickImages(
+                                  // maxImages: 10,
+                                  // enableCamera: true,
+                                  // );
+
                                   setState(() {
                                     if (pickedFile != null) {
                                       _imageList.add(File(pickedFile.path));
-                                      //changeInImages = true;
-                                    } else {
+                                      changeInImages = true;
+                                    }
+                                    else if(pickedFiles.isNotEmpty)
+                                    {
+                                      for (final file in pickedFiles) {
+                                        _imageList.add(File(file.path));
+                                      }
+                                      pickedFiles = [];
+                                      changeInImages = true;
+                                    }
+                                    else {
                                       print('No image selected.');
                                     }
                                   });
                                 }
                               },
-                            )
-                          : Container(),
+                            ),
                     ],
                   ),
 
@@ -334,9 +351,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           }
 
                           if (widget.type != 'add') {
-                            if ((_text == widget.data.body &&
-                                    value != widget.data.body) ||
-                                value == widget.data.body) {
+                            setState(() {});
+                            if ((_text == widget.data.body && value != widget.data.body) || value == widget.data.body) {
                               setState(() {});
                             }
                           }
@@ -353,14 +369,13 @@ class _AddPostComponentState extends State<AddPostComponent> {
                     height: 120,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: /*widget.type == 'add' ?*/ _imageList
-                          .length /*: _calculateMaxItemCount()*/,
+                      itemCount: widget.type == 'add' ? _imageList.length : _calculateMaxItemCount(),
                       itemBuilder: (context, index) {
                         return Row(
                           children: [
-                            /*widget.type != 'add' ? index < _ProvidedimageList.length ?
-            _buildImageContainer(_ProvidedimageList[index],File(""),index): Container(): Container(),
-          if (index < _imageList.length)*/
+                            widget.type != 'add' ? index < _providedimageList.length ?
+                            _buildImageContainer(_providedimageList[index],File(""),index): Container(): Container(),
+                            if (index < _imageList.length)
                             _buildImageContainer("", _imageList[index], index),
                           ],
                         );
@@ -377,9 +392,9 @@ class _AddPostComponentState extends State<AddPostComponent> {
     );
   }
 
-//   int _calculateMaxItemCount() {
-//   return max(_ProvidedimageList.length, _imageList.length);
-// }
+  int _calculateMaxItemCount() {
+  return max(_providedimageList.length, _imageList.length);
+}
 
   Widget _buildImageContainer(String imageProvider, File image, int pos) {
     return Container(
@@ -419,6 +434,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         return Image.asset(
                           AppStrings.error1Gif,
                           fit: BoxFit.cover,
+                          width: 100,
                         );
                       },
                       loadingBuilder: (context, child, loadingProgress) {
@@ -426,6 +442,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           return Image.asset(
                             AppStrings.loading2Gif,
                             fit: BoxFit.cover,
+                            width: 100,
                           );
                         }
                         return child;
@@ -442,11 +459,12 @@ class _AddPostComponentState extends State<AddPostComponent> {
                   setState(() {
                     if (imageProvider == "") {
                       _imageList.removeAt(pos);
-                      //changeInImages = true;
+                      changeInImages = true;
                     } else {
-                      // _ProvidedimageList.removeAt(pos);
-                      // _RemovedProvidedimageIndexList.add(pos);
-                      // changeInImages = true;
+                      _providedimageList.removeAt(pos);
+                      _removedProvidedimageIndexList.add(pos);
+                      changeInImages = true;
+                      print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     }
                   });
                 },

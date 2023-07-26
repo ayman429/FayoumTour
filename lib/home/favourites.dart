@@ -76,11 +76,15 @@ class Favorites extends StatelessWidget {
                   data.originalImage,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
-                    return Image.asset(AppStrings.error1Gif);
+                    return Image.asset(AppStrings.error1Gif,
+                    fit: BoxFit.cover,
+                    );
                   },
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress != null) {
-                      return Image.asset(AppStrings.loading2Gif);
+                      return Image.asset(AppStrings.loading2Gif,
+                      fit: BoxFit.cover,
+                      );
                     }
                     return child;
                   },

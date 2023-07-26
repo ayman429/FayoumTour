@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/services_locator.dart';
-import '../../../core/utils/app_localizations.dart';
+import '../../../core/utils/app_localizations.dart'; 
 import '../../../core/utils/enums.dart';
 import '../../../home/favourites.dart';
 import '../controller/tourism_place_bloc.dart';
@@ -14,12 +14,10 @@ class GetTourismPlacesFavorite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) {
-      return getIt<TourismPlaceBloc>()..add(GetTourismPlaceFavoriteEvent());
-    }, child: BlocBuilder<TourismPlaceBloc, TourismPlaceState>(
+    return BlocProvider(create: (context) {return getIt<TourismPlaceBloc>()..add(GetTourismPlaceFavoriteEvent());},
+    child: BlocBuilder<TourismPlaceBloc, TourismPlaceState>(
         builder: (context, state) {
-      BlocProvider.of<TourismPlaceBloc>(context)
-          .add(GetTourismPlaceFavoriteEvent());
+      BlocProvider.of<TourismPlaceBloc>(context).add(GetTourismPlaceFavoriteEvent());
       switch (state.getTourismPlaceFavoriteState) {
         case RequestState.loading:
           return const SizedBox(

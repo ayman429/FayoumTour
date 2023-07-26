@@ -2,13 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
-import '../controller/bloc/post_bloc.dart';
 import 'add_post_component.dart';
 import 'show_posts.dart';
 
@@ -71,7 +68,9 @@ class _AddPostState extends State<AddPost> {
                           Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 5),
+                                padding: sharedPreferences!.getString("Language") == "AR"
+                                ? const EdgeInsets.only(right: 5)
+                                : const EdgeInsets.only(left: 5),
                                 child: SizedBox(
                                   width: 40,
                                   height: 40,
@@ -143,7 +142,9 @@ class _AddPostState extends State<AddPost> {
                           ),
 
                           Container(
-                              margin: const EdgeInsets.only(right: 5),
+                              margin: sharedPreferences!.getString("Language") == "AR"
+                                ? const EdgeInsets.only(left: 5)
+                                : const EdgeInsets.only(right: 5),
                               child: const Icon(
                                 Icons.filter,
                                 color: Colors.green,

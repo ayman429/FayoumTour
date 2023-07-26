@@ -28,8 +28,8 @@
     "Pharaonic antiquities":"الاثار الفرعونية",
     "Next":"التالي",
     "Go to it!":"إذهب إليه!",
-    "Reserve!":"احجزه!",
-    "Rate it !!":"اعطي تقييم!!",
+    "Reserve!":"إحجز فيه!",
+    "Rate it !!":"قيّم المكان!!",
     "Get Nearest Places!":"احصل على الأماكن القريبة منك!",
     "Reservation":"الحجوزات",
     "Nothing Yet":"لا يوجد حجوزات حتى الان",
@@ -70,5 +70,7 @@
     "Sign Up":"انشاء حساب",
     "Please Write Something!":"من فضلك اكتب شيئا!",
     "Not Found!": "غير موجود!",
-    "Search...":"ابحث..."
+    "Search...":"ابحث...",
+    "Photo Library":"معرض الصور",
+    "Camera":"الكاميرا"
 }

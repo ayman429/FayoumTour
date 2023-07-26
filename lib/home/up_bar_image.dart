@@ -1,9 +1,8 @@
 //This file is for the upbar of the hotels pages
 import 'package:flutter/material.dart';
 
-import '../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
+import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
-import '../hotels/presentation/controller/hotels_bloc.dart';
 import 'check_favorite.dart';
 import 'home_details_of_tourism_hotel.dart';
 
@@ -55,7 +54,11 @@ class UpBarImage extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 leading: Container(
-                  margin: const EdgeInsets.fromLTRB(7, 7, 0, 0),
+                  margin: EdgeInsets.fromLTRB(
+                      sharedPreferences!.getString("Language") == "AR" ? 0 : 8,
+                      7,
+                      sharedPreferences!.getString("Language") == "AR" ? 8 : 0,
+                      0),
                   child: FloatingActionButton(
                     elevation: 0,
                     onPressed: () {

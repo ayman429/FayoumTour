@@ -27,7 +27,8 @@ class CheckFavorite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 15),
+      margin: EdgeInsets.only(
+          right: sharedPreferences!.getString("Language") == "AR" ? 0 : 8,left: 0),
       child: index == 0
           ? BlocProvider.value(
               value: getIt<TourismPlaceBloc>(),

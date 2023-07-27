@@ -72,5 +72,8 @@
     "Not Found!": "Not Found!",
     "Search...":"Search...",
     "Photo Library":"Photo Library",
-    "Camera":"Camera"
+    "Camera":"Camera",
+    "EDIT NAME":"EDIT NAME",
+    "EDIT PASSWORD":"EDIT PASSWORD"
+    
 }

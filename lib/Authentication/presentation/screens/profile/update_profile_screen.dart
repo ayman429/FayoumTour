@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/local_data_shared_preferences/favourites_shared_preferences.dart';
+import '../../../../core/utils/app_localizations.dart';
 import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snackbar_message.dart';
@@ -64,14 +65,13 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: const Text(
-                AppStrings.editProfile,
-                style: TextStyle(
-                      fontFamily: AppStrings.fontFamily,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25),
-              ),
-        
+        title: Text(
+          AppLocalizations.of(context)!.translate("Edit Profile"),
+          style: const TextStyle(
+              fontFamily: AppStrings.fontFamily,
+              fontWeight: FontWeight.bold,
+              fontSize: 25),
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -116,7 +116,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                       ListTile(
                                         leading:
                                             const Icon(Icons.photo_library),
-                                        title: const Text(AppStrings.photoLibrary),
+                                        title:
+                                            const Text(AppStrings.photoLibrary),
                                         onTap: () async {
                                           final pickedFile = await ImagePicker()
                                               .pickImage(
@@ -245,7 +246,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     backgroundColor: Theme.of(context).colorScheme.primary,
                   ),
                   child: Text(
-                    AppStrings.editName.toUpperCase(),
+                    AppLocalizations.of(context)!.translate("EDIT NAME"),
                     style: TextStyle(
                         fontFamily: "rye",
                         fontSize: 16,
@@ -274,9 +275,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     backgroundColor: Theme.of(context).colorScheme.primary,
                   ),
                   child: Text(
-                    AppStrings.editPassword.toUpperCase(),
+                    AppLocalizations.of(context)!.translate("EDIT PASSWORD"),
                     style: TextStyle(
-                      fontFamily: "rye",
+                        fontFamily: "rye",
                         fontSize: 16,
                         color: Theme.of(context).colorScheme.secondary),
                   ),

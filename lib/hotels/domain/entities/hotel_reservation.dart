@@ -7,6 +7,7 @@ class HotelReservation {
   int? hotel;
   String? hotelImage;
   String? hotelName;
+  String? hotelNameAR;
   int? user;
   String? phone_number;
   int? adulls;
@@ -21,6 +22,7 @@ class HotelReservation {
     this.hotel,
     this.hotelImage,
     this.hotelName,
+    this.hotelNameAR,
     this.user,
     this.phone_number,
     this.adulls,

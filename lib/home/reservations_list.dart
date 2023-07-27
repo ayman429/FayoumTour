@@ -4,6 +4,7 @@ import 'package:fayoumtour/hotels/presentation/controller/hotels_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../core/utils/app_localizations.dart';
+import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 
 class GetReservationData extends StatelessWidget {
@@ -105,7 +106,10 @@ class GetReservationData extends StatelessWidget {
                           Expanded(
                             child: Text(
                               type == "user"
-                                  ? data[index].hotelName
+                                  ? sharedPreferences!.getString("Language") ==
+                                          "AR"
+                                      ? data[index].hotelNameAR
+                                      : data[index].hotelName
                                   : data[index].createdBy.userName,
                               style: const TextStyle(
                                 fontSize: 18.0,

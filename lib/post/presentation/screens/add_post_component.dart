@@ -53,22 +53,19 @@ class _AddPostComponentState extends State<AddPostComponent> {
     if (widget.type != 'add') {
       _textEditingController.text = widget.data.body;
 
-      for(int i = 0; i < widget.data.imagesP.length; i++)
-      {
+      for (int i = 0; i < widget.data.imagesP.length; i++) {
         _providedimageList.add(widget.data.imagesP[i].imageT);
       }
-
     }
     updateUIWithImagePath();
     _textEditingController.addListener(_onTextChanged);
   }
 
   void _onTextChanged() {
-    if (_textEditingController.selection.baseOffset == 0 && _textEditingController.selection.extentOffset == _textEditingController.text.length)
-    {
-      setState(() {
-        
-      });
+    if (_textEditingController.selection.baseOffset == 0 &&
+        _textEditingController.selection.extentOffset ==
+            _textEditingController.text.length) {
+      setState(() {});
     }
   }
 
@@ -89,14 +86,14 @@ class _AddPostComponentState extends State<AddPostComponent> {
                     ? 0.5
                     : widget.type == 'add'
                         ? 1
-                        : _textEditingController.text ==
-                                widget.data.body && !changeInImages
+                        : _textEditingController.text == widget.data.body &&
+                                !changeInImages
                             ? 0.5
                             : 1,
                 child: Container(
                   margin: sharedPreferences!.getString("Language") == "AR"
-                  ? const EdgeInsets.fromLTRB(8, 6, 0, 6)
-                  : const EdgeInsets.fromLTRB(0, 6, 8, 6),
+                      ? const EdgeInsets.fromLTRB(8, 6, 0, 6)
+                      : const EdgeInsets.fromLTRB(0, 6, 8, 6),
                   height: 45,
                   width: 100,
                   decoration: BoxDecoration(
@@ -138,7 +135,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         ),
                         onPressed: () async {
                           if (widget.type != 'add' &&
-                              _textEditingController.text == widget.data.body && !changeInImages) {
+                              _textEditingController.text == widget.data.body &&
+                              !changeInImages) {
                             upload = false;
                           } else {
                             upload = true;
@@ -162,18 +160,19 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                 ));
                               } else if (widget.type == "edit") {
                                 String removeString = "-1";
-                                if(_removedProvidedimageIndexList.isNotEmpty)
-                                {
+                                if (_removedProvidedimageIndexList.isNotEmpty) {
                                   removeString = "";
-                                  for(int i = 0 ; i < _removedProvidedimageIndexList.length ; i++)
-                                  {
-                                    if(i == _removedProvidedimageIndexList.length-1)
-                                    {
-                                      removeString += "${_removedProvidedimageIndexList[i]}";
-                                    }
-                                    else
-                                    {
-                                      removeString += "${_removedProvidedimageIndexList[i]},";
+                                  for (int i = 0;
+                                      i < _removedProvidedimageIndexList.length;
+                                      i++) {
+                                    if (i ==
+                                        _removedProvidedimageIndexList.length -
+                                            1) {
+                                      removeString +=
+                                          "${_removedProvidedimageIndexList[i]}";
+                                    } else {
+                                      removeString +=
+                                          "${_removedProvidedimageIndexList[i]},";
                                     }
                                   }
                                 }
@@ -260,70 +259,70 @@ class _AddPostComponentState extends State<AddPostComponent> {
                       ),
                       // input images post
                       IconButton(
-                              color: Colors.green,
-                              iconSize: 35,
-                              icon: const Icon(Icons.filter),
-                              onPressed: () async {
-                                {
-                                  final pickedFile = await showModalBottomSheet(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return SafeArea(
-                                        child: Wrap(
-                                          children: <Widget>[
-                                            ListTile(
-                                              leading: const Icon(
-                                                  Icons.photo_library),
-                                              title:
-                                                  Text(AppLocalizations.of(context)!.translate('Photo Library')),
-                                              onTap: () async {
-                                                pickedFiles = await ImagePicker().pickMultiImage();
-                                                Navigator.pop(context);
-                                                setState(() {
-                                                  
-                                                });
-                                              },
-                                            ),
-                                            ListTile(
-                                              leading: const Icon(
-                                                  Icons.photo_camera),
-                                              title: Text(AppLocalizations.of(context)!.translate('Camera')),
-                                              onTap: () async {
-                                              final pickedFile =await ImagePicker().pickImage(source: ImageSource.camera);
-                                              Navigator.pop(context, pickedFile);
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-
-                                  // _pickedimageList = await MultiImagePicker.pickImages(
-                                  // maxImages: 10,
-                                  // enableCamera: true,
-                                  // );
-
-                                  setState(() {
-                                    if (pickedFile != null) {
-                                      _imageList.add(File(pickedFile.path));
-                                      changeInImages = true;
-                                    }
-                                    else if(pickedFiles.isNotEmpty)
-                                    {
-                                      for (final file in pickedFiles) {
-                                        _imageList.add(File(file.path));
-                                      }
-                                      pickedFiles = [];
-                                      changeInImages = true;
-                                    }
-                                    else {
-                                      print('No image selected.');
-                                    }
-                                  });
-                                }
+                        color: Colors.green,
+                        iconSize: 35,
+                        icon: const Icon(Icons.filter),
+                        onPressed: () async {
+                          {
+                            final pickedFile = await showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return SafeArea(
+                                  child: Wrap(
+                                    children: <Widget>[
+                                      ListTile(
+                                        leading:
+                                            const Icon(Icons.photo_library),
+                                        title: Text(
+                                            AppLocalizations.of(context)!
+                                                .translate('Photo Library')),
+                                        onTap: () async {
+                                          pickedFiles = await ImagePicker()
+                                              .pickMultiImage();
+                                          Navigator.pop(context);
+                                          setState(() {});
+                                        },
+                                      ),
+                                      ListTile(
+                                        leading: const Icon(Icons.photo_camera),
+                                        title: Text(
+                                            AppLocalizations.of(context)!
+                                                .translate('Camera')),
+                                        onTap: () async {
+                                          final pickedFile = await ImagePicker()
+                                              .pickImage(
+                                                  source: ImageSource.camera);
+                                          Navigator.pop(context, pickedFile);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                );
                               },
-                            ),
+                            );
+
+                            // _pickedimageList = await MultiImagePicker.pickImages(
+                            // maxImages: 10,
+                            // enableCamera: true,
+                            // );
+
+                            setState(() {
+                              if (pickedFile != null) {
+                                _imageList.add(File(pickedFile.path));
+                                changeInImages = true;
+                              } else if (pickedFiles.isNotEmpty) {
+                                for (final file in pickedFiles) {
+                                  _imageList.add(File(file.path));
+                                }
+                                pickedFiles = [];
+                                changeInImages = true;
+                              } else {
+                                print('No image selected.');
+                              }
+                            });
+                          }
+                        },
+                      ),
                     ],
                   ),
 
@@ -352,7 +351,9 @@ class _AddPostComponentState extends State<AddPostComponent> {
 
                           if (widget.type != 'add') {
                             setState(() {});
-                            if ((_text == widget.data.body && value != widget.data.body) || value == widget.data.body) {
+                            if ((_text == widget.data.body &&
+                                    value != widget.data.body) ||
+                                value == widget.data.body) {
                               setState(() {});
                             }
                           }
@@ -369,14 +370,23 @@ class _AddPostComponentState extends State<AddPostComponent> {
                     height: 120,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: widget.type == 'add' ? _imageList.length : _calculateMaxItemCount(),
+                      itemCount: widget.type == 'add'
+                          ? _imageList.length
+                          : _calculateMaxItemCount(),
                       itemBuilder: (context, index) {
                         return Row(
                           children: [
-                            widget.type != 'add' ? index < _providedimageList.length ?
-                            _buildImageContainer(_providedimageList[index],File(""),index): Container(): Container(),
+                            widget.type != 'add'
+                                ? index < _providedimageList.length
+                                    ? _buildImageContainer(
+                                        _providedimageList[index],
+                                        File(""),
+                                        index)
+                                    : Container()
+                                : Container(),
                             if (index < _imageList.length)
-                            _buildImageContainer("", _imageList[index], index),
+                              _buildImageContainer(
+                                  "", _imageList[index], index),
                           ],
                         );
                       },
@@ -393,8 +403,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
   }
 
   int _calculateMaxItemCount() {
-  return max(_providedimageList.length, _imageList.length);
-}
+    return max(_providedimageList.length, _imageList.length);
+  }
 
   Widget _buildImageContainer(String imageProvider, File image, int pos) {
     return Container(
@@ -464,7 +474,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                       _providedimageList.removeAt(pos);
                       _removedProvidedimageIndexList.add(pos);
                       changeInImages = true;
-                      print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                      print(
+                          "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     }
                   });
                 },

@@ -5,6 +5,7 @@ import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../post/presentation/screens/add_post.dart';
 import 'FavoritesPlacesAndHotels.dart';
+import 'favourites.dart';
 import 'home.dart';
 import 'plan.dart';
 import 'profile.dart';
@@ -39,7 +40,8 @@ class _BottomBarState extends State<BottomBar> {
     const NEAR(),
     Home(tourtismType: tourtismTypes),
     const AddPost(),
-    const FavoritesPlacesAndHotels(),
+    // const FavoritesPlacesAndHotels(),
+    const Favorites(),
     const Plan(),
   ];
 
@@ -133,9 +135,10 @@ class _BottomBarState extends State<BottomBar> {
                 actions: selected == 2
                     ? [
                         Container(
-                          margin: sharedPreferences!.getString("Language") == "AR"
-                          ? const EdgeInsets.fromLTRB(9, 6, 0, 6)
-                          : const EdgeInsets.fromLTRB(0, 6, 9, 6),
+                          margin:
+                              sharedPreferences!.getString("Language") == "AR"
+                                  ? const EdgeInsets.fromLTRB(9, 6, 0, 6)
+                                  : const EdgeInsets.fromLTRB(0, 6, 9, 6),
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color:

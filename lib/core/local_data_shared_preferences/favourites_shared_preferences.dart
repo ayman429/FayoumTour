@@ -39,9 +39,12 @@ class FavouritStorage extends BaseFavourits {
   Future<Unit> saveFavourits(data, type) async {
     // print(data);
     // final token = await getIt<AccessToken>().getToken();
-    var user = await getUsersDetails();
+    // var user = await getUsersDetails();
     // userId = user.id;
-    sharedPreferences!.setString("USERID", user.id ?? "0");
+    var userId = sharedPreferences!.getString("USERID");
+    print("//////////////////////////////////////");
+    print(userId);
+    print("//////////////////////////////////////");
 
     final prefs = await SharedPreferences.getInstance();
     List<dynamic> favList = [];
@@ -51,11 +54,12 @@ class FavouritStorage extends BaseFavourits {
       "id": data.id.toString(),
       "type": type,
       "name": data.name,
+      "nameAR": data.nameAR,
       "image": data.originalImage,
     };
     favList.add(map);
     // print(favList);
-    await prefs.setString("${user.id}", json.encode(favList));
+    await prefs.setString("$userId", json.encode(favList));
     return Future.value(unit);
   }
 

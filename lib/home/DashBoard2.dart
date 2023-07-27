@@ -3,12 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../post/presentation/screens/add_post.dart';
-import 'favourites.dart';
-import 'home.dart';
-import 'plan.dart';
 import 'profile.dart';
-import 'search.dart';
-import 'nearst.dart';
 
 class DashBoardScreen extends StatefulWidget {
   final int select;

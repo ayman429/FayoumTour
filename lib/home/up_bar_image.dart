@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import 'check_favorite.dart';
+import 'check_favorite_API.dart';
 import 'home_details_of_tourism_hotel.dart';
 
 class UpBarImage extends StatelessWidget {
@@ -72,20 +73,24 @@ class UpBarImage extends StatelessWidget {
                   ),
                 ),
                 actions: [
-                  if (index == 0)
-                    CheckFavorite(
-                      id: data.id,
-                      // fav_value: favPlaceMap[data.id],
-                      fav_value: data.fav_value,
-                      index: index,
-                    )
-                  else
-                    CheckFavorite(
-                      id: data.id,
-                      // fav_value: favHotelMap[data.id],
-                      fav_value: data.fav_value,
-                      index: index,
-                    )
+                  CheckFavorite(
+                    data: data,
+                    type: type,
+                  )
+                  // if (index == 0)
+                  //   CheckFavorite(
+                  //     id: data.id,
+                  //     // fav_value: favPlaceMap[data.id],
+                  //     fav_value: data.fav_value,
+                  //     index: index,
+                  //   )
+                  // else
+                  //   CheckFavorite(
+                  //     id: data.id,
+                  //     // fav_value: favHotelMap[data.id],
+                  //     fav_value: data.fav_value,
+                  //     index: index,
+                  //   )
                 ],
               ),
             ],

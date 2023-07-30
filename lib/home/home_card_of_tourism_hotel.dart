@@ -87,28 +87,42 @@ class HomeCard extends StatelessWidget {
               ),
             ),
             Container(
-              margin: const EdgeInsets.fromLTRB(10, 0, 10, 5),
+              margin: const EdgeInsets.fromLTRB(10, 0, 10, 2),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Expanded(
-                    child: Text(
-                      sharedPreferences!.getString("Language") == "AR"
-                          ? data.nameAR
-                          : data.name,
-                      style: const TextStyle(fontFamily: "alata", fontSize: 15),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: Text(
+                        sharedPreferences!.getString("Language") == "AR"
+                            ? data.nameAR
+                            : data.name,
+                        style: sharedPreferences!.getString("Language") == "AR"
+                                    ? const TextStyle(fontFamily: "marhey", fontSize: 15,fontWeight: FontWeight.bold)
+                                    : const TextStyle(fontFamily: "alata", fontSize: 15),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ),
                   ),
                   Row(
                     children: [
-                      Text(
-                        data.avgRatings.toString(),
-                        style: const TextStyle(fontSize: 15),
+                      Padding(
+                        padding: sharedPreferences!.getString("Language") == "AR" ? const EdgeInsets.only() : const EdgeInsets.only(bottom: 2),
+                        child: Text(
+                          data.avgRatings.toString(),
+                          style: sharedPreferences!.getString("Language") == "AR"
+                          ? const TextStyle(fontSize: 14,fontFamily: "marhey",fontWeight: FontWeight.bold)
+                          : const TextStyle(fontSize: 14,fontFamily: "alata",),
+                        ),
                       ),
-                      RatingBar(rating: data.avgRatings, ratingCount: 0),
+                      Padding(
+                        padding: sharedPreferences!.getString("Language") == "AR" ? const EdgeInsets.only(bottom: 5)
+                        : const EdgeInsets.only(bottom: 2),
+                        child: RatingBar(rating: data.avgRatings, ratingCount: 0),
+                      ),
                     ],
                   ),
                 ],

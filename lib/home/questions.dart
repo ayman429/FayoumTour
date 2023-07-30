@@ -145,10 +145,15 @@ class _TourismScreenState extends State<TourismScreen>
                                             const EdgeInsets.only(left: 20),
                                         child: Text(
                                           title,
-                                          style: const TextStyle(
+                                          style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                            fontFamily: "ibmP",
+                                            fontSize: 23,
+                                          )
+                                          : const TextStyle(
                                             fontFamily: "aBeeZee",
                                             fontSize: 23,
-                                          ),
+                                          )
                                         ),
                                       ),
                                       const Divider(
@@ -227,6 +232,15 @@ class _TourismScreenState extends State<TourismScreen>
                                                 "AR"
                                             ? optionsAR[0]
                                             : options[0],
+                                      style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                            fontFamily: "ibmP",
+                                            fontSize: 16,
+                                          )
+                                          : const TextStyle(
+                                            fontFamily: "aBeeZee",
+                                            fontSize: 16,
+                                          ),
                                       )
                                     ],
                                   ),
@@ -293,6 +307,15 @@ class _TourismScreenState extends State<TourismScreen>
                                                     "AR"
                                                 ? optionsAR[1]
                                                 : options[1],
+                                                style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                            fontFamily: "ibmP",
+                                            fontSize: 16,
+                                          )
+                                          : const TextStyle(
+                                            fontFamily: "aBeeZee",
+                                            fontSize: 16,
+                                          ),
                                           )
                                         ],
                                       ),
@@ -368,6 +391,15 @@ class _TourismScreenState extends State<TourismScreen>
                                                     "Greek and Roman Antiquities"
                                                 ? "Greek and Roman"
                                                 : options[2],
+                                                style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                            fontFamily: "ibmP",
+                                            fontSize: 16,
+                                          )
+                                          : const TextStyle(
+                                            fontFamily: "aBeeZee",
+                                            fontSize: 16,
+                                          ),
                                       )
                                     ],
                                   ),
@@ -430,6 +462,15 @@ class _TourismScreenState extends State<TourismScreen>
                                                 "AR"
                                             ? optionsAR[3]
                                             : options[3],
+                                            style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                            fontFamily: "ibmP",
+                                            fontSize: 16,
+                                          )
+                                          : const TextStyle(
+                                            fontFamily: "aBeeZee",
+                                            fontSize: 16,
+                                          ),
                                       )
                                     ],
                                   ),
@@ -514,8 +555,8 @@ class _TourismScreenState extends State<TourismScreen>
                                                   "Natural Gardens"
                                                 ];
                                                 optionsAR = [
-                                                  "رياضات مائيه",
-                                                  "منطقة الشلالات",
+                                                  "رياضات مائية",
+                                                  "مناطق الشلالات",
                                                   "رحلات السفاري والتخييم",
                                                   "الحدائق الطبيعية"
                                                 ];
@@ -577,13 +618,13 @@ class _TourismScreenState extends State<TourismScreen>
                                                     BorderRadius.circular(25))),
                                         child: Padding(
                                           padding: const EdgeInsets.symmetric(
-                                              vertical: 5, horizontal: 50),
+                                              vertical: 0, horizontal: 50),
                                           child: Text(
                                             // "Next",
                                             AppLocalizations.of(context)!
                                                 .translate("Next"),
                                             style: TextStyle(
-                                                fontFamily: "rye",
+                                                fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
                                                 color: Theme.of(context)
                                                     .colorScheme
                                                     .onSecondary,

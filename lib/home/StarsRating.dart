@@ -39,16 +39,23 @@ class _RatingScreenState extends State<RatingScreen> {
       _rating = rating;
     });
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text(
-            'Rating submitted',
-            style: TextStyle(fontFamily: "merriweather"),
+          title:  Text(
+            AppLocalizations.of(context)!.translate("Thanks for Rating!"),
+            style: sharedPreferences!.getString("Language") == "AR"
+            ? const TextStyle(fontFamily: "messiri")
+            : const TextStyle(fontFamily: "merriweather"),
           ),
           content: Text(
-            'You rated this app $_rating stars.',
-            style: const TextStyle(fontFamily: "merriweather"),
+            sharedPreferences!.getString("Language") == "AR"
+            ? 'لقد قيمت المكان بـ$_rating نجوم'
+            : 'You rated this place $_rating stars.',
+            style: sharedPreferences!.getString("Language") == "AR"
+            ? const TextStyle(fontFamily: "messiri")
+            : const TextStyle(fontFamily: "merriweather"),
           ),
           actions: <Widget>[
             Center(
@@ -57,15 +64,15 @@ class _RatingScreenState extends State<RatingScreen> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                   ),
                   child: Text(
-                    'Okay',
+                    AppLocalizations.of(context)!.translate("Okay"),
                     style: TextStyle(
-                        fontFamily: "rye",
-                        color: Theme.of(context).colorScheme.onSecondary),
+                                        fontFamily: sharedPreferences!.getString("Language") == "AR"
+                                        ?"Mag":"rye", color: Theme.of(context).colorScheme.onSecondary),
                   )),
             ),
           ],
@@ -173,7 +180,13 @@ class StarRating extends StatelessWidget {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.translate("Rate it !!"),
-                    style: const TextStyle(
+                    style: sharedPreferences!.getString("Language") == "AR" ?
+                    const TextStyle(
+                        fontFamily: "messiri",
+                        fontSize: 22,
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold)
+                    : const TextStyle(
                         fontFamily: "acme",
                         fontSize: 22,
                         color: Colors.green,
@@ -215,7 +228,13 @@ class StarRating extends StatelessWidget {
                   Text(
                     // "Rate it !!",
                     AppLocalizations.of(context)!.translate("Rate it !!"),
-                    style: const TextStyle(
+                    style: sharedPreferences!.getString("Language") == "AR" ?
+                    const TextStyle(
+                        fontFamily: "messiri",
+                        fontSize: 22,
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold)
+                    : const TextStyle(
                         fontFamily: "acme",
                         fontSize: 22,
                         color: Colors.green,

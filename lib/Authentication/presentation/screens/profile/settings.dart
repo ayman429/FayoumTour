@@ -22,10 +22,15 @@ class SSSettings extends StatelessWidget {
         title: Text(
           // AppStrings.settings,
           AppLocalizations.of(context)!.translate("Settings"),
-          style: const TextStyle(
-              fontFamily: AppStrings.fontFamily,
-              fontWeight: FontWeight.bold,
-              fontSize: 25),
+          style: sharedPreferences!.getString("Language") == "AR"
+            ? const TextStyle(
+                fontFamily: "galaxy",
+                fontWeight: FontWeight.bold,
+                fontSize: 28)
+            : const TextStyle(
+                fontFamily: AppStrings.fontFamily,
+                fontWeight: FontWeight.bold,
+                fontSize: 25)
         ),
         backgroundColor: Colors.transparent,
       ),
@@ -39,13 +44,16 @@ class SSSettings extends StatelessWidget {
                 child: ListTile(
                   leading: Text(
                     AppLocalizations.of(context)!.translate("App Theme"),
-                    style: const TextStyle(fontFamily: "aBeeZee", fontSize: 19),
+                    style: sharedPreferences!.getString("Language") == "AR"
+                    ? const TextStyle(fontFamily: "messiri", fontSize: 19)
+                    : const TextStyle(fontFamily: "aBeeZee", fontSize: 19),
                   ),
                   trailing: BlocBuilder<AppThemeBloc, AppThemeState>(
                       builder: (context, state) {
                     if (state is AppChangeTheme || state is AppThemeInitial) {
                       return LiteRollingSwitch(
                           textSize: 13,
+                          
                           animationDuration: const Duration(microseconds: 100),
                           value: (state.appTheme == AppStrings.darkString)
                               ? true
@@ -87,7 +95,9 @@ class SSSettings extends StatelessWidget {
                   leading: Text(
                     // AppStrings.language,
                     AppLocalizations.of(context)!.translate("Language"),
-                    style: const TextStyle(fontFamily: "aBeeZee", fontSize: 19),
+                    style: sharedPreferences!.getString("Language") == "AR"
+                    ? const TextStyle(fontFamily: "messiri", fontSize: 19)
+                    : const TextStyle(fontFamily: "aBeeZee", fontSize: 19),
                   ),
                   trailing: BlocBuilder<AppLanguageBloc, AppLanguageState>(
                     builder: (context, state) {

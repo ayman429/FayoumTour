@@ -72,7 +72,9 @@ class CommentList extends StatelessWidget {
                                           child: Text(
                                             data[index].createdBy!.userName ?? "",
                                             style: const TextStyle(
-                                                fontWeight: FontWeight.bold),
+                                              fontFamily: "readPro",
+                                                fontWeight: FontWeight.bold
+                                                ),
                                           ),
                                         ),
                                         (data[index].createdBy!.id ==
@@ -109,6 +111,7 @@ class CommentList extends StatelessWidget {
                                     ),
                                     Text(
                                       data[index].comment,
+                                      style: const TextStyle(fontFamily: "ibmP"),
                                     ),
                                   ],
                                 )),

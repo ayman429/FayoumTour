@@ -142,7 +142,61 @@ flutter:
   - family: merriweather
     fonts:
       - asset: assets/fonts/Merriweather-Regular.ttf
-      
+#-----------------------------------------------------Arabic Fonts--------------------------------------------------------------
+  - family: aref
+    fonts:
+      - asset: assets/fonts/ArefRuqaa-Regular.ttf
+  - family: amiri
+    fonts:
+      - asset: assets/fonts/Amiri-Regular.ttf
+  - family: amiriQ
+    fonts:
+      - asset: assets/fonts/AmiriQuran-Regular.ttf
+  - family: messiri
+    fonts:
+      - asset: assets/fonts/ElMessiri-VariableFont_wght.ttf
+  - family: ibmP
+    fonts:
+      - asset: assets/fonts/IBMPlexSansArabic-Regular.ttf
+  - family: lemo
+    fonts:
+      - asset: assets/fonts/Lemonada-VariableFont_wght.ttf
+  - family: marhey
+    fonts:
+      - asset: assets/fonts/Marhey-VariableFont_wght.ttf
+  - family: readPro
+    fonts:
+      - asset: assets/fonts/ReadexPro-VariableFont_HEXP,wght.ttf
+  - family: eetsap
+    fonts:
+      - asset: assets/fonts/alfont_com_eetsap.ttf
+  - family: adoody
+    fonts:
+      - asset: assets/fonts/alfont_com_adoody.ttf
+  - family: broken
+    fonts:
+      - asset: assets/fonts/pt-bold-broken.ttf
+  - family: galaxy
+    fonts:
+      - asset: assets/fonts/AA-GALAXY.ttf
+  - family: vlax1
+    fonts:
+      - asset: assets/fonts/VLAX 01.otf
+  - family: vlax2
+    fonts:
+      - asset: assets/fonts/VLAX 02.otf
+  - family: dg
+    fonts:
+      - asset: assets/fonts/DG-Modal3at-Med.ttf
+  - family: Mag
+    fonts:
+      - asset: assets/fonts/RTL-Maghfira-Ramadan.ttf
+  - family: arbT
+    fonts:
+      - asset: assets/fonts/ArbFONTS-FFKhallab-Regular.ttf
+  - family: arbO
+    fonts:
+      - asset: assets/fonts/ArbFONTS-FFKhallab-Regular.otf
   # fonts:
   #   - family: Schyler
   #     fonts:

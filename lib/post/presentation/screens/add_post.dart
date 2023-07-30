@@ -130,7 +130,7 @@ class _AddPostState extends State<AddPost> {
                                                       .translate(
                                                           "   Write your post now!   "),
                                                   style: const TextStyle(
-                                                      fontSize: 18.0),
+                                                      fontSize: 18.0,fontFamily: "amiri"),
                                                 ),
                                         ),
                                       ),

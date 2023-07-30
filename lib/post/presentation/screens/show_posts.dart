@@ -121,7 +121,7 @@ class ShowPosts extends StatelessWidget {
                                     Text(
                                       '${state.post[index].createdBy!.userName}',
                                       style: const TextStyle(
-                                        fontFamily: "aBeeZee",
+                                        fontFamily: "readPro",
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18,
                                       ),
@@ -199,6 +199,7 @@ class ShowPosts extends StatelessWidget {
                                     state.post[index].body,
                                     style: const TextStyle(
                                       fontSize: 20,
+                                      fontFamily: "ibmP"
                                       //fontWeight: FontWeight.bold,
                                     ),
                                   ),

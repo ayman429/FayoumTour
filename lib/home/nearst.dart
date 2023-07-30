@@ -3,6 +3,7 @@ import '../TourismPlaces/presentation/screens/nearest_tourism_places.dart';
 import 'package:location/location.dart';
 
 import '../core/utils/app_localizations.dart';
+import '../core/utils/constance/shared_pref.dart';
 
 Location location = Location();
 bool serviceEnabled = false;
@@ -51,13 +52,14 @@ class _NEARState extends State<NEAR> {
                   elevation: 10),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                    sharedPreferences!.getString("Language") == "AR" ? const EdgeInsets.symmetric(vertical: 10, horizontal: 20)
+                    : const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                 child: Text(
                   // "Get Nearest Places!",
                   AppLocalizations.of(context)!
                       .translate("Get Nearest Places!"),
                   style: TextStyle(
-                      fontFamily: "rye",
+                      fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
                       color: Theme.of(context).colorScheme.secondary,
                       fontSize: 18),
                 ),

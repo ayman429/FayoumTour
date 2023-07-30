@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/app_localizations.dart';
-import '../../../core/utils/constance/strings_manager.dart';
+import '../../../core/utils/constance/shared_pref.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
   bool login;
@@ -25,7 +25,10 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
                   : AppLocalizations.of(context)!
                       .translate("alreadyHaveAccount"),
               // style: TextStyle(color: ColorManager.kPrimaryColor),
-              style: const TextStyle(fontFamily: "merriweather")),
+              style: sharedPreferences!.getString("Language") == "AR"
+              ? const TextStyle(fontFamily: "ibmP")
+              : const TextStyle(fontFamily: "merriweather")
+              ),
           GestureDetector(
             onTap: press as void Function()?,
             child: Text(
@@ -33,7 +36,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
                   ? AppLocalizations.of(context)!.translate("Sign Up")
                   : AppLocalizations.of(context)!.translate("Sign In"),
               style: TextStyle(
-                  fontFamily: "merriweather",
+                  fontFamily: sharedPreferences!.getString("Language") == "AR" ? "ibmP" :"merriweather",
                   color: Theme.of(context).colorScheme.primary),
               // style: const TextStyle(
               //   // color: ColorManager.kPrimaryColor,

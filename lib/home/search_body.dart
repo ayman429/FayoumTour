@@ -100,8 +100,9 @@ class SeachBody extends StatelessWidget {
                       ? data.nameAR
                       : data.name,
                   style: TextStyle(
-                    fontFamily: "merriweather",
+                    fontFamily: sharedPreferences!.getString("Language") == "AR" ? "lemo" :"merriweather",
                     fontSize: 18,
+                    fontWeight: FontWeight.bold,
                     color: Theme.of(context).colorScheme.onPrimary,
                   ),
                   overflow: TextOverflow.ellipsis,

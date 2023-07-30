@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_localizations.dart';
+import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/enums.dart';
 import '../../../home/search_body.dart';
 import '../controller/hotels_bloc.dart';
@@ -54,18 +55,16 @@ class HotelsSearch extends StatelessWidget {
             return const Center(child: Text("Error"));
         }
       }
-      return Container(
-          margin:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25),
-          child: Center(
+      return Center(
             child: Text(
               AppLocalizations.of(context)!.translate("Not Found!"),
               style: TextStyle(
-                  fontFamily: "pressStart2p",
-                  fontSize: 25,
+                  fontFamily: sharedPreferences!.getString("Language") == "AR" ? "aref" :"pressStart2p",
+                  fontSize: sharedPreferences!.getString("Language") == "AR" ?38:22,
+                  height: sharedPreferences!.getString("Language") == "AR" ? null : 1.7,
                   color: Theme.of(context).colorScheme.primary),
             ),
-          ));
+          );
     }));
   }
 }

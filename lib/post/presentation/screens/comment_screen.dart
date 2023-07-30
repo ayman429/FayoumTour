@@ -37,10 +37,15 @@ class _CommentScreenState extends State<CommentScreen> {
           elevation: 0,
           title: Text(
             AppLocalizations.of(context)!.translate("Comments"),
-            style: const TextStyle(
+            style: sharedPreferences!.getString("Language") == "AR"
+            ? const TextStyle(
+                fontFamily: "galaxy",
+                fontWeight: FontWeight.bold,
+                fontSize: 28)
+            : const TextStyle(
                 fontFamily: AppStrings.fontFamily,
                 fontWeight: FontWeight.bold,
-                fontSize: 25),
+                fontSize: 25)
           ),
           centerTitle: true,
         ),

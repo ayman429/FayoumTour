@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/app_localizations.dart';
-import '../../../core/utils/constance/color_manager.dart';
-import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/constance/values_manager.dart';
 import '../controller/obscure_bloc.dart';
 
 class PasswordTextFormField extends StatelessWidget {
   final passwordController;
-
-  const PasswordTextFormField({Key? key, required this.passwordController})
+  bool isConfirm;
+  PasswordTextFormField({Key? key, required this.passwordController,required this.isConfirm})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -31,8 +29,9 @@ class PasswordTextFormField extends StatelessWidget {
                     icon: Icon(state.isObscure
                         ? Icons.visibility
                         : Icons.visibility_off)),
-                hintText:
-                    AppLocalizations.of(context)!.translate("Your password"),
+                hintText: isConfirm
+                    ? AppLocalizations.of(context)!.translate("Confirm Password")
+                    : AppLocalizations.of(context)!.translate("Your password"),
                 prefixIcon: const Padding(
                   padding: EdgeInsets.all(AppPadding.p16),
                   child: Icon(Icons.fingerprint),

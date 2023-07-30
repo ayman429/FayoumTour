@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../core/utils/app_localizations.dart';
+import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -10,43 +12,62 @@ class AboutScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
-          'About FayTour',
-          style: TextStyle(
-              fontFamily: AppStrings.fontFamily,
-              fontWeight: FontWeight.bold,
-              fontSize: 25),
+        title:  Text(
+          AppLocalizations.of(context)!.translate("About FayTour"),
+          style: sharedPreferences!.getString("Language") == "AR"
+            ? const TextStyle(
+                fontFamily: "galaxy",
+                fontWeight: FontWeight.bold,
+                fontSize: 28)
+            : const TextStyle(
+                fontFamily: AppStrings.fontFamily,
+                fontWeight: FontWeight.bold,
+                fontSize: 25)
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  const Expanded(
-                    child: Text(
-                      "Our Greetings and foremost, we sincerely hope that the application has successfully garnered your utmost satisfaction.\n",
-                      style: TextStyle(
-                        fontFamily: "domine",
-                        height: 1.45, fontSize: 16),
+                  Expanded(
+                    child: Padding(
+                      padding: sharedPreferences!.getString("Language") == "AR"
+                      ? const EdgeInsets.only(top: 35)
+                      : const EdgeInsets.only(),
+                      child: Text(
+                        AppLocalizations.of(context)!.translate("info paragraph1"),
+                        style: sharedPreferences!.getString("Language") == "AR"
+                        ? const TextStyle(
+                          fontFamily: "readPro",
+                          height: 1.65, fontSize: 16,fontWeight: FontWeight.bold
+                          )
+                        : const TextStyle(
+                          fontFamily: "domine",
+                          height: 1.50, fontSize: 16
+                          ),
+                      ),
                     ),
                   ),
                   Expanded(child: Image.asset(AppStrings.logoImage)),
                 ],
               ),
-              const Text(
-                "Allow us to elucidate that this application was conceived as the graduation project at the Faculty of Computer Science. "
-                "It served as a magnificent culmination of our academic journey. The underlying concept behind this app "
-                "revolved around amalgamating all the splendid tourist destinations nestled within the embrace of Fayoum Governorate in the land of Egypt. "
-                "Our primary objective was to acquaint visitors and all people with these extraordinary locales while also streamlining their accessibility.\n",
-                style: TextStyle(
-                  fontFamily: "domine",
-                  height: 1.45, fontSize: 16),
+              Text(
+                AppLocalizations.of(context)!.translate("info paragraph2"),
+                style: sharedPreferences!.getString("Language") == "AR"
+                      ? const TextStyle(
+                        fontFamily: "readPro",
+                        height: 1.65, fontSize: 16,fontWeight: FontWeight.bold
+                        )
+                      : const TextStyle(
+                        fontFamily: "domine",
+                        height: 1.50, fontSize: 16
+                        ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -71,23 +92,29 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                "Unquestionably, our ardent aspiration was to invigorate the realm of tourism in this enchanting region. "
-                "Our choice to embark upon this venture was primarily inspired by the focus on numerous untapped and abandoned tourist havens "
-                "that yearned for rejuvenation. It also became apparent that the custodians entrusted with developing and preserving this remarkable "
-                "expanse were in dire need of a dynamic mobile application for tourists. Such a platform would undoubtedly serve as an indispensable tool "
-                "for disseminating captivating advertisements and diligently promoting the vast potential for tourism within this resplendent domain.",
-                style: TextStyle(
-                  fontFamily: "domine",
-                  height: 1.45, fontSize: 16),
+              Text(
+                AppLocalizations.of(context)!.translate("info paragraph3"),
+                style: sharedPreferences!.getString("Language") == "AR"
+                      ? const TextStyle(
+                        fontFamily: "readPro",
+                        height: 1.65, fontSize: 16,fontWeight: FontWeight.bold
+                        )
+                      : const TextStyle(
+                        fontFamily: "domine",
+                        height: 1.50, fontSize: 16
+                        ),
               ),
               const SizedBox(height: 32),
-              const Center(
+              Center(
                 child: Text(
-                  'Cooperation with',
-                  style: TextStyle(
+                  AppLocalizations.of(context)!.translate("Cooperation with"),
+                  style: sharedPreferences!.getString("Language") == "AR"
+                  ? const TextStyle(
+                    fontFamily: "ibmP",
+                      fontSize: 28, fontWeight: FontWeight.bold)
+                  : const TextStyle(
                     fontFamily: "acme",
-                      fontSize: 25, fontWeight: FontWeight.bold),
+                      fontSize: 25, fontWeight: FontWeight.bold, ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -102,31 +129,40 @@ class AboutScreen extends StatelessWidget {
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    CircleAvatar(
+                  children:  [
+                    const CircleAvatar(
                       backgroundImage:
                           AssetImage('assets/images/fayoum_gov.jpg'),
                       radius: 30,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Expanded(
-                        child: Text("Fayoum Governorate Administration",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold))),
+                        child: Text(AppLocalizations.of(context)!.translate("Fayoum Governorate Administration"),
+                            style: sharedPreferences!.getString("Language") == "AR"
+                                ? const TextStyle(
+                                fontSize: 23, fontFamily: "galaxy")
+                                : const TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                                
+                                )),
                   ],
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Center(
+              Center(
                 child: Text(
-                  'Supervised by',
-                  style: TextStyle(
+                  AppLocalizations.of(context)!.translate("Supervised by"),
+                  style: sharedPreferences!.getString("Language") == "AR"
+                  ? const TextStyle(
+                    fontFamily: "ibmP",
+                      fontSize: 28,  fontWeight: FontWeight.bold)
+                  : const TextStyle(
                     fontFamily: "acme",
-                      fontSize: 25, fontWeight: FontWeight.bold),
+                      fontSize: 25, fontWeight: FontWeight.bold, ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -152,16 +188,19 @@ class AboutScreen extends StatelessWidget {
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children:  [
                           Text(
-                            "Dr. Ahmed Slama",
-                            style: TextStyle(
+                            AppLocalizations.of(context)!.translate("Dr. Ahmed Slama"),
+                            style: sharedPreferences!.getString("Language") == "AR"
+                                ? const TextStyle(
+                                fontSize: 23, fontFamily: "galaxy")
+                                : const TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.bold),
                           ),
                           Text(
-                              "Lecturer at the Faculty of Computers and Artificial Intelligence, Fayoum University",
+                              AppLocalizations.of(context)!.translate("Slama Desc"),
                               style:
-                                  TextStyle(fontSize: 12, color: Colors.grey)),
+                                  const TextStyle(fontSize: 12, color: Colors.grey)),
                         ],
                       ),
                     ),
@@ -169,18 +208,23 @@ class AboutScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              const Center(
+              Center(
                 child: Text(
-                  'Developed by',
-                  style: TextStyle(
+                  AppLocalizations.of(context)!.translate("Developed by"),
+                  style: sharedPreferences!.getString("Language") == "AR"
+                  ? const TextStyle(
+                    fontFamily: "ibmP",
+                      fontSize: 28, fontWeight: FontWeight.bold )
+                  : const TextStyle(
                     fontFamily: "acme",
-                      fontSize: 25, fontWeight: FontWeight.bold),
+                      fontSize: 25, fontWeight: FontWeight.bold, ),
                 ),
               ),
               const SizedBox(height: 16),
               Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
                         child: InkWell(
@@ -205,15 +249,21 @@ class AboutScreen extends StatelessWidget {
                                 width: 5,
                               ),
                               Expanded(
-                                child: Column(
+                                child: sharedPreferences!.getString("Language") == "AR"
+                                ? Text(
+                                      "${AppLocalizations.of(context)!.translate("Eng.")}${AppLocalizations.of(context)!.translate("Ayman Mansour")}",
+                                      style: const TextStyle(
+                                fontSize: 23, fontFamily: "galaxy"),
+                                    )
+                                : Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children:  [
                                     Text(
-                                      "Eng.",
-                                      style: TextStyle(fontSize: 14),
+                                      AppLocalizations.of(context)!.translate("Eng."),
+                                      style: const TextStyle(fontSize: 14),
                                     ),
-                                    Text("Ayman Mansour",
-                                        style: TextStyle(
+                                    Text(AppLocalizations.of(context)!.translate("Ayman Mansour"),
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold)),
                                   ],
@@ -246,15 +296,21 @@ class AboutScreen extends StatelessWidget {
                                 width: 5,
                               ),
                               Expanded(
-                                child: Column(
+                                child: sharedPreferences!.getString("Language") == "AR"
+                                ? Text(
+                                      "${AppLocalizations.of(context)!.translate("Eng.")}${AppLocalizations.of(context)!.translate("Marwan Yasser")}",
+                                      style: const TextStyle(
+                                fontSize: 23, fontFamily: "galaxy"),
+                                    )
+                                : Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children:  [
                                     Text(
-                                      "Eng.",
-                                      style: TextStyle(fontSize: 14),
+                                      AppLocalizations.of(context)!.translate("Eng."),
+                                      style: const TextStyle(fontSize: 14),
                                     ),
-                                    Text("Marwan Yasser",
-                                        style: TextStyle(
+                                    Text(AppLocalizations.of(context)!.translate("Marwan Yasser"),
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold)),
                                   ],
@@ -274,6 +330,7 @@ class AboutScreen extends StatelessWidget {
                     height: 5,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
                         child: InkWell(
@@ -298,15 +355,21 @@ class AboutScreen extends StatelessWidget {
                                 width: 5,
                               ),
                               Expanded(
-                                child: Column(
+                                child: sharedPreferences!.getString("Language") == "AR"
+                                ? Text(
+                                      "${AppLocalizations.of(context)!.translate("Eng.")}${AppLocalizations.of(context)!.translate("Mahmoud Hamdy")}",
+                                      style: const TextStyle(
+                                fontSize: 23, fontFamily: "galaxy"),
+                                    )
+                                : Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children:  [
                                     Text(
-                                      "Eng.",
-                                      style: TextStyle(fontSize: 14),
+                                      AppLocalizations.of(context)!.translate("Eng."),
+                                      style: const TextStyle(fontSize: 14),
                                     ),
-                                    Text("Mahmoud Hamdy",
-                                        style: TextStyle(
+                                    Text(AppLocalizations.of(context)!.translate("Mahmoud Hamdy"),
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold)),
                                   ],
@@ -339,15 +402,21 @@ class AboutScreen extends StatelessWidget {
                                 width: 5,
                               ),
                               Expanded(
-                                child: Column(
+                                child: sharedPreferences!.getString("Language") == "AR"
+                                ? Text(
+                                      "${AppLocalizations.of(context)!.translate("Eng.")}${AppLocalizations.of(context)!.translate("Hamada Mostafa")}",
+                                      style: const TextStyle(
+                                fontSize: 23, fontFamily: "galaxy"),
+                                    )
+                                : Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children:  [
                                     Text(
-                                      "Eng.",
-                                      style: TextStyle(fontSize: 14),
+                                      AppLocalizations.of(context)!.translate("Eng."),
+                                      style: const TextStyle(fontSize: 14),
                                     ),
-                                    Text("Hamada Mostafa",
-                                        style: TextStyle(
+                                    Text(AppLocalizations.of(context)!.translate("Hamada Mostafa"),
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold)),
                                   ],
@@ -367,6 +436,7 @@ class AboutScreen extends StatelessWidget {
                     height: 5,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
                         child: InkWell(
@@ -390,15 +460,21 @@ class AboutScreen extends StatelessWidget {
                                 width: 5,
                               ),
                               Expanded(
-                                child: Column(
+                                child: sharedPreferences!.getString("Language") == "AR"
+                                ? Text(
+                                      "${AppLocalizations.of(context)!.translate("Eng.")}${AppLocalizations.of(context)!.translate("Ahmed Abdelaltawab")}",
+                                      style: const TextStyle(
+                                fontSize: 23, fontFamily: "galaxy"),
+                                    )
+                                : Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children:  [
                                     Text(
-                                      "Eng.",
-                                      style: TextStyle(fontSize: 13),
+                                      AppLocalizations.of(context)!.translate("Eng."),
+                                      style: const TextStyle(fontSize: 13),
                                     ),
-                                    Text("Ahmed Abdelaltawab",
-                                        style: TextStyle(
+                                    Text(AppLocalizations.of(context)!.translate("Ahmed Abdelaltawab"),
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold)),
                                   ],
@@ -408,6 +484,7 @@ class AboutScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+
                       Expanded(
                         child: InkWell(
                           onTap: () async {
@@ -431,15 +508,21 @@ class AboutScreen extends StatelessWidget {
                                 width: 5,
                               ),
                               Expanded(
-                                child: Column(
+                                child: sharedPreferences!.getString("Language") == "AR"
+                                ? Text(
+                                      "${AppLocalizations.of(context)!.translate("Eng.")}${AppLocalizations.of(context)!.translate("Mohammed Ramadan")}",
+                                      style: const TextStyle(
+                                fontSize: 23, fontFamily: "galaxy"),
+                                    )
+                                : Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children:  [
                                     Text(
-                                      "Eng.",
-                                      style: TextStyle(fontSize: 14),
+                                      AppLocalizations.of(context)!.translate("Eng."),
+                                      style: const TextStyle(fontSize: 14),
                                     ),
-                                    Text("Mohammed Ramadan",
-                                        style: TextStyle(
+                                    Text(AppLocalizations.of(context)!.translate("Mohammed Ramadan"),
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold)),
                                   ],
@@ -456,20 +539,20 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(height: 40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(
-                    Icons.copyright_outlined,
-                    size: 15,
+                children:  [
+                  Padding(
+                    padding: sharedPreferences!.getString("Language") == "AR"
+                    ?  const EdgeInsets.only(bottom: 0)
+                    : const EdgeInsets.only(bottom: 0),
+                    child: const Icon(
+                      Icons.copyright_outlined,
+                      size: 17,
+                    ),
                   ),
-                  SizedBox(width: 2),
+                  const SizedBox(width: 2),
                   Text(
-                    '2023',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  SizedBox(width: 5),
-                  Text(
-                    'FayTour . All rights reserved.',
-                    style: TextStyle(fontSize: 16),
+                    AppLocalizations.of(context)!.translate("CopyRights"),
+                    style: const TextStyle(fontSize: 16,fontFamily: "readPro"),
                   ),
                 ],
               ),

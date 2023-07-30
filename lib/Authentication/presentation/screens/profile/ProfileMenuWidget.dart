@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/constance/shared_pref.dart';
+
 class ProfileMenuWidget extends StatelessWidget {
   const ProfileMenuWidget({
     Key? key,
@@ -33,7 +35,7 @@ class ProfileMenuWidget extends StatelessWidget {
       ),
       title: Text(title,
           style: TextStyle(
-            fontFamily: "aBeeZee",
+            fontFamily: sharedPreferences!.getString("Language") == "AR" ? "readPro" :"aBeeZee",
             fontWeight: FontWeight.bold, color: endIcon ? Theme.of(context).colorScheme.onPrimary : Colors.red)
           ),
       trailing: endIcon

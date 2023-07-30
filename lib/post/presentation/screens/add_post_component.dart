@@ -79,17 +79,30 @@ class _AddPostComponentState extends State<AddPostComponent> {
             backgroundColor: Colors.transparent,
             title: Text(widget.type == 'add'
                 ? AppLocalizations.of(context)!.translate("Create Post")
-                : AppLocalizations.of(context)!.translate("Edit Post")),
+                : AppLocalizations.of(context)!.translate("Edit Post"),
+                style: sharedPreferences!.getString("Language") == "AR"
+            ? const TextStyle(
+                fontFamily: "galaxy",
+                fontWeight: FontWeight.bold,
+                fontSize: 28)
+            : const TextStyle(
+                fontFamily: AppStrings.fontFamily,
+                fontWeight: FontWeight.bold,
+                fontSize: 25)
+                ),
             actions: [
               Opacity(
-                opacity: _textEditingController.text == "" && _imageList.isEmpty
+                opacity: _textEditingController.text == "" && _imageList.isEmpty && widget.type == 'add'
                     ? 0.5
-                    : widget.type == 'add'
-                        ? 1
-                        : _textEditingController.text == widget.data.body &&
-                                !changeInImages
-                            ? 0.5
-                            : 1,
+                    : widget.type != "add"
+                      ? _textEditingController.text == widget.data.body && !changeInImages
+                          ? 0.5
+                          : _textEditingController.text == "" && _imageList.isEmpty && _providedimageList.isEmpty
+                          ? 0.5
+                          : 1
+                      : 1,
+                        
+                        
                 child: Container(
                   margin: sharedPreferences!.getString("Language") == "AR"
                       ? const EdgeInsets.fromLTRB(8, 6, 0, 6)
@@ -127,24 +140,27 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                 : AppLocalizations.of(context)!
                                     .translate("Update"),
                             style: TextStyle(
-                                fontFamily: "rye",
-                                fontSize: 17,
+                                fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
+                                fontSize: 16,
                                 color:
                                     Theme.of(context).colorScheme.onSecondary),
                           ),
                         ),
                         onPressed: () async {
-                          if (widget.type != 'add' &&
-                              _textEditingController.text == widget.data.body &&
-                              !changeInImages) {
-                            upload = false;
-                          } else {
+                          if (widget.type != 'add' && _textEditingController.text == widget.data.body && !changeInImages)
+                          {
+                            if (_textEditingController.text == "" && _imageList.isEmpty && _providedimageList.isEmpty)
+                            {upload = false;}
+                          } else
+                          {
                             upload = true;
                           }
 
-                          if (upload) {
-                            if (_textEditingController.text != "" ||
-                                _imageList.isNotEmpty) {
+                          
+                          if (widget.type == "add" && (_textEditingController.text != "" || _imageList.isNotEmpty)
+                            ||
+                            widget.type != "add" && upload)
+                            {
                               List<String> imagesPath = [];
                               for (int i = 0; i < _imageList.length; i++) {
                                 imagesPath.add(_imageList[i].path);
@@ -199,6 +215,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
 
                                 showDialog(
                                   context: context,
+                                  barrierDismissible: false,
                                   builder: (ctx) => const FractionallySizedBox(
                                     widthFactor:
                                         0.5, // Set the desired width factor (0.0 to 1.0)
@@ -215,7 +232,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                 );
                               }
                             }
-                          }
+                          
                         },
                       );
                     },
@@ -474,9 +491,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                       _providedimageList.removeAt(pos);
                       _removedProvidedimageIndexList.add(pos);
                       changeInImages = true;
-                      print(
-                          "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                    }
+                      }
                   });
                 },
                 child: Icon(

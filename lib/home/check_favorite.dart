@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/local_data_shared_preferences/favourites_shared_preferences.dart';
+import '../core/utils/app_localizations.dart';
+import '../core/utils/constance/shared_pref.dart';
 
 class CheckFavorite extends StatefulWidget {
   var data;
@@ -60,9 +62,11 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                       barrierDismissible: false,
                       builder: (context) {
                         return AlertDialog(
-                          title: const Text(
-                            "Adding Successful",
-                            style: TextStyle(fontFamily: "merriweather"),
+                          title: Text(
+                            AppLocalizations.of(context)!.translate("Adding Successful"),
+                            style: sharedPreferences!.getString("Language") == "AR"
+                            ? const TextStyle(fontFamily: "messiri")
+                            : const TextStyle(fontFamily: "merriweather"),
                           ),
                           actions: [
                             Center(
@@ -71,15 +75,16 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
+                                    backgroundColor: Colors.green,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                   ),
-                                  child: const Text(
-                                    "Okay",
+                                  child:  Text(
+                                    AppLocalizations.of(context)!.translate("Okay"),
                                     style: TextStyle(
-                                        fontFamily: "rye", color: Colors.black),
+                                        fontFamily: sharedPreferences!.getString("Language") == "AR"
+                                        ?"Mag":"rye", color: Theme.of(context).colorScheme.onSecondary)
                                   )),
                             )
                           ],

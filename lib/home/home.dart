@@ -30,11 +30,11 @@ class Home extends StatelessWidget {
               child: Column(
                 children: [
                   const TopRatedTourismPlaces(),
-                  TopRatedHotels(),
+                  const TopRatedHotels(),
                   HomeCardsTourismPlacesTypeSearch(
                       tourismPlaceSearchByFeild: tourtismType),
-                  HomeCardsTourismPlaces(),
-                  HomeCardsHotels(),
+                  const HomeCardsTourismPlaces(),
+                  const HomeCardsHotels(),
                 ],
               ),
             )

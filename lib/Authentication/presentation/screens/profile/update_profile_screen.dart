@@ -67,10 +67,15 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         centerTitle: true,
         title: Text(
           AppLocalizations.of(context)!.translate("Edit Profile"),
-          style: const TextStyle(
-              fontFamily: AppStrings.fontFamily,
-              fontWeight: FontWeight.bold,
-              fontSize: 25),
+          style: sharedPreferences!.getString("Language") == "AR"
+            ? const TextStyle(
+                fontFamily: "galaxy",
+                fontWeight: FontWeight.bold,
+                fontSize: 28)
+            : const TextStyle(
+                fontFamily: AppStrings.fontFamily,
+                fontWeight: FontWeight.bold,
+                fontSize: 25)
         ),
       ),
       body: SingleChildScrollView(
@@ -105,7 +110,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                             color: Theme.of(context).colorScheme.secondary,
                             size: 20,
                           ),
-                          // onTap: _showImagePicker,
+                          // onTap: _showImagePicker ,
                           onTap: () async {
                             final pickedFile = await showModalBottomSheet(
                               context: context,
@@ -117,7 +122,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                         leading:
                                             const Icon(Icons.photo_library),
                                         title:
-                                            const Text(AppStrings.photoLibrary),
+                                            Text(AppLocalizations.of(context)!
+                                                .translate('Photo Library')),
                                         onTap: () async {
                                           final pickedFile = await ImagePicker()
                                               .pickImage(
@@ -136,7 +142,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                       ),
                                       ListTile(
                                         leading: const Icon(Icons.photo_camera),
-                                        title: const Text(AppStrings.camera),
+                                        title:  Text(AppLocalizations.of(context)!
+                                                .translate('Camera')),
                                         onTap: () async {
                                           final pickedFile =
                                               // ignore: deprecated_member_use
@@ -245,19 +252,22 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         borderRadius: BorderRadius.circular(15)),
                     backgroundColor: Theme.of(context).colorScheme.primary,
                   ),
-                  child: Text(
-                    AppLocalizations.of(context)!.translate("EDIT NAME"),
-                    style: TextStyle(
-                        fontFamily: "rye",
-                        fontSize: 16,
-                        color: Theme.of(context).colorScheme.secondary),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Text(
+                      AppLocalizations.of(context)!.translate("EDIT NAME"),
+                      style: TextStyle(
+                          fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
+                          fontSize: 16,
+                          color: Theme.of(context).colorScheme.secondary),
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: AppPadding.p16),
-              PasswordTextFormField(passwordController: password1Controller),
+              PasswordTextFormField(passwordController: password1Controller,isConfirm: false,),
               const SizedBox(height: AppPadding.p16),
-              PasswordTextFormField(passwordController: password2Controller),
+              PasswordTextFormField(passwordController: password2Controller,isConfirm: true,),
               const SizedBox(height: AppPadding.p16),
               SizedBox(
                 width: double.infinity,
@@ -274,12 +284,15 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         borderRadius: BorderRadius.circular(15)),
                     backgroundColor: Theme.of(context).colorScheme.primary,
                   ),
-                  child: Text(
-                    AppLocalizations.of(context)!.translate("EDIT PASSWORD"),
-                    style: TextStyle(
-                        fontFamily: "rye",
-                        fontSize: 16,
-                        color: Theme.of(context).colorScheme.secondary),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Text(
+                      AppLocalizations.of(context)!.translate("EDIT PASSWORD"),
+                      style: TextStyle(
+                          fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
+                          fontSize: 16,
+                          color: Theme.of(context).colorScheme.secondary),
+                    ),
                   ),
                 ),
               ),

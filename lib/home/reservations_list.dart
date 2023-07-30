@@ -25,8 +25,8 @@ class GetReservationData extends StatelessWidget {
               // "Nothing Yet",
               AppLocalizations.of(context)!.translate("Nothing Yet"),
               style: TextStyle(
-                  fontFamily: "pressStart2p",
-                  fontSize: 25,
+                  fontFamily: sharedPreferences!.getString("Language") == "AR" ? "aref" :"pressStart2p",
+                  fontSize: sharedPreferences!.getString("Language") == "AR" ?38:24,
                   color: Theme.of(context).colorScheme.primary),
             ),
           )
@@ -166,8 +166,13 @@ class GetReservationData extends StatelessWidget {
                               Text(
                                   AppLocalizations.of(context)!
                                       .translate("Reservation for"),
-                                  style: const TextStyle(
-                                      fontFamily: "acme", fontSize: 16)),
+                                  style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                          fontFamily: "messiri", fontSize: 16.5)
+                                          : const TextStyle(
+                                          fontFamily: "acme", fontSize: 16.5),
+                                      
+                                      ),
                               Container(
                                 margin:
                                     const EdgeInsets.symmetric(horizontal: 5),
@@ -190,7 +195,13 @@ class GetReservationData extends StatelessWidget {
                                   children: [
                                     Text(
                                       "${data[index].adulls}",
-                                      style: const TextStyle(
+                                      style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                          fontFamily: "messiri",
+                                          fontSize: 17,
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.bold)
+                                          : const TextStyle(
                                           fontFamily: "acme",
                                           fontSize: 17,
                                           color: Colors.green,
@@ -201,8 +212,11 @@ class GetReservationData extends StatelessWidget {
                                           ? AppLocalizations.of(context)!
                                               .translate(" Adult")
                                           : AppLocalizations.of(context)!
-                                              .translate("Adults"),
-                                      style: const TextStyle(
+                                              .translate("adults"),
+                                      style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                          fontFamily: "messiri", fontSize: 16.5)
+                                          : const TextStyle(
                                           fontFamily: "acme", fontSize: 16.5),
                                     ),
                                   ],
@@ -211,8 +225,12 @@ class GetReservationData extends StatelessWidget {
                               Text(
                                   AppLocalizations.of(context)!
                                       .translate("and"),
-                                  style: const TextStyle(
-                                      fontFamily: "acme", fontSize: 16)),
+                                  style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                          fontFamily: "messiri", fontSize: 16.5)
+                                          : const TextStyle(
+                                          fontFamily: "acme", fontSize: 16.5),
+                                      ),
                               Container(
                                 margin:
                                     const EdgeInsets.symmetric(horizontal: 5),
@@ -236,7 +254,7 @@ class GetReservationData extends StatelessWidget {
                                     Text(
                                       "${data[index].kids}",
                                       style: TextStyle(
-                                          fontFamily: "acme",
+                                          fontFamily: "messiri",
                                           fontSize:
                                               data[index].kids == 0 ? 16.5 : 17,
                                           color: Colors.green,
@@ -247,9 +265,9 @@ class GetReservationData extends StatelessWidget {
                                           ? AppLocalizations.of(context)!
                                               .translate(" Kid")
                                           : AppLocalizations.of(context)!
-                                              .translate("Kids"),
+                                              .translate("kids"),
                                       style: const TextStyle(
-                                          fontFamily: "acme", fontSize: 16.5),
+                                          fontFamily: "messiri", fontSize: 16.5),
                                     ),
                                   ],
                                 ),
@@ -265,8 +283,12 @@ class GetReservationData extends StatelessWidget {
                                   Text(
                                       AppLocalizations.of(context)!
                                           .translate("Check-In"),
-                                      style: const TextStyle(
-                                          fontFamily: "acme", fontSize: 16)),
+                                      style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                          fontFamily: "messiri", fontSize: 16)
+                                          : const TextStyle(
+                                          fontFamily: "acme", fontSize: 16),
+                                          ),
                                   const SizedBox(
                                     height: 5,
                                   ),
@@ -303,10 +325,11 @@ class GetReservationData extends StatelessWidget {
                                   Text(
                                     AppLocalizations.of(context)!
                                         .translate("Check-Out"),
-                                    style: const TextStyle(
-                                      fontFamily: "acme",
-                                      fontSize: 16,
-                                    ),
+                                    style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                          fontFamily: "messiri", fontSize: 16)
+                                          : const TextStyle(
+                                          fontFamily: "acme", fontSize: 16),
                                   ),
                                   const SizedBox(
                                     height: 5,
@@ -350,10 +373,11 @@ class GetReservationData extends StatelessWidget {
                                   Text(
                                     AppLocalizations.of(context)!
                                         .translate("Request Time"),
-                                    style: const TextStyle(
-                                      fontFamily: "acme",
-                                      fontSize: 16,
-                                    ),
+                                    style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                          fontFamily: "messiri", fontSize: 16)
+                                          : const TextStyle(
+                                          fontFamily: "acme", fontSize: 16),
                                   ),
                                   const SizedBox(
                                     height: 5,
@@ -412,8 +436,11 @@ class GetReservationData extends StatelessWidget {
                                   Text(
                                     AppLocalizations.of(context)!
                                         .translate("Phone Number"),
-                                    style: const TextStyle(
-                                        fontFamily: "acme", fontSize: 16),
+                                    style: sharedPreferences!.getString("Language") == "AR"
+                                          ? const TextStyle(
+                                          fontFamily: "messiri", fontSize: 16)
+                                          : const TextStyle(
+                                          fontFamily: "acme", fontSize: 16),
                                   ),
                                   const SizedBox(
                                     height: 5,

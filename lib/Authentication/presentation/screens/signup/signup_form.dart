@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/services_locator.dart';
 import '../../../../core/utils/app_localizations.dart';
+import '../../../../core/utils/constance/shared_pref.dart';
 import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
@@ -30,9 +31,9 @@ class SigupForm extends StatelessWidget {
       children: [
         UserNameTextFormField(userNameController: userNameController),
         EmailTextFormField(emailController: emailController),
-        PasswordTextFormField(passwordController: password1Controller),
+        PasswordTextFormField(passwordController: password1Controller,isConfirm: false,),
         const SizedBox(height: AppPadding.p16),
-        PasswordTextFormField(passwordController: password2Controller),
+        PasswordTextFormField(passwordController: password2Controller,isConfirm: true,),
         const SizedBox(height: AppPadding.p16),
         Hero(
           tag: AppStrings.loginHeroTag,
@@ -101,7 +102,7 @@ class SigupForm extends StatelessWidget {
                     child: Text(
                       AppLocalizations.of(context)!.translate("SIGN UP"),
                       style: TextStyle(
-                          fontFamily: "rye",
+                          fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
                           fontSize: 16,
                           color: Theme.of(context).colorScheme.secondary),
                     ),

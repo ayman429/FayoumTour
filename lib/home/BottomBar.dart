@@ -4,7 +4,6 @@ import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../post/presentation/screens/add_post.dart';
-import 'FavoritesPlacesAndHotels.dart';
 import 'favourites.dart';
 import 'home.dart';
 import 'plan.dart';
@@ -110,10 +109,15 @@ class _BottomBarState extends State<BottomBar> {
             : AppBar(
                 title: Text(
                   AppStrings.titlesFunc(context, selected),
-                  style: const TextStyle(
+                  style: sharedPreferences!.getString("Language") == "AR" ? const TextStyle(
+                      fontFamily:
+                      "galaxy",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28)
+                      :const TextStyle(
                       fontFamily: AppStrings.fontFamily,
                       fontWeight: FontWeight.bold,
-                      fontSize: 25),
+                      fontSize: 25)
                 ),
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
                 backgroundColor: Colors.transparent,

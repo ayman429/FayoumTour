@@ -42,14 +42,14 @@ class Details extends StatelessWidget {
                     Expanded(
                       child: Container(
                         margin: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 5),
+                            horizontal: 20, vertical: 0),
                         child: Text(
                           sharedPreferences!.getString("Language") == "AR"
                               ? data.nameAR
                               : data.name,
                           style: TextStyle(
-                              fontFamily: "acme",
-                              fontSize: 22,
+                              fontFamily: sharedPreferences!.getString("Language") == "AR" ? "messiri" : "acme",
+                              fontSize: 20.5,
                               color: Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.bold),
                           overflow: TextOverflow.ellipsis,
@@ -66,12 +66,15 @@ class Details extends StatelessWidget {
                         children: [
                           Padding(
                             padding: EdgeInsets.only(
-                        right: sharedPreferences!.getString("Language") == "AR" ? 0 : 3,
-                        left: sharedPreferences!.getString("Language") == "AR" ? 3 : 0,
+                        right: sharedPreferences!.getString("Language") == "AR" ? 0 : 2,
+                        left: sharedPreferences!.getString("Language") == "AR" ? 2 : 0,
+                        top: sharedPreferences!.getString("Language") == "AR" ? 4 :2
                       ),
                             child: Text(
                               data.avgRatings.toString(),
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              style: sharedPreferences!.getString("Language") == "AR"
+                              ? const TextStyle(fontWeight: FontWeight.bold,fontFamily: "messiri",fontSize: 16)
+                              : const TextStyle(fontWeight: FontWeight.bold, fontFamily: "acme",fontSize: 16),
                             ),
                           ),
                           Container(
@@ -89,16 +92,17 @@ class Details extends StatelessWidget {
                 Align(
                     alignment: Alignment.center,
                     child: Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 5),
+                      margin: sharedPreferences!.getString("Language") == "AR" ? const EdgeInsets.fromLTRB(10,5,20,5)
+                      : const EdgeInsets.fromLTRB(20,5,10,5),
                       child: Text(
                         sharedPreferences!.getString("Language") == "AR"
                             ? data.descriptionAR
                             : data.description,
                         style: TextStyle(
-                            fontFamily: "acme",
-                            height: 1.45,
-                            fontSize: 17,
+                            fontFamily: sharedPreferences!.getString("Language") == "AR" ? "ibmP" : "domine",
+                            height: sharedPreferences!.getString("Language") == "AR" ? 1.75 : 1.50,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                             color: Theme.of(context).colorScheme.onPrimary),
                       ),
                     )),
@@ -345,9 +349,9 @@ class Details extends StatelessWidget {
                         // "Go to it!",
                         AppLocalizations.of(context)!.translate("Go to it!"),
                         style: TextStyle(
-                            fontFamily: "rye",
+                            fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
                             color: Theme.of(context).colorScheme.secondary,
-                            fontSize: 18),
+                            fontSize: 20),
                       ),
                     ),
                   ),
@@ -382,10 +386,10 @@ class Details extends StatelessWidget {
                               AppLocalizations.of(context)!
                                   .translate("Reserve!"),
                               style: TextStyle(
-                                  fontFamily: "rye",
+                                  fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
                                   color:
                                       Theme.of(context).colorScheme.secondary,
-                                  fontSize: 18),
+                                  fontSize: 20),
                             ),
                           ),
                         ),

@@ -130,16 +130,16 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(
                     // (AppStrings.editProfile),
                     AppLocalizations.of(context)!.translate("Edit Profile"),
                     style: TextStyle(
-                        fontFamily: "rye",
+                        fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
                         color: Theme.of(context).colorScheme.secondary,
-                        fontSize: 16),
+                        fontSize: sharedPreferences!.getString("Language") == "AR" ? 14 :16),
                   ),
                 ),
               ),

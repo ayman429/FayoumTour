@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
-import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
 import '../../../home/home_card_of_tourism_hotel.dart';
 import '../controller/tourism_place_bloc.dart';
@@ -24,15 +23,19 @@ class recommendations extends StatelessWidget {
             children: [
               Text(
                 AppLocalizations.of(context)!.translate("Recommendations"),
-                style: const TextStyle(fontFamily: "alata", fontSize: 18),
+                style: sharedPreferences!.getString("Language") == "AR"
+                ? const TextStyle(fontFamily: "dg", fontSize: 18)
+                : const TextStyle(fontFamily: "alata", fontSize: 18),
               ),
               Row(
                 children: [
                   Text(
                     AppLocalizations.of(context)!.translate("See More"),
-                    style: const TextStyle(fontFamily: "alata", fontSize: 18),
+                    style: sharedPreferences!.getString("Language") == "AR"
+                ? const TextStyle(fontFamily: "dg", fontSize: 18)
+                : const TextStyle(fontFamily: "alata", fontSize: 18),
                   ),
-                  Icon(Icons.arrow_right)
+                  const Icon(Icons.arrow_right)
                 ],
               ),
             ],
@@ -49,9 +52,9 @@ class recommendations extends StatelessWidget {
             return const SizedBox(
                 height: 200, child: Center(child: CircularProgressIndicator()));
           case RequestState.loaded:
-            print("=============>");
-            print(sharedPreferences!.getString("model1Input"));
-            print("loaded");
+            // print("=============>");
+            // print(sharedPreferences!.getString("model1Input"));
+            // print("loaded");
             return SizedBox(
               height: MediaQuery.of(context).size.height * 0.25,
               child: ListView.builder(

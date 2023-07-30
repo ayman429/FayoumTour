@@ -3,9 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_localizations.dart';
-import '../../../core/utils/constance/strings_manager.dart';
+import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/enums.dart';
-import '../../../home/RatingStarsBar.dart';
 import '../../../home/home_card_of_tourism_hotel.dart';
 import '../controller/hotels_bloc.dart';
 import '../controller/hotels_event.dart';
@@ -24,15 +23,19 @@ class HomeCardsHotels extends StatelessWidget {
             children: [
               Text(
                 AppLocalizations.of(context)!.translate("Hotels"),
-                style: const TextStyle(fontFamily: "alata", fontSize: 18),
+                style: sharedPreferences!.getString("Language") == "AR"
+                ? const TextStyle(fontFamily: "dg", fontSize: 18)
+                : const TextStyle(fontFamily: "alata", fontSize: 18),
               ),
               Row(
                 children: [
                   Text(
                     AppLocalizations.of(context)!.translate("See More"),
-                    style: const TextStyle(fontFamily: "alata", fontSize: 18),
+                    style: sharedPreferences!.getString("Language") == "AR"
+                ? const TextStyle(fontFamily: "dg", fontSize: 18)
+                : const TextStyle(fontFamily: "alata", fontSize: 18),
                   ),
-                  Icon(Icons.arrow_right)
+                  const Icon(Icons.arrow_right)
                 ],
               ),
             ],

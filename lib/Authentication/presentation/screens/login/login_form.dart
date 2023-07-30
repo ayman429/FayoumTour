@@ -36,7 +36,7 @@ class _LoginFormState extends State<LoginForm> {
     return Column(
       children: [
         EmailTextFormField(emailController: emailController),
-        PasswordTextFormField(passwordController: passwordController),
+        PasswordTextFormField(passwordController: passwordController,isConfirm: false,),
         const SizedBox(height: AppPadding.p16),
         Hero(
           tag: AppStrings.loginHeroTag,
@@ -125,7 +125,7 @@ class _LoginFormState extends State<LoginForm> {
                         AppLocalizations.of(context)!.translate("SIGN IN"),
                         style: TextStyle(
                             fontSize: 16,
-                            fontFamily: "rye",
+                            fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
                             color: Theme.of(context).colorScheme.secondary),
                       ),
                     );

@@ -12,7 +12,7 @@ import '../controller/hotels_event.dart';
 import '../controller/hotels_state.dart';
 
 class HotelsReservationDetailsForManager extends StatelessWidget {
-  HotelsReservationDetailsForManager({
+  const HotelsReservationDetailsForManager({
     Key? key,
   }) : super(key: key);
   @override
@@ -31,10 +31,15 @@ class HotelsReservationDetailsForManager extends StatelessWidget {
             appBar: AppBar(
               title: Text(
                 AppLocalizations.of(context)!.translate("Reservation"),
-                style: const TextStyle(
-                    fontFamily: AppStrings.fontFamily,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25),
+                style: sharedPreferences!.getString("Language") == "AR"
+            ? const TextStyle(
+                fontFamily: "galaxy",
+                fontWeight: FontWeight.bold,
+                fontSize: 28)
+            : const TextStyle(
+                fontFamily: AppStrings.fontFamily,
+                fontWeight: FontWeight.bold,
+                fontSize: 25)
               ),
               centerTitle: true,
               backgroundColor: Colors.transparent,

@@ -63,11 +63,16 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
       appBar: AppBar(
         title: Text(
           // 'Reservation',
-          AppLocalizations.of(context)!.translate("Reservation"),
-          style: const TextStyle(
-              fontFamily: AppStrings.fontFamily,
-              fontWeight: FontWeight.bold,
-              fontSize: 25),
+          AppLocalizations.of(context)!.translate("Reserve in a Hotel"),
+          style: sharedPreferences!.getString("Language") == "AR"
+            ? const TextStyle(
+                fontFamily: "galaxy",
+                fontWeight: FontWeight.bold,
+                fontSize: 28)
+            : const TextStyle(
+                fontFamily: AppStrings.fontFamily,
+                fontWeight: FontWeight.bold,
+                fontSize: 25)
         ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -156,16 +161,20 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                                 // 'Check-In',
                                 AppLocalizations.of(context)!
                                     .translate("Check-In"),
-                                style: const TextStyle(
+                                style: sharedPreferences!.getString("Language") == "AR"
+                                ?const TextStyle(
+                                    fontFamily: "amiri", fontSize: 22.0)
+                                : const TextStyle(
                                     fontFamily: "acme", fontSize: 22.0),
                               ),
                               const SizedBox(width: 8.0),
                               Text(
                                 '${_checkInDate.day}/${_checkInDate.month}/${_checkInDate.year}',
-                                style: const TextStyle(
-                                    fontFamily: "acme",
-                                    fontSize: 22.0,
-                                    color: Colors.green),
+                                style: sharedPreferences!.getString("Language") == "AR"
+                                ?const TextStyle(
+                                    fontFamily: "amiri", fontSize: 22.0,color: Colors.green,fontWeight: FontWeight.bold)
+                                : const TextStyle(
+                                    fontFamily: "acme", fontSize: 22.0,color: Colors.green),
                               ),
                             ],
                           ),
@@ -203,16 +212,20 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                               Text(
                                 AppLocalizations.of(context)!
                                     .translate("Check-Out"),
-                                style: const TextStyle(
+                                style: sharedPreferences!.getString("Language") == "AR"
+                                ?const TextStyle(
+                                    fontFamily: "amiri", fontSize: 22.0)
+                                : const TextStyle(
                                     fontFamily: "acme", fontSize: 22.0),
                               ),
                               const SizedBox(height: 8.0),
                               Text(
                                 '${_checkOutDate.day}/${_checkOutDate.month}/${_checkOutDate.year}',
-                                style: const TextStyle(
-                                    fontFamily: "acme",
-                                    fontSize: 22.0,
-                                    color: Colors.green),
+                                style: sharedPreferences!.getString("Language") == "AR"
+                                ?const TextStyle(
+                                    fontFamily: "amiri", fontSize: 22.0,color: Colors.green,fontWeight: FontWeight.bold)
+                                : const TextStyle(
+                                    fontFamily: "acme", fontSize: 22.0,color: Colors.green),
                               ),
                             ],
                           ),
@@ -353,17 +366,20 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15)),
                         elevation: 10),
-                    child: Text(
-                      AppLocalizations.of(context)!.translate("Submit!"),
-                      style: TextStyle(
-                          fontFamily: "rye",
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontSize: 18),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Text(
+                        AppLocalizations.of(context)!.translate("Submit!"),
+                        style: TextStyle(
+                            fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 20),
+                      ),
                     ),
                   );
                 }),
                 const SizedBox(
-                  height: 16,
+                  height: 30,
                 ),
                 TextButton(
                   onPressed: () {
@@ -382,12 +398,15 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),
                       elevation: 10),
-                  child: Text(
-                    AppLocalizations.of(context)!.translate("Pay!"),
-                    style: TextStyle(
-                        fontFamily: "rye",
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontSize: 18),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Text(
+                      AppLocalizations.of(context)!.translate("Pay!"),
+                      style: TextStyle(
+                          fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontSize: 20),
+                    ),
                   ),
                 ),
 

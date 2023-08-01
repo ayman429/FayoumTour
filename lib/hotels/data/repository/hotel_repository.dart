@@ -17,9 +17,8 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, List<Hotel>>> getHotel() async {
-    final result = await baseHotelRemoteDataSource.getHotels();
-
     try {
+      final result = await baseHotelRemoteDataSource.getHotels();
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -28,8 +27,8 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, Unit>> addHotel(hotelModel) async {
-    final add = await baseHotelRemoteDataSource.addHotels(hotelModel);
     try {
+      final add = await baseHotelRemoteDataSource.addHotels(hotelModel);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -38,8 +37,8 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, Unit>> updateHotel(hotelModel) async {
-    final add = await baseHotelRemoteDataSource.updateHotels(hotelModel);
     try {
+      final add = await baseHotelRemoteDataSource.updateHotels(hotelModel);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -48,9 +47,8 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, String>> deleteHotel(ID) async {
-    final result = await baseHotelRemoteDataSource.deleteHotels(ID);
-
     try {
+      final result = await baseHotelRemoteDataSource.deleteHotels(ID);
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -59,9 +57,9 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, Hotel>> getHotelById(ID) async {
-    final result = await baseHotelRemoteDataSource.getHotelsById(ID);
-
     try {
+      final result = await baseHotelRemoteDataSource.getHotelsById(ID);
+
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -70,9 +68,8 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, List<Hotel>>> searchByField(search) async {
-    final result = await baseHotelRemoteDataSource.searchByFields(search);
-
     try {
+      final result = await baseHotelRemoteDataSource.searchByFields(search);
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -81,9 +78,9 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, List<Hotel>>> searchByRate() async {
-    final result = await baseHotelRemoteDataSource.searchByRate();
-
     try {
+      final result = await baseHotelRemoteDataSource.searchByRate();
+
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -92,9 +89,9 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, List<Hotel>>> orderingByField(search) async {
-    final result = await baseHotelRemoteDataSource.orderingByFields(search);
-
     try {
+      final result = await baseHotelRemoteDataSource.orderingByFields(search);
+
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -103,9 +100,9 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, List<HotelRate>>> getHotelRate() async {
-    final result = await baseHotelRemoteDataSource.getHotelRates();
-
     try {
+      final result = await baseHotelRemoteDataSource.getHotelRates();
+
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -114,9 +111,9 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, HotelRate>> getHotelRateById(ID) async {
-    final result = await baseHotelRemoteDataSource.getHotelRateById(ID);
-
     try {
+      final result = await baseHotelRemoteDataSource.getHotelRateById(ID);
+
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -126,9 +123,9 @@ class HotelRerpository extends BaseHotelRepository {
   @override
   Future<Either<Failure, Unit>> updateCreateHotelRate(
       hotelRateModel, HotelID) async {
-    final add = await baseHotelRemoteDataSource.updateCreateHotelRates(
-        hotelRateModel, HotelID);
     try {
+      final add = await baseHotelRemoteDataSource.updateCreateHotelRates(
+          hotelRateModel, HotelID);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -137,9 +134,9 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, String>> getHotelRateByUser(hotelId, userId) async {
-    final add =
-        await baseHotelRemoteDataSource.getHotelRateByUser(hotelId, userId);
     try {
+      final add =
+          await baseHotelRemoteDataSource.getHotelRateByUser(hotelId, userId);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -149,9 +146,9 @@ class HotelRerpository extends BaseHotelRepository {
   @override
   Future<Either<Failure, Unit>> updateCreateHotelFavorite(
       hotelFavoriteModel) async {
-    final add = await baseHotelRemoteDataSource
-        .updateCreateHotelFavorites(hotelFavoriteModel);
     try {
+      final add = await baseHotelRemoteDataSource
+          .updateCreateHotelFavorites(hotelFavoriteModel);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -160,8 +157,9 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, List<Hotel>>> getHotelFavorite() async {
-    final add = await baseHotelRemoteDataSource.getHotelFavorites();
     try {
+      final add = await baseHotelRemoteDataSource.getHotelFavorites();
+
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -172,10 +170,9 @@ class HotelRerpository extends BaseHotelRepository {
   @override
   Future<Either<Failure, List<HotelReservation>>> getHotelReservation(
       int hotelId) async {
-    final result =
-        await baseHotelRemoteDataSource.getHotelsReservation(hotelId);
-
     try {
+      final result =
+          await baseHotelRemoteDataSource.getHotelsReservation(hotelId);
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -185,10 +182,9 @@ class HotelRerpository extends BaseHotelRepository {
   @override
   Future<Either<Failure, List<HotelReservation>>> getHotelReservationByUser(
       int userId) async {
-    final result =
-        await baseHotelRemoteDataSource.getHotelsReservationByUser(userId);
-
     try {
+      final result =
+          await baseHotelRemoteDataSource.getHotelsReservationByUser(userId);
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -198,9 +194,9 @@ class HotelRerpository extends BaseHotelRepository {
   @override
   Future<Either<Failure, Unit>> addHotelReservation(
       hotelModelReservation) async {
-    final add = await baseHotelRemoteDataSource
-        .addHotelsReservation(hotelModelReservation);
     try {
+      final add = await baseHotelRemoteDataSource
+          .addHotelsReservation(hotelModelReservation);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -210,9 +206,9 @@ class HotelRerpository extends BaseHotelRepository {
   @override
   Future<Either<Failure, Unit>> updateHotelReservation(
       hotelReservationModel) async {
-    final add = await baseHotelRemoteDataSource
-        .updateHotelsReservation(hotelReservationModel);
     try {
+      final add = await baseHotelRemoteDataSource
+          .updateHotelsReservation(hotelReservationModel);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -221,9 +217,10 @@ class HotelRerpository extends BaseHotelRepository {
 
   @override
   Future<Either<Failure, String>> deleteHotelReservation(id) async {
-    final result = await baseHotelRemoteDataSource.deleteHotelsReservation(id);
-
     try {
+      final result =
+          await baseHotelRemoteDataSource.deleteHotelsReservation(id);
+
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));

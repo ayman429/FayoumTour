@@ -6,12 +6,13 @@ import '../../data/models/like_model.dart';
 import '../entities/comment.dart';
 import '../entities/like.dart';
 import '../entities/post.dart';
+import '../entities/post_data.dart';
 
 abstract class BasePostRepository {
   Future<Either<Failure, List<Post>>> getPost();
   Future<Either<Failure, Post>> getPostById(String iD);
   Future<Either<Failure, String>> deletePost(String iD);
-  Future<Either<Failure, Unit>> addPost(String body, List<String> images);
+  Future<Either<Failure, Unit>> addPost(PostData postData);
   Future<Either<Failure, Unit>> updatePost(
       String body, List<String> images, String posId, String index);
 

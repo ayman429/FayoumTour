@@ -7,6 +7,7 @@ import '../../../core/network/dio_factory.dart';
 import '../../../core/network/error_message_model.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../domain/entities/comment.dart';
+import '../../domain/entities/post_data.dart';
 import '../models/comment_model.dart';
 import '../models/like_model.dart';
 import '../models/post_model.dart';
@@ -15,7 +16,7 @@ abstract class BasePostRemoteDataSource {
   Future<List<PostModel>> getPosts();
   Future<PostModel> getPostsById(iD);
   Future<String> deletePosts(iD);
-  Future<Unit> addPosts(String body, List<String> images);
+  Future<Unit> addPosts(PostData postData);
   Future<Unit> updatePosts(
       String body, List<String> images, String posId, String index);
 
@@ -53,7 +54,7 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
   }
 
   @override
-  Future<Unit> addPosts(String body, List<String> images) async {
+  Future<Unit> addPosts(PostData postData) async {
     // Map<String, dynamic> postModelsToJson = postModel.toJson();
 
     try {
@@ -61,10 +62,9 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
       // print("============================>");
       // print(user);
       FormData formData = FormData();
-
       // Add the images to the form data
-      for (int i = 0; i < images.length; i++) {
-        String imagePath = images[i];
+      for (int i = 0; i < postData.images.length; i++) {
+        String imagePath = postData.images[i];
         formData.files.add(MapEntry(
           'uploaded_images',
           await MultipartFile.fromFile(
@@ -72,14 +72,18 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
           ),
         ));
       }
+
       // Add user and body as fields to the form data
       formData.fields.add(MapEntry('user', user.toString()));
-      formData.fields.add(MapEntry('body', body));
+      formData.fields.add(MapEntry('body', postData.body));
+      formData.fields.add(MapEntry('created_at', postData.createdAt));
       Dio dio = (await DioFactory.create()).dio;
       final response = await dio.post(ApiConstance.postPath, data: formData);
 
       return Future.value(unit);
     } on DioError catch (e) {
+      print("////////////////////////////////////");
+      print(e.message);
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),

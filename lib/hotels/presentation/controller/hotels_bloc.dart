@@ -6,6 +6,7 @@ import 'package:fayoumtour/hotels/domain/usecase/hotel_reservation/get_hotel_use
 
 import '../../../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
 import '../../../core/usecase/base_usecase.dart';
+import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/enums.dart';
 import '../../../hotels/domain/usecase/get_hotel_usecase.dart';
 import '../../domain/usecase/add_hotel_usecase.dart';
@@ -338,15 +339,25 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
 
   FutureOr<void> _addHotelReservation(
       AddHotelReservationEvent event, Emitter<HotelsState> emit) async {
-    (await addHotelReservationUsecase(event.hotelReservation)).fold((l) {
+    try {
+      (await addHotelReservationUsecase(event.hotelReservation)).fold((l) {
+        return emit(HotelsState(
+            addHotelReservationState: RequestState.error,
+            addHotelReservationMessage: l.message.toString()));
+      }, (r) {
+        return emit(HotelsState(
+          addHotelReservationState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      print("l.message ${e}");
       return emit(HotelsState(
           addHotelReservationState: RequestState.error,
-          addHotelReservationMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        addHotelReservationState: RequestState.loaded,
-      ));
-    });
+          addHotelReservationMessage:
+              sharedPreferences!.getString("Language") == "AR"
+                  ? "لا يوجد انترنت"
+                  : "No Connection"));
+    }
   }
 
   FutureOr<void> _updateHotelReservation(

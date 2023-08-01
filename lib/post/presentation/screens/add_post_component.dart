@@ -10,7 +10,9 @@ import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
 import '../../../core/utils/snackbar_message.dart';
+import '../../domain/entities/post_data.dart';
 import '../controller/bloc/post_bloc.dart';
+import 'package:intl/intl.dart';
 
 class AddPostComponent extends StatefulWidget {
   String type;
@@ -71,38 +73,43 @@ class _AddPostComponentState extends State<AddPostComponent> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String formattedTime = DateFormat('yyyy-MM-dd HH:mm:ss').format(now);
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
-            title: Text(widget.type == 'add'
-                ? AppLocalizations.of(context)!.translate("Create Post")
-                : AppLocalizations.of(context)!.translate("Edit Post"),
+            title: Text(
+                widget.type == 'add'
+                    ? AppLocalizations.of(context)!.translate("Create Post")
+                    : AppLocalizations.of(context)!.translate("Edit Post"),
                 style: sharedPreferences!.getString("Language") == "AR"
-            ? const TextStyle(
-                fontFamily: "galaxy",
-                fontWeight: FontWeight.bold,
-                fontSize: 28)
-            : const TextStyle(
-                fontFamily: AppStrings.fontFamily,
-                fontWeight: FontWeight.bold,
-                fontSize: 25)
-                ),
+                    ? const TextStyle(
+                        fontFamily: "galaxy",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28)
+                    : const TextStyle(
+                        fontFamily: AppStrings.fontFamily,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25)),
             actions: [
               Opacity(
-                opacity: _textEditingController.text == "" && _imageList.isEmpty && widget.type == 'add'
+                opacity: _textEditingController.text == "" &&
+                        _imageList.isEmpty &&
+                        widget.type == 'add'
                     ? 0.5
                     : widget.type != "add"
-                      ? _textEditingController.text == widget.data.body && !changeInImages
-                          ? 0.5
-                          : _textEditingController.text == "" && _imageList.isEmpty && _providedimageList.isEmpty
-                          ? 0.5
-                          : 1
-                      : 1,
-                        
-                        
+                        ? _textEditingController.text == widget.data.body &&
+                                !changeInImages
+                            ? 0.5
+                            : _textEditingController.text == "" &&
+                                    _imageList.isEmpty &&
+                                    _providedimageList.isEmpty
+                                ? 0.5
+                                : 1
+                        : 1,
                 child: Container(
                   margin: sharedPreferences!.getString("Language") == "AR"
                       ? const EdgeInsets.fromLTRB(8, 6, 0, 6)
@@ -140,99 +147,104 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                 : AppLocalizations.of(context)!
                                     .translate("Update"),
                             style: TextStyle(
-                                fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
+                                fontFamily:
+                                    sharedPreferences!.getString("Language") ==
+                                            "AR"
+                                        ? "Mag"
+                                        : "rye",
                                 fontSize: 16,
                                 color:
                                     Theme.of(context).colorScheme.onSecondary),
                           ),
                         ),
                         onPressed: () async {
-                          if (widget.type != 'add' && _textEditingController.text == widget.data.body && !changeInImages)
-                          {
-                            if (_textEditingController.text == "" && _imageList.isEmpty && _providedimageList.isEmpty)
-                            {upload = false;}
-                          } else
-                          {
+                          if (widget.type != 'add' &&
+                              _textEditingController.text == widget.data.body &&
+                              !changeInImages) {
+                            if (_textEditingController.text == "" &&
+                                _imageList.isEmpty &&
+                                _providedimageList.isEmpty) {
+                              upload = false;
+                            }
+                          } else {
                             upload = true;
                           }
 
-                          
-                          if (widget.type == "add" && (_textEditingController.text != "" || _imageList.isNotEmpty)
-                            ||
-                            widget.type != "add" && upload)
-                            {
-                              List<String> imagesPath = [];
-                              for (int i = 0; i < _imageList.length; i++) {
-                                imagesPath.add(_imageList[i].path);
-                              }
+                          if (widget.type == "add" &&
+                                  (_textEditingController.text != "" ||
+                                      _imageList.isNotEmpty) ||
+                              widget.type != "add" && upload) {
+                            List<String> imagesPath = [];
+                            for (int i = 0; i < _imageList.length; i++) {
+                              imagesPath.add(_imageList[i].path);
+                            }
 
-                              String body = "";
-                              body = _textEditingController.text;
-                              if (widget.type == "add") {
-                                BlocProvider.of<PostBloc>(context)
-                                    .add(AddPostEvent(
-                                  body: body,
-                                  images: imagesPath,
-                                ));
-                              } else if (widget.type == "edit") {
-                                String removeString = "-1";
-                                if (_removedProvidedimageIndexList.isNotEmpty) {
-                                  removeString = "";
-                                  for (int i = 0;
-                                      i < _removedProvidedimageIndexList.length;
-                                      i++) {
-                                    if (i ==
-                                        _removedProvidedimageIndexList.length -
-                                            1) {
-                                      removeString +=
-                                          "${_removedProvidedimageIndexList[i]}";
-                                    } else {
-                                      removeString +=
-                                          "${_removedProvidedimageIndexList[i]},";
-                                    }
+                            String body = "";
+                            body = _textEditingController.text;
+                            PostData postData = PostData(
+                                body: body,
+                                images: imagesPath,
+                                createdAt: formattedTime);
+                            if (widget.type == "add") {
+                              BlocProvider.of<PostBloc>(context)
+                                  .add(AddPostEvent(postData: postData));
+                            } else if (widget.type == "edit") {
+                              String removeString = "-1";
+                              if (_removedProvidedimageIndexList.isNotEmpty) {
+                                removeString = "";
+                                for (int i = 0;
+                                    i < _removedProvidedimageIndexList.length;
+                                    i++) {
+                                  if (i ==
+                                      _removedProvidedimageIndexList.length -
+                                          1) {
+                                    removeString +=
+                                        "${_removedProvidedimageIndexList[i]}";
+                                  } else {
+                                    removeString +=
+                                        "${_removedProvidedimageIndexList[i]},";
                                   }
                                 }
-                                BlocProvider.of<PostBloc>(context)
-                                    .add(UpdatePostEvent(
-                                  body: body,
-                                  images: imagesPath,
-                                  posId: widget.data.id.toString(),
-                                  index: removeString,
-                                ));
                               }
+                              BlocProvider.of<PostBloc>(context)
+                                  .add(UpdatePostEvent(
+                                body: body,
+                                images: imagesPath,
+                                posId: widget.data.id.toString(),
+                                index: removeString,
+                              ));
+                            }
 
-                              // print("---------------------------");
-                              // print(imagesPath);
-                              // _textEditingController.clear();
-                              // setState(() {
-                              //   _imageList = [];
-                              // });
+                            // print("---------------------------");
+                            // print(imagesPath);
+                            // _textEditingController.clear();
+                            // setState(() {
+                            //   _imageList = [];
+                            // });
 
-                              if (state.addPostState == RequestState.loading ||
-                                  state.updatePostState ==
-                                      RequestState.loading) {
-                                print("Post Loding");
+                            if (state.addPostState == RequestState.loading ||
+                                state.updatePostState == RequestState.loading) {
+                              print("Post Loding");
 
-                                showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (ctx) => const FractionallySizedBox(
-                                    widthFactor:
-                                        0.5, // Set the desired width factor (0.0 to 1.0)
-                                    child: AlertDialog(
-                                      content: SizedBox(
-                                        width: double.infinity,
-                                        height: 30,
-                                        child: Center(
-                                          child: CircularProgressIndicator(),
-                                        ),
+                              showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (ctx) => const FractionallySizedBox(
+                                  widthFactor:
+                                      0.5, // Set the desired width factor (0.0 to 1.0)
+                                  child: AlertDialog(
+                                    content: SizedBox(
+                                      width: double.infinity,
+                                      height: 30,
+                                      child: Center(
+                                        child: CircularProgressIndicator(),
                                       ),
                                     ),
                                   ),
-                                );
-                              }
+                                ),
+                              );
                             }
-                          
+                          }
                         },
                       );
                     },
@@ -491,7 +503,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                       _providedimageList.removeAt(pos);
                       _removedProvidedimageIndexList.add(pos);
                       changeInImages = true;
-                      }
+                    }
                   });
                 },
                 child: Icon(

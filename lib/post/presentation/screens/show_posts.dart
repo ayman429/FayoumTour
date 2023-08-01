@@ -12,6 +12,7 @@ import '../controller/bloc/post_bloc.dart';
 import 'add_like.dart';
 import 'add_post_component.dart';
 import 'comment_screen.dart';
+import 'post_time.dart';
 
 class ShowPosts extends StatelessWidget {
   const ShowPosts({super.key});
@@ -44,20 +45,6 @@ class ShowPosts extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: state.post.length,
                 itemBuilder: (context, index) {
-                  // state.post.forEach((element) {
-                  //   likeMap.addAll({
-                  //     int.parse(element.id ?? "0"): element.like_value ?? 0
-                  //   });
-                  // });
-                  print("likeMap");
-                  print(likeMap);
-                  // likeMap[int.parse(state.post[index].id??"0")]=;
-
-                  // print(index);
-                  // BlocProvider.of<PostBloc>(context).add(GetLikeEvent(
-                  //     postId: int.parse(state.post[index].id ?? "0"),
-                  //     userId: int.parse(
-                  //         sharedPreferences!.getString("USERID") ?? "0")));
                   return Container(
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
@@ -73,9 +60,10 @@ class ShowPosts extends StatelessWidget {
                       children: [
                         const SizedBox(height: 16),
                         Container(
-                          margin: sharedPreferences!.getString("Language") == "AR"
-                          ? const EdgeInsets.only(right: 5)
-                          : const EdgeInsets.only(left: 5),
+                          margin:
+                              sharedPreferences!.getString("Language") == "AR"
+                                  ? const EdgeInsets.only(right: 5)
+                                  : const EdgeInsets.only(left: 5),
                           child: Row(
                             children: [
                               SizedBox(
@@ -127,13 +115,15 @@ class ShowPosts extends StatelessWidget {
                                       ),
                                     ),
                                     const SizedBox(height: 4),
-                                    // Text(
-                                    //   snapshot.data?.docs[index]["Time"],
-                                    //   style: const TextStyle(
-                                    //     color: Colors.grey,
-                                    //     fontSize: 14,
-                                    //   ),
-                                    // ),
+                                    Text(
+                                      PostTime(
+                                          "${state.post[index].createdAt}"),
+                                      // "${state.post[index].createdAt}",
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 14,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -198,10 +188,9 @@ class ShowPosts extends StatelessWidget {
                                   child: Text(
                                     state.post[index].body,
                                     style: const TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: "ibmP"
-                                      //fontWeight: FontWeight.bold,
-                                    ),
+                                        fontSize: 20, fontFamily: "ibmP"
+                                        //fontWeight: FontWeight.bold,
+                                        ),
                                   ),
                                 ),
                               ),
@@ -273,7 +262,8 @@ class ShowPosts extends StatelessWidget {
                                                 child: ClipRRect(
                                                   //borderRadius:BorderRadius.circular(10),
                                                   child: Image.network(
-                                                    state.post[index].imagesP[x].imageT,
+                                                    state.post[index].imagesP[x]
+                                                        .imageT,
                                                     fit: BoxFit.cover,
                                                     errorBuilder: (context,
                                                         error, stackTrace) {
@@ -303,8 +293,11 @@ class ShowPosts extends StatelessWidget {
                                                   ? Center(
                                                       child: Text(
                                                         "+${state.post[index].imagesP.length - 4}",
-                                                        style:  TextStyle(
-                                                            color: Theme.of(context).colorScheme.onPrimary,
+                                                        style: TextStyle(
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .colorScheme
+                                                                .onPrimary,
                                                             fontSize: 40,
                                                             fontWeight:
                                                                 FontWeight
@@ -329,7 +322,8 @@ class ShowPosts extends StatelessWidget {
                                           child: ClipRRect(
                                             //borderRadius:BorderRadius.circular(10),
                                             child: Image.network(
-                                              state.post[index].imagesP[x].imageT,
+                                              state.post[index].imagesP[x]
+                                                  .imageT,
                                               fit: BoxFit.cover,
                                               errorBuilder:
                                                   (context, error, stackTrace) {

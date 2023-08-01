@@ -45,6 +45,7 @@ class HotelReservation {
     data['kids'] = kids;
     data['check_in'] = check_in;
     data['check_out'] = check_out;
+    data['created_at'] = created_at;
 
     return data;
   }

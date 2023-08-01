@@ -43,19 +43,19 @@ class _RatingScreenState extends State<RatingScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title:  Text(
+          title: Text(
             AppLocalizations.of(context)!.translate("Thanks for Rating!"),
             style: sharedPreferences!.getString("Language") == "AR"
-            ? const TextStyle(fontFamily: "messiri")
-            : const TextStyle(fontFamily: "merriweather"),
+                ? const TextStyle(fontFamily: "messiri")
+                : const TextStyle(fontFamily: "merriweather"),
           ),
           content: Text(
             sharedPreferences!.getString("Language") == "AR"
-            ? 'لقد قيمت المكان بـ$_rating نجوم'
-            : 'You rated this place $_rating stars.',
+                ? 'لقد قيمت المكان بـ$_rating نجوم'
+                : 'You rated this place $_rating stars.',
             style: sharedPreferences!.getString("Language") == "AR"
-            ? const TextStyle(fontFamily: "messiri")
-            : const TextStyle(fontFamily: "merriweather"),
+                ? const TextStyle(fontFamily: "messiri")
+                : const TextStyle(fontFamily: "merriweather"),
           ),
           actions: <Widget>[
             Center(
@@ -64,15 +64,18 @@ class _RatingScreenState extends State<RatingScreen> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    primary: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                   ),
                   child: Text(
                     AppLocalizations.of(context)!.translate("Okay"),
                     style: TextStyle(
-                                        fontFamily: sharedPreferences!.getString("Language") == "AR"
-                                        ?"Mag":"rye", color: Theme.of(context).colorScheme.onSecondary),
+                        fontFamily:
+                            sharedPreferences!.getString("Language") == "AR"
+                                ? "Mag"
+                                : "rye",
+                        color: Theme.of(context).colorScheme.onSecondary),
                   )),
             ),
           ],
@@ -180,17 +183,17 @@ class StarRating extends StatelessWidget {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.translate("Rate it !!"),
-                    style: sharedPreferences!.getString("Language") == "AR" ?
-                    const TextStyle(
-                        fontFamily: "messiri",
-                        fontSize: 22,
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold)
-                    : const TextStyle(
-                        fontFamily: "acme",
-                        fontSize: 22,
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold),
+                    style: sharedPreferences!.getString("Language") == "AR"
+                        ? const TextStyle(
+                            fontFamily: "messiri",
+                            fontSize: 22,
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold)
+                        : const TextStyle(
+                            fontFamily: "acme",
+                            fontSize: 22,
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
                     height: 4,
@@ -228,17 +231,17 @@ class StarRating extends StatelessWidget {
                   Text(
                     // "Rate it !!",
                     AppLocalizations.of(context)!.translate("Rate it !!"),
-                    style: sharedPreferences!.getString("Language") == "AR" ?
-                    const TextStyle(
-                        fontFamily: "messiri",
-                        fontSize: 22,
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold)
-                    : const TextStyle(
-                        fontFamily: "acme",
-                        fontSize: 22,
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold),
+                    style: sharedPreferences!.getString("Language") == "AR"
+                        ? const TextStyle(
+                            fontFamily: "messiri",
+                            fontSize: 22,
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold)
+                        : const TextStyle(
+                            fontFamily: "acme",
+                            fontSize: 22,
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

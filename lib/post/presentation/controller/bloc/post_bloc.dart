@@ -7,6 +7,7 @@ import '../../../../core/utils/enums.dart';
 import '../../../domain/entities/comment.dart';
 import '../../../domain/entities/like.dart';
 import '../../../domain/entities/post.dart';
+import '../../../domain/entities/post_data.dart';
 import '../../../domain/usecase/add_post_usecase.dart';
 import '../../../domain/usecase/comment/add_comment_usecase.dart';
 import '../../../domain/usecase/comment/delete_comment_usecase.dart';
@@ -114,7 +115,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
   FutureOr<void> _addPost(AddPostEvent event, Emitter<PostState> emit) async {
     try {
-      (await addPostUsecase(event.body, event.images)).fold((l) {
+      (await addPostUsecase(event.postData)).fold((l) {
         return emit(PostState(
             addPostState: RequestState.error, addPostMessage: l.message));
       }, (r) {

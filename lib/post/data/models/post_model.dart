@@ -11,6 +11,7 @@ class PostModel extends Post {
       required super.comment_numbers,
       required super.like_numbers,
       required super.like_value,
+      required super.createdAt,
       required super.createdBy});
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
@@ -29,6 +30,7 @@ class PostModel extends Post {
       comment_numbers: json['comment_numbers'],
       like_numbers: json['like_numbers'],
       like_value: json['like_value'],
+      createdAt: json['created_at'],
       createdBy: CreatedByModel.fromJson(json['created_by']),
     );
   }

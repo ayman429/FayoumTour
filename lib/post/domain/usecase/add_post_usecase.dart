@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../core/error/faliure.dart';
+import '../entities/post_data.dart';
 import '../repository/base_post_repository.dart';
 
 class AddPostUsecase {
@@ -9,8 +10,8 @@ class AddPostUsecase {
 
   AddPostUsecase(this.basePostRepository);
   @override
-  Future<Either<Failure, Unit>> call(String body, List<String> images) async {
+  Future<Either<Failure, Unit>> call(PostData postData) async {
     // PostModel postModel = PostModel.castFromEntity(parameters);
-    return await basePostRepository.addPost(body, images);
+    return await basePostRepository.addPost(postData);
   }
 }

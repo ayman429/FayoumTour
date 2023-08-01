@@ -26,8 +26,8 @@ class AddLike extends StatelessWidget {
       child: BlocConsumer<PostBloc, PostState>(
         listener: (context, state) {
           if (state.addLikeState == RequestState.loaded) {
-            print("Loded");
-            print(likeMap[postId]);
+            // print("Loded");
+            // print(likeMap[postId]);
           } else if (state.addLikeState == RequestState.loading) {
             print("loding");
             // print(likeMap[postId]);
@@ -57,29 +57,29 @@ class AddLike extends StatelessWidget {
             ),
             child: Row(
               children: [
-                likeMap[postId] == 0
+                likeMap[postId] == 1
                     ? const Icon(
                         MyFlutterApp.like3,
-                        color: Colors.grey,
+                        color: Colors.blue,
                       )
                     : const Icon(
                         MyFlutterApp.like3,
-                        color: Colors.blue,
+                        color: Colors.grey,
                       ),
                 const SizedBox(
                   width: 5,
                 ),
-                likeMap[postId] == 0
+                likeMap[postId] == 1
                     ? Text(
-                        AppLocalizations.of(context)!.translate("Like"),
-                        style: const TextStyle(
-                          color: Colors.grey,
-                        ),
-                      )
-                    : Text(
                         AppLocalizations.of(context)!.translate("Liked"),
                         style: const TextStyle(
                           color: Colors.blue,
+                        ),
+                      )
+                    : Text(
+                        AppLocalizations.of(context)!.translate("Like"),
+                        style: const TextStyle(
+                          color: Colors.grey,
                         ),
                       )
               ],

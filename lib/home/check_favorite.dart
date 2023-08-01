@@ -63,10 +63,12 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                       builder: (context) {
                         return AlertDialog(
                           title: Text(
-                            AppLocalizations.of(context)!.translate("Adding Successful"),
-                            style: sharedPreferences!.getString("Language") == "AR"
-                            ? const TextStyle(fontFamily: "messiri")
-                            : const TextStyle(fontFamily: "merriweather"),
+                            AppLocalizations.of(context)!
+                                .translate("Adding Successful"),
+                            style: sharedPreferences!.getString("Language") ==
+                                    "AR"
+                                ? const TextStyle(fontFamily: "messiri")
+                                : const TextStyle(fontFamily: "merriweather"),
                           ),
                           actions: [
                             Center(
@@ -75,17 +77,23 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.green,
+                                    primary: Colors.green,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(15)),
                                   ),
-                                  child:  Text(
-                                    AppLocalizations.of(context)!.translate("Okay"),
-                                    style: TextStyle(
-                                        fontFamily: sharedPreferences!.getString("Language") == "AR"
-                                        ?"Mag":"rye", color: Theme.of(context).colorScheme.onSecondary)
-                                  )),
+                                  child: Text(
+                                      AppLocalizations.of(context)!
+                                          .translate("Okay"),
+                                      style: TextStyle(
+                                          fontFamily: sharedPreferences!
+                                                      .getString("Language") ==
+                                                  "AR"
+                                              ? "Mag"
+                                              : "rye",
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondary))),
                             )
                           ],
                           shape: RoundedRectangleBorder(

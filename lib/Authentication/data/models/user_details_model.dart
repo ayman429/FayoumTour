@@ -9,6 +9,7 @@ class UserDetailsModel extends UserDetails {
       required String username,
       required String image,
       required bool is_manager,
+      required bool mark,
       required int managerId,
       required String placeType,
       required String model1Input})
@@ -20,6 +21,7 @@ class UserDetailsModel extends UserDetails {
           username: username,
           image: image,
           is_manager: is_manager,
+          mark: mark,
           managerId: managerId,
           placeType: placeType,
           model1Input: model1Input,
@@ -34,6 +36,7 @@ class UserDetailsModel extends UserDetails {
         username: json['username'],
         image: json['image'] ?? "",
         is_manager: json['is_manager'],
+        mark: json['mark'],
         managerId: json['managerId'],
         placeType: json['placeType'],
         model1Input: json['model1Input'],

@@ -68,6 +68,7 @@ dependencies:
   audioplayers:
   animated_splash_screen:
   multi_image_picker:
+  intl_utils:
 
 dev_dependencies:
   flutter_test:

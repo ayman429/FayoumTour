@@ -9,6 +9,7 @@ import '../../../core/utils/enums.dart';
 import '../../../home/image_list.dart';
 import '../../../home/my_flutter_app_icons.dart';
 import '../controller/bloc/post_bloc.dart';
+import 'AR_EN_Post.dart';
 import 'add_like.dart';
 import 'add_post_component.dart';
 import 'comment_screen.dart';
@@ -45,6 +46,8 @@ class ShowPosts extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: state.post.length,
                 itemBuilder: (context, index) {
+                  final words = state.post[index].body.split("\n");
+
                   return Container(
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
@@ -106,13 +109,26 @@ class ShowPosts extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      '${state.post[index].createdBy!.userName}',
-                                      style: const TextStyle(
-                                        fontFamily: "readPro",
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '${state.post[index].createdBy!.userName}',
+                                          style: const TextStyle(
+                                            fontFamily: "readPro",
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 4),
+                                        sharedPreferences!.getBool("mark") ==
+                                                true
+                                            ? Image.asset(
+                                                'assets/icons/mark.png',
+                                                width: 15,
+                                                height: 15,
+                                              )
+                                            : Container(),
+                                      ],
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
@@ -176,24 +192,77 @@ class ShowPosts extends StatelessWidget {
                             ],
                           ),
                         ),
+
                         state.post[index].body == ""
                             ? const SizedBox(
                                 height: 10,
                               )
-                            : Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 12),
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    state.post[index].body,
-                                    style: const TextStyle(
-                                        fontSize: 20, fontFamily: "ibmP"
-                                        //fontWeight: FontWeight.bold,
-                                        ),
-                                  ),
-                                ),
+                            : Column(
+                                children: [
+                                  for (final word in words)
+                                    isEnglish(word.replaceAll(" ", ""))
+                                        ? Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 8, vertical: 12),
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                word,
+                                                style: const TextStyle(
+                                                    fontSize: 20,
+                                                    fontFamily: "ibmP"
+                                                    //fontWeight: FontWeight.bold,
+                                                    ),
+                                              ),
+                                            ),
+                                          )
+                                        : Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 8, vertical: 12),
+                                            child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: Text(
+                                                word,
+                                                style: const TextStyle(
+                                                    fontSize: 20,
+                                                    fontFamily: "ibmP"
+                                                    //fontWeight: FontWeight.bold,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                ],
                               ),
+                        // isEnglish(state.post[index].body[0])
+                        //     ? Container(
+                        //         margin: const EdgeInsets.symmetric(
+                        //             horizontal: 8, vertical: 12),
+                        //         child: Align(
+                        //           alignment: Alignment.centerLeft,
+                        //           child: Text(
+                        //             state.post[index].body,
+                        //             style: const TextStyle(
+                        //                 fontSize: 20, fontFamily: "ibmP"
+                        //                 //fontWeight: FontWeight.bold,
+                        //                 ),
+                        //           ),
+                        //         ),
+                        //       )
+                        //     : Container(
+                        //         margin: const EdgeInsets.symmetric(
+                        //             horizontal: 8, vertical: 12),
+                        //         child: Align(
+                        //           alignment: Alignment.centerRight,
+                        //           child: Text(
+                        //             state.post[index].body,
+                        //             style: const TextStyle(
+                        //                 fontSize: 20, fontFamily: "ibmP"
+                        //                 //fontWeight: FontWeight.bold,
+                        //                 ),
+                        //           ),
+                        //         ),
+                        //       ),
+
                         state.post[index].imagesP.isNotEmpty
                             ? SizedBox(
                                 height:

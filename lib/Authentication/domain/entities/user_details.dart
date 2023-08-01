@@ -8,6 +8,7 @@ class UserDetails extends Equatable {
   String? username;
   String? image;
   bool? is_manager;
+  bool? mark;
   int? managerId;
   String? placeType;
   String? model1Input;
@@ -20,6 +21,7 @@ class UserDetails extends Equatable {
     this.username,
     this.image,
     this.is_manager,
+    this.mark,
     this.managerId,
     this.placeType,
     this.model1Input,

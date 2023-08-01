@@ -76,6 +76,7 @@ class AuthenticationRemoteDataSource
 
       await sharedPreferences!
           .setBool("is_manager", userDetails.is_manager ?? false);
+      await sharedPreferences!.setBool("mark", userDetails.mark ?? false);
       await sharedPreferences!.setInt("managerId", userDetails.managerId ?? 0);
 
       userDetails.model1Input != ""
@@ -118,6 +119,7 @@ class AuthenticationRemoteDataSource
       await sharedPreferences!.setString("USERID", userDetails.id ?? "0");
       await sharedPreferences!
           .setBool("is_manager", userDetails.is_manager ?? false);
+      await sharedPreferences!.setBool("mark", userDetails.mark ?? false);
       await sharedPreferences!.setInt("managerId", userDetails.managerId ?? 0);
       userDetails.placeType != ""
           ? await sharedPreferences!.setString(

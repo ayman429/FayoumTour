@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:fayoumtour/Authentication/data/models/user_details_model.dart';
 
 import '../../../core/error/exceptions.dart';
 import '../../../core/error/faliure.dart';

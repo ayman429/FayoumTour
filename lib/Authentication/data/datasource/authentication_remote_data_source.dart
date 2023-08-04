@@ -40,7 +40,7 @@ class AuthenticationRemoteDataSource
       final response = await dio.get(ApiConstance.userDetailsPath);
       // return user info
       return UserDetailsModel.fromJson(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -95,7 +95,7 @@ class AuthenticationRemoteDataSource
 
       // return unit
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -113,7 +113,7 @@ class AuthenticationRemoteDataSource
       // Store Access Token
       AccessToken accessToken = AccessToken();
       accessToken.saveToken(response.data["key"]);
-      print(response.data);
+      //print(response.data);
       // ------------------------------------------
       UserDetails userDetails = await getUsersDetails();
       await sharedPreferences!.setString("USERID", userDetails.id ?? "0");
@@ -139,19 +139,19 @@ class AuthenticationRemoteDataSource
           .setString("USER", json.encode(userDetails.toJson()));
       await sharedPreferences!
           .setString("username", userDetails.username ?? "");
-      print("=================>");
-      print(image);
-      print(userDetails.toJson());
+      //print("=================>");
+      //print(image);
+      //print(userDetails.toJson());
       // print(userDetails.id);
       // print("${userDetails.id}USERIMAGE");
       await sharedPreferences!.setString("${userDetails.id}USERIMAGE", image);
       //-------------------------------------------
       // return unit
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
-      print("===============");
-      print(e);
+      //print("===============");
+      //print(e);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
       );
@@ -164,11 +164,11 @@ class AuthenticationRemoteDataSource
       Dio dio = (await DioFactory.create()).dio;
       // LogOut
       final response = await dio.post(ApiConstance.logoutPath);
-      print("res = ${response.data}");
+      //print("res = ${response.data}");
       // return unit
       // return Future.value(unit);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -181,15 +181,15 @@ class AuthenticationRemoteDataSource
     final Map<String, dynamic> changePasswordToJson =
         changePasswordModel.toJson();
     try {
-      print("password: $changePasswordToJson");
+      //print("password: $changePasswordToJson");
       Dio dio = (await DioFactory.create()).dio;
       // Change Password , Request and Response
       final response = await dio.post(ApiConstance.changePasswordPath,
           data: changePasswordToJson);
-      print(response.data);
+      //print(response.data);
       // return unit
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -203,12 +203,11 @@ class AuthenticationRemoteDataSource
     // print("resetPasswordToJson = $resetPasswordToJson");
     try {
       // Reset Password , Request and Response
-      final response = await Dio()
-          .post(ApiConstance.resetPasswordPath, data: resetPasswordToJson);
-      print("response = ${response.data}");
+      final response = await Dio().post(ApiConstance.resetPasswordPath, data: resetPasswordToJson);
+      //print("response = ${response.data}");
       // return unit
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -222,11 +221,10 @@ class AuthenticationRemoteDataSource
     final passwordResetConfirmToJson = passwordResetConfirmModel.toJson();
     try {
       // password Reset Confirm , Request and Response
-      final response = Dio().post(passwordResetConfirmModel.link,
-          data: passwordResetConfirmToJson);
+      final response = Dio().post(passwordResetConfirmModel.link,data: passwordResetConfirmToJson);
       // return unit
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -238,8 +236,8 @@ class AuthenticationRemoteDataSource
   Future<String> updateUsersDetails(
       UserDetailsModel userDetailsModel, type) async {
     final updateUsersDetailsToJson = userDetailsModel.toJson();
-    print("------------------>");
-    print(updateUsersDetailsToJson);
+    //print("------------------>");
+    //print(updateUsersDetailsToJson);
     try {
       // print("==============> $userName");
       Dio dio = (await DioFactory.create()).dio;
@@ -247,7 +245,7 @@ class AuthenticationRemoteDataSource
       if (type == "username") {
         final response = await dio.patch(ApiConstance.userDetailsPath,
             data: updateUsersDetailsToJson);
-        print(response.data["username"].toString());
+        //print(response.data["username"].toString());
         // return user info
         return response.data["username"].toString();
       } else if (type == "image") {
@@ -258,14 +256,14 @@ class AuthenticationRemoteDataSource
                 await MultipartFile.fromFile(updateUsersDetailsToJson["image"]),
           }),
         );
-        print(response.data["image"].toString());
+        //print(response.data["image"].toString());
         // return user info
         return response.data["image"].toString();
       } else {
         return "Have Some error";
       }
       // return UserDetailsModel.fromJson(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),

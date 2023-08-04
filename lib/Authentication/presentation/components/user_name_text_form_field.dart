@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/app_localizations.dart';
-import '../../../core/utils/constance/color_manager.dart';
-import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/constance/values_manager.dart';
 
 class UserNameTextFormField extends StatelessWidget {

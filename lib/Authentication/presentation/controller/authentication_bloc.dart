@@ -90,7 +90,7 @@ class AuthenticationBloc
       RegistrationEvent event, Emitter<AuthenticationState> emit) async {
     (await registerationUsecase(event.registration)).fold(
       (l) {
-        print("Error Massage: ${l.message}");
+        //print("Error Massage: ${l.message}");
         return emit(state.copyWith(
             registrationstate: RequestState.error,
             registrationMessage: l.message));
@@ -165,7 +165,7 @@ class AuthenticationBloc
           logoutstate: RequestState.error,
           logoutMessage: l.message.toString()));
     }, (r) {
-      print("logout: $r");
+      //print("logout: $r");
       return emit(state.copyWith(
         logoutString: r,
         logoutstate: RequestState.loaded,

@@ -25,7 +25,7 @@ class AccessToken extends BaseAccessToken {
     final prefs = await SharedPreferences.getInstance();
     // Try reading data from the counter key. If it doesn't exist, return 0.
     final key = prefs.get('KeyAccessToken') ?? 0;
-    print("KeyAccessToken: $key");
+    //print("KeyAccessToken: $key");
     return key.toString();
   }
 }

@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
                 child: Hero(
                   tag: AppStrings.loginHeroTag,
                   child: Container(
-                    margin:  EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height*0.2, 0, 0),
+                    margin:  EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height*0.17, 0, 0),
                     height: 200,
                     width: 200,
                     child: Image.asset(AppStrings.logoImage),
@@ -55,7 +55,7 @@ class MobileLoginScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          margin:  EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height*0.2, 0, 0),
+          margin:  EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height*0.17, 0, 0),
           height: 200,
           width: 200,
           child: Image.asset(AppStrings.logoImage),

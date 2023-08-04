@@ -130,7 +130,7 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(
@@ -171,12 +171,12 @@ class _profile_screenState extends State<profile_screen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    HotelsReservationDetailsForManager()))
+                                    const HotelsReservationDetailsForManager()))
                         : Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    HotelsReservationDetailsForUser()));
+                                    const HotelsReservationDetailsForUser()));
                   }),
               ProfileMenuWidget(
                   title: AppLocalizations.of(context)!.translate("Information"),

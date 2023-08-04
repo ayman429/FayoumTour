@@ -134,10 +134,12 @@ class Details extends StatelessWidget {
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
-                                  child: Container(
+                                  child: Image.asset(
+                                    "assets/images/photoLoading.jpeg",
                                     width: MediaQuery.of(context).size.width * 0.30,
                                     height: MediaQuery.of(context).size.width * 0.3,
-                                    color: Colors.grey,
+                                    fit: BoxFit.cover
+                                    //color: Colors.grey,
                                   ),
                                 ),
                                 SizedBox(
@@ -185,10 +187,12 @@ class Details extends StatelessWidget {
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
-                                  child: Container(
+                                  child: Image.asset(
+                                    "assets/images/photoLoading.jpeg",
                                     width: MediaQuery.of(context).size.width * 0.30,
                                     height: MediaQuery.of(context).size.width * 0.3,
-                                    color: Colors.grey,
+                                    fit: BoxFit.cover
+                                    //color: Colors.grey,
                                   ),
                                 ),
                                 SizedBox(

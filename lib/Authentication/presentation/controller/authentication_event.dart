@@ -1,4 +1,3 @@
-import '../../data/models/user_details_model.dart';
 import '../../domain/entities/change_password.dart';
 import '../../domain/entities/login.dart';
 import '../../domain/entities/password_reset_confirm.dart';

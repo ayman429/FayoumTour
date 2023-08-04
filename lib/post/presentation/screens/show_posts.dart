@@ -73,36 +73,48 @@ class ShowPosts extends StatelessWidget {
                                 width: 40,
                                 height: 40,
                                 // user image in post
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(100),
-                                    child: (state
-                                                .post[index].createdBy!.image !=
-                                            "")
-                                        ? Image.network(
-                                            state.post[index].createdBy!.image,
-                                            fit: BoxFit.cover,
-                                            errorBuilder:
-                                                (context, error, stackTrace) {
-                                              return Image.asset(
-                                                AppStrings.error1Gif,
+                                child: Stack(
+                                  fit: StackFit.expand,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(100),
+                                      child: Image.asset(
+                                              AppStrings.profileImage,
+                                              fit: BoxFit.cover
+                                              ),
+                                    ),
+                                    ClipRRect(
+                                        borderRadius: BorderRadius.circular(100),
+                                        child: (state
+                                                    .post[index].createdBy!.image !=
+                                                "")
+                                            ? Image.network(
+                                                state.post[index].createdBy!.image,
                                                 fit: BoxFit.cover,
-                                              );
-                                            },
-                                            loadingBuilder: (context, child,
-                                                loadingProgress) {
-                                              if (loadingProgress != null) {
-                                                return Image.asset(
-                                                  AppStrings.loading1Gif,
-                                                  fit: BoxFit.cover,
-                                                );
-                                              }
-                                              return child;
-                                            },
-                                          )
-                                        : Image.asset(
-                                            AppStrings.profileImage,
-                                            fit: BoxFit.cover,
-                                          )),
+                                                errorBuilder:
+                                                    (context, error, stackTrace) {
+                                                  return Image.asset(
+                                                    AppStrings.error1Gif,
+                                                    fit: BoxFit.cover,
+                                                  );
+                                                },
+                                                loadingBuilder: (context, child,
+                                                    loadingProgress) {
+                                                  if (loadingProgress != null) {
+                                                    return Image.asset(
+                                                      AppStrings.loading1Gif,
+                                                      fit: BoxFit.cover,
+                                                    );
+                                                  }
+                                                  return child;
+                                                },
+                                              )
+                                            : Image.asset(
+                                                AppStrings.profileImage,
+                                                fit: BoxFit.cover,
+                                              )),
+                                  ],
+                                ),
                               ),
                               const SizedBox(width: 8),
                               Expanded(
@@ -138,6 +150,7 @@ class ShowPosts extends StatelessWidget {
                                       style: const TextStyle(
                                         color: Colors.grey,
                                         fontSize: 14,
+                                        fontFamily: "readPro"
                                       ),
                                     ),
                                   ],
@@ -322,15 +335,17 @@ class ShowPosts extends StatelessWidget {
                                           child: Stack(
                                             fit: StackFit.expand,
                                             children: [
+                                              Image.asset(
+                                              "assets/images/photoLoading.jpeg",
+                                              fit: BoxFit.cover
+                                              ),
                                               Opacity(
                                                 opacity: state.post[index]
                                                             .imagesP.length >
                                                         4
                                                     ? 0.4
                                                     : 1.0,
-                                                child: ClipRRect(
-                                                  //borderRadius:BorderRadius.circular(10),
-                                                  child: Image.network(
+                                                child: Image.network(
                                                     state.post[index].imagesP[x]
                                                         .imageT,
                                                     fit: BoxFit.cover,
@@ -355,7 +370,7 @@ class ShowPosts extends StatelessWidget {
                                                       return child;
                                                     },
                                                   ),
-                                                ),
+                                                
                                               ),
                                               state.post[index].imagesP.length >
                                                       4
@@ -388,31 +403,37 @@ class ShowPosts extends StatelessWidget {
                                                               .post[index]
                                                               .imagesP,
                                                           index: x))),
-                                          child: ClipRRect(
-                                            //borderRadius:BorderRadius.circular(10),
-                                            child: Image.network(
-                                              state.post[index].imagesP[x]
-                                                  .imageT,
-                                              fit: BoxFit.cover,
-                                              errorBuilder:
-                                                  (context, error, stackTrace) {
-                                                return Image.asset(
-                                                  AppStrings.error1Gif,
+                                          child: Stack(
+                                            fit: StackFit.expand,
+                                            children: [
+                                              Image.asset(
+                                              "assets/images/photoLoading.jpeg",
+                                              fit: BoxFit.cover
+                                              ),
+                                              Image.network(
+                                                  state.post[index].imagesP[x].imageT,
                                                   fit: BoxFit.cover,
-                                                );
-                                              },
-                                              loadingBuilder: (context, child,
-                                                  loadingProgress) {
-                                                if (loadingProgress != null) {
-                                                  return Image.asset(
-                                                    AppStrings.loading2Gif,
-                                                    fit: BoxFit.cover,
-                                                  );
-                                                }
-                                                return child;
-                                              },
-                                            ),
+                                                  errorBuilder:
+                                                      (context, error, stackTrace) {
+                                                    return Image.asset(
+                                                      AppStrings.error1Gif,
+                                                      fit: BoxFit.cover,
+                                                    );
+                                                  },
+                                                  loadingBuilder: (context, child,
+                                                      loadingProgress) {
+                                                    if (loadingProgress != null) {
+                                                      return Image.asset(
+                                                        AppStrings.loading2Gif,
+                                                        fit: BoxFit.cover,
+                                                      );
+                                                    }
+                                                    return child;
+                                                  },
+                                                ),
+                                            ],
                                           ),
+                                          
                                         );
                                       }
                                     } else {
@@ -435,8 +456,11 @@ class ShowPosts extends StatelessWidget {
                                   state.post[index].like_numbers != "0"
                                       ? Row(
                                           children: [
-                                            const Icon(MyFlutterApp.like3,
-                                                color: Colors.blue),
+                                            const Padding(
+                                              padding: EdgeInsets.only(bottom: 3.5),
+                                              child: Icon(MyFlutterApp.like3,
+                                                  color: Colors.blue),
+                                            ),
                                             const SizedBox(
                                               width: 2,
                                             ),
@@ -444,7 +468,7 @@ class ShowPosts extends StatelessWidget {
                                               "${state.post[index].like_numbers}",
                                               style: const TextStyle(
                                                   color: Colors.grey,
-                                                  fontSize: 14),
+                                                  fontSize: 14,fontFamily: "readPro"),
                                             )
                                           ],
                                         )
@@ -468,7 +492,7 @@ class ShowPosts extends StatelessWidget {
                                                   "${state.post[index].comment_numbers} ${AppLocalizations.of(context)!.translate("Comments")}",
                                                   style: const TextStyle(
                                                       color: Colors.grey,
-                                                      fontSize: 14),
+                                                      fontSize: 14,fontFamily: "readPro"),
                                                 )
                                               : Container()),
                                 ],

@@ -1,8 +1,9 @@
-import '../core/utils/constance/strings_manager.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:audioplayers/audioplayers.dart';
+
+import '../core/utils/constance/shared_pref.dart';
 
 class Plan extends StatefulWidget {
   const Plan({super.key});
@@ -13,12 +14,48 @@ class Plan extends StatefulWidget {
 
 class _PlanState extends State<Plan>
     with SingleTickerProviderStateMixin {
-  late List<AssetImage> _images;
+  final List<AssetImage> _images = [
+      const AssetImage('assets/images/plan1.png'),
+      const AssetImage('assets/images/plan2.png'),
+    ];
+  final List<AssetImage> _imagesAr = [
+    const AssetImage('assets/images/plan1_Ar.png'),
+      const AssetImage('assets/images/plan2_Ar.png'),
+  ];
   final List<String> _imageTexts = [
-    "Allow us to elucidate that this application was conceived as the graduation project at the Faculty of Computer Science.",
-    "This is the second plan",
-    "This is the third plan",
-    "This is the fourth plan",
+    "Firstly, Tunis village"
+    "You can start with the village of Tunis, enjoy the picturesque green scenery there, and buy a souvenir of porcelain and pottery, which is widely made in the Tunis Village."
+    "Secondly, Rayan Valley"
+    "Then you can pass through the wonderful valley of the waterfalls 'Wadi El Rayan' and enjoy the view of the waterfalls and lakes and take memorial photos."
+    "Thirdly, whales Valley"
+    "And before leaving Wadi El Rayan Reserve, you can pass through Wadi Al Hitan, where you can see the rare and ancient fossils and structures of whales that lived in that area about 40 million years ago."
+    "Lastly, Qarun lake"
+    "Then you can end this special trip in the charming Lake Qarun, and enjoy the view of the refreshing sea, and also get a meal of delicious seafood, as there are many seafood restaurants there.",
+
+    "Firstly, Qasr Qarun"
+    "We will start by exploring the Qasr Qarun, which is a temple from the Greco-Roman era, and it was dedicated to the worship of the god of wine and love among the Romans. As for the name, residents named it this name because it is near Lake Qarun."
+    "Secondly, Qasr El Sagha Temple"
+    "Then we pass the Qasr Al Sagha Temple, which is an archaeological palace and an ancient Egyptian temple that dates back to the era of the Middle Kingdom and was built of limestone and sand. It is one of the most important historical monuments north of Lake Qarun."
+    "Historical City of Madi"
+    "Finally, we go to the ancient historical city of Madi, which is an ancient city and includes three temples built by Amenemhet the Third and Amenemhet the Fourth of the Twelfth Dynasty, then additions were added to it in the Roman era, where statues were built with a lion's body and a human head, and it is considered the largest remaining temple from the Middle Kingdom in Egypt",
+  ];
+
+final List<String> _imageTextsAr = [
+    "أولا, قرية تونس"
+    "يمكنك البدء بقرية تونس، والاستمتاع بالمناظر الخضراء الخلابة هناك، وشراء تذكار من الخزف والفخار، والذي يتم صنعه على نطاق واسع في قرية تونس."
+    "ثانيا, وادي الريان"
+    "ثم يمكنك الذهاب الى وادي الشلالات الرائع 'وادي الريان' والاستمتاع بمنظر الشلالات والبحيرات والتقاط الصور التذكارية."
+    "ثالثا, وادي الحيتان"
+    "وقبل أن تغادر محمية وادي الريان، يمكنك المرور عبر وادي الحيتان، وهناك يمكنك مشاهدة الأحافير النادرة والقديمة وهياكل الحيتان التي عاشت في تلك المنطقة منذ حوالي 40 مليون سنة."
+    "وأخيرا, بحيرة قارون"
+    "يمكنك ختم هذه الرحلة المميزة في بحيرة قارون الساحرة، والاستمتاع بمنظر البحر المنعش، وكذلك تناول وجبة من المأكولات البحرية اللذيذة، حيث يوجد العديد من مطاعم المأكولات البحرية هناك.",
+    
+    "أولا, قصر قارون"
+    "سنبدأ باستكشاف قصر قارون، وهو معبد من العصر اليوناني الروماني، وكان مخصصًا لعبادة إله النبيذ والحب بين الرومان. أما عن الاسم فقد أطلق عليه السكان هذا الاسم لأنه قريب من بحيرة قارون."
+    "ثانيا, قصر معبد الصاغة"
+    "ثم نمر بمعبد قصر الصاغة وهو قصر أثري ومعبد مصري قديم يعود إلى عصر الدولة الوسطى وتم بناؤه من الحجر الجيري والرمل. وهو من أهم المعالم التاريخية في شمال بحيرة قارون."
+    "وأخيرا, مدينة ماضي التاريخية"
+    "أخيرًا نذهب إلى مدينة ماضي التاريخية القديمة وهي مدينة قديمة وتضم ثلاثة معابد بناها أمنمحات الثالث وأمنمحات الرابع من الأسرة الثانية عشر، ثم أضيفت إليها إضافات في العصر الروماني حيث شيدت تماثيل بجسم أسد ورأس بشري، ويعتبر أكبر معبد متبقي من الدولة الوسطى في مصر",
   ];
 
   bool _isDialogOpen = false;
@@ -30,12 +67,8 @@ class _PlanState extends State<Plan>
   @override
   void initState() {
     super.initState();
-    _images = [
-      const AssetImage(AppStrings.plan1Image),
-      const AssetImage(AppStrings.plan2Image),
-      const AssetImage(AppStrings.plan3Image),
-      const AssetImage(AppStrings.plan4Image),
-    ];
+    
+    flutterTts.setSpeechRate(0.4);
   }
 
   @override
@@ -88,8 +121,8 @@ class _PlanState extends State<Plan>
 
   List<Widget> _buildImageWidgets() {
     List<Widget> widgets = [];
-
-    for (int i = 0; i < _images.length; i++) {
+    int len = sharedPreferences!.getString("Language") == "AR" ? _imagesAr.length : _images.length;
+    for (int i = 0; i < len; i++) {
       widgets.add(
         Padding(
           padding:
@@ -105,7 +138,7 @@ class _PlanState extends State<Plan>
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16.0),
                 child: Image(
-                  image: _images[i],
+                  image: sharedPreferences!.getString("Language") == "AR" ? _imagesAr[i] : _images[i],
                   fit: BoxFit.cover,
                 ),
               ),
@@ -114,7 +147,7 @@ class _PlanState extends State<Plan>
         ),
       );
 
-      if (i < _images.length - 1) {
+      if (i < len - 1) {
         widgets.add(const SizedBox(height: 16.0));
         // Delay half second between images
         widgets.add(const DelayedWidget(
@@ -126,6 +159,8 @@ class _PlanState extends State<Plan>
         widgets.add(const SizedBox(height: 16.0));
       }
     }
+
+    widgets.add(const SizedBox(height: 50,));
 
     return widgets;
   }
@@ -145,7 +180,7 @@ class _PlanState extends State<Plan>
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Image(
-                    image: _images[index],
+                    image: sharedPreferences!.getString("Language") == "AR" ? _imagesAr[index] : _images[index],
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -169,7 +204,7 @@ class _PlanState extends State<Plan>
                       _soundPlaying = true;
                     });
                     
-                    await flutterTts.speak(_imageTexts[index]);
+                    await flutterTts.speak(sharedPreferences!.getString("Language") == "AR" ? _imageTextsAr[index] : _imageTexts[index]);
                   }
                   },
                   child:  Icon(_soundPlaying ? Icons.volume_up :Icons.volume_off,color: Colors.white,size: 32.0,)
@@ -185,7 +220,7 @@ class _PlanState extends State<Plan>
                     {
                       flutterTts.stop();
                     audioPlayer.stop();
-                    await flutterTts.speak(_imageTexts[index]);
+                    await flutterTts.speak(sharedPreferences!.getString("Language") == "AR" ? _imageTextsAr[index] : _imageTexts[index]);
                     }
                   },
                   child: const Icon(
@@ -202,13 +237,7 @@ class _PlanState extends State<Plan>
     ).then((_) => _setDialogOpen(false)
     );
 
-
-    await flutterTts.speak(_imageTexts[index]);
-
-    
-    
-    
-    
+    await flutterTts.speak(sharedPreferences!.getString("Language") == "AR" ? _imageTextsAr[index] : _imageTexts[index]);
   }
 
   void _setDialogOpen(bool isOpen) {

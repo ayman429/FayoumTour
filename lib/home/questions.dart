@@ -588,6 +588,7 @@ class _TourismScreenState extends State<TourismScreen>
                                               if (state.loginstate ==
                                                   RequestState.loading) {
                                                 showDialog(
+                                                  barrierDismissible: false,
                                                   context: context,
                                                   builder: (ctx) =>
                                                       const FractionallySizedBox(

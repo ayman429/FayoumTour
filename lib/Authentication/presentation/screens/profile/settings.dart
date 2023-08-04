@@ -119,7 +119,7 @@ class SSSettings extends StatelessWidget {
                         onDoubleTap: () {},
                         onSwipe: () {},
                         onTap: () {
-                          print("object");
+                          //print("object");
                         },
                         animationDuration: const Duration(microseconds: 100),
                         value: (state.languageCode == AppStrings.enCode)

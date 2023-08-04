@@ -7,6 +7,7 @@ import '../../../../core/utils/constance/shared_pref.dart';
 import '../../../../core/utils/constance/strings_manager.dart';
 import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
+import '../../../../core/utils/languages/bloc/app_language_bloc.dart';
 import '../../../../core/utils/snackbar_message.dart';
 import '../../../../home/BottomBar.dart';
 import '../../../../home/DashBoard2.dart';
@@ -37,6 +38,55 @@ class _LoginFormState extends State<LoginForm> {
       children: [
         EmailTextFormField(emailController: emailController),
         PasswordTextFormField(passwordController: passwordController,isConfirm: false,),
+        const SizedBox(height: AppPadding.p16),
+        DropdownButtonFormField<int>(
+                      
+                      borderRadius: BorderRadius.circular(15),
+                      value: sharedPreferences!.getString("Language") == "AR" ? 1 : 0,
+                      decoration: InputDecoration(
+                        
+                        prefixIcon:  Padding(
+                        padding: const EdgeInsets.all(AppPadding.p16),
+                        child: Text(sharedPreferences!.getString("Language") == "AR" ? "🇸🇦" :"🇬🇧",style: const TextStyle(fontSize: 20),),
+                      ),
+                        border: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
+                                contentPadding: sharedPreferences!.getString("Language") == "AR"
+                                ? const EdgeInsets.symmetric(vertical: 18,horizontal: 6)
+                                : const EdgeInsets.symmetric(vertical: 16,horizontal: 6),
+                        
+                      ),
+                      items: [
+                        DropdownMenuItem(
+                                value: 0,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 1),
+                                  child: Text(AppLocalizations.of(context)!.translate("English")),
+                                ),
+                                ),
+                              DropdownMenuItem(
+                                value: 1,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 1),
+                                  child: Text(AppLocalizations.of(context)!.translate("Arabic")),
+                                ),
+                              ),
+                              ],
+                      onChanged: (value) {
+                        
+                          if (value == 0) {
+                            BlocProvider.of<AppLanguageBloc>(context)
+                                .add(EnglishLanguageEvent());
+                            sharedPreferences!.setString("Language", "EN");
+                          } else {
+                            BlocProvider.of<AppLanguageBloc>(context)
+                                .add(ArabicLanguageEvent());
+                            sharedPreferences!.setString("Language", "AR");
+                          }
+                        
+                      },
+                    ),
         const SizedBox(height: AppPadding.p16),
         Hero(
           tag: AppStrings.loginHeroTag,
@@ -74,7 +124,7 @@ class _LoginFormState extends State<LoginForm> {
                           indexError = 0;
                         });
                       }
-                      print(state.loginMessage);
+                      //print(state.loginMessage);
                       message =
                           Validation.validationMessage(state.loginMessage);
                       SnackBarMessage().showErrorSnackBar(
@@ -93,12 +143,13 @@ class _LoginFormState extends State<LoginForm> {
                             .add(LoginEvent(login: login));
 
                         if (state.loginstate == RequestState.loading) {
-                          print("Login Loding");
+                          //print("Login Loding");
                           setState(() {
                             indexError = 1;
                           });
-                          print(state.loginstate);
+                          //print(state.loginstate);
                           showDialog(
+                            barrierDismissible: false,
                             context: context,
                             builder: (ctx) => const FractionallySizedBox(
                               widthFactor:

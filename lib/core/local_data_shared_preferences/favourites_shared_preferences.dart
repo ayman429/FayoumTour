@@ -27,7 +27,7 @@ class FavouritStorage extends BaseFavourits {
       final response = await dio.get(ApiConstance.userDetailsPath);
       // return user info
       return UserDetailsModel.fromJson(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -42,9 +42,9 @@ class FavouritStorage extends BaseFavourits {
     // var user = await getUsersDetails();
     // userId = user.id;
     var userId = sharedPreferences!.getString("USERID");
-    print("//////////////////////////////////////");
-    print(userId);
-    print("//////////////////////////////////////");
+    //print("//////////////////////////////////////");
+    //print(userId);
+    //print("//////////////////////////////////////");
 
     final prefs = await SharedPreferences.getInstance();
     List<dynamic> favList = [];

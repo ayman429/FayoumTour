@@ -4,19 +4,19 @@ import '../TourismPlaces/presentation/screens/tourism_places_search.dart';
 import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 
+
 class SEARCH extends StatelessWidget {
-  String search_ketword;
-  int search_count;
-  SEARCH({
+  final String searchKetword;
+  final int searchCount;
+  const SEARCH({
     Key? key,
-    required this.search_ketword,
-    required this.search_count,
+    required this.searchKetword,
+    required this.searchCount,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return (search_ketword == "")
-        ? Center(
+    return searchKetword == "" ? Center(
             child: Text(
               AppLocalizations.of(context)!
                   .translate("Please Write Something!"),
@@ -27,6 +27,6 @@ class SEARCH extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary),
             ),
           )
-        : TourismPlacesSearch(textSearchByFeild: search_ketword);
+      : TourismPlacesSearch(textSearchByFeild: searchKetword);
   }
 }

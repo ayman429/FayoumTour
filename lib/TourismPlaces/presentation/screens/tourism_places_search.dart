@@ -10,9 +10,10 @@ import '../controller/tourism_place_event.dart';
 import '../controller/tourism_place_state.dart';
 
 class TourismPlacesSearch extends StatelessWidget {
-  String textSearchByFeild;
+  
+  final String textSearchByFeild;
 
-  TourismPlacesSearch({
+  const TourismPlacesSearch({
     Key? key,
     required this.textSearchByFeild,
   }) : super(key: key);
@@ -39,9 +40,9 @@ class TourismPlacesSearch extends StatelessWidget {
               itemCount: state.searchTourismPlace.length,
               itemBuilder: (context, index) {
                 final searchTourismPlace = state.searchTourismPlace[index];
-                state.tourismPlace.forEach((element) {
+                for (var element in state.tourismPlace) {
                   ratePlaceMap.addAll({element.id: element.rate_value ?? 0});
-                });
+                }
                 for (var element in state.tourismPlace) {
                   favPlaceMap.addAll({element.id: element.fav_value ?? 0});
                 }

@@ -78,16 +78,15 @@ class _BottomBarState extends State<BottomBar> {
                   decoration: InputDecoration(
                     hintText:
                         AppLocalizations.of(context)!.translate("Search..."),
-
                     border: InputBorder.none,
-                    //prefixIcon: Icon(Icons.search)
                   ),
                   onChanged: (value) {
                     setState(() {
                       search_counter = 0;
-                      _text = value;
-                      // print(_text);
+                    _text = value;
+                    // print(_text);
                     });
+                    
                   },
                 ),
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
@@ -182,8 +181,8 @@ class _BottomBarState extends State<BottomBar> {
               ),
         body: search
             ? SEARCH(
-                search_ketword: _text,
-                search_count: search_counter,
+                searchKetword: _text,
+                searchCount: search_counter,
               )
             // : Screens[selected],
             : IndexedStack(index: selected, children: Screens),

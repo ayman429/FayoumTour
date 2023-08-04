@@ -54,7 +54,7 @@ class _FavoritesState extends State<Favorites> {
                         builder: (context) =>
                             HotelsDetails(hotelsId: snapshot![index]["id"])));
               } else {
-                print("error");
+                //print("error");
               }
             },
             child: Container(

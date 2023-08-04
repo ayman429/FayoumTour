@@ -2,6 +2,7 @@ import 'package:fayoumtour/post/domain/entities/comment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 import '../controller/bloc/post_bloc.dart';
@@ -16,7 +17,32 @@ class CommentList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return data.isEmpty
+    ? Center(
+      child: Column(
+      
+      mainAxisAlignment: MainAxisAlignment.center,
+      //crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.translate("Nothing Yet comment1"),
+                style: TextStyle(
+                    fontFamily: sharedPreferences!.getString("Language") == "AR" ? "aref" :"pressStart2p",
+                    fontSize: sharedPreferences!.getString("Language") == "AR" ?38:20,
+                    color: Theme.of(context).colorScheme.primary),
+              ),
+              const SizedBox(height: 7,),
+              Text(
+                AppLocalizations.of(context)!.translate("Nothing Yet comment2"),
+                style: TextStyle(
+                    fontFamily: sharedPreferences!.getString("Language") == "AR" ? "aref" :"pressStart2p",
+                    fontSize: sharedPreferences!.getString("Language") == "AR" ?25:11.5,
+                    color: Theme.of(context).colorScheme.primary),
+              ),
+            ],
+          ),
+    )
+    : ListView.builder(
         itemCount: data.length,
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {

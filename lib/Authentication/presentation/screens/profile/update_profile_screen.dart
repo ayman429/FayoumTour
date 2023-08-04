@@ -84,8 +84,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
           child: Column(
             children: [
               // -- IMAGE with ICON
-              Container(
-                child: Stack(
+              Stack(
                   children: [
                     SizedBox(
                       width: 120,
@@ -134,8 +133,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                             sharedPreferences!.setString(
                                                 "${userId.id}USERIMAGE",
                                                 pickedFile.path);
-                                            print(
-                                                "path====> ${pickedFile.path}");
+                                            //print("path====> ${pickedFile.path}");
                                           }
                                           Navigator.pop(context, pickedFile);
                                         },
@@ -190,14 +188,13 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     ),
                   ],
                 ),
-              ),
               Padding(
                 padding: const EdgeInsets.all(AppPadding.p16),
                 child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
                     listener: (context, state) {
                   if (state.updateuserDetailsState == RequestState.loaded ||
                       state.changePasswordstate == RequestState.loaded) {
-                    print("loaded");
+                    //print("loaded");
                     if (state.updateuserDetailsState == RequestState.loaded &&
                         type == "username") {
                       String username = state.updateuserDetails ?? "";
@@ -206,14 +203,14 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     }
                   } else if (state.updateuserDetailsState ==
                       RequestState.error) {
-                    print("error: ${state.updateuserDetailsMessage}");
+                    //print("error: ${state.updateuserDetailsMessage}");
                     String message;
                     message = Validation.validationMessage(
                         state.updateuserDetailsMessage);
                     SnackBarMessage()
                         .showErrorSnackBar(message: message, context: context);
                   } else if (state.changePasswordstate == RequestState.error) {
-                    print("error: ${state.changePasswordMessage}");
+                    //print("error: ${state.changePasswordMessage}");
                     String message;
                     message = Validation.validationMessage(
                         state.changePasswordMessage);
@@ -223,7 +220,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 }, builder: (context, state) {
                   if (state.updateuserDetailsState == RequestState.loading ||
                       state.changePasswordstate == RequestState.loading) {
-                    print("loading");
+                    //print("loading");
 
                     /// loading
                     // return Text("Processing");

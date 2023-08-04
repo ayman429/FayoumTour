@@ -16,7 +16,7 @@ class BaseUpdateProfile extends StatelessWidget {
         BlocProvider(create: (context) => ObscureBloc()),
         BlocProvider(create: (context) => getIt<AuthenticationBloc>()),
       ],
-      child: UpdateProfileScreen(),
+      child: const UpdateProfileScreen(),
     );
   }
 }

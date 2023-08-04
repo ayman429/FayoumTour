@@ -5,13 +5,13 @@ import '../../../core/utils/constance/strings_manager.dart';
 class Validation {
   static String validationMessage(dynamic message) {
     message = message.toString();
-    print(message);
+    //print(message);
     if (message != "null") {
       Map<String, dynamic> validationMessageMap =
           jsonDecode(message.toString());
       String messageError = validationMessageMap.values.first[0].toString();
-      print("Unexpected Error");
-      print(messageError);
+      //print("Unexpected Error");
+      //print(messageError);
       String validationMessage;
       // print(messageError);
       if (messageError == AppStrings.apiEmptyString1 ||
@@ -33,8 +33,8 @@ class Validation {
       } else if (messageError == AppStrings.passwordSimilar) {
         validationMessage = AppStrings.passwordSimilar;
       } else {
-        print("Unexpected Error");
-        print(messageError);
+        //print("Unexpected Error");
+        //print(messageError);
         validationMessage = "Unexpected Error";
       }
       return validationMessage;

@@ -10,7 +10,7 @@ String PostTime(String requestTime) {
     // return "${difference.inSeconds} seconds ago";
   } else if (difference.inMinutes < 60) {
     return sharedPreferences!.getString("Language") == "AR"
-        ? "${difference.inMinutes}  د"
+        ? "${difference.inMinutes} د"
         : "${difference.inMinutes} m";
     // return "${difference.inMinutes} minutes ago";
   } else if (difference.inHours < 24) {

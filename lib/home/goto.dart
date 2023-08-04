@@ -28,7 +28,7 @@ class _GotoButtonState extends State<GotoButton> {
                   throw 'Could not launch $url';
                 }
               },
-              child: Text("goto")),
+              child: const Text("goto")),
         ),
       ),
     );

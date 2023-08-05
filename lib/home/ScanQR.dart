@@ -168,6 +168,9 @@ class _QRViewExampleState extends State<QRViewExample> {
               MaterialPageRoute(
                 builder: (context) => QRReserviationView(),
               ));
+          controller.resumeCamera();
+        } else {
+          controller.resumeCamera();
         }
         // Navigator.push(
         //     context,

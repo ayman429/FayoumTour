@@ -104,133 +104,196 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
 
   FutureOr<void> _getHotels(
       GetHotelsEvent event, Emitter<HotelsState> emit) async {
-    (await getHotelUsecase(const NoParameters())).fold((l) {
-      return emit(
-          HotelsState(hotelState: RequestState.error, hotelMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        hotels: r,
-        hotelState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getHotelUsecase(const NoParameters())).fold((l) {
+        return emit(HotelsState(
+            hotelState: RequestState.error, hotelMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          hotels: r,
+          hotelState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _getHotelsById(
       GetHotelsByIdEvent event, Emitter<HotelsState> emit) async {
-    (await getHotelByIdUsecase(event.hotelsId)).fold((l) {
-      return emit(HotelsState(
-          hotelStateById: RequestState.error, hotelMessageById: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        hotelsById: r,
-        hotelStateById: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getHotelByIdUsecase(event.hotelsId)).fold((l) {
+        return emit(HotelsState(
+            hotelStateById: RequestState.error, hotelMessageById: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          hotelsById: r,
+          hotelStateById: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _addHotel(
       AddHotelEvent event, Emitter<HotelsState> emit) async {
-    (await addHotelUsecase(event.hotel)).fold((l) {
-      return emit(HotelsState(
-          addHotelState: RequestState.error, addHotelMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        addHotelState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await addHotelUsecase(event.hotel)).fold((l) {
+        return emit(HotelsState(
+            addHotelState: RequestState.error, addHotelMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          addHotelState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _updateHotel(
       UpdateHotelEvent event, Emitter<HotelsState> emit) async {
-    (await updateHotelUsecase(event.hotel)).fold((l) {
-      return emit(HotelsState(
-          updateHotelState: RequestState.error, updateHotelMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        updateHotelState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await updateHotelUsecase(event.hotel)).fold((l) {
+        return emit(HotelsState(
+            updateHotelState: RequestState.error,
+            updateHotelMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          updateHotelState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _deleteHotel(
       DeleteHotelEvent event, Emitter<HotelsState> emit) async {
-    (await deleteHotelUsecase(event.hotelsId)).fold((l) {
-      return emit(HotelsState(
-          deleteHotelState: RequestState.error, deleteHotelMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        deleteHotelState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await deleteHotelUsecase(event.hotelsId)).fold((l) {
+        return emit(HotelsState(
+            deleteHotelState: RequestState.error,
+            deleteHotelMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          deleteHotelState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _searchHotelByFields(
       SearchHotelByFieldsEvent event, Emitter<HotelsState> emit) async {
-    (await searchHotelByFieldsUsecase(event.hotelSearchByFeild)).fold((l) {
-      return emit(HotelsState(
-          searchHotelState: RequestState.error,
-          searchHotelsMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        searchHotels: r,
-        searchHotelState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await searchHotelByFieldsUsecase(event.hotelSearchByFeild)).fold((l) {
+        return emit(HotelsState(
+            searchHotelState: RequestState.error,
+            searchHotelsMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          searchHotels: r,
+          searchHotelState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _searchHotelByRate(
       SearchHotelByRateEvent event, Emitter<HotelsState> emit) async {
-    (await searchHotelByRateUsecase(const NoParameters())).fold((l) {
-      return emit(HotelsState(
-          searchHotelRateState: RequestState.error,
-          searchHotelRateMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        searchHotelRate: r,
-        searchHotelRateState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await searchHotelByRateUsecase(const NoParameters())).fold((l) {
+        return emit(HotelsState(
+            searchHotelRateState: RequestState.error,
+            searchHotelRateMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          searchHotelRate: r,
+          searchHotelRateState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _orderingHotelByFields(
       OrderingHotelByFieldsEvent event, Emitter<HotelsState> emit) async {
-    (await orderingHotelByFieldsUsecase(event.hotelOrderingByFeild)).fold((l) {
-      return emit(HotelsState(
-          orderingHotelState: RequestState.error,
-          orderingHotelMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        orderingHotelState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await orderingHotelByFieldsUsecase(event.hotelOrderingByFeild)).fold(
+          (l) {
+        return emit(HotelsState(
+            orderingHotelState: RequestState.error,
+            orderingHotelMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          orderingHotelState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _getHotelRates(
       GetHotelRatesEvent event, Emitter<HotelsState> emit) async {
-    (await getHotelRateUsecase(const NoParameters())).fold((l) {
-      return emit(HotelsState(
-          getHotelRateState: RequestState.error,
-          getHotelRateMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        getHotelRate: r,
-        getHotelRateState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getHotelRateUsecase(const NoParameters())).fold((l) {
+        return emit(HotelsState(
+            getHotelRateState: RequestState.error,
+            getHotelRateMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          getHotelRate: r,
+          getHotelRateState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _getHotelRateById(
       GetHotelRateByIdEvent event, Emitter<HotelsState> emit) async {
-    (await getHotelRateByIdUsecase(event.hotelRateId)).fold((l) {
-      return emit(HotelsState(
-          getHotelRateByIdState: RequestState.error,
-          getHotelRateByIdMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        getHotelRateById: r,
-        getHotelRateByIdState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getHotelRateByIdUsecase(event.hotelRateId)).fold((l) {
+        return emit(HotelsState(
+            getHotelRateByIdState: RequestState.error,
+            getHotelRateByIdMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          getHotelRateById: r,
+          getHotelRateByIdState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _updateCreateHotelRates(
@@ -242,31 +305,43 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     emit(HotelsState(
       updateCreateHotelRateState: RequestState.loaded,
     ));
-    (await updateCreateHotelRateUsecase(
-            event.updateCreateHotelRate, event.hotelID))
-        .fold((l) {
-      return emit(HotelsState(
-          updateCreateHotelRateState: RequestState.error,
-          updateCreateHotelRateMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        updateCreateHotelRateState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await updateCreateHotelRateUsecase(
+              event.updateCreateHotelRate, event.hotelID))
+          .fold((l) {
+        return emit(HotelsState(
+            updateCreateHotelRateState: RequestState.error,
+            updateCreateHotelRateMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          updateCreateHotelRateState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _getHotelRateByUserRates(
       GetHotelRateByUserEvent event, Emitter<HotelsState> emit) async {
-    (await getHotelRateByUserUsecase(event.hotelId, event.userId)).fold((l) {
-      return emit(HotelsState(
-          getHotelRateByUserState: RequestState.error,
-          getHotelRateByUserMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        getHotelRateByUser: r,
-        getHotelRateByUserState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getHotelRateByUserUsecase(event.hotelId, event.userId)).fold((l) {
+        return emit(HotelsState(
+            getHotelRateByUserState: RequestState.error,
+            getHotelRateByUserMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          getHotelRateByUser: r,
+          getHotelRateByUserState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _updateCreateHotelFavorite(
@@ -276,65 +351,89 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     emit(HotelsState(
       updateCreateHotelFavoriteState: RequestState.loaded,
     ));
-    (await updateCreateHotelFavoriteUsecase(
-      event.updateCreateHotelFavorite,
-    ))
-        .fold((l) {
-      return emit(HotelsState(
-          updateCreateHotelFavoriteState: RequestState.error,
-          updateCreateHotelFavoriteMessage: l.message));
-    }, (r) {
-      print("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
-      print(favHotelMap[hotelId]);
-      print("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+    try {
+      (await updateCreateHotelFavoriteUsecase(
+        event.updateCreateHotelFavorite,
+      ))
+          .fold((l) {
+        return emit(HotelsState(
+            updateCreateHotelFavoriteState: RequestState.error,
+            updateCreateHotelFavoriteMessage: l.message));
+      }, (r) {
+        // print("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+        // print(favHotelMap[hotelId]);
+        // print("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
 
-      return emit(HotelsState(
-        updateCreateHotelFavoriteState: RequestState.loaded,
-      ));
-    });
+        return emit(HotelsState(
+          updateCreateHotelFavoriteState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _getHotelFavorite(
       GetHotelFavoriteEvent event, Emitter<HotelsState> emit) async {
-    (await getHotelFavoriteUsecase(const NoParameters())).fold((l) {
-      return emit(HotelsState(
-          getHotelFavoriteState: RequestState.error,
-          getHotelFavoriteMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        getHotelFavorite: r,
-        getHotelFavoriteState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getHotelFavoriteUsecase(const NoParameters())).fold((l) {
+        return emit(HotelsState(
+            getHotelFavoriteState: RequestState.error,
+            getHotelFavoriteMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          getHotelFavorite: r,
+          getHotelFavoriteState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   // HotelReservation
   FutureOr<void> _getHotelsReservation(
       GetHotelsReservationEvent event, Emitter<HotelsState> emit) async {
-    (await getHotelReservationUsecase(event.hotelId)).fold((l) {
-      return emit(HotelsState(
-          hotelReservationState: RequestState.error,
-          hotelReservationMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        hotelsReservation: r,
-        hotelReservationState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getHotelReservationUsecase(event.hotelId)).fold((l) {
+        return emit(HotelsState(
+            hotelReservationState: RequestState.error,
+            hotelReservationMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          hotelsReservation: r,
+          hotelReservationState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _getHotelsReservationByUser(
       GetHotelsReservationByUserEvent event, Emitter<HotelsState> emit) async {
-    (await getHotelReservationByUserUsecase(event.userId)).fold((l) {
-      return emit(HotelsState(
-          hotelReservationByUserState: RequestState.error,
-          hotelReservationByUserMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        hotelsReservationByUser: r,
-        hotelReservationByUserState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getHotelReservationByUserUsecase(event.userId)).fold((l) {
+        return emit(HotelsState(
+            hotelReservationByUserState: RequestState.error,
+            hotelReservationByUserMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          hotelsReservationByUser: r,
+          hotelReservationByUserState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _addHotelReservation(
@@ -362,27 +461,39 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
 
   FutureOr<void> _updateHotelReservation(
       UpdateHotelReservationEvent event, Emitter<HotelsState> emit) async {
-    (await updateHotelReservationUsecase(event.hotelReservation)).fold((l) {
-      return emit(HotelsState(
-          updateHotelReservationState: RequestState.error,
-          updateHotelReservationMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        updateHotelReservationState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await updateHotelReservationUsecase(event.hotelReservation)).fold((l) {
+        return emit(HotelsState(
+            updateHotelReservationState: RequestState.error,
+            updateHotelReservationMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          updateHotelReservationState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _deleteHotelReservation(
       DeleteHotelReservationEvent event, Emitter<HotelsState> emit) async {
-    (await deleteHotelReservationUsecase(event.hotelsId)).fold((l) {
-      return emit(HotelsState(
-          deleteHotelReservationState: RequestState.error,
-          deleteHotelReservationMessage: l.message));
-    }, (r) {
-      return emit(HotelsState(
-        deleteHotelReservationState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await deleteHotelReservationUsecase(event.hotelsId)).fold((l) {
+        return emit(HotelsState(
+            deleteHotelReservationState: RequestState.error,
+            deleteHotelReservationMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          deleteHotelReservationState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          hotelState: RequestState.error,
+          hotelMessage: "Have Problem Try Again"));
+    }
   }
 }

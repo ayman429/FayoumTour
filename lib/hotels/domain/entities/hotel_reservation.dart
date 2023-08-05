@@ -17,6 +17,7 @@ class HotelReservation {
   String? created_at;
   String? updated_at;
   CreatedBy? createdBy;
+  String? status;
   HotelReservation({
     this.id,
     this.hotel,
@@ -32,6 +33,7 @@ class HotelReservation {
     this.created_at,
     this.updated_at,
     this.createdBy,
+    this.status,
   });
 
   Map<String, dynamic> toJson() {
@@ -46,6 +48,7 @@ class HotelReservation {
     data['check_in'] = check_in;
     data['check_out'] = check_out;
     data['created_at'] = created_at;
+    data['status'] = status;
 
     return data;
   }

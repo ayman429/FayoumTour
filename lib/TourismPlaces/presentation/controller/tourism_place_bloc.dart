@@ -82,154 +82,220 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
 
   FutureOr<void> _getTourismPlace(
       GetTourismPlaceEvent event, Emitter<TourismPlaceState> emit) async {
-    (await getTourismPlaceUsecase(const NoParameters())).fold((l) {
-      return emit(TourismPlaceState(
+    try {
+      (await getTourismPlaceUsecase(const NoParameters())).fold((l) {
+        return emit(TourismPlaceState(
+            tourismPlaceState: RequestState.error,
+            tourismPlaceMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          tourismPlace: r,
+          tourismPlaceState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
           tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        tourismPlace: r,
-        tourismPlaceState: RequestState.loaded,
-      ));
-    });
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _getTourismPlaceById(
       GetTourismPlacesByIdEvent event, Emitter<TourismPlaceState> emit) async {
-    (await getTourismPlaceByIdUsecase(event.tourId)).fold((l) {
-      return emit(TourismPlaceState(
-          tourismPlaceStateById: RequestState.error,
-          tourismPlaceMessageById: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        tourismPlaceById: r,
-        tourismPlaceStateById: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getTourismPlaceByIdUsecase(event.tourId)).fold((l) {
+        return emit(TourismPlaceState(
+            tourismPlaceStateById: RequestState.error,
+            tourismPlaceMessageById: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          tourismPlaceById: r,
+          tourismPlaceStateById: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _addTourismPlace(
       AddTourismPlaceEvent event, Emitter<TourismPlaceState> emit) async {
-    (await addTourismPlaceUsecase(event.tourismPlace)).fold((l) {
-      return emit(TourismPlaceState(
-          addTourismPlaceState: RequestState.error,
-          addTourismPlaceMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        addTourismPlaceState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await addTourismPlaceUsecase(event.tourismPlace)).fold((l) {
+        return emit(TourismPlaceState(
+            addTourismPlaceState: RequestState.error,
+            addTourismPlaceMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          addTourismPlaceState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _updateTourismPlace(
       UpdateTourismPlaceEvent event, Emitter<TourismPlaceState> emit) async {
-    (await updateTourismPlaceUsecase(event.tourismPlace)).fold((l) {
-      return emit(TourismPlaceState(
-          searchTourismPlaceState: RequestState.error,
-          updateTourismPlaceMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        updateTourismPlaceState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await updateTourismPlaceUsecase(event.tourismPlace)).fold((l) {
+        return emit(TourismPlaceState(
+            searchTourismPlaceState: RequestState.error,
+            updateTourismPlaceMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          updateTourismPlaceState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _deleteTourismPlace(
       DeleteTourismPlaceEvent event, Emitter<TourismPlaceState> emit) async {
-    (await deleteTourismPlaceUsecase(event.tourId)).fold((l) {
-      return emit(TourismPlaceState(
-          deleteTourismPlaceState: RequestState.error,
-          deleteTourismPlaceMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        deleteTourismPlaceState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await deleteTourismPlaceUsecase(event.tourId)).fold((l) {
+        return emit(TourismPlaceState(
+            deleteTourismPlaceState: RequestState.error,
+            deleteTourismPlaceMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          deleteTourismPlaceState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _searchByFields(SearchTourismPlaceByFieldsEvent event,
       Emitter<TourismPlaceState> emit) async {
     // emit(TourismPlaceState(searchTourismPlaceState: RequestState.loading));
     // print("===================>");
-    (await searchByFieldsUsecase(event.tourismPlaceSearchByFeild)).fold((l) {
-      return emit(TourismPlaceState(
-          searchTourismPlaceState: RequestState.error,
-          searchTourismPlaceMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        searchTourismPlace: r,
-        searchTourismPlaceState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await searchByFieldsUsecase(event.tourismPlaceSearchByFeild)).fold((l) {
+        return emit(TourismPlaceState(
+            searchTourismPlaceState: RequestState.error,
+            searchTourismPlaceMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          searchTourismPlace: r,
+          searchTourismPlaceState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _model1(
       Model1Event event, Emitter<TourismPlaceState> emit) async {
-    (await model1Usecase(event.model1Input)).fold((l) {
-      return emit(TourismPlaceState(
-          model1State: RequestState.error, model1Message: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        model1: r,
-        model1State: RequestState.loaded,
-      ));
-    });
+    try {
+      (await model1Usecase(event.model1Input)).fold((l) {
+        return emit(TourismPlaceState(
+            model1State: RequestState.error, model1Message: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          model1: r,
+          model1State: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _searchByRate(SearchTourismPlaceByRateEvent event,
       Emitter<TourismPlaceState> emit) async {
-    (await searchTourismPlaceByRateUsecase(const NoParameters())).fold((l) {
-      return emit(TourismPlaceState(
-          searchTourismPlaceRateState: RequestState.error,
-          searchTourismPlaceRateMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        searchTourismPlaceRate: r,
-        searchTourismPlaceRateState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await searchTourismPlaceByRateUsecase(const NoParameters())).fold((l) {
+        return emit(TourismPlaceState(
+            searchTourismPlaceRateState: RequestState.error,
+            searchTourismPlaceRateMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          searchTourismPlaceRate: r,
+          searchTourismPlaceRateState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _orderingByFields(OrderingTourismPlaceByFieldsEvent event,
       Emitter<TourismPlaceState> emit) async {
-    (await orderingByFieldsUsecase(event.tourismPlaceOrderingByFeild)).fold(
-        (l) {
-      return emit(TourismPlaceState(
-          orderingTourismPlaceState: RequestState.error,
-          orderingTourismPlaceMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        orderingTourismPlaceState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await orderingByFieldsUsecase(event.tourismPlaceOrderingByFeild)).fold(
+          (l) {
+        return emit(TourismPlaceState(
+            orderingTourismPlaceState: RequestState.error,
+            orderingTourismPlaceMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          orderingTourismPlaceState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _getTourismPlaceRates(
       GetTourismPlaceRatesEvent event, Emitter<TourismPlaceState> emit) async {
-    (await getTourismPlaceRateUsecase(const NoParameters())).fold((l) {
-      return emit(TourismPlaceState(
-          getTourismPlaceRateState: RequestState.error,
-          getTourismPlaceRateMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        getTourismPlaceRate: r,
-        getTourismPlaceRateState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getTourismPlaceRateUsecase(const NoParameters())).fold((l) {
+        return emit(TourismPlaceState(
+            getTourismPlaceRateState: RequestState.error,
+            getTourismPlaceRateMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          getTourismPlaceRate: r,
+          getTourismPlaceRateState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _getTourismPlaceRateById(GetTourismPlaceRateByIdEvent event,
       Emitter<TourismPlaceState> emit) async {
-    (await getTourismPlaceRateByIdUsecase(event.tourRateId)).fold((l) {
-      return emit(TourismPlaceState(
-          getTourismPlaceRateByIdState: RequestState.error,
-          getTourismPlaceRateByIdMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        getTourismPlaceRateById: r,
-        getTourismPlaceRateByIdState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getTourismPlaceRateByIdUsecase(event.tourRateId)).fold((l) {
+        return emit(TourismPlaceState(
+            getTourismPlaceRateByIdState: RequestState.error,
+            getTourismPlaceRateByIdMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          getTourismPlaceRateById: r,
+          getTourismPlaceRateByIdState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _updateCreateTourismPlaceRates(
@@ -242,34 +308,45 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
     emit(TourismPlaceState(
       updateCreateTourismPlaceRateState: RequestState.loaded,
     ));
-
-    (await updateCreateTourismPlaceRateUsecase(
-            event.updateCreateTourRate, event.tourismPlaceID))
-        .fold((l) {
-      return emit(TourismPlaceState(
-          updateCreateTourismPlaceRateState: RequestState.error,
-          updateCreateTourismPlaceRateMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        updateCreateTourismPlaceRateState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await updateCreateTourismPlaceRateUsecase(
+              event.updateCreateTourRate, event.tourismPlaceID))
+          .fold((l) {
+        return emit(TourismPlaceState(
+            updateCreateTourismPlaceRateState: RequestState.error,
+            updateCreateTourismPlaceRateMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          updateCreateTourismPlaceRateState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _getTourismPlaceRateByUserRates(
       GetTourismPlaceRateByUserEvent event,
       Emitter<TourismPlaceState> emit) async {
-    (await getTourismPlaceRateByUserUsecase(event.placeId, event.userId)).fold(
-        (l) {
-      return emit(TourismPlaceState(
-          getTourismPlaceRateByUserState: RequestState.error,
-          getTourismPlaceRateByUserMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        getTourismPlaceRateByUser: r,
-        getTourismPlaceRateByUserState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getTourismPlaceRateByUserUsecase(event.placeId, event.userId))
+          .fold((l) {
+        return emit(TourismPlaceState(
+            getTourismPlaceRateByUserState: RequestState.error,
+            getTourismPlaceRateByUserMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          getTourismPlaceRateByUser: r,
+          getTourismPlaceRateByUserState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _updateCreateTourismPlaceFavorite(
@@ -280,35 +357,47 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
     emit(TourismPlaceState(
       updateCreateTourismPlaceFavoriteState: RequestState.loaded,
     ));
-    (await updateCreateTourismPlaceFavoriteUsecase(
-      event.updateCreateTourFavorite,
-    ))
-        .fold((l) {
-      return emit(TourismPlaceState(
-          updateCreateTourismPlaceFavoriteState: RequestState.error,
-          updateCreateTourismPlaceFavoriteMessage: l.message));
-    }, (r) {
-      print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-      print(favPlaceMap[placeId]);
-      print(event.updateCreateTourFavorite.fav);
-      print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-      return emit(TourismPlaceState(
-        updateCreateTourismPlaceFavoriteState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await updateCreateTourismPlaceFavoriteUsecase(
+        event.updateCreateTourFavorite,
+      ))
+          .fold((l) {
+        return emit(TourismPlaceState(
+            updateCreateTourismPlaceFavoriteState: RequestState.error,
+            updateCreateTourismPlaceFavoriteMessage: l.message));
+      }, (r) {
+        // print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+        // print(favPlaceMap[placeId]);
+        // print(event.updateCreateTourFavorite.fav);
+        // print("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+        return emit(TourismPlaceState(
+          updateCreateTourismPlaceFavoriteState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 
   FutureOr<void> _getTourismPlaceFavorite(GetTourismPlaceFavoriteEvent event,
       Emitter<TourismPlaceState> emit) async {
-    (await getTourismPlaceFavoriteUsecase(const NoParameters())).fold((l) {
-      return emit(TourismPlaceState(
-          getTourismPlaceFavoriteState: RequestState.error,
-          getTourismPlaceFavoriteMessage: l.message));
-    }, (r) {
-      return emit(TourismPlaceState(
-        getTourismPlaceFavorite: r,
-        getTourismPlaceFavoriteState: RequestState.loaded,
-      ));
-    });
+    try {
+      (await getTourismPlaceFavoriteUsecase(const NoParameters())).fold((l) {
+        return emit(TourismPlaceState(
+            getTourismPlaceFavoriteState: RequestState.error,
+            getTourismPlaceFavoriteMessage: l.message));
+      }, (r) {
+        return emit(TourismPlaceState(
+          getTourismPlaceFavorite: r,
+          getTourismPlaceFavoriteState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(TourismPlaceState(
+          tourismPlaceState: RequestState.error,
+          tourismPlaceMessage: "Have Problem Try Again"));
+    }
   }
 }

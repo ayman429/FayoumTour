@@ -16,9 +16,8 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
 
   @override
   Future<Either<Failure, List<TourismPlace>>> getTourismPlace() async {
-    final result = await baseTourismPlaceRemoteDataSource.getTourismPlaces();
-
     try {
+      final result = await baseTourismPlaceRemoteDataSource.getTourismPlaces();
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -27,9 +26,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
 
   @override
   Future<Either<Failure, Unit>> addTourismPlace(placeModel) async {
-    final add =
-        await baseTourismPlaceRemoteDataSource.addTourismPlaces(placeModel);
     try {
+      final add =
+          await baseTourismPlaceRemoteDataSource.addTourismPlaces(placeModel);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -38,9 +37,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
 
   @override
   Future<Either<Failure, Unit>> updateTourismPlace(placeModel) async {
-    final add =
-        await baseTourismPlaceRemoteDataSource.updateTourismPlaces(placeModel);
     try {
+      final add = await baseTourismPlaceRemoteDataSource
+          .updateTourismPlaces(placeModel);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -49,10 +48,10 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
 
   @override
   Future<Either<Failure, String>> deleteTourismPlace(id) async {
-    final result =
-        await baseTourismPlaceRemoteDataSource.deleteTourismPlaces(id);
-
     try {
+      final result =
+          await baseTourismPlaceRemoteDataSource.deleteTourismPlaces(id);
+
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -61,10 +60,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
 
   @override
   Future<Either<Failure, TourismPlace>> getTourismPlaceById(id) async {
-    final result =
-        await baseTourismPlaceRemoteDataSource.getTourismPlacesById(id);
-
     try {
+      final result =
+          await baseTourismPlaceRemoteDataSource.getTourismPlacesById(id);
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -73,10 +71,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
 
   @override
   Future<Either<Failure, List<TourismPlace>>> searchByField(search) async {
-    final result =
-        await baseTourismPlaceRemoteDataSource.searchByFields(search);
-
     try {
+      final result =
+          await baseTourismPlaceRemoteDataSource.searchByFields(search);
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -86,10 +83,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
   // model1
   @override
   Future<Either<Failure, List<TourismPlace>>> model1(model1Input) async {
-    final result =
-        await baseTourismPlaceRemoteDataSource.model1Places(model1Input);
-
     try {
+      final result =
+          await baseTourismPlaceRemoteDataSource.model1Places(model1Input);
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -98,9 +94,8 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
 
   @override
   Future<Either<Failure, List<TourismPlace>>> searchByRate() async {
-    final result = await baseTourismPlaceRemoteDataSource.searchByRate();
-
     try {
+      final result = await baseTourismPlaceRemoteDataSource.searchByRate();
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -109,10 +104,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
 
   @override
   Future<Either<Failure, List<TourismPlace>>> orderingByField(search) async {
-    final result =
-        await baseTourismPlaceRemoteDataSource.orderingByFields(search);
-
     try {
+      final result =
+          await baseTourismPlaceRemoteDataSource.orderingByFields(search);
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -121,10 +115,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
 
   @override
   Future<Either<Failure, List<TourismPlaceRate>>> getTourismPlaceRate() async {
-    final result =
-        await baseTourismPlaceRemoteDataSource.getTourismPlaceRates();
-
     try {
+      final result =
+          await baseTourismPlaceRemoteDataSource.getTourismPlaceRates();
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -133,10 +126,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
 
   @override
   Future<Either<Failure, TourismPlaceRate>> getTourismPlaceRateById(id) async {
-    final result =
-        await baseTourismPlaceRemoteDataSource.getTourismPlaceRateById(id);
-
     try {
+      final result =
+          await baseTourismPlaceRemoteDataSource.getTourismPlaceRateById(id);
       return Right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -146,9 +138,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
   @override
   Future<Either<Failure, Unit>> updateCreateTourismPlaceRate(
       tourismPlaceRateModel, tourismPlaceID) async {
-    final add = await baseTourismPlaceRemoteDataSource
-        .updateCreateTourismPlaceRates(tourismPlaceRateModel, tourismPlaceID);
     try {
+      final add = await baseTourismPlaceRemoteDataSource
+          .updateCreateTourismPlaceRates(tourismPlaceRateModel, tourismPlaceID);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -158,9 +150,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
   @override
   Future<Either<Failure, String>> getTourismPlaceRateByUser(
       placeId, userId) async {
-    final add = await baseTourismPlaceRemoteDataSource
-        .getTourismPlaceRateByUser(placeId, userId);
     try {
+      final add = await baseTourismPlaceRemoteDataSource
+          .getTourismPlaceRateByUser(placeId, userId);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -170,9 +162,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
   @override
   Future<Either<Failure, Unit>> updateCreateTourismPlaceFavorite(
       tourismPlaceFavoriteModel) async {
-    final add = await baseTourismPlaceRemoteDataSource
-        .updateCreateTourismPlaceFavorites(tourismPlaceFavoriteModel);
     try {
+      final add = await baseTourismPlaceRemoteDataSource
+          .updateCreateTourismPlaceFavorites(tourismPlaceFavoriteModel);
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));
@@ -181,9 +173,9 @@ class TourismPlaceRerpository extends BaseTourismPlaceRepository {
 
   @override
   Future<Either<Failure, List<TourismPlace>>> getTourismPlaceFavorite() async {
-    final add =
-        await baseTourismPlaceRemoteDataSource.getTourismPlaceFavorites();
     try {
+      final add =
+          await baseTourismPlaceRemoteDataSource.getTourismPlaceFavorites();
       return Right(add);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMassageModel.statusMassage));

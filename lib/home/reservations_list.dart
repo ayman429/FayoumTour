@@ -179,9 +179,15 @@ class GetReservationData extends StatelessWidget {
                                         : const TextStyle(
                                             fontFamily: "acme", fontSize: 16.5),
                               ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
                               Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 5),
+                                // margin:
+                                //     const EdgeInsets.symmetric(horizontal: 2),
                                 decoration: BoxDecoration(
                                     color: Theme.of(context)
                                         .colorScheme
@@ -195,7 +201,7 @@ class GetReservationData extends StatelessWidget {
                                       ),
                                     ]),
                                 height: 30,
-                                width: 70,
+                                width: MediaQuery.of(context).size.width * 0.35,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -261,7 +267,7 @@ class GetReservationData extends StatelessWidget {
                                       ),
                                     ]),
                                 height: 30,
-                                width: 70,
+                                width: MediaQuery.of(context).size.width * 0.35,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -506,6 +512,61 @@ class GetReservationData extends StatelessWidget {
                               ),
                             ],
                           ),
+                          const SizedBox(height: 10),
+                          type == "user"
+                              ? Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      AppLocalizations.of(context)!
+                                          .translate("Status"),
+                                      style: sharedPreferences!
+                                                  .getString("Language") ==
+                                              "AR"
+                                          ? const TextStyle(
+                                              fontFamily: "messiri",
+                                              fontSize: 16)
+                                          : const TextStyle(
+                                              fontFamily: "acme", fontSize: 16),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Container(
+                                        height: 30,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.65,
+                                        decoration: BoxDecoration(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .onTertiaryContainer,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.grey,
+                                                blurRadius: 2,
+                                                //offset: Offset(4,4),
+                                              ),
+                                            ]),
+                                        child: Center(
+                                            child: Text(
+                                          sharedPreferences!
+                                                      .getString("Language") ==
+                                                  "AR"
+                                              ? "قيد المراجعة"
+                                              : "${data[index].status}",
+                                          style: const TextStyle(
+                                              fontFamily: "acme",
+                                              fontSize: 18,
+                                              color: Colors.green,
+                                              fontWeight: FontWeight.bold),
+                                        ))),
+                                  ],
+                                )
+                              : Container()
                         ],
                       ),
                     ],

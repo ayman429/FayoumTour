@@ -3,7 +3,8 @@ class CreatedBy {
   String? userName;
   String? email;
   var image;
-  CreatedBy({this.id, this.userName, this.email, this.image});
+  bool? mark;
+  CreatedBy({this.id, this.userName, this.email, this.image, this.mark});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -11,6 +12,7 @@ class CreatedBy {
     data['userName'] = userName;
     data['email'] = email;
     data['image'] = image;
+    data['mark'] = mark;
     return data;
   }
 }

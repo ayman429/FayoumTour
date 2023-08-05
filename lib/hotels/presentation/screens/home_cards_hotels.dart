@@ -24,16 +24,16 @@ class HomeCardsHotels extends StatelessWidget {
               Text(
                 AppLocalizations.of(context)!.translate("Hotels"),
                 style: sharedPreferences!.getString("Language") == "AR"
-                ? const TextStyle(fontFamily: "dg", fontSize: 18)
-                : const TextStyle(fontFamily: "alata", fontSize: 18),
+                    ? const TextStyle(fontFamily: "dg", fontSize: 18)
+                    : const TextStyle(fontFamily: "alata", fontSize: 18),
               ),
               Row(
                 children: [
                   Text(
                     AppLocalizations.of(context)!.translate("See More"),
                     style: sharedPreferences!.getString("Language") == "AR"
-                ? const TextStyle(fontFamily: "dg", fontSize: 18)
-                : const TextStyle(fontFamily: "alata", fontSize: 18),
+                        ? const TextStyle(fontFamily: "dg", fontSize: 18)
+                        : const TextStyle(fontFamily: "alata", fontSize: 18),
                   ),
                   const Icon(Icons.arrow_right)
                 ],
@@ -175,7 +175,9 @@ class HomeCardsHotels extends StatelessWidget {
               ),
             );
           case RequestState.error:
-            return const Center(child: Text("Error"));
+            BlocProvider.of<HotelsBloc>(context).add(GetHotelsEvent());
+            return const SizedBox(
+                height: 200, child: Center(child: CircularProgressIndicator()));
         }
       }))
     ]);

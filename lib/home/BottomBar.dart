@@ -83,10 +83,9 @@ class _BottomBarState extends State<BottomBar> {
                   onChanged: (value) {
                     setState(() {
                       search_counter = 0;
-                    _text = value;
-                    // print(_text);
+                      _text = value;
+                      // print(_text);
                     });
-                    
                   },
                 ),
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
@@ -106,18 +105,16 @@ class _BottomBarState extends State<BottomBar> {
                 ),
               )
             : AppBar(
-                title: Text(
-                  AppStrings.titlesFunc(context, selected),
-                  style: sharedPreferences!.getString("Language") == "AR" ? const TextStyle(
-                      fontFamily:
-                      "galaxy",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28)
-                      :const TextStyle(
-                      fontFamily: AppStrings.fontFamily,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25)
-                ),
+                title: Text(AppStrings.titlesFunc(context, selected),
+                    style: sharedPreferences!.getString("Language") == "AR"
+                        ? const TextStyle(
+                            fontFamily: "galaxy",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 28)
+                        : const TextStyle(
+                            fontFamily: AppStrings.fontFamily,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25)),
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
                 backgroundColor: Colors.transparent,
                 elevation: 0,

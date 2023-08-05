@@ -76,7 +76,7 @@ class AuthenticationRemoteDataSource
 
       await sharedPreferences!
           .setBool("is_manager", userDetails.is_manager ?? false);
-      await sharedPreferences!.setBool("mark", userDetails.mark ?? false);
+      // await sharedPreferences!.setBool("mark", userDetails.mark ?? false);
       await sharedPreferences!.setInt("managerId", userDetails.managerId ?? 0);
 
       userDetails.model1Input != ""
@@ -119,7 +119,7 @@ class AuthenticationRemoteDataSource
       await sharedPreferences!.setString("USERID", userDetails.id ?? "0");
       await sharedPreferences!
           .setBool("is_manager", userDetails.is_manager ?? false);
-      await sharedPreferences!.setBool("mark", userDetails.mark ?? false);
+      // await sharedPreferences!.setBool("mark", userDetails.mark ?? false);
       await sharedPreferences!.setInt("managerId", userDetails.managerId ?? 0);
       userDetails.placeType != ""
           ? await sharedPreferences!.setString(
@@ -203,7 +203,8 @@ class AuthenticationRemoteDataSource
     // print("resetPasswordToJson = $resetPasswordToJson");
     try {
       // Reset Password , Request and Response
-      final response = await Dio().post(ApiConstance.resetPasswordPath, data: resetPasswordToJson);
+      final response = await Dio()
+          .post(ApiConstance.resetPasswordPath, data: resetPasswordToJson);
       //print("response = ${response.data}");
       // return unit
       return Future.value(unit);
@@ -221,7 +222,8 @@ class AuthenticationRemoteDataSource
     final passwordResetConfirmToJson = passwordResetConfirmModel.toJson();
     try {
       // password Reset Confirm , Request and Response
-      final response = Dio().post(passwordResetConfirmModel.link,data: passwordResetConfirmToJson);
+      final response = Dio().post(passwordResetConfirmModel.link,
+          data: passwordResetConfirmToJson);
       // return unit
       return Future.value(unit);
     } on DioException catch (e) {

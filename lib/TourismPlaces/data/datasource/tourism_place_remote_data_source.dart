@@ -44,8 +44,10 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
           (response.data as List).map((e) => TourismPlaceModel.fromJson(e)));
     } on DioError catch (e) {
       // return Error Message
+      // print("/////////////////////////////");
+      // print(e.message);
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -61,7 +63,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -77,7 +79,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -93,7 +95,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -110,7 +112,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -125,8 +127,9 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
           (response.data as List).map((e) => TourismPlaceModel.fromJson(e)));
     } on DioError catch (e) {
       // return Error Message
+
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.error.toString()),
       );
     }
   }
@@ -134,8 +137,8 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
   // model1
   @override
   Future<List<TourismPlaceModel>> model1Places(model1Input) async {
-    print("---------------------");
-    print(model1Input);
+    // print("---------------------");
+    // print(model1Input);
     try {
       Dio dio = (await DioFactory.create()).dio;
       final response =
@@ -146,9 +149,10 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
           (response.data as List).map((e) => TourismPlaceModel.fromJson(e)));
     } on DioError catch (e) {
       // return Error Message
-      print(e.message);
+      // print("/////////////////////////////");
+      // print(e.error);
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.error.toString()),
       );
     }
   }
@@ -167,7 +171,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.error.toString()),
       );
     }
   }
@@ -184,7 +188,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -200,7 +204,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -214,7 +218,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -233,7 +237,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -249,7 +253,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -271,7 +275,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -290,7 +294,7 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }

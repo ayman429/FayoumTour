@@ -53,7 +53,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -69,7 +69,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -85,7 +85,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -101,7 +101,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -118,7 +118,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -134,7 +134,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.error.toString()),
       );
     }
   }
@@ -153,7 +153,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.error.toString()),
       );
     }
   }
@@ -170,7 +170,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -186,7 +186,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -200,7 +200,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -217,7 +217,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -235,7 +235,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       print("=============>");
       print(e.message);
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -256,7 +256,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -273,7 +273,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -294,7 +294,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       print("====================");
       print(e.response);
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -305,8 +305,8 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       Dio dio = (await DioFactory.create()).dio;
       final response = await dio.get(ApiConstance.getHotelReservationByUserPath,
           data: {"user": userId});
-      print("====================");
-      print(response.data);
+      // print("====================");
+      // print(response.data);
       return List<HotelReservationModel>.from((response.data as List)
           .map((e) => HotelReservationModel.fromJson(e)));
     } on DioError catch (e) {
@@ -314,7 +314,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       print("====================");
       print(e.response);
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -333,7 +333,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       print("=================");
       print(e.response);
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -357,7 +357,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }
@@ -373,7 +373,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     } on DioError catch (e) {
       // return Error Message
       throw ServerException(
-        errorMassageModel: ErrorMassageModel.fromJson(e.response),
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
     }
   }

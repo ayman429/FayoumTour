@@ -130,7 +130,7 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      primary: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(

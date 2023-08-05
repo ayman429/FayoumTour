@@ -5,12 +5,13 @@ class CreatedByModel extends CreatedBy {
       {required super.id,
       required super.userName,
       required super.email,
-      required super.image});
+      required super.image,
+      required super.mark});
 
   factory CreatedByModel.fromJson(Map<String, dynamic> json) => CreatedByModel(
-        id: json['id'],
-        userName: json['userName'],
-        email: json['email'],
-        image: json['image'],
-      );
+      id: json['id'],
+      userName: json['userName'],
+      email: json['email'],
+      image: json['image'],
+      mark: json['mark']);
 }

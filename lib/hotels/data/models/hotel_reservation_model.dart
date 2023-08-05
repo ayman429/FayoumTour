@@ -2,21 +2,23 @@ import '../../domain/entities/hotel_reservation.dart';
 import 'created_by_model.dart';
 
 class HotelReservationModel extends HotelReservation {
-  HotelReservationModel(
-      {required super.id,
-      required super.hotel,
-      required super.hotelImage,
-      required super.hotelName,
-      required super.hotelNameAR,
-      required super.user,
-      required super.phone_number,
-      required super.adulls,
-      required super.kids,
-      required super.check_in,
-      required super.check_out,
-      required super.created_at,
-      required super.updated_at,
-      required super.createdBy});
+  HotelReservationModel({
+    required super.id,
+    required super.hotel,
+    required super.hotelImage,
+    required super.hotelName,
+    required super.hotelNameAR,
+    required super.user,
+    required super.phone_number,
+    required super.adulls,
+    required super.kids,
+    required super.check_in,
+    required super.check_out,
+    required super.created_at,
+    required super.updated_at,
+    required super.createdBy,
+    required super.status,
+  });
 
   factory HotelReservationModel.fromJson(Map<String, dynamic> json) {
     return HotelReservationModel(
@@ -33,6 +35,7 @@ class HotelReservationModel extends HotelReservation {
       check_out: json['check_out'],
       created_at: json['created_at'],
       updated_at: json['updated_at'],
+      status: json['status'],
       createdBy: CreatedByModel.fromJson(json['created_by'] ?? {}),
     );
   }
@@ -51,5 +54,6 @@ class HotelReservationModel extends HotelReservation {
             check_out: hotelReservation.check_out,
             created_at: hotelReservation.created_at,
             updated_at: hotelReservation.updated_at,
+            status: hotelReservation.status,
             createdBy: hotelReservation.createdBy);
 }

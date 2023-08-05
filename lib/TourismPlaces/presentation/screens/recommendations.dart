@@ -24,16 +24,16 @@ class recommendations extends StatelessWidget {
               Text(
                 AppLocalizations.of(context)!.translate("Recommendations"),
                 style: sharedPreferences!.getString("Language") == "AR"
-                ? const TextStyle(fontFamily: "dg", fontSize: 18)
-                : const TextStyle(fontFamily: "alata", fontSize: 18),
+                    ? const TextStyle(fontFamily: "dg", fontSize: 18)
+                    : const TextStyle(fontFamily: "alata", fontSize: 18),
               ),
               Row(
                 children: [
                   Text(
                     AppLocalizations.of(context)!.translate("See More"),
                     style: sharedPreferences!.getString("Language") == "AR"
-                ? const TextStyle(fontFamily: "dg", fontSize: 18)
-                : const TextStyle(fontFamily: "alata", fontSize: 18),
+                        ? const TextStyle(fontFamily: "dg", fontSize: 18)
+                        : const TextStyle(fontFamily: "alata", fontSize: 18),
                   ),
                   const Icon(Icons.arrow_right)
                 ],
@@ -77,7 +77,11 @@ class recommendations extends StatelessWidget {
               ),
             );
           case RequestState.error:
-            return const Center(child: Text("Error"));
+            BlocProvider.of<TourismPlaceBloc>(context).add(Model1Event(
+                model1Input: sharedPreferences!.getString("model1Input") ??
+                    "I Love Historical pyramids, I Enjoy water sports"));
+            return const SizedBox(
+                height: 200, child: Center(child: CircularProgressIndicator()));
         }
       }))
     ]);

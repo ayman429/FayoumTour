@@ -17,6 +17,7 @@ import '../../domain/usecase/get_hotel_by_id_usecase.dart';
 import '../../domain/usecase/hotel_reservation/add_hotel_usecase.dart';
 import '../../domain/usecase/hotel_reservation/delete_hotel_usecase.dart';
 import '../../domain/usecase/hotel_reservation/get_hotel_usecase.dart';
+import '../../domain/usecase/hotel_reservation/update_hotel_res_usecase.dart';
 import '../../domain/usecase/hotel_reservation/update_hotel_usecase.dart';
 import '../../domain/usecase/ordering_by_fields.dart';
 import '../../domain/usecase/rateUsecases/get_all_hotel_rate_usecase.dart';
@@ -54,6 +55,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
   final GetHotelReservationByUserUsecase getHotelReservationByUserUsecase;
   final AddHotelReservationUsecase addHotelReservationUsecase;
   final UpdateHotelReservationUsecase updateHotelReservationUsecase;
+  final UpdateHotelReservationByUserUsecase updateHotelReservationByUserUsecase;
   final DeleteHotelReservationUsecase deleteHotelReservationUsecase;
 
   HotelsBloc(
@@ -75,6 +77,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     this.getHotelReservationByUserUsecase,
     this.addHotelReservationUsecase,
     this.updateHotelReservationUsecase,
+    this.updateHotelReservationByUserUsecase,
     this.deleteHotelReservationUsecase,
   ) : super(HotelsState()) {
     on<GetHotelsEvent>(_getHotels);
@@ -99,6 +102,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
     on<GetHotelsReservationByUserEvent>(_getHotelsReservationByUser);
     on<AddHotelReservationEvent>(_addHotelReservation);
     on<UpdateHotelReservationEvent>(_updateHotelReservation);
+    on<UpdateHotelReservationByUserEvent>(_updateHotelReservationByUser);
     on<DeleteHotelReservationEvent>(_deleteHotelReservation);
   }
 
@@ -135,8 +139,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          hotelStateById: RequestState.error,
+          hotelMessageById: "Have Problem Try Again"));
     }
   }
 
@@ -153,8 +157,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          addHotelState: RequestState.error,
+          addHotelMessage: "Have Problem Try Again"));
     }
   }
 
@@ -172,8 +176,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          updateHotelState: RequestState.error,
+          updateHotelMessage: "Have Problem Try Again"));
     }
   }
 
@@ -191,8 +195,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          deleteHotelState: RequestState.error,
+          deleteHotelMessage: "Have Problem Try Again"));
     }
   }
 
@@ -211,8 +215,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          searchHotelState: RequestState.error,
+          searchHotelsMessage: "Have Problem Try Again"));
     }
   }
 
@@ -231,8 +235,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          searchHotelRateState: RequestState.error,
+          searchHotelRateMessage: "Have Problem Try Again"));
     }
   }
 
@@ -251,8 +255,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          orderingHotelState: RequestState.error,
+          orderingHotelMessage: "Have Problem Try Again"));
     }
   }
 
@@ -271,8 +275,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          getHotelRateState: RequestState.error,
+          getHotelRateMessage: "Have Problem Try Again"));
     }
   }
 
@@ -291,8 +295,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          getHotelRateByIdState: RequestState.error,
+          getHotelRateByIdMessage: "Have Problem Try Again"));
     }
   }
 
@@ -319,8 +323,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          updateCreateHotelRateState: RequestState.error,
+          updateCreateHotelRateMessage: "Have Problem Try Again"));
     }
   }
 
@@ -339,8 +343,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          getHotelRateByUserState: RequestState.error,
+          getHotelRateByUserMessage: "Have Problem Try Again"));
     }
   }
 
@@ -370,8 +374,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          updateCreateHotelFavoriteState: RequestState.error,
+          updateCreateHotelFavoriteMessage: "Have Problem Try Again"));
     }
   }
 
@@ -390,8 +394,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          getHotelFavoriteState: RequestState.error,
+          getHotelFavoriteMessage: "Have Problem Try Again"));
     }
   }
 
@@ -411,8 +415,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          hotelReservationState: RequestState.error,
+          hotelReservationMessage: "Have Problem Try Again"));
     }
   }
 
@@ -431,8 +435,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          hotelReservationByUserState: RequestState.error,
+          hotelReservationByUserMessage: "Have Problem Try Again"));
     }
   }
 
@@ -473,8 +477,30 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          updateHotelReservationState: RequestState.error,
+          updateHotelReservationMessage: "Have Problem Try Again"));
+    }
+  }
+
+  FutureOr<void> _updateHotelReservationByUser(
+      UpdateHotelReservationByUserEvent event,
+      Emitter<HotelsState> emit) async {
+    try {
+      (await updateHotelReservationByUserUsecase(
+              event.hotelReservation, event.reservationId))
+          .fold((l) {
+        return emit(HotelsState(
+            updateHotelReservationByUserState: RequestState.error,
+            updateHotelReservationByUserMessage: l.message));
+      }, (r) {
+        return emit(HotelsState(
+          updateHotelReservationByUserState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
+      emit(HotelsState(
+          updateHotelReservationByUserState: RequestState.error,
+          updateHotelReservationByUserMessage: "Have Problem Try Again"));
     }
   }
 
@@ -492,8 +518,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       });
     } catch (e) {
       emit(HotelsState(
-          hotelState: RequestState.error,
-          hotelMessage: "Have Problem Try Again"));
+          deleteHotelReservationState: RequestState.error,
+          deleteHotelReservationMessage: "Have Problem Try Again"));
     }
   }
 }

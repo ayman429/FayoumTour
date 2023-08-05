@@ -39,5 +39,7 @@ abstract class BaseHotelRepository {
       HotelReservationModel hotelReservationModel);
   Future<Either<Failure, Unit>> updateHotelReservation(
       HotelReservationModel hotelReservationModel);
+  Future<Either<Failure, Unit>> updateHotelReservationByUser(
+      hotelReservationModel, reservationId);
   Future<Either<Failure, String>> deleteHotelReservation(String id);
 }

@@ -215,6 +215,19 @@ class HotelRerpository extends BaseHotelRepository {
     }
   }
 
+  //updateHotelsReservationByUser
+  @override
+  Future<Either<Failure, Unit>> updateHotelReservationByUser(
+      hotelReservationModel, reservationId) async {
+    try {
+      final add = await baseHotelRemoteDataSource.updateHotelsReservationByUser(
+          hotelReservationModel, reservationId);
+      return Right(add);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMassageModel.statusMassage));
+    }
+  }
+
   @override
   Future<Either<Failure, String>> deleteHotelReservation(id) async {
     try {

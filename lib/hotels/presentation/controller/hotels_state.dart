@@ -70,6 +70,8 @@ class HotelsState {
 
   final RequestState updateHotelReservationState;
   final String updateHotelReservationMessage;
+  final RequestState updateHotelReservationByUserState;
+  final String updateHotelReservationByUserMessage;
 
   final RequestState deleteHotelReservationState;
   final String deleteHotelReservationMessage;
@@ -124,6 +126,8 @@ class HotelsState {
     this.addHotelReservationMessage = '',
     this.updateHotelReservationState = RequestState.loading,
     this.updateHotelReservationMessage = '',
+    this.updateHotelReservationByUserState = RequestState.loading,
+    this.updateHotelReservationByUserMessage = '',
     this.deleteHotelReservationState = RequestState.loading,
     this.deleteHotelReservationMessage = '',
   });
@@ -178,6 +182,8 @@ class HotelsState {
     String? addHotelReservationMessage,
     RequestState? updateHotelReservationState,
     String? updateHotelReservationMessage,
+    RequestState? updateHotelReservationByUserState,
+    String? updateHotelReservationByUserMessage,
     RequestState? deleteHotelReservationState,
     String? deleteHotelReservationMessage,
   }) {
@@ -253,6 +259,11 @@ class HotelsState {
           updateHotelReservationState ?? this.updateHotelReservationState,
       updateHotelReservationMessage:
           updateHotelReservationMessage ?? this.updateHotelReservationMessage,
+      updateHotelReservationByUserState: updateHotelReservationByUserState ??
+          this.updateHotelReservationByUserState,
+      updateHotelReservationByUserMessage:
+          updateHotelReservationByUserMessage ??
+              this.updateHotelReservationByUserMessage,
       deleteHotelReservationState:
           deleteHotelReservationState ?? this.deleteHotelReservationState,
       deleteHotelReservationMessage:

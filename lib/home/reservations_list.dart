@@ -3,9 +3,13 @@ import 'package:fayoumtour/hotels/presentation/controller/hotels_bloc.dart';
 import 'package:fayoumtour/hotels/presentation/controller/hotels_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../core/services/services_locator.dart';
 import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
+import '../core/utils/enums.dart';
+import '../hotels/domain/entities/hotel_reservation.dart';
+import '../hotels/presentation/controller/hotels_state.dart';
 
 class GetReservationData extends StatelessWidget {
   dynamic data;
@@ -513,58 +517,216 @@ class GetReservationData extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 10),
-                          type == "user"
-                              ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      AppLocalizations.of(context)!
-                                          .translate("Status"),
-                                      style: sharedPreferences!
-                                                  .getString("Language") ==
-                                              "AR"
-                                          ? const TextStyle(
-                                              fontFamily: "messiri",
-                                              fontSize: 16)
-                                          : const TextStyle(
-                                              fontFamily: "acme", fontSize: 16),
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Container(
-                                        height: 30,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.65,
-                                        decoration: BoxDecoration(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .onTertiaryContainer,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                color: Colors.grey,
-                                                blurRadius: 2,
-                                                //offset: Offset(4,4),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                AppLocalizations.of(context)!
+                                    .translate("Status"),
+                                style:
+                                    sharedPreferences!.getString("Language") ==
+                                            "AR"
+                                        ? const TextStyle(
+                                            fontFamily: "messiri", fontSize: 16)
+                                        : const TextStyle(
+                                            fontFamily: "acme", fontSize: 16),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Container(
+                                  height: 30,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.65,
+                                  decoration: BoxDecoration(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onTertiaryContainer,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          blurRadius: 2,
+                                          //offset: Offset(4,4),
+                                        ),
+                                      ]),
+                                  child: Center(
+                                      child: Text(
+                                    sharedPreferences!.getString("Language") ==
+                                            "AR"
+                                        ? "قيد المراجعة"
+                                        : "${data[index].status}",
+                                    style: const TextStyle(
+                                        fontFamily: "acme",
+                                        fontSize: 18,
+                                        color: Colors.green,
+                                        fontWeight: FontWeight.bold),
+                                  ))),
+                            ],
+                          ),
+                          type != "user"
+                              ? const SizedBox(height: 10)
+                              : Container(),
+                          type != "user"
+                              ? BlocProvider(
+                                  create: (context) => getIt<HotelsBloc>(),
+                                  child: BlocConsumer<HotelsBloc, HotelsState>(
+                                    listener: (context, state) {
+                                      if (state.updateHotelReservationState ==
+                                          RequestState.loaded) {
+                                        Navigator.pop(context);
+
+                                        // Navigator.pop(context);
+                                      } else if (state
+                                              .updateHotelReservationState ==
+                                          RequestState.error) {
+                                        print(
+                                            "//////////////...............................");
+                                        print(state.addHotelReservationMessage);
+                                        Navigator.pop(context);
+                                      }
+                                    },
+                                    builder: (context, state) {
+                                      return Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          TextButton(
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                barrierDismissible: false,
+                                                builder: (ctx) =>
+                                                    const FractionallySizedBox(
+                                                  widthFactor:
+                                                      0.5, // Set the desired width factor (0.0 to 1.0)
+                                                  child: AlertDialog(
+                                                    content: SizedBox(
+                                                      width: double.infinity,
+                                                      height: 30,
+                                                      child: Center(
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+
+                                              HotelReservation
+                                                  hotelReservation =
+                                                  HotelReservation(
+                                                status: "Reject",
+                                                id: data[index].id.toString(),
+                                              );
+                                              BlocProvider.of<HotelsBloc>(
+                                                      context)
+                                                  .add(UpdateHotelReservationEvent(
+                                                      hotelReservation:
+                                                          hotelReservation));
+                                            },
+                                            style: TextButton.styleFrom(
+                                                backgroundColor: Colors.red,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15)),
+                                                elevation: 10),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 2,
+                                                      horizontal: 20),
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .translate("Reject"),
+                                                style: TextStyle(
+                                                    fontFamily: sharedPreferences!
+                                                                .getString(
+                                                                    "Language") ==
+                                                            "AR"
+                                                        ? "Mag"
+                                                        : "rye",
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary,
+                                                    fontSize: 17),
                                               ),
-                                            ]),
-                                        child: Center(
-                                            child: Text(
-                                          sharedPreferences!
-                                                      .getString("Language") ==
-                                                  "AR"
-                                              ? "قيد المراجعة"
-                                              : "${data[index].status}",
-                                          style: const TextStyle(
-                                              fontFamily: "acme",
-                                              fontSize: 18,
-                                              color: Colors.green,
-                                              fontWeight: FontWeight.bold),
-                                        ))),
-                                  ],
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 15,
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                barrierDismissible: false,
+                                                builder: (ctx) =>
+                                                    const FractionallySizedBox(
+                                                  widthFactor:
+                                                      0.5, // Set the desired width factor (0.0 to 1.0)
+                                                  child: AlertDialog(
+                                                    content: SizedBox(
+                                                      width: double.infinity,
+                                                      height: 30,
+                                                      child: Center(
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+
+                                              HotelReservation
+                                                  hotelReservation =
+                                                  HotelReservation(
+                                                status: "Accept",
+                                                id: data[index].id.toString(),
+                                              );
+                                              BlocProvider.of<HotelsBloc>(
+                                                      context)
+                                                  .add(UpdateHotelReservationEvent(
+                                                      hotelReservation:
+                                                          hotelReservation));
+                                            },
+                                            style: TextButton.styleFrom(
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                        .colorScheme
+                                                        .primary,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15)),
+                                                elevation: 10),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 2,
+                                                      horizontal: 20),
+                                              child: Text(
+                                                AppLocalizations.of(context)!
+                                                    .translate("Accept"),
+                                                style: TextStyle(
+                                                    fontFamily: sharedPreferences!
+                                                                .getString(
+                                                                    "Language") ==
+                                                            "AR"
+                                                        ? "Mag"
+                                                        : "rye",
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary,
+                                                    fontSize: 17),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 )
                               : Container()
                         ],

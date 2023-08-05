@@ -39,16 +39,16 @@ class HotelReservation {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
 
-    data['id'] = id;
-    data['hotel'] = hotel;
-    data['user'] = user;
-    data['phone_number'] = phone_number;
-    data['adulls'] = adulls;
-    data['kids'] = kids;
-    data['check_in'] = check_in;
-    data['check_out'] = check_out;
-    data['created_at'] = created_at;
-    data['status'] = status;
+    id != null ? data['id'] = id : null;
+    hotel != null ? data['hotel'] = hotel : null;
+    user != null ? data['user'] = user : null;
+    phone_number != null ? data['phone_number'] = phone_number : null;
+    adulls != null ? data['adulls'] = adulls : null;
+    kids != null ? data['kids'] = kids : null;
+    check_in != null ? data['check_in'] = check_in : null;
+    check_out != null ? data['check_out'] = check_out : null;
+    created_at != null ? data['created_at'] = created_at : null;
+    status != null ? data['status'] = status : null;
 
     return data;
   }

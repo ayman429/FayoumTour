@@ -115,8 +115,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          tourismPlaceStateById: RequestState.error,
+          tourismPlaceMessageById: "Have Problem Try Again"));
     }
   }
 
@@ -134,8 +134,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          addTourismPlaceState: RequestState.error,
+          addTourismPlaceMessage: "Have Problem Try Again"));
     }
   }
 
@@ -153,8 +153,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          searchTourismPlaceState: RequestState.error,
+          updateTourismPlaceMessage: "Have Problem Try Again"));
     }
   }
 
@@ -172,8 +172,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          deleteTourismPlaceState: RequestState.error,
+          deleteTourismPlaceMessage: "Have Problem Try Again"));
     }
   }
 
@@ -194,8 +194,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          searchTourismPlaceState: RequestState.error,
+          searchTourismPlaceMessage: "Have Problem Try Again"));
     }
   }
 
@@ -213,8 +213,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          model1State: RequestState.error,
+          model1Message: "Have Problem Try Again"));
     }
   }
 
@@ -233,8 +233,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          searchTourismPlaceRateState: RequestState.error,
+          searchTourismPlaceRateMessage: "Have Problem Try Again"));
     }
   }
 
@@ -253,8 +253,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          orderingTourismPlaceState: RequestState.error,
+          orderingTourismPlaceMessage: "Have Problem Try Again"));
     }
   }
 
@@ -273,8 +273,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          getTourismPlaceRateState: RequestState.error,
+          getTourismPlaceRateMessage: "Have Problem Try Again"));
     }
   }
 
@@ -293,8 +293,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          getTourismPlaceRateByIdState: RequestState.error,
+          getTourismPlaceRateByIdMessage: "Have Problem Try Again"));
     }
   }
 
@@ -322,8 +322,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          updateCreateTourismPlaceRateState: RequestState.error,
+          updateCreateTourismPlaceRateMessage: "Have Problem Try Again"));
     }
   }
 
@@ -344,8 +344,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          getTourismPlaceRateByUserState: RequestState.error,
+          getTourismPlaceRateByUserMessage: "Have Problem Try Again"));
     }
   }
 
@@ -376,8 +376,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          updateCreateTourismPlaceFavoriteState: RequestState.error,
+          updateCreateTourismPlaceFavoriteMessage: "Have Problem Try Again"));
     }
   }
 
@@ -396,8 +396,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
       });
     } catch (e) {
       emit(TourismPlaceState(
-          tourismPlaceState: RequestState.error,
-          tourismPlaceMessage: "Have Problem Try Again"));
+          getTourismPlaceFavoriteState: RequestState.error,
+          getTourismPlaceFavoriteMessage: "Have Problem Try Again"));
     }
   }
 }

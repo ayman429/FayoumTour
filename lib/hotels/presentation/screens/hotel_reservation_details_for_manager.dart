@@ -22,6 +22,8 @@ class HotelsReservationDetailsForManager extends StatelessWidget {
         ..add(GetHotelsReservationEvent(
             hotelId: sharedPreferences!.getInt("managerId") ?? 0));
     }, child: BlocBuilder<HotelsBloc, HotelsState>(builder: (context, state) {
+      BlocProvider.of<HotelsBloc>(context).add(GetHotelsReservationEvent(
+          hotelId: sharedPreferences!.getInt("managerId") ?? 0));
       switch (state.hotelReservationState) {
         case RequestState.loading:
           return const SizedBox(
@@ -30,17 +32,16 @@ class HotelsReservationDetailsForManager extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: Text(
-                AppLocalizations.of(context)!.translate("Reservation"),
-                style: sharedPreferences!.getString("Language") == "AR"
-            ? const TextStyle(
-                fontFamily: "galaxy",
-                fontWeight: FontWeight.bold,
-                fontSize: 28)
-            : const TextStyle(
-                fontFamily: AppStrings.fontFamily,
-                fontWeight: FontWeight.bold,
-                fontSize: 25)
-              ),
+                  AppLocalizations.of(context)!.translate("Reservation"),
+                  style: sharedPreferences!.getString("Language") == "AR"
+                      ? const TextStyle(
+                          fontFamily: "galaxy",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28)
+                      : const TextStyle(
+                          fontFamily: AppStrings.fontFamily,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25)),
               centerTitle: true,
               backgroundColor: Colors.transparent,
               elevation: 0,

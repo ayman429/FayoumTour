@@ -35,9 +35,11 @@ abstract class BaseHotelRemoteDataSource {
   Future<List<HotelReservationModel>> getHotelsReservationByUser(int userId);
   Future<String> deleteHotelsReservation(id);
   Future<Unit> addHotelsReservation(
-      HotelReservationModel HotelReservationModel);
+      HotelReservationModel hotelReservationModel);
   Future<Unit> updateHotelsReservation(
-      HotelReservationModel HotelReservationModel);
+      HotelReservationModel hotelReservationModel);
+  Future<Unit> updateHotelsReservationByUser(
+      HotelReservationModel hotelReservationModel, String reservationId);
 }
 
 class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
@@ -348,11 +350,29 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     try {
       Dio dio = (await DioFactory.create()).dio;
       final response = await dio.patch(
-          ApiConstance.hotelReservationPath +
-              "/" +
-              hotelReservationModelsToJson["id"] +
-              "/",
+          "${"${ApiConstance.hotelReservationPath}/" + hotelReservationModelsToJson["id"]}/",
           data: hotelReservationModelsToJson);
+      return Future.value(unit);
+    } on DioError catch (e) {
+      // return Error Message
+      print("..................");
+      print(e.response);
+      throw ServerException(
+        errorMassageModel: ErrorMassageModel.fromJson(e.message),
+      );
+    }
+  }
+
+  @override
+  Future<Unit> updateHotelsReservationByUser(
+      hotelReservationModel, reservationId) async {
+    Map<String, dynamic> hotelReservationModelsToJson =
+        hotelReservationModel.toJson();
+    try {
+      Dio dio = (await DioFactory.create()).dio;
+      final response = await dio.patch(
+          "${ApiConstance.hotelReservationPath}/$reservationId/updateReservation/",
+          data: {"status": hotelReservationModelsToJson["status"]});
       return Future.value(unit);
     } on DioError catch (e) {
       // return Error Message

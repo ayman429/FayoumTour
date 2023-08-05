@@ -336,9 +336,11 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                                   : "You have already reserved it.",
                           context: context);
                     } else {
-                      SnackBarMessage().showErrorSnackBar(
-                          message: state.addHotelReservationMessage,
-                          context: context);
+                      // print("/////////////////");
+                      // print(state.addHotelReservationMessage);
+                      // SnackBarMessage().showErrorSnackBar(
+                      //     message: state.addHotelReservationMessage,
+                      //     context: context);
                     }
                   }
                 }, builder: (context, state) {

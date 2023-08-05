@@ -108,6 +108,8 @@
   "Validate": "تحقق",
   "This feature will be available soon!": "سيتم تفعيل هذه الخاصية قريبًا!",
   "CopyRights": "2023 FayTour . كل الحقوق محفوظة.",
-  "Status":"الحالة"
+  "Status":"الحالة",
+  "Accept":"قبول",
+  "Reject":"رفض"
 
 }

@@ -118,6 +118,15 @@ class UpdateHotelReservationEvent extends HotelsEvent {
   });
 }
 
+class UpdateHotelReservationByUserEvent extends HotelsEvent {
+  HotelReservation hotelReservation;
+  String reservationId;
+  UpdateHotelReservationByUserEvent({
+    required this.hotelReservation,
+    required this.reservationId,
+  });
+}
+
 class DeleteHotelReservationEvent extends HotelsEvent {
   String hotelsId;
   DeleteHotelReservationEvent({

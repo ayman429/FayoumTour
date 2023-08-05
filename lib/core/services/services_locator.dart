@@ -46,6 +46,7 @@ import '../../hotels/domain/usecase/get_hotel_usecase.dart';
 import '../../hotels/domain/usecase/hotel_reservation/add_hotel_usecase.dart';
 import '../../hotels/domain/usecase/hotel_reservation/delete_hotel_usecase.dart';
 import '../../hotels/domain/usecase/hotel_reservation/get_hotel_usecase.dart';
+import '../../hotels/domain/usecase/hotel_reservation/update_hotel_res_usecase.dart';
 import '../../hotels/domain/usecase/hotel_reservation/update_hotel_usecase.dart';
 import '../../hotels/domain/usecase/ordering_by_fields.dart';
 import '../../hotels/domain/usecase/rateUsecases/get_all_hotel_rate_usecase.dart';
@@ -145,6 +146,7 @@ class ServicesLocator {
         getIt(),
         getIt(),
         getIt(),
+        getIt(),
         getIt()));
 
     /// Use Cases
@@ -169,6 +171,8 @@ class ServicesLocator {
         .registerLazySingleton(() => GetHotelReservationByUserUsecase(getIt()));
     getIt.registerLazySingleton(() => AddHotelReservationUsecase(getIt()));
     getIt.registerLazySingleton(() => UpdateHotelReservationUsecase(getIt()));
+    getIt.registerLazySingleton(
+        () => UpdateHotelReservationByUserUsecase(getIt()));
     getIt.registerLazySingleton(() => DeleteHotelReservationUsecase(getIt()));
 
     /// Repository

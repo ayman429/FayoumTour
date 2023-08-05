@@ -110,5 +110,8 @@
   "CopyRights": "2023 FayTour . All rights reserved.",
   "Status":"Status",
   "Accept":"Accept",
-  "Reject":"Reject"
+  "Reject":"Reject",
+  "Get QR":"Get QR",
+  "Secan QR":"Secan QR",
+  "QRReservation":"Reservation Data"
 }

@@ -1,15 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:fayoumtour/Authentication/domain/entities/user_details.dart';
 import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/local_data_shared_preferences/access_token_shared_preferences.dart';
 import '../../../../core/services/services_locator.dart';
 import '../../../../core/utils/app_localizations.dart';
+import '../../../../home/ScanQR.dart';
 import '../../../../home/info.dart';
 import '../../../../hotels/presentation/screens/hotel_reservation_details_for_manager.dart';
 import '../../../../hotels/presentation/screens/hotel_reservation_details_for_user.dart';
@@ -22,7 +24,11 @@ import 'base_update_profile.dart';
 import 'settings.dart';
 
 class profile_screen extends StatefulWidget {
-  const profile_screen({Key? key}) : super(key: key);
+  String type = "user";
+  profile_screen({
+    Key? key,
+    required this.type,
+  }) : super(key: key);
 
   @override
   State<profile_screen> createState() => _profile_screenState();
@@ -178,6 +184,18 @@ class _profile_screenState extends State<profile_screen> {
                                 builder: (context) =>
                                     const HotelsReservationDetailsForUser()));
                   }),
+              widget.type == "manger"
+                  ? ProfileMenuWidget(
+                      title:
+                          AppLocalizations.of(context)!.translate("Secan QR"),
+                      icon: Icons.qr_code_scanner,
+                      onPress: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const QRViewExample()));
+                      })
+                  : Container(),
               ProfileMenuWidget(
                   title: AppLocalizations.of(context)!.translate("Information"),
                   icon: Icons.info,

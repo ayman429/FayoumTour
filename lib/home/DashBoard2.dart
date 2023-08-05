@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import '../Authentication/presentation/screens/profile/profile_screen.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../post/presentation/screens/add_post.dart';
@@ -17,7 +18,7 @@ class DashBoardScreen extends StatefulWidget {
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
   List<Widget> Screens = [
-    Profile(),
+    profile_screen(type: "manger"),
     const AddPost(),
   ];
   static List<String> titles2 = [

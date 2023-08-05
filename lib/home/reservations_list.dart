@@ -1,3 +1,4 @@
+import 'package:fayoumtour/home/QR.dart';
 import 'package:fayoumtour/home/reserve.dart';
 import 'package:fayoumtour/hotels/presentation/controller/hotels_bloc.dart';
 import 'package:fayoumtour/hotels/presentation/controller/hotels_event.dart';
@@ -554,7 +555,13 @@ class GetReservationData extends StatelessWidget {
                                       child: Text(
                                     sharedPreferences!.getString("Language") ==
                                             "AR"
-                                        ? "قيد المراجعة"
+                                        ? data[index].status == "under review"
+                                            ? "قيد المراجعة"
+                                            : data[index].status == "Accept"
+                                                ? "تم القبول"
+                                                : data[index].status == "Reject"
+                                                    ? "تم الرفض"
+                                                    : "قيد المراجعة"
                                         : "${data[index].status}",
                                     style: const TextStyle(
                                         fontFamily: "acme",
@@ -564,6 +571,46 @@ class GetReservationData extends StatelessWidget {
                                   ))),
                             ],
                           ),
+                          type == "user" && data[index].status == "Accept"
+                              ? const SizedBox(height: 10)
+                              : Container(),
+                          type == "user" && data[index].status == "Accept"
+                              ? ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              QR(data: data[index]),
+                                        ));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      primary:
+                                          Theme.of(context).colorScheme.primary,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      elevation: 10),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 2, horizontal: 20),
+                                    child: Text(
+                                      AppLocalizations.of(context)!
+                                          .translate("Get QR"),
+                                      style: TextStyle(
+                                          fontFamily: sharedPreferences!
+                                                      .getString("Language") ==
+                                                  "AR"
+                                              ? "Mag"
+                                              : "rye",
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                          fontSize: 17),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
                           type != "user"
                               ? const SizedBox(height: 10)
                               : Container(),

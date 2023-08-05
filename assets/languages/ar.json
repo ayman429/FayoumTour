@@ -110,6 +110,9 @@
   "CopyRights": "2023 FayTour . كل الحقوق محفوظة.",
   "Status":"الحالة",
   "Accept":"قبول",
-  "Reject":"رفض"
+  "Reject":"رفض",
+  "Get QR":"باركود",
+  "Secan QR":"مسح الباركود",
+  "QRReservation":"بيانات الحجز"
 
 }

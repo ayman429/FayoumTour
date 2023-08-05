@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import '../Authentication/presentation/screens/profile/profile_screen.dart';
 import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
@@ -35,7 +36,7 @@ class _BottomBarState extends State<BottomBar> {
   // }
 
   List<Widget> Screens = [
-    Profile(),
+    profile_screen(type: "user"),
     const NEAR(),
     Home(tourtismType: tourtismTypes),
     const AddPost(),

@@ -30,7 +30,10 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         : "FayTour Community",
   ];
   int selected = 0;
-
+  List upIcons = [
+    "assets/images/profileIconUp.png",
+    "assets/images/comIconUp.png",
+  ];
   @override
   void initState() {
     super.initState();
@@ -53,16 +56,32 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
-          leading: selected == 1
-              ? Container(
-                  margin: const EdgeInsets.only(left: 8),
-                  child: Hero(
-                    tag: AppStrings.loginHeroTag,
-                    child: Image.asset(AppStrings.logoImage),
+          leading: Container(
+            margin: sharedPreferences!.getString("Language") == "AR"
+                ? const EdgeInsets.only(
+                    right: 7,
+                  )
+                : const EdgeInsets.only(
+                    left: 7,
                   ),
-                )
-              : null,
-          actions: null,
+            child: Hero(
+              tag: AppStrings.loginHeroTag,
+              child: Image.asset(AppStrings.logoImage),
+            ),
+          ),
+          actions: [
+            Container(
+              height: 42,
+              width: 45,
+              margin: sharedPreferences!.getString("Language") == "AR"
+                  ? const EdgeInsets.only(left: 5)
+                  : const EdgeInsets.only(right: 5),
+              child: Hero(
+                tag: AppStrings.loginHeroTag,
+                child: Image.asset(upIcons[selected]),
+              ),
+            ),
+          ],
         ),
         body: Screens[selected],
         bottomNavigationBar: CurvedNavigationBar(
@@ -77,9 +96,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               color: selected == 0 ? Colors.green : null,
             ),
             Icon(
-              selected == 3 ? Icons.add_circle : Icons.add_circle_outline,
+              selected == 1 ? Icons.add_circle : Icons.add_circle_outline,
               size: 25,
-              color: selected == 3 ? Colors.green : null,
+              color: selected == 1 ? Colors.green : null,
             ),
           ],
           onTap: (value) {

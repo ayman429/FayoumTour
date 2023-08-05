@@ -132,6 +132,60 @@ class _LoginFormState extends State<LoginForm> {
                           Validation.validationMessage(state.loginMessage);
                       SnackBarMessage().showErrorSnackBar(
                           message: message, context: context);
+                      // showDialog(
+                      //   barrierDismissible: false,
+                      //   context: context,
+                      //   builder: (BuildContext context) {
+                      //     return AlertDialog(
+                      //       title: Text(
+                      //         sharedPreferences!.getString("Language") == "AR"
+                      //             ? "رسالة خطأ"
+                      //             : "Message Error",
+                      //         style: sharedPreferences!.getString("Language") ==
+                      //                 "AR"
+                      //             ? const TextStyle(fontFamily: "messiri")
+                      //             : const TextStyle(fontFamily: "merriweather"),
+                      //       ),
+                      //       content: Text(
+                      //         message,
+                      //         style: sharedPreferences!.getString("Language") ==
+                      //                 "AR"
+                      //             ? const TextStyle(fontFamily: "messiri")
+                      //             : const TextStyle(fontFamily: "merriweather"),
+                      //       ),
+                      //       actions: <Widget>[
+                      //         Center(
+                      //           child: ElevatedButton(
+                      //               onPressed: () {
+                      //                 Navigator.of(context).pop();
+                      //               },
+                      //               style: ElevatedButton.styleFrom(
+                      //                 primary: Colors.green,
+                      //                 shape: RoundedRectangleBorder(
+                      //                     borderRadius:
+                      //                         BorderRadius.circular(15)),
+                      //               ),
+                      //               child: Text(
+                      //                 AppLocalizations.of(context)!
+                      //                     .translate("Okay"),
+                      //                 style: TextStyle(
+                      //                     fontFamily: sharedPreferences!
+                      //                                 .getString("Language") ==
+                      //                             "AR"
+                      //                         ? "Mag"
+                      //                         : "rye",
+                      //                     color: Theme.of(context)
+                      //                         .colorScheme
+                      //                         .onSecondary),
+                      //               )),
+                      //         ),
+                      //       ],
+                      //       shape: RoundedRectangleBorder(
+                      //           borderRadius: BorderRadius.circular(15)),
+                      //     );
+                      //   },
+                      // );
+
                     }
                   },
                   builder: (context, state) {

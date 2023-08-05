@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
 
 class Validation {
@@ -16,30 +17,50 @@ class Validation {
       // print(messageError);
       if (messageError == AppStrings.apiEmptyString1 ||
           messageError.contains(AppStrings.apiEmptyString2)) {
-        validationMessage = AppStrings.messageEmptyString;
+        validationMessage = sharedPreferences!.getString("Language") == "AR"
+            ? "يجب ملئ الفراعات."
+            : AppStrings.messageEmptyString;
       } else if (messageError == AppStrings.emailError) {
-        validationMessage = AppStrings.emailError;
+        validationMessage = sharedPreferences!.getString("Language") == "AR"
+            ? "تجب كتابة اميل صالح."
+            : AppStrings.emailError;
       } else if (messageError.contains(AppStrings.apiCredentials)) {
-        validationMessage = AppStrings.messageCredentials;
+        validationMessage = sharedPreferences!.getString("Language") == "AR"
+            ? "الايميل او كلمة المرور خاطئ."
+            : AppStrings.messageCredentials;
       } else if (messageError == AppStrings.passwordLenError) {
-        validationMessage = AppStrings.passwordLenError;
+        validationMessage = sharedPreferences!.getString("Language") == "AR"
+            ? "كلمة المرور هذه قصيرة جدًا. يجب ألا تقل عن 8 أحرف."
+            : AppStrings.passwordLenError;
       } else if (messageError == AppStrings.passwordMatchedError) {
-        validationMessage = AppStrings.passwordMatchedError;
+        validationMessage = sharedPreferences!.getString("Language") == "AR"
+            ? "كلمة المرور غير متطابقة."
+            : AppStrings.passwordMatchedError;
       } else if (messageError == AppStrings.passwordCommonError) {
-        validationMessage = AppStrings.passwordCommonError;
+        validationMessage = sharedPreferences!.getString("Language") == "AR"
+            ? "كلمة المرور هذه شائعة جدًا."
+            : AppStrings.passwordCommonError;
       } else if (messageError == AppStrings.usernameExists ||
           messageError == AppStrings.customUserExists) {
-        validationMessage = AppStrings.usernameExists;
+        validationMessage = sharedPreferences!.getString("Language") == "AR"
+            ? "المستخدم بهذا الاسم موجود من قبل."
+            : AppStrings.usernameExists;
       } else if (messageError == AppStrings.passwordSimilar) {
-        validationMessage = AppStrings.passwordSimilar;
+        validationMessage = sharedPreferences!.getString("Language") == "AR"
+            ? "كلمة المرور مشابهة جدًا لعنوان البريد الإلكتروني."
+            : AppStrings.passwordSimilar;
       } else {
         //print("Unexpected Error");
         //print(messageError);
-        validationMessage = "Unexpected Error";
+        validationMessage = sharedPreferences!.getString("Language") == "AR"
+            ? "حدثت مشكلة حاول مرة اخري."
+            : "problem happened try again";
       }
       return validationMessage;
     }
-    return "problem happened try again";
+    return sharedPreferences!.getString("Language") == "AR"
+        ? "حدثت مشكلة حاول مرة اخري."
+        : "problem happened try again";
   }
 /*{"new_password2":["This password is too short. It must contain at least 8 characters.",
 "This password is too common.","This password is entirely numeric."]} */

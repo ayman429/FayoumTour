@@ -25,65 +25,70 @@ class SigupForm extends StatelessWidget {
   TextEditingController password1Controller = TextEditingController();
   TextEditingController password2Controller = TextEditingController();
   SigupForm({Key? key}) : super(key: key);
-  int indexError = 0;
+  // int indexError = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         UserNameTextFormField(userNameController: userNameController),
         EmailTextFormField(emailController: emailController),
-        PasswordTextFormField(passwordController: password1Controller,isConfirm: false,),
+        PasswordTextFormField(
+          passwordController: password1Controller,
+          isConfirm: false,
+        ),
         const SizedBox(height: AppPadding.p16),
-        PasswordTextFormField(passwordController: password2Controller,isConfirm: true,),
+        PasswordTextFormField(
+          passwordController: password2Controller,
+          isConfirm: true,
+        ),
         const SizedBox(height: AppPadding.p16),
         DropdownButtonFormField<int>(
-                      
-                      borderRadius: BorderRadius.circular(15),
-                      value: sharedPreferences!.getString("Language") == "AR" ? 1 : 0,
-                      decoration: InputDecoration(
-                        
-                        prefixIcon:  Padding(
-                        padding: const EdgeInsets.all(AppPadding.p16),
-                        child: Text(sharedPreferences!.getString("Language") == "AR" ? "🇸🇦" :"🇬🇧",style: const TextStyle(fontSize: 20),),
-                      ),
-                        border: const OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                                contentPadding: sharedPreferences!.getString("Language") == "AR"
-                                ? const EdgeInsets.symmetric(vertical: 18,horizontal: 6)
-                                : const EdgeInsets.symmetric(vertical: 16,horizontal: 6),
-                        
-                      ),
-                      items: [
-                        DropdownMenuItem(
-                                value: 0,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 1),
-                                  child: Text(AppLocalizations.of(context)!.translate("English")),
-                                ),
-                                ),
-                              DropdownMenuItem(
-                                value: 1,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 1),
-                                  child: Text(AppLocalizations.of(context)!.translate("Arabic")),
-                                ),
-                              ),
-                              ],
-                      onChanged: (value) {
-                        
-                          if (value == 0) {
-                            BlocProvider.of<AppLanguageBloc>(context)
-                                .add(EnglishLanguageEvent());
-                            sharedPreferences!.setString("Language", "EN");
-                          } else {
-                            BlocProvider.of<AppLanguageBloc>(context)
-                                .add(ArabicLanguageEvent());
-                            sharedPreferences!.setString("Language", "AR");
-                          }
-                        
-                      },
-                    ),
+          borderRadius: BorderRadius.circular(15),
+          value: sharedPreferences!.getString("Language") == "AR" ? 1 : 0,
+          decoration: InputDecoration(
+            prefixIcon: Padding(
+              padding: const EdgeInsets.all(AppPadding.p16),
+              child: Text(
+                sharedPreferences!.getString("Language") == "AR"
+                    ? "🇸🇦"
+                    : "🇬🇧",
+                style: const TextStyle(fontSize: 20),
+              ),
+            ),
+            border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15))),
+            contentPadding: sharedPreferences!.getString("Language") == "AR"
+                ? const EdgeInsets.symmetric(vertical: 18, horizontal: 6)
+                : const EdgeInsets.symmetric(vertical: 16, horizontal: 6),
+          ),
+          items: [
+            DropdownMenuItem(
+              value: 0,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 1),
+                child: Text(AppLocalizations.of(context)!.translate("English")),
+              ),
+            ),
+            DropdownMenuItem(
+              value: 1,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 1),
+                child: Text(AppLocalizations.of(context)!.translate("Arabic")),
+              ),
+            ),
+          ],
+          onChanged: (value) {
+            if (value == 0) {
+              BlocProvider.of<AppLanguageBloc>(context)
+                  .add(EnglishLanguageEvent());
+              sharedPreferences!.setString("Language", "EN");
+            } else {
+              BlocProvider.of<AppLanguageBloc>(context)
+                  .add(ArabicLanguageEvent());
+              sharedPreferences!.setString("Language", "AR");
+            }
+          },
+        ),
         const SizedBox(height: AppPadding.p16),
         Hero(
           tag: AppStrings.loginHeroTag,
@@ -102,9 +107,7 @@ class SigupForm extends StatelessWidget {
                     // }
                   } else if (state.registrationstate == RequestState.error) {
                     String message;
-                    if (indexError == 1) {
-                      Navigator.pop(context);
-                    }
+                    Navigator.pop(context);
 
                     message =
                         Validation.validationMessage(state.registrationMessage);
@@ -123,27 +126,23 @@ class SigupForm extends StatelessWidget {
                       BlocProvider.of<AuthenticationBloc>(context)
                           .add(RegistrationEvent(registration: registration));
 
-                      if (state.registrationstate == RequestState.loading) {
-                        //print("signup Loding");
-                        indexError = 1;
-                        showDialog(
-                          barrierDismissible: false,
-                          context: context,
-                          builder: (ctx) => const FractionallySizedBox(
-                            widthFactor:
-                                0.5, // Set the desired width factor (0.0 to 1.0)
-                            child: AlertDialog(
-                              content: SizedBox(
-                                width: double.infinity,
-                                height: 30,
-                                child: Center(
-                                  child: CircularProgressIndicator(),
-                                ),
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (ctx) => const FractionallySizedBox(
+                          widthFactor:
+                              0.5, // Set the desired width factor (0.0 to 1.0)
+                          child: AlertDialog(
+                            content: SizedBox(
+                              width: double.infinity,
+                              height: 30,
+                              child: Center(
+                                child: CircularProgressIndicator(),
                               ),
                             ),
                           ),
-                        );
-                      }
+                        ),
+                      );
                     },
                     style: TextButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -153,7 +152,10 @@ class SigupForm extends StatelessWidget {
                     child: Text(
                       AppLocalizations.of(context)!.translate("SIGN UP"),
                       style: TextStyle(
-                          fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
+                          fontFamily:
+                              sharedPreferences!.getString("Language") == "AR"
+                                  ? "Mag"
+                                  : "rye",
                           fontSize: 16,
                           color: Theme.of(context).colorScheme.secondary),
                     ),

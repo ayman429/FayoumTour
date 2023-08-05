@@ -110,6 +110,14 @@ class _BottomBarState extends State<BottomBar> {
                         borderRadius: BorderRadius.circular(50),
                       ),
                     ),
+                    textInputAction: TextInputAction.search,
+                    onSubmitted: (value) {
+                      setState(() {
+                        search_counter = 0;
+
+                        _text = _searchController.text;
+                      });
+                    },
                     onChanged: (value) {
                       setState(() {
                         // _searchController.text = _searchController.text;

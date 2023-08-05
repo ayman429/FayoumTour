@@ -77,7 +77,10 @@ class NearestTourismPlaces extends StatelessWidget {
           );
 
         case RequestState.error:
-          return const Center(child: Text("Error"));
+          BlocProvider.of<TourismPlaceBloc>(context)
+              .add(GetTourismPlaceEvent());
+          return const SizedBox(
+              height: 200, child: Center(child: CircularProgressIndicator()));
       }
     }));
   }

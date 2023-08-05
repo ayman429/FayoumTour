@@ -74,20 +74,51 @@ class _BottomBarState extends State<BottomBar> {
         backgroundColor: Theme.of(context).colorScheme.onSecondary,
         appBar: search
             ? AppBar(
-                title: TextField(
-                  controller: _searchController,
-                  decoration: InputDecoration(
-                    hintText:
-                        AppLocalizations.of(context)!.translate("Search..."),
-                    border: InputBorder.none,
+                title: Container(
+                  height: 40,
+                  child: TextField(
+                    controller: _searchController,
+                    style: TextStyle(fontSize: 16),
+                    textAlignVertical: TextAlignVertical.center,
+                    decoration: InputDecoration(
+                      hintText:
+                          AppLocalizations.of(context)!.translate("Search..."),
+                      prefixIcon: IconButton(
+                        icon: Icon(Icons.search),
+                        onPressed: () {
+                          setState(() {
+                            search_counter = 0;
+
+                            _text = _searchController.text;
+                          });
+                        },
+                      ),
+                      suffixIcon: _searchController.text.isNotEmpty
+                          ? IconButton(
+                              icon: Icon(Icons.clear),
+                              onPressed: () {
+                                _searchController.clear();
+                                setState(() {
+                                  _text = '';
+                                  search_counter = 0;
+                                });
+                              },
+                            )
+                          : null,
+                      contentPadding: EdgeInsets.symmetric(vertical: 8),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        // _searchController.text = _searchController.text;
+                        // search_counter = 0;
+                        // _text = value;
+                        // print(_text);
+                      });
+                    },
                   ),
-                  onChanged: (value) {
-                    setState(() {
-                      search_counter = 0;
-                      _text = value;
-                      // print(_text);
-                    });
-                  },
                 ),
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
                 backgroundColor: Colors.transparent,

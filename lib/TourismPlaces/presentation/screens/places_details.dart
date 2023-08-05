@@ -41,7 +41,10 @@ class PlacesDetails extends StatelessWidget {
                 data: state.tourismPlaceById, index: 0, type: "places"),
           );
         case RequestState.error:
-          return const Center(child: Text("Error"));
+          BlocProvider.of<TourismPlaceBloc>(context)
+              .add(GetTourismPlacesByIdEvent(tourId: tourId));
+          return const SizedBox(
+              height: 200, child: Center(child: CircularProgressIndicator()));
       }
     }));
   }

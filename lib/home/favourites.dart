@@ -30,8 +30,11 @@ class _FavoritesState extends State<Favorites> {
         child: Text(
           AppLocalizations.of(context)!.translate("Nothing Yet fav"),
           style: TextStyle(
-              fontFamily: sharedPreferences!.getString("Language") == "AR" ? "aref" :"pressStart2p",
-              fontSize: sharedPreferences!.getString("Language") == "AR" ?38:23,
+              fontFamily: sharedPreferences!.getString("Language") == "AR"
+                  ? "aref"
+                  : "pressStart2p",
+              fontSize:
+                  sharedPreferences!.getString("Language") == "AR" ? 38 : 23,
               color: Theme.of(context).colorScheme.primary),
         ),
       );
@@ -140,7 +143,10 @@ class _FavoritesState extends State<Favorites> {
                             ? snapshot![index]["nameAR"]
                             : snapshot![index]["name"],
                         style: TextStyle(
-                          fontFamily: sharedPreferences!.getString("Language") == "AR" ? "lemo" :"merriweather",
+                          fontFamily:
+                              sharedPreferences!.getString("Language") == "AR"
+                                  ? "lemo"
+                                  : "merriweather",
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           color: Theme.of(context).colorScheme.onPrimary,

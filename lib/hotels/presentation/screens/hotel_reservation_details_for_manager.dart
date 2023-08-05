@@ -51,7 +51,10 @@ class HotelsReservationDetailsForManager extends StatelessWidget {
           );
 
         case RequestState.error:
-          return const Center(child: Text("Error"));
+          BlocProvider.of<HotelsBloc>(context).add(GetHotelsReservationEvent(
+              hotelId: sharedPreferences!.getInt("managerId") ?? 0));
+          return const SizedBox(
+              height: 200, child: Center(child: CircularProgressIndicator()));
       }
     }));
   }

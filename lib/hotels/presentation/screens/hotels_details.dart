@@ -29,7 +29,10 @@ class HotelsDetails extends StatelessWidget {
             child: UpBarImage(data: state.hotelsById, index: 1, type: "hotels"),
           );
         case RequestState.error:
-          return const Center(child: Text("Error"));
+          BlocProvider.of<HotelsBloc>(context)
+              .add(GetHotelsByIdEvent(hotelsId: hotelsId));
+          return const SizedBox(
+              height: 200, child: Center(child: CircularProgressIndicator()));
       }
     }));
   }

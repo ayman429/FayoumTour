@@ -74,7 +74,6 @@ class _AddPostComponentState extends State<AddPostComponent> {
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
-    String formattedTime = DateFormat('yyyy-MM-dd HH:mm:ss').format(now);
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
         return Scaffold(
@@ -184,7 +183,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                             PostData postData = PostData(
                                 body: body,
                                 images: imagesPath,
-                                createdAt: formattedTime);
+                                createdAt: DateFormat('yyyy-MM-dd HH:mm:ss')
+                                    .format(now));
                             if (widget.type == "add") {
                               BlocProvider.of<PostBloc>(context)
                                   .add(AddPostEvent(postData: postData));

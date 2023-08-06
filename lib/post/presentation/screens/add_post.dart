@@ -68,9 +68,11 @@ class _AddPostState extends State<AddPost> {
                           Row(
                             children: [
                               Padding(
-                                padding: sharedPreferences!.getString("Language") == "AR"
-                                ? const EdgeInsets.only(right: 5)
-                                : const EdgeInsets.only(left: 5),
+                                padding:
+                                    sharedPreferences!.getString("Language") ==
+                                            "AR"
+                                        ? const EdgeInsets.only(right: 5)
+                                        : const EdgeInsets.only(left: 5),
                                 child: SizedBox(
                                   width: 40,
                                   height: 40,
@@ -130,7 +132,8 @@ class _AddPostState extends State<AddPost> {
                                                       .translate(
                                                           "   Write your post now!   "),
                                                   style: const TextStyle(
-                                                      fontSize: 18.0,fontFamily: "amiri"),
+                                                      fontSize: 18.0,
+                                                      fontFamily: "amiri"),
                                                 ),
                                         ),
                                       ),
@@ -142,9 +145,11 @@ class _AddPostState extends State<AddPost> {
                           ),
 
                           Container(
-                              margin: sharedPreferences!.getString("Language") == "AR"
-                                ? const EdgeInsets.only(left: 5)
-                                : const EdgeInsets.only(right: 5),
+                              margin:
+                                  sharedPreferences!.getString("Language") ==
+                                          "AR"
+                                      ? const EdgeInsets.only(left: 5)
+                                      : const EdgeInsets.only(right: 5),
                               child: const Icon(
                                 Icons.filter,
                                 color: Colors.green,

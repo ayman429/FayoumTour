@@ -69,6 +69,7 @@ dependencies:
   animated_splash_screen:
   multi_image_picker:
   intl_utils:
+  pull_to_refresh:
 
 dev_dependencies:
   flutter_test:

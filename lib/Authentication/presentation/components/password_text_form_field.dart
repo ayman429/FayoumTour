@@ -8,7 +8,8 @@ import '../controller/obscure_bloc.dart';
 class PasswordTextFormField extends StatelessWidget {
   final passwordController;
   bool isConfirm;
-  PasswordTextFormField({Key? key, required this.passwordController,required this.isConfirm})
+  PasswordTextFormField(
+      {Key? key, required this.passwordController, required this.isConfirm})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -27,10 +28,11 @@ class PasswordTextFormField extends StatelessWidget {
                           .add(IsObscureEvent());
                     },
                     icon: Icon(state.isObscure
-                        ? Icons.visibility
-                        : Icons.visibility_off)),
+                        ? Icons.visibility_off
+                        : Icons.visibility)),
                 hintText: isConfirm
-                    ? AppLocalizations.of(context)!.translate("Confirm Password")
+                    ? AppLocalizations.of(context)!
+                        .translate("Confirm Password")
                     : AppLocalizations.of(context)!.translate("Your password"),
                 prefixIcon: const Padding(
                   padding: EdgeInsets.all(AppPadding.p16),

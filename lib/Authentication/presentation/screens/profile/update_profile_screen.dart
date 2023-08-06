@@ -65,18 +65,16 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          AppLocalizations.of(context)!.translate("Edit Profile"),
-          style: sharedPreferences!.getString("Language") == "AR"
-            ? const TextStyle(
-                fontFamily: "galaxy",
-                fontWeight: FontWeight.bold,
-                fontSize: 28)
-            : const TextStyle(
-                fontFamily: AppStrings.fontFamily,
-                fontWeight: FontWeight.bold,
-                fontSize: 25)
-        ),
+        title: Text(AppLocalizations.of(context)!.translate("Edit Profile"),
+            style: sharedPreferences!.getString("Language") == "AR"
+                ? const TextStyle(
+                    fontFamily: "galaxy",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 28)
+                : const TextStyle(
+                    fontFamily: AppStrings.fontFamily,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25)),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -85,109 +83,107 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
             children: [
               // -- IMAGE with ICON
               Stack(
-                  children: [
-                    SizedBox(
-                      width: 120,
-                      height: 120,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: displayImage(getImagePath),
-                      ),
+                children: [
+                  SizedBox(
+                    width: 120,
+                    height: 120,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: displayImage(getImagePath),
                     ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: Container(
-                        width: 35,
-                        height: 35,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Theme.of(context).colorScheme.primary),
-                        child: InkWell(
-                          child: Icon(
-                            Icons.edit,
-                            color: Theme.of(context).colorScheme.secondary,
-                            size: 20,
-                          ),
-                          // onTap: _showImagePicker ,
-                          onTap: () async {
-                            final pickedFile = await showModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return SafeArea(
-                                  child: Wrap(
-                                    children: <Widget>[
-                                      ListTile(
-                                        leading:
-                                            const Icon(Icons.photo_library),
-                                        title:
-                                            Text(AppLocalizations.of(context)!
-                                                .translate('Photo Library')),
-                                        onTap: () async {
-                                          final pickedFile = await ImagePicker()
-                                              .pickImage(
-                                                  source: ImageSource.gallery);
-                                          if (pickedFile != null) {
-                                            var userId = await FavouritStorage()
-                                                .getUsersDetails();
-                                            sharedPreferences!.setString(
-                                                "${userId.id}USERIMAGE",
-                                                pickedFile.path);
-                                            //print("path====> ${pickedFile.path}");
-                                          }
-                                          Navigator.pop(context, pickedFile);
-                                        },
-                                      ),
-                                      ListTile(
-                                        leading: const Icon(Icons.photo_camera),
-                                        title:  Text(AppLocalizations.of(context)!
-                                                .translate('Camera')),
-                                        onTap: () async {
-                                          final pickedFile =
-                                              // ignore: deprecated_member_use
-                                              await ImagePicker().pickImage(
-                                                  source: ImageSource.camera);
-                                          if (pickedFile != null) {
-                                            var userId = await FavouritStorage()
-                                                .getUsersDetails();
-                                            sharedPreferences!.setString(
-                                                "${userId.id}USERIMAGE",
-                                                pickedFile.path);
-                                          }
-                                          Navigator.pop(context, pickedFile);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            );
-                            var userId =
-                                await FavouritStorage().getUsersDetails();
-
-                            setState(() {
-                              getImagePath = sharedPreferences!
-                                      .getString("${userId.id}USERIMAGE") ??
-                                  "";
-                            });
-                            UserDetails userDetails =
-                                UserDetails(image: getImagePath);
-                            BlocProvider.of<AuthenticationBloc>(context)
-                                .add(UpdateUserDetailsEvent(
-                                    userDetails: userDetails,
-                                    // File(getImagePath)
-                                    //     .readAsBytesSync(), //FileImage(File(getImagePath)),
-                                    type: "image"));
-                            setState(() {
-                              type = "image";
-                            });
-                            // Navigator.pop(context);
-                          },
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Theme.of(context).colorScheme.primary),
+                      child: InkWell(
+                        child: Icon(
+                          Icons.edit,
+                          color: Theme.of(context).colorScheme.secondary,
+                          size: 20,
                         ),
+                        // onTap: _showImagePicker ,
+                        onTap: () async {
+                          final pickedFile = await showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return SafeArea(
+                                child: Wrap(
+                                  children: <Widget>[
+                                    ListTile(
+                                      leading: const Icon(Icons.photo_library),
+                                      title: Text(AppLocalizations.of(context)!
+                                          .translate('Photo Library')),
+                                      onTap: () async {
+                                        final pickedFile = await ImagePicker()
+                                            .pickImage(
+                                                source: ImageSource.gallery);
+                                        if (pickedFile != null) {
+                                          var userId = await FavouritStorage()
+                                              .getUsersDetails();
+                                          sharedPreferences!.setString(
+                                              "${userId.id}USERIMAGE",
+                                              pickedFile.path);
+                                          //print("path====> ${pickedFile.path}");
+                                        }
+                                        Navigator.pop(context, pickedFile);
+                                      },
+                                    ),
+                                    ListTile(
+                                      leading: const Icon(Icons.photo_camera),
+                                      title: Text(AppLocalizations.of(context)!
+                                          .translate('Camera')),
+                                      onTap: () async {
+                                        final pickedFile =
+                                            // ignore: deprecated_member_use
+                                            await ImagePicker().pickImage(
+                                                source: ImageSource.camera);
+                                        if (pickedFile != null) {
+                                          var userId = await FavouritStorage()
+                                              .getUsersDetails();
+                                          sharedPreferences!.setString(
+                                              "${userId.id}USERIMAGE",
+                                              pickedFile.path);
+                                        }
+                                        Navigator.pop(context, pickedFile);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                          var userId =
+                              await FavouritStorage().getUsersDetails();
+
+                          setState(() {
+                            getImagePath = sharedPreferences!
+                                    .getString("${userId.id}USERIMAGE") ??
+                                "";
+                          });
+                          UserDetails userDetails =
+                              UserDetails(image: getImagePath);
+                          BlocProvider.of<AuthenticationBloc>(context)
+                              .add(UpdateUserDetailsEvent(
+                                  userDetails: userDetails,
+                                  // File(getImagePath)
+                                  //     .readAsBytesSync(), //FileImage(File(getImagePath)),
+                                  type: "image"));
+                          setState(() {
+                            type = "image";
+                          });
+                          // Navigator.pop(context);
+                        },
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
               Padding(
                 padding: const EdgeInsets.all(AppPadding.p16),
                 child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
@@ -195,22 +191,84 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   if (state.updateuserDetailsState == RequestState.loaded ||
                       state.changePasswordstate == RequestState.loaded) {
                     //print("loaded");
+                    Navigator.pop(context);
+                    setState(() {
+                      password1Controller.clear();
+                      password2Controller.clear();
+                    });
+
+                    showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                sharedPreferences!.getString("Language") == "AR"
+                                    ? 'تم التغيير بنجاح'
+                                    : 'change completed successfully',
+                                style:
+                                    sharedPreferences!.getString("Language") ==
+                                            "AR"
+                                        ? const TextStyle(fontFamily: "messiri")
+                                        : const TextStyle(
+                                            fontFamily: "merriweather"),
+                              ),
+                            ],
+                          ),
+                          actions: <Widget>[
+                            Center(
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.green,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                  ),
+                                  child: Text(
+                                    AppLocalizations.of(context)!
+                                        .translate("Okay"),
+                                    style: TextStyle(
+                                        fontFamily: sharedPreferences!
+                                                    .getString("Language") ==
+                                                "AR"
+                                            ? "Mag"
+                                            : "rye",
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary),
+                                  )),
+                            ),
+                          ],
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                        );
+                      },
+                    );
                     if (state.updateuserDetailsState == RequestState.loaded &&
                         type == "username") {
                       String username = state.updateuserDetails ?? "";
                       sharedPreferences!.setString("username", username);
                       Navigator.pop(context);
+                      Navigator.pop(context);
                     }
                   } else if (state.updateuserDetailsState ==
                       RequestState.error) {
                     //print("error: ${state.updateuserDetailsMessage}");
+                    Navigator.pop(context);
                     String message;
                     message = Validation.validationMessage(
                         state.updateuserDetailsMessage);
                     SnackBarMessage()
                         .showErrorSnackBar(message: message, context: context);
                   } else if (state.changePasswordstate == RequestState.error) {
-                    //print("error: ${state.changePasswordMessage}");
+                    print("error: ${state.changePasswordMessage}");
+                    Navigator.pop(context);
                     String message;
                     message = Validation.validationMessage(
                         state.changePasswordMessage);
@@ -218,58 +276,130 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         .showErrorSnackBar(message: message, context: context);
                   }
                 }, builder: (context, state) {
-                  if (state.updateuserDetailsState == RequestState.loading ||
-                      state.changePasswordstate == RequestState.loading) {
-                    //print("loading");
+                  // if (state.updateuserDetailsState == RequestState.loading ||
+                  //     state.changePasswordstate == RequestState.loading) {
+                  //   //print("loading");
 
-                    /// loading
-                    // return Text("Processing");
-                  }
+                  //   /// loading
+                  //   // return Text("Processing");
+                  // }
                   return Container();
                 }),
               ),
               const SizedBox(height: 50),
-              UserNameTextFormField(userNameController: userNameController),
+              // UserNameTextFormField(userNameController: userNameController),
+              TextFormField(
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.next,
+                // cursorColor: ColorManager.kPrimaryColor,
+                controller: userNameController,
+                decoration: InputDecoration(
+                  hintText:
+                      AppLocalizations.of(context)!.translate("Your name"),
+                  prefixIcon: const Padding(
+                    padding: EdgeInsets.all(AppPadding.p16),
+                    child: Icon(Icons.person),
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                      horizontal: AppPadding.p16, vertical: AppPadding.p16),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    // userNameController.text = value;
+                  });
+                },
+              ),
+
               const SizedBox(height: AppPadding.p16),
               SizedBox(
                 width: double.infinity,
-                child: TextButton(
-                  onPressed: () {
-                    UserDetails userDetails =
-                        UserDetails(username: userNameController.text);
-                    BlocProvider.of<AuthenticationBloc>(context).add(
-                        UpdateUserDetailsEvent(
-                            userDetails: userDetails, type: "username"));
-                    setState(() {
-                      type = "username";
-                    });
-                  },
-                  style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Text(
-                      AppLocalizations.of(context)!.translate("EDIT NAME"),
-                      style: TextStyle(
-                          fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
-                          fontSize: 16,
-                          color: Theme.of(context).colorScheme.secondary),
+                child: Opacity(
+                  opacity: userNameController.text == "" ? 0.5 : 1,
+                  child: TextButton(
+                    onPressed: () {
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (ctx) => const FractionallySizedBox(
+                          widthFactor:
+                              0.5, // Set the desired width factor (0.0 to 1.0)
+                          child: AlertDialog(
+                            content: SizedBox(
+                              width: double.infinity,
+                              height: 30,
+                              child: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                      if (userNameController.text != "") {
+                        UserDetails userDetails =
+                            UserDetails(username: userNameController.text);
+                        BlocProvider.of<AuthenticationBloc>(context).add(
+                            UpdateUserDetailsEvent(
+                                userDetails: userDetails, type: "username"));
+                        setState(() {
+                          type = "username";
+                        });
+                      }
+                    },
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Text(
+                        AppLocalizations.of(context)!.translate("EDIT NAME"),
+                        style: TextStyle(
+                            fontFamily:
+                                sharedPreferences!.getString("Language") == "AR"
+                                    ? "Mag"
+                                    : "rye",
+                            fontSize: 16,
+                            color: Theme.of(context).colorScheme.secondary),
+                      ),
                     ),
                   ),
                 ),
               ),
               const SizedBox(height: AppPadding.p16),
-              PasswordTextFormField(passwordController: password1Controller,isConfirm: false,),
+              PasswordTextFormField(
+                passwordController: password1Controller,
+                isConfirm: false,
+              ),
               const SizedBox(height: AppPadding.p16),
-              PasswordTextFormField(passwordController: password2Controller,isConfirm: true,),
+              PasswordTextFormField(
+                passwordController: password2Controller,
+                isConfirm: true,
+              ),
               const SizedBox(height: AppPadding.p16),
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
                   onPressed: () {
+                    showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (ctx) => const FractionallySizedBox(
+                        widthFactor:
+                            0.5, // Set the desired width factor (0.0 to 1.0)
+                        child: AlertDialog(
+                          content: SizedBox(
+                            width: double.infinity,
+                            height: 30,
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
                     ChangePassword changePassword = ChangePassword(
                         new_password1: password1Controller.text,
                         new_password2: password2Controller.text);
@@ -286,7 +416,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     child: Text(
                       AppLocalizations.of(context)!.translate("EDIT PASSWORD"),
                       style: TextStyle(
-                          fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
+                          fontFamily:
+                              sharedPreferences!.getString("Language") == "AR"
+                                  ? "Mag"
+                                  : "rye",
                           fontSize: 16,
                           color: Theme.of(context).colorScheme.secondary),
                     ),

@@ -1,18 +1,17 @@
 import 'package:equatable/equatable.dart';
 
 import 'created_by.dart';
-import 'img.dart';
 
 class Comment extends Equatable {
-  String? id;
-  int? user;
-  int? post;
-  String comment;
-  String? created_at;
-  String? updated_at;
-  CreatedBy? createdBy;
+  final String? id;
+  final int? user;
+  final int? post;
+  final String comment;
+  final String? created_at;
+  final String? updated_at;
+  final CreatedBy? createdBy;
 
-  Comment({
+  const Comment({
     this.id,
     this.user,
     this.post,

@@ -112,6 +112,11 @@
   "Accept":"Accept",
   "Reject":"Reject",
   "Get QR":"Get QR",
-  "Secan QR":"Secan QR",
-  "QRReservation":"Reservation Data"
+  "Secan QR":"Scan QR",
+  "QRReservation":"Reservation Data",
+  "Yes":"Yes",
+  "No":"No",
+  "QRtitle":"Reservation QR",
+  "Are you sure to complete this process?":"Are you sure to complete this process?"
+  
 }

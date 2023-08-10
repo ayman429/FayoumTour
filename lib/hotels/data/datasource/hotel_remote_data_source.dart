@@ -52,7 +52,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       );
       return List<HotelModel>.from(
           (response.data as List).map((e) => HotelModel.fromJson(e)));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -68,7 +68,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       final response =
           await dio.post(ApiConstance.hotelPath, data: hotelModelsToJson);
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -84,7 +84,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       final response =
           await dio.put(ApiConstance.hotelPath, data: hotelModelsToJson);
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -100,7 +100,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
         "${ApiConstance.hotelPath}$ID/",
       );
       return "Deleted";
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -117,7 +117,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       );
 
       return HotelModel.fromJson(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -133,7 +133,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
           .get(ApiConstance.hotelPath, queryParameters: {"search": search});
       return List<HotelModel>.from(
           (response.data as List).map((e) => HotelModel.fromJson(e)));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.error.toString()),
@@ -152,7 +152,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
 
       return List<HotelModel>.from(
           (response.data as List).map((e) => HotelModel.fromJson(e)));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.error.toString()),
@@ -169,7 +169,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
 
       return List<HotelModel>.from(
           (response.data as List).map((e) => HotelModel.fromJson(e)));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -185,7 +185,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
 
       return List<HotelRateModel>.from(
           (response.data as List).map((e) => HotelRateModel.fromJson(e)));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -199,7 +199,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       Dio dio = (await DioFactory.create()).dio;
       final response = await dio.get("${ApiConstance.hotelRatePath}$ID/");
       return HotelRateModel.fromJson(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -213,10 +213,10 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
     try {
       Dio dio = (await DioFactory.create()).dio;
       final response = await dio.post(
-          "${ApiConstance.hotelPath}${HotelID}/rate_Hotel/",
+          "${ApiConstance.hotelPath}$HotelID/rate_Hotel/",
           data: hotelRateModelsToJson);
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -230,12 +230,12 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       Dio dio = (await DioFactory.create()).dio;
       final response = await dio.get(ApiConstance.getHotelRateByUserPath,
           data: {"hotelId": hotelId, "userId": userId});
-      print(response.data);
+      // print(response.data);
       return response.data["star"] ?? "0";
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
-      print("=============>");
-      print(e.message);
+      //print("=============>");
+      //print(e.message);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
@@ -255,7 +255,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
             "user": hotelFavoriteModelsToJson["username"]
           });
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException   catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -272,7 +272,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       });
       return List<HotelModel>.from(
           (response.data as List).map((e) => HotelModel.fromJson(e)));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -291,10 +291,10 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       );
       return List<HotelReservationModel>.from((response.data as List)
           .map((e) => HotelReservationModel.fromJson(e)));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
-      print("====================");
-      print(e.response);
+      //print("====================");
+      //print(e.response);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
@@ -311,10 +311,10 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       // print(response.data);
       return List<HotelReservationModel>.from((response.data as List)
           .map((e) => HotelReservationModel.fromJson(e)));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
-      print("====================");
-      print(e.response);
+      //print("====================");
+      //print(e.response);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
@@ -330,10 +330,10 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       final response = await dio.post(ApiConstance.hotelReservationPath,
           data: hotelReservationModelsToJson);
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
-      print("=================");
-      print(e.response);
+      //print("=================");
+      //print(e.response);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
@@ -342,10 +342,10 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
 
   @override
   Future<Unit> updateHotelsReservation(hotelReservationModel) async {
-    print("------------------------>");
+    //print("------------------------>");
     Map<String, dynamic> hotelReservationModelsToJson =
         hotelReservationModel.toJson();
-    print(hotelReservationModelsToJson["id"]);
+    //print(hotelReservationModelsToJson["id"]);
 
     try {
       Dio dio = (await DioFactory.create()).dio;
@@ -353,10 +353,10 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
           "${"${ApiConstance.hotelReservationPath}/" + hotelReservationModelsToJson["id"]}/",
           data: hotelReservationModelsToJson);
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
-      print("..................");
-      print(e.response);
+      //print("..................");
+      //print(e.response);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );
@@ -374,7 +374,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
           "${ApiConstance.hotelReservationPath}/$reservationId/updateReservation/",
           data: {"status": hotelReservationModelsToJson["status"]});
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -390,7 +390,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
         "${ApiConstance.hotelReservationPath}$id/",
       );
       return "Deleted";
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),

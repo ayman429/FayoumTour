@@ -4,17 +4,17 @@ import 'created_by.dart';
 import 'img.dart';
 
 class Post extends Equatable {
-  String? id;
-  int user;
-  String body;
-  List<ImagesP> imagesP;
-  String? comment_numbers;
-  String? like_numbers;
-  int? like_value;
-  String? createdAt;
-  CreatedBy? createdBy;
+  final String? id;
+  final int user;
+  final String body;
+  final List<ImagesP> imagesP;
+  final String? comment_numbers;
+  final String? like_numbers;
+  final int? like_value;
+  final String? createdAt;
+  final CreatedBy? createdBy;
 
-  Post({
+  const Post({
     this.id,
     required this.user,
     required this.body,

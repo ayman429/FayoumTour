@@ -94,7 +94,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         ));
       });
     } catch (e) {
-      print("l.message ${e}");
+      //print("l.message ${e}");
       return emit(PostState(
           postState: RequestState.error, postMessage: "No Connection"));
     }
@@ -209,8 +209,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
           deleteCommentState: RequestState.error,
           deleteCommentMessage: l.message));
     }, (r) {
-      print("error");
-      print(r);
+      // print("error");
+      // print(r);
       return emit(PostState(
         deleteCommentState: RequestState.loaded,
       ));

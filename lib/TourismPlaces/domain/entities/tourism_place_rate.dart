@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class TourismPlaceRate extends Equatable {
-  int? id;
-  int stars;
-  int? touristPlaces;
-  int user;
-  TourismPlaceRate({
+  final int? id;
+  final int stars;
+  final int? touristPlaces;
+  final int user;
+  const TourismPlaceRate({
     this.id,
     required this.stars,
     this.touristPlaces,

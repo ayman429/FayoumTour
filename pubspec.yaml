@@ -70,6 +70,7 @@ dependencies:
   multi_image_picker:
   intl_utils:
   pull_to_refresh:
+  cached_network_image:
 
 dev_dependencies:
   flutter_test:

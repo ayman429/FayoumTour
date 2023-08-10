@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class Like extends Equatable {
-  int? id;
-  int like;
-  int postId;
-  int user;
-  Like({
+  final int? id;
+  final int like;
+  final int postId;
+  final int user;
+  const Like({
     this.id,
     required this.like,
     required this.postId,

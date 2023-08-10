@@ -2,17 +2,13 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:fayoumtour/home/reservation_list_item.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
-import '../hotels/data/models/hotel_reservation_model.dart';
-import 'BottomBar.dart';
-import 'DashBoard2.dart';
+
 
 Barcode? result;
 
@@ -200,7 +196,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                             Navigator.of(context).pop();
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
+                            backgroundColor: Colors.green,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                           ),
@@ -255,6 +251,8 @@ class _QRViewExampleState extends State<QRViewExample> {
 class QRReserviationView extends StatelessWidget {
   List<String> dataElements = result!.code!.split('*');
   late Map<String, dynamic> json;
+
+  QRReserviationView({super.key});
 
   @override
   Widget build(BuildContext context) {

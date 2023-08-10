@@ -70,7 +70,7 @@ class TopRatedHotels extends StatelessWidget {
               ),
             );
           case RequestState.error:
-            print("bbbbbbbbbbbbbbbbbbbb");
+            //print("bbbbbbbbbbbbbbbbbbbb");
             BlocProvider.of<HotelsBloc>(context).add(SearchHotelByRateEvent());
             return const SizedBox(
                 height: 200, child: Center(child: CircularProgressIndicator()));

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/app_localizations.dart';
@@ -124,7 +125,7 @@ class _AddPostState extends State<AddPost> {
                                                       .translate(
                                                           "   write your offer now!   "),
                                                   style: const TextStyle(
-                                                      fontSize: 18.0),
+                                                      fontSize: 18.0,fontFamily: "amiri"),
                                                 )
                                               : Text(
                                                   // '   Write your post now!   ',
@@ -178,25 +179,38 @@ Widget displayImage(String imagePath) {
       fit: BoxFit.cover,
     );
   } else if (imagePath.contains("https")) {
-    return Image.network(
-      imagePath,
-      fit: BoxFit.cover,
-      errorBuilder: (context, error, stackTrace) {
-        return Image.asset(
-          AppStrings.error1Gif,
-          fit: BoxFit.cover,
-        );
-      },
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress != null) {
-          return Image.asset(
-            AppStrings.loading1Gif,
-            fit: BoxFit.cover,
-          );
-        }
-        return child;
-      },
-    );
+    return
+    CachedNetworkImage(imageUrl: imagePath,
+    fadeInDuration: const Duration(milliseconds: 350),
+                  fadeOutDuration: const Duration(milliseconds: 350),
+                                    fit: BoxFit.cover,
+                placeholder: (context, url) {
+                    return Image.asset(AppStrings.profileImage,fit: BoxFit.cover,);
+                  },
+                  errorWidget: (context, url, error) {
+                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
+                  },
+    )
+        // Image.network(
+        //   imagePath,
+        //   fit: BoxFit.cover,
+        //   errorBuilder: (context, error, stackTrace) {
+        //     return Image.asset(
+        //       AppStrings.error1Gif,
+        //       fit: BoxFit.cover,
+        //     );
+        //   },
+        //   loadingBuilder: (context, child, loadingProgress) {
+        //     if (loadingProgress != null) {
+        //       return Image.asset(
+        //         AppStrings.loading1Gif,
+        //         fit: BoxFit.cover,
+        //       );
+        //     }
+        //     return child;
+        //   },
+        // ),
+      ;
   } else {
     return Image.asset(
       AppStrings.profileImage,

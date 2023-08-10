@@ -5,25 +5,25 @@ import 'img.dart';
 import 'rate_one_by_one.dart';
 
 class TourismPlace extends Equatable {
-  int id;
-  String name;
-  String nameAR;
-  String type;
-  String address;
-  String description;
-  String descriptionAR;
-  double coordinatesX;
-  double coordinatesY;
-  String originalImage;
-  List<ImagesT> imagesT;
-  int noOfRatings;
-  double avgRatings;
-  RateOneByOne rateOneByOne;
-  int user;
-  CreatedBy? createdBy;
-  int? rate_value;
-  int? fav_value;
-  TourismPlace(
+  final int id;
+  final String name;
+  final String nameAR;
+  final String type;
+  final String address;
+  final String description;
+  final String descriptionAR;
+  final double coordinatesX;
+  final double coordinatesY;
+  final String originalImage;
+  final List<ImagesT> imagesT;
+  final int noOfRatings;
+  final double avgRatings;
+  final RateOneByOne rateOneByOne;
+  final int user;
+  final CreatedBy? createdBy;
+  final int? rate_value;
+  final int? fav_value;
+  const TourismPlace(
       {required this.id,
       required this.name,
       required this.nameAR,
@@ -44,7 +44,7 @@ class TourismPlace extends Equatable {
       this.fav_value});
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
     data['nameAR'] = nameAR;

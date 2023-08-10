@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/faliure.dart';
-import '../../../../core/usecase/base_usecase.dart';
 import '../../../data/models/hotel_reservation_model.dart';
 import '../../entities/hotel_reservation.dart';
 import '../../repository/base_hotel_repository.dart';

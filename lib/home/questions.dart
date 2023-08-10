@@ -84,8 +84,8 @@ class _TourismScreenState extends State<TourismScreen>
   void _onOptionSelected(String option) {
     setState(() {
       _selectedOption[route] = option;
-      print("---------------->");
-      print(option);
+      //print("---------------->");
+      //print(option);
     });
   }
 
@@ -484,8 +484,8 @@ class _TourismScreenState extends State<TourismScreen>
                                 listener: (context, state) {
                                   if (state.updateuserDetailsState ==
                                       RequestState.loaded) {
-                                    print("--------------->");
-                                    print(_selectedOption[0]);
+                                    //print("--------------->");
+                                    //print(_selectedOption[0]);
                                     sharedPreferences!.setString(
                                         "placeType", _selectedOption[0]);
                                     Navigator.of(context).pushAndRemoveUntil(
@@ -496,8 +496,7 @@ class _TourismScreenState extends State<TourismScreen>
                                   } else if (state.updateuserDetailsState ==
                                       RequestState.error) {
                                     Navigator.pop(context);
-                                    print(
-                                        "error: ${state.updateuserDetailsMessage}");
+                                    //print("error: ${state.updateuserDetailsMessage}");
                                     String message;
                                     message = Validation.validationMessage(
                                         state.updateuserDetailsMessage);
@@ -569,9 +568,8 @@ class _TourismScreenState extends State<TourismScreen>
                                                 route++;
                                               });
                                             } else {
-                                              print(
-                                                  "-------------------------");
-                                              print(route);
+                                              //print("-------------------------");
+                                              ///print(route);
                                               String model1Input =
                                                   "I Love ${_selectedOption[1]} , I Enjoy ${_selectedOption[2]}";
                                               UserDetails userDetails =

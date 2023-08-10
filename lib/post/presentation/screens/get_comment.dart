@@ -7,8 +7,8 @@ import 'comments.dart';
 import '../controller/bloc/post_bloc.dart';
 
 class GetComment extends StatelessWidget {
-  int postId;
-  GetComment({
+  final int postId;
+  const GetComment({
     Key? key,
     required this.postId,
   }) : super(key: key);
@@ -18,7 +18,7 @@ class GetComment extends StatelessWidget {
     return BlocProvider(create: (context) {
       return getIt<PostBloc>();
     }, child: BlocBuilder<PostBloc, PostState>(builder: (context, state) {
-      print(state.commentState);
+      //print(state.commentState);
       BlocProvider.of<PostBloc>(context).add(GetCommentEvent(postId: postId));
       switch (state.commentState) {
         case RequestState.loading:

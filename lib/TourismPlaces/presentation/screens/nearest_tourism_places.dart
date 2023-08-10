@@ -14,8 +14,8 @@ import '../controller/tourism_place_state.dart';
 // List<int> listId = [];
 
 class NearestTourismPlaces extends StatelessWidget {
-  double lat, lon;
-  NearestTourismPlaces({super.key, required this.lat, required this.lon});
+  final double lat, lon;
+  const NearestTourismPlaces({super.key, required this.lat, required this.lon});
 
   double getDistance(Map<String, dynamic> point) {
     double x1 = lat;

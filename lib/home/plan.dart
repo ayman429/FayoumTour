@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 import '../core/utils/constance/shared_pref.dart';
@@ -61,20 +60,20 @@ final List<String> _imageTextsAr = [
   bool _isDialogOpen = false;
   bool _soundPlaying = false;
 
-  FlutterTts flutterTts = FlutterTts();
+  //FlutterTts flutterTts = FlutterTts();
   AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   void initState() {
     super.initState();
     
-    flutterTts.setSpeechRate(0.4);
+    //flutterTts.setSpeechRate(0.4);
   }
 
   @override
   void dispose() {
     super.dispose();
-    flutterTts.stop();
+    //flutterTts.stop();
     audioPlayer.stop();
   }
 
@@ -196,7 +195,7 @@ final List<String> _imageTextsAr = [
                     setState(() {
                       _soundPlaying = false;
                     });
-                    flutterTts.pause();
+                    //flutterTts.pause();
                     audioPlayer.pause();
                   }
                   else{
@@ -204,7 +203,16 @@ final List<String> _imageTextsAr = [
                       _soundPlaying = true;
                     });
                     
-                    await flutterTts.speak(sharedPreferences!.getString("Language") == "AR" ? _imageTextsAr[index] : _imageTexts[index]);
+                    //await flutterTts.speak(sharedPreferences!.getString("Language") == "AR" ? _imageTextsAr[index] : _imageTexts[index]);
+                    if(index == 0)
+                    {
+                      await audioPlayer.play(AssetSource(sharedPreferences!.getString("Language") == "AR" ? 'images/plan1ArSound.mp3' : 'images/plan1Sound.mp3'));
+                    }
+                    else if (index == 1)
+                    {
+                      await audioPlayer.play(AssetSource(sharedPreferences!.getString("Language") == "AR" ? 'images/plan2ArSound.mp3' : 'images/plan2Sound.mp3'));
+                    }
+                    
                   }
                   },
                   child:  Icon(_soundPlaying ? Icons.volume_up :Icons.volume_off,color: Colors.white,size: 32.0,)
@@ -218,9 +226,17 @@ final List<String> _imageTextsAr = [
                   onTap: () async {
                     if(_soundPlaying)
                     {
-                      flutterTts.stop();
-                    audioPlayer.stop();
-                    await flutterTts.speak(sharedPreferences!.getString("Language") == "AR" ? _imageTextsAr[index] : _imageTexts[index]);
+                    //flutterTts.stop();
+                    audioPlayer.seek(Duration.zero);
+                    //await flutterTts.speak(sharedPreferences!.getString("Language") == "AR" ? _imageTextsAr[index] : _imageTexts[index]);
+                    // if(index == 0)
+                    // {
+                    //   await audioPlayer.play(AssetSource(sharedPreferences!.getString("Language") == "AR" ? 'images/plan1ArSound.mp3' : 'images/plan1Sound.mp3'));
+                    // }
+                    // else if (index == 1)
+                    // {
+                    //   await audioPlayer.play(AssetSource(sharedPreferences!.getString("Language") == "AR" ? 'images/plan2ArSound.mp3' : 'images/plan2Sound.mp3'));
+                    // }
                     }
                   },
                   child: const Icon(
@@ -237,14 +253,22 @@ final List<String> _imageTextsAr = [
     ).then((_) => _setDialogOpen(false)
     );
 
-    await flutterTts.speak(sharedPreferences!.getString("Language") == "AR" ? _imageTextsAr[index] : _imageTexts[index]);
+    //await flutterTts.speak(sharedPreferences!.getString("Language") == "AR" ? _imageTextsAr[index] : _imageTexts[index]);
+    if(index == 0)
+    {
+      await audioPlayer.play(AssetSource(sharedPreferences!.getString("Language") == "AR" ? 'images/plan1ArSound.mp3' : 'images/plan1Sound.mp3'));
+    }
+    else if (index == 1)
+    {
+      await audioPlayer.play(AssetSource(sharedPreferences!.getString("Language") == "AR" ? 'images/plan2ArSound.mp3' : 'images/plan2Sound.mp3'));
+    }
   }
 
   void _setDialogOpen(bool isOpen) {
     setState(() {
       if(!isOpen )
       {
-        flutterTts.stop();
+        //flutterTts.stop();
         audioPlayer.stop();
       }
       _isDialogOpen = isOpen;

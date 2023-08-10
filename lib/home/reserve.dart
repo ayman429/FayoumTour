@@ -405,15 +405,18 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15)),
                         elevation: 10),
-                    child: Text(
-                      AppLocalizations.of(context)!.translate("Submit!"),
-                      style: TextStyle(
-                          fontFamily:
-                              sharedPreferences!.getString("Language") == "AR"
-                                  ? "Mag"
-                                  : "rye",
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontSize: 20),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Text(
+                        AppLocalizations.of(context)!.translate("Submit!"),
+                        style: TextStyle(
+                            fontFamily:
+                                sharedPreferences!.getString("Language") == "AR"
+                                    ? "Mag"
+                                    : "rye",
+                            color: Theme.of(context).colorScheme.secondary,
+                            fontSize: 20),
+                      ),
                     ),
                   );
                 }),

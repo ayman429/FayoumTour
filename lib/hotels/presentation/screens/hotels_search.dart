@@ -11,9 +11,9 @@ import '../controller/hotels_event.dart';
 import '../controller/hotels_state.dart';
 
 class HotelsSearch extends StatelessWidget {
-  String hotelSearchByFeild;
+  final String hotelSearchByFeild;
 
-  HotelsSearch({
+  const HotelsSearch({
     Key? key,
     required this.hotelSearchByFeild,
   }) : super(key: key);

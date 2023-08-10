@@ -113,6 +113,10 @@
   "Reject":"رفض",
   "Get QR":"باركود",
   "Secan QR":"مسح الباركود",
-  "QRReservation":"بيانات الحجز"
+  "QRReservation":"بيانات الحجز",
+  "Yes":"نعم",
+  "No":"لا",
+  "QRtitle":"باركود الحجز",
+  "Are you sure to complete this process?":"هل أنت متأكد من إتمام هذه العملية؟"
 
 }

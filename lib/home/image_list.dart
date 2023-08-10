@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:photo_view/photo_view.dart';
@@ -28,9 +29,9 @@ class _ImageListState extends State<ImageList> {
             itemCount: widget.imageList.length,
             builder: (context, index) {
               final urlImage = widget.imageList[index].imageT;
-
+              
               return PhotoViewGalleryPageOptions(
-                imageProvider: NetworkImage(urlImage),
+                imageProvider: CachedNetworkImageProvider(urlImage),
                 minScale: PhotoViewComputedScale.contained,
                 maxScale: PhotoViewComputedScale.contained * 4,
               );
@@ -58,28 +59,23 @@ class _ImageListState extends State<ImageList> {
                       Icons.arrow_back_rounded,
                     ),
                   ),
-                  Container(
-                      height: 50,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.secondary,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 6,
-                              //offset: Offset(4,4),
-                            ),
-                          ]),
-                      child: Center(
-                        child: Text(
-                          "Photo: ${index + 1}/${widget.imageList.length}",
-                          style: TextStyle(
-                            fontFamily: "aclonica",
-                              color: Theme.of(context).colorScheme.primary,
-                              fontSize: 18),
-                        ),
-                      )),
+                  FloatingActionButton(
+                    onPressed: () {
+                      
+                    },
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    foregroundColor: Theme.of(context).colorScheme.primary,
+                    child: Center(
+                      child: Text(
+                            "${index + 1}/${widget.imageList.length}",
+                            style: TextStyle(
+                              fontFamily: "aclonica",
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: 11.5),
+                          ),
+                    ),
+                  ),
+                  
                 ],
               ),
             ),

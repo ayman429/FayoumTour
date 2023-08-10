@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:fayoumtour/hotels/domain/usecase/hotel_reservation/get_hotel_usecase_by_user.dart';
 
-import '../../../TourismPlaces/presentation/controller/tourism_place_bloc.dart';
 import '../../../core/usecase/base_usecase.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/enums.dart';
@@ -302,8 +301,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
 
   FutureOr<void> _updateCreateHotelRates(
       UpdateCreateHotelRatesEvent event, Emitter<HotelsState> emit) async {
-    print("value hotel ===");
-    print(event.updateCreateHotelRate.stars);
+    //print("value hotel ===");
+    //print(event.updateCreateHotelRate.stars);
     int hotelID = int.parse(event.hotelID);
     rateHotelMap[hotelID] = event.updateCreateHotelRate.stars;
     emit(HotelsState(
@@ -453,7 +452,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
         ));
       });
     } catch (e) {
-      print("l.message ${e}");
+      //print("l.message ${e}");
       return emit(HotelsState(
           addHotelReservationState: RequestState.error,
           addHotelReservationMessage:

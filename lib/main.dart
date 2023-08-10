@@ -18,8 +18,8 @@ import 'home/questions.dart';
 import 'post/presentation/controller/bloc/post_bloc.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
-var token;
-var _selectedOption;
+var token = "";
+var _selectedOption = "";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
@@ -104,7 +104,7 @@ class MyApp extends StatelessWidget {
                 nextScreen: (token == "0")
                     ? const LoginScreen()
                     : sharedPreferences!.getBool("is_manager") == true
-                        ? DashBoardScreen(
+                        ? const DashBoardScreen(
                             select: 0,
                           )
                         // ? DashBoard()

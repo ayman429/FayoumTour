@@ -1,8 +1,6 @@
 import 'package:fayoumtour/TourismPlaces/data/models/img_model.dart';
 
 import '../../domain/entities/tourism_place.dart';
-import 'created_by_model.dart';
-import 'img_model.dart';
 import 'rate_on_by_one_model.dart';
 
 class TourismPlaceModel extends TourismPlace {

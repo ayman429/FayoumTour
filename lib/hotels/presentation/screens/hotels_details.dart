@@ -9,8 +9,8 @@ import '../controller/hotels_event.dart';
 import '../controller/hotels_state.dart';
 
 class HotelsDetails extends StatelessWidget {
-  String hotelsId;
-  HotelsDetails({
+  final String hotelsId;
+  const HotelsDetails({
     Key? key,
     required this.hotelsId,
   }) : super(key: key);

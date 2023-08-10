@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class PostData extends Equatable {
-  String body;
-  List<String> images;
-  String createdAt;
-  PostData({
+  final String body;
+  final List<String> images;
+  final String createdAt;
+  const PostData({
     required this.body,
     required this.images,
     required this.createdAt,

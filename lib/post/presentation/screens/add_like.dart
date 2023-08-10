@@ -12,9 +12,9 @@ import '../../domain/entities/like.dart';
 import '../controller/bloc/post_bloc.dart';
 
 class AddLike extends StatelessWidget {
-  int postId;
-  int like_value;
-  AddLike({
+  final int postId;
+  final int like_value;
+  const AddLike({
     Key? key,
     required this.postId,
     required this.like_value,
@@ -29,7 +29,7 @@ class AddLike extends StatelessWidget {
             // print("Loded");
             // print(likeMap[postId]);
           } else if (state.addLikeState == RequestState.loading) {
-            print("loding");
+            //print("loding");
             // print(likeMap[postId]);
           } else if (state.addLikeState == RequestState.error) {
             SnackBarMessage().showErrorSnackBar(
@@ -47,8 +47,8 @@ class AddLike extends StatelessWidget {
                   postId: postId,
                   user:
                       int.parse(sharedPreferences!.getString("USERID") ?? "0"));
-              print("likeN");
-              print(like.like);
+              // print("likeN");
+              // print(like.like);
               BlocProvider.of<PostBloc>(context).add(AddLikeEvent(like: like));
             },
             style: TextButton.styleFrom(

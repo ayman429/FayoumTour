@@ -4,11 +4,11 @@ import '../Authentication/presentation/screens/profile/profile_screen.dart';
 import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
+import '../core/utils/youtubeController.dart';
 import '../post/presentation/screens/add_post.dart';
 import 'favourites.dart';
 import 'home.dart';
 import 'plan.dart';
-import 'profile.dart';
 import 'search.dart';
 import 'nearst.dart';
 
@@ -44,7 +44,7 @@ class _BottomBarState extends State<BottomBar> {
     const Favorites(),
     const Plan(),
   ];
-
+  final controller = YoutubeControllerSingleton.youtubeController;
   List upIcons = [
     "assets/images/profileIconUp.png",
     "assets/images/nearbyIconUp.png",
@@ -74,41 +74,33 @@ class _BottomBarState extends State<BottomBar> {
         backgroundColor: Theme.of(context).colorScheme.onSecondary,
         appBar: search
             ? AppBar(
-                title: Container(
+              
+                title: SizedBox(
                   height: 40,
                   child: TextField(
                     controller: _searchController,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                     textAlignVertical: TextAlignVertical.center,
                     decoration: InputDecoration(
                       hintText:
                           AppLocalizations.of(context)!.translate("Search..."),
-                      prefixIcon: IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: () {
-                          setState(() {
-                            search_counter = 0;
-
-                            _text = _searchController.text;
-                          });
-                        },
-                      ),
-                      suffixIcon: _searchController.text.isNotEmpty
-                          ? IconButton(
-                              icon: Icon(Icons.clear),
-                              onPressed: () {
-                                _searchController.clear();
-                                setState(() {
-                                  _text = '';
+                      suffixIcon:
+                      _searchController.text.isNotEmpty
+                          ? InkWell(
+                            child: const Icon(Icons.clear),
+                            onTap: () {
+                              setState(() {
+                                  _searchController.text = '';
                                   search_counter = 0;
                                 });
-                              },
-                            )
+                            },
+                          )
                           : null,
-                      contentPadding: EdgeInsets.symmetric(vertical: 8),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
+                          
+                      
+                      contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                      border: InputBorder.none
+                      //border: OutlineInputBorder(borderRadius: BorderRadius.circular(50), ),
                     ),
                     textInputAction: TextInputAction.search,
                     onSubmitted: (value) {
@@ -131,6 +123,26 @@ class _BottomBarState extends State<BottomBar> {
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
+                actions: [
+                Container(
+                  
+                  margin: sharedPreferences!.getString("Language") == "AR"
+                  ? const EdgeInsets.only(left: 20)
+                  : const EdgeInsets.only(right: 20),
+                  child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  search_counter = 0;
+                
+                                  _text = _searchController.text;
+                                });
+                              },
+                              child: const Icon(Icons.search),
+                            ),
+                ),
+                        
+                        
+              ],
                 //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
                 centerTitle: true,
                 leading: InkWell(
@@ -154,7 +166,8 @@ class _BottomBarState extends State<BottomBar> {
                         : const TextStyle(
                             fontFamily: AppStrings.fontFamily,
                             fontWeight: FontWeight.bold,
-                            fontSize: 25)),
+                            fontSize: 25)
+                            ),
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
@@ -265,6 +278,8 @@ class _BottomBarState extends State<BottomBar> {
                 onTap: (value) {
                   setState(() {
                     selected = value;
+                    if(selected != 2)
+                    {controller.pause();}
                   });
                 },
                 index: selected,

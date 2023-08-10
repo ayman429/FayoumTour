@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -147,26 +148,38 @@ class Details extends StatelessWidget {
                                   height: MediaQuery.of(context).size.width * 0.3,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(15),
-                                    child: Image.network(
-                                          data.imagesT[0].imageT,
-                                          fit: BoxFit.cover,
-                                          errorBuilder: (context, error, stackTrace) {
-                                            return Image.asset(
-                                              AppStrings.error1Gif,
-                                              fit: BoxFit.cover,
-                                            );
-                                          },
-                                          loadingBuilder:
-                                              (context, child, loadingProgress) {
-                                            if (loadingProgress != null) {
-                                              return Image.asset(
-                                                AppStrings.loading2Gif,
-                                                fit: BoxFit.cover,
-                                              );
-                                            }
-                                            return child;
-                                          },
-                                        ),
+                                    child:
+                                    CachedNetworkImage(imageUrl: data.imagesT[0].imageT,
+                                    fadeInDuration: const Duration(milliseconds: 350),
+                  fadeOutDuration: const Duration(milliseconds: 350),
+                                    fit: BoxFit.cover,
+                placeholder: (context, url) {
+                    return Image.asset(AppStrings.loading2Gif,fit: BoxFit.cover,);
+                  },
+                  errorWidget: (context, url, error) {
+                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
+                  },
+                                    )
+                                    // Image.network(
+                                    //       data.imagesT[0].imageT,
+                                    //       fit: BoxFit.cover,
+                                    //       errorBuilder: (context, error, stackTrace) {
+                                    //         return Image.asset(
+                                    //           AppStrings.error1Gif,
+                                    //           fit: BoxFit.cover,
+                                    //         );
+                                    //       },
+                                    //       loadingBuilder:
+                                    //           (context, child, loadingProgress) {
+                                    //         if (loadingProgress != null) {
+                                    //           return Image.asset(
+                                    //             AppStrings.loading2Gif,
+                                    //             fit: BoxFit.cover,
+                                    //           );
+                                    //         }
+                                    //         return child;
+                                    //       },
+                                    //     ),
                                   ),
                                 ),
                               ],
@@ -200,26 +213,37 @@ class Details extends StatelessWidget {
                                   height: MediaQuery.of(context).size.width * 0.3,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(15),
-                                    child: Image.network(
-                                      data.imagesT[1].imageT,
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (context, error, stackTrace) {
-                                        return Image.asset(
-                                          AppStrings.error1Gif,
-                                          fit: BoxFit.cover,
-                                        );
-                                      },
-                                      loadingBuilder:
-                                          (context, child, loadingProgress) {
-                                        if (loadingProgress != null) {
-                                          return Image.asset(
-                                            AppStrings.loading2Gif,
-                                            fit: BoxFit.cover,
-                                          );
-                                        }
-                                        return child;
-                                      },
-                                    ),
+                                    child:
+                                    CachedNetworkImage(imageUrl: data.imagesT[1].imageT,
+                                    fadeInDuration: const Duration(milliseconds: 350),
+                  fadeOutDuration: const Duration(milliseconds: 350),
+                                    fit: BoxFit.cover,
+                placeholder: (context, url) {
+                    return Image.asset(AppStrings.loading2Gif,fit: BoxFit.cover,);
+                  },
+                  errorWidget: (context, url, error) {
+                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
+                  },),
+                                    // Image.network(
+                                    //   data.imagesT[1].imageT,
+                                    //   fit: BoxFit.cover,
+                                    //   errorBuilder: (context, error, stackTrace) {
+                                    //     return Image.asset(
+                                    //       AppStrings.error1Gif,
+                                    //       fit: BoxFit.cover,
+                                    //     );
+                                    //   },
+                                    //   loadingBuilder:
+                                    //       (context, child, loadingProgress) {
+                                    //     if (loadingProgress != null) {
+                                    //       return Image.asset(
+                                    //         AppStrings.loading2Gif,
+                                    //         fit: BoxFit.cover,
+                                    //       );
+                                    //     }
+                                    //     return child;
+                                    //   },
+                                    // ),
                                   ),
                                 ),
                               ],
@@ -258,27 +282,38 @@ class Details extends StatelessWidget {
                                             MediaQuery.of(context).size.width * 0.3,
                                         child: ClipRRect(
                                           borderRadius: BorderRadius.circular(15),
-                                          child: Image.network(
-                                            data.imagesT[2].imageT,
-                                            fit: BoxFit.cover,
-                                            errorBuilder:
-                                                (context, error, stackTrace) {
-                                              return Image.asset(
-                                                AppStrings.error1Gif,
-                                                fit: BoxFit.cover,
-                                              );
-                                            },
-                                            loadingBuilder:
-                                                (context, child, loadingProgress) {
-                                              if (loadingProgress != null) {
-                                                return Image.asset(
-                                                  AppStrings.loading2Gif,
-                                                  fit: BoxFit.cover,
-                                                );
-                                              }
-                                              return child;
-                                            },
-                                          ),
+                                          child:
+                                          CachedNetworkImage(imageUrl: data.imagesT[2].imageT,
+                                          fadeInDuration: const Duration(milliseconds: 350),
+                  fadeOutDuration: const Duration(milliseconds: 350),
+                                    fit: BoxFit.cover,
+                placeholder: (context, url) {
+                    return Image.asset(AppStrings.loading2Gif,fit: BoxFit.cover,);
+                  },
+                  errorWidget: (context, url, error) {
+                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
+                  },)
+                                          // Image.network(
+                                          //   data.imagesT[2].imageT,
+                                          //   fit: BoxFit.cover,
+                                          //   errorBuilder:
+                                          //       (context, error, stackTrace) {
+                                          //     return Image.asset(
+                                          //       AppStrings.error1Gif,
+                                          //       fit: BoxFit.cover,
+                                          //     );
+                                          //   },
+                                          //   loadingBuilder:
+                                          //       (context, child, loadingProgress) {
+                                          //     if (loadingProgress != null) {
+                                          //       return Image.asset(
+                                          //         AppStrings.loading2Gif,
+                                          //         fit: BoxFit.cover,
+                                          //       );
+                                          //     }
+                                          //     return child;
+                                          //   },
+                                          // ),
                                         ),
                                       ),
                                     ),

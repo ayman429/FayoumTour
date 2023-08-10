@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
@@ -34,7 +35,7 @@ class SeachBody extends StatelessWidget {
                     UpBarImage(data: data, index: 1, type: "hotel"),
               ));
         } else {
-          print("error");
+          //print("error");
         }
       },
       child: Container(
@@ -72,23 +73,35 @@ class SeachBody extends StatelessWidget {
               blendMode: BlendMode.dstIn,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(7),
-                child: Image.network(
-                  data.originalImage,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Image.asset(AppStrings.error1Gif,
-                    fit: BoxFit.cover,
-                    );
+                child:
+                CachedNetworkImage(imageUrl: data.originalImage,
+                fadeInDuration: const Duration(milliseconds: 350),
+                  fadeOutDuration: const Duration(milliseconds: 350),
+                fit: BoxFit.cover,
+                placeholder: (context, url) {
+                    return Image.asset(AppStrings.loading2Gif,fit: BoxFit.cover,);
                   },
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress != null) {
-                      return Image.asset(AppStrings.loading2Gif,
-                      fit: BoxFit.cover,
-                      );
-                    }
-                    return child;
+                  errorWidget: (context, url, error) {
+                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
                   },
-                ),
+                )
+                // Image.network(
+                //   data.originalImage,
+                //   fit: BoxFit.cover,
+                //   errorBuilder: (context, error, stackTrace) {
+                //     return Image.asset(AppStrings.error1Gif,
+                //     fit: BoxFit.cover,
+                //     );
+                //   },
+                //   loadingBuilder: (context, child, loadingProgress) {
+                //     if (loadingProgress != null) {
+                //       return Image.asset(AppStrings.loading2Gif,
+                //       fit: BoxFit.cover,
+                //       );
+                //     }
+                //     return child;
+                //   },
+                // ),
               ),
             ),
             Row(

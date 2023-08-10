@@ -4,14 +4,13 @@ import '../Authentication/presentation/screens/profile/profile_screen.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../post/presentation/screens/add_post.dart';
-import 'profile.dart';
 
 class DashBoardScreen extends StatefulWidget {
   final int select;
-  DashBoardScreen({
+  const DashBoardScreen({
     Key? key,
     required this.select,
-  }) : super(key: key) {}
+  }) : super(key: key);
   @override
   State<DashBoardScreen> createState() => _DashBoardScreenState();
 }
@@ -22,12 +21,12 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     const AddPost(),
   ];
   static List<String> titles2 = [
-    sharedPreferences!.getString("Language") == "AR"
-        ? "الملف الشخصي"
-        : "My Profile",
-    sharedPreferences!.getString("Language") == "AR"
-        ? "مجتمع فايتور"
-        : "FayTour Community",
+    "My Profile",
+    "FayTour Community",
+  ];
+  static List<String> titles2Ar = [
+    "الملف الشخصي",
+    "مجتمع فايتور"
   ];
   int selected = 0;
   List upIcons = [
@@ -43,14 +42,20 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
         backgroundColor: Theme.of(context).colorScheme.onSecondary,
         appBar: AppBar(
           title: Text(
-            titles2[selected],
-            style: const TextStyle(
-                fontFamily: AppStrings.fontFamily,
-                fontWeight: FontWeight.bold,
-                fontSize: 25),
+            sharedPreferences!.getString("Language") == "AR" ? titles2Ar[selected] : titles2[selected],
+            style: sharedPreferences!.getString("Language") == "AR"
+                        ? const TextStyle(
+                            fontFamily: "galaxy",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 28)
+                        : const TextStyle(
+                            fontFamily: AppStrings.fontFamily,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25)
           ),
           foregroundColor: Theme.of(context).colorScheme.onPrimary,
           backgroundColor: Colors.transparent,

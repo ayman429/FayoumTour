@@ -4,7 +4,6 @@ import 'package:fayoumtour/post/data/models/comment_model.dart';
 import '../../../core/error/faliure.dart';
 import '../../data/models/like_model.dart';
 import '../entities/comment.dart';
-import '../entities/like.dart';
 import '../entities/post.dart';
 import '../entities/post_data.dart';
 

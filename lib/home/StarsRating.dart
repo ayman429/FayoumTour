@@ -64,7 +64,7 @@ class _RatingScreenState extends State<RatingScreen> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                   ),
@@ -126,7 +126,7 @@ class StarRating extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        print(index + 1);
+        //print(index + 1);
         onRated!(index + 1);
         if (type == "places") {
           TourismPlaceRate tourismPlaceRate = TourismPlaceRate(
@@ -166,10 +166,10 @@ class StarRating extends StatelessWidget {
                 listener: (context, state) {
               if (state.updateCreateTourismPlaceRateState ==
                   RequestState.loaded) {
-                print("Loded");
+                //print("Loded");
               } else if (state.updateCreateTourismPlaceRateState ==
                   RequestState.loading) {
-                print("Loding");
+                //print("Loding");
               } else if (state.updateCreateTourismPlaceRateState ==
                   RequestState.error) {
                 SnackBarMessage().showErrorSnackBar(
@@ -177,7 +177,7 @@ class StarRating extends StatelessWidget {
                     context: context);
               }
             }, builder: (context, state) {
-              print("== RATE =");
+              //print("== RATE =");
 
               return Column(
                 children: [
@@ -215,10 +215,10 @@ class StarRating extends StatelessWidget {
             child: BlocConsumer<HotelsBloc, HotelsState>(
                 listener: (context, state) {
               if (state.updateCreateHotelRateState == RequestState.loaded) {
-                print("Loded");
+                //print("Loded");
               } else if (state.updateCreateHotelRateState ==
                   RequestState.loading) {
-                print("Loding");
+                //print("Loding");
               } else if (state.updateCreateHotelRateState ==
                   RequestState.error) {
                 SnackBarMessage().showErrorSnackBar(

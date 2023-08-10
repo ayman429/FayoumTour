@@ -301,8 +301,8 @@ class TourismPlaceBloc extends Bloc<TourismPlaceEvent, TourismPlaceState> {
   FutureOr<void> _updateCreateTourismPlaceRates(
       UpdateCreateTourismPlaceRatesEvent event,
       Emitter<TourismPlaceState> emit) async {
-    print("value===");
-    print(event.updateCreateTourRate.stars);
+    // print("value===");
+    // print(event.updateCreateTourRate.stars);
     int tourismPlaceID = int.parse(event.tourismPlaceID);
     ratePlaceMap[tourismPlaceID] = event.updateCreateTourRate.stars;
     emit(TourismPlaceState(

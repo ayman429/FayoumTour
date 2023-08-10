@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fayoumtour/Authentication/domain/entities/change_password.dart';
 import 'package:fayoumtour/Authentication/domain/entities/user_details.dart';
 import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
@@ -14,7 +15,6 @@ import '../../../../core/utils/constance/values_manager.dart';
 import '../../../../core/utils/enums.dart';
 import '../../../../core/utils/snackbar_message.dart';
 import '../../components/password_text_form_field.dart';
-import '../../components/user_name_text_form_field.dart';
 import '../../components/validation.dart';
 import '../../controller/authentication_bloc.dart';
 import '../../controller/authentication_event.dart';
@@ -225,7 +225,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
+                                    backgroundColor: Colors.green,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(15)),
@@ -267,7 +267,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     SnackBarMessage()
                         .showErrorSnackBar(message: message, context: context);
                   } else if (state.changePasswordstate == RequestState.error) {
-                    print("error: ${state.changePasswordMessage}");
+                    //print("error: ${state.changePasswordMessage}");
                     Navigator.pop(context);
                     String message;
                     message = Validation.validationMessage(
@@ -319,7 +319,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   opacity: userNameController.text == "" ? 0.5 : 1,
                   child: TextButton(
                     onPressed: () {
-                      showDialog(
+                      if (userNameController.text != "") {
+                        showDialog(
                         barrierDismissible: false,
                         context: context,
                         builder: (ctx) => const FractionallySizedBox(
@@ -336,7 +337,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           ),
                         ),
                       );
-                      if (userNameController.text != "") {
                         UserDetails userDetails =
                             UserDetails(username: userNameController.text);
                         BlocProvider.of<AuthenticationBloc>(context).add(
@@ -442,25 +442,38 @@ Widget displayImage(String imagePath) {
       fit: BoxFit.cover,
     );
   } else if (imagePath.contains("https")) {
-    return Image.network(
-      imagePath,
-      fit: BoxFit.cover,
-      errorBuilder: (context, error, stackTrace) {
-        return Image.asset(
-          AppStrings.error1Gif,
-          fit: BoxFit.cover,
-        );
-      },
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress != null) {
-          return Image.asset(
-            AppStrings.loading1Gif,
-            fit: BoxFit.cover,
-          );
-        }
-        return child;
-      },
-    );
+    return
+              CachedNetworkImage(imageUrl: imagePath,
+    fadeInDuration: const Duration(milliseconds: 350),
+                  fadeOutDuration: const Duration(milliseconds: 350),
+                                    fit: BoxFit.cover,
+                placeholder: (context, url) {
+                    return Image.asset(AppStrings.profileImage,fit: BoxFit.cover,);
+                  },
+                  errorWidget: (context, url, error) {
+                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
+                  },
+    )
+        // Image.network(
+        //   imagePath,
+        //   fit: BoxFit.cover,
+        //   errorBuilder: (context, error, stackTrace) {
+        //     return Image.asset(
+        //       AppStrings.error1Gif,
+        //       fit: BoxFit.cover,
+        //     );
+        //   },
+        //   loadingBuilder: (context, child, loadingProgress) {
+        //     if (loadingProgress != null) {
+        //       return Image.asset(
+        //         AppStrings.loading1Gif,
+        //         fit: BoxFit.cover,
+        //       );
+        //     }
+        //     return child;
+        //   },
+        // ),
+      ;
   } else {
     return Image.asset(
       AppStrings.profileImage,

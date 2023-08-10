@@ -7,7 +7,6 @@ import '../../domain/entities/hotel_rate.dart';
 import '../../domain/entities/hotel_reservation.dart';
 import '../../domain/repository/base_hotel_repository.dart';
 import '../datasource/hotel_remote_data_source.dart';
-import '../models/hotel_model.dart';
 
 class HotelRerpository extends BaseHotelRepository {
   final BaseHotelRemoteDataSource baseHotelRemoteDataSource;

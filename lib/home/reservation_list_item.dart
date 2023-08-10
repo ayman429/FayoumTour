@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:fayoumtour/home/QR.dart';
-import 'package:fayoumtour/home/reserve.dart';
-import 'package:fayoumtour/hotels/presentation/controller/hotels_bloc.dart';
-import 'package:fayoumtour/hotels/presentation/controller/hotels_event.dart';
-
-import '../core/services/services_locator.dart';
 import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
-import '../core/utils/enums.dart';
-import '../hotels/domain/entities/hotel_reservation.dart';
-import '../hotels/presentation/controller/hotels_state.dart';
+
 
 class ReservationListItem extends StatelessWidget {
   Map<String, dynamic> data;

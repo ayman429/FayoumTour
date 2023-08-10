@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -122,9 +123,9 @@ class _AddPostComponentState extends State<AddPostComponent> {
                     listener: (context, state) {
                       if (state.addPostState == RequestState.loaded ||
                           state.updatePostState == RequestState.loaded) {
-                        print("Post Loded");
+                        //print("Post Loded");
                         BlocProvider.of<PostBloc>(context).add(GetPostEvent());
-                        print("Post Loded");
+                        //print("Post Loded");
                         Navigator.pop(context);
                         Navigator.pop(context);
                       } else if (state.addPostState == RequestState.error ||
@@ -223,7 +224,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
 
                             if (state.addPostState == RequestState.loading ||
                                 state.updatePostState == RequestState.loading) {
-                              print("Post Loding");
+                              //print("Post Loding");
 
                               showDialog(
                                 context: context,
@@ -345,7 +346,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                 pickedFiles = [];
                                 changeInImages = true;
                               } else {
-                                print('No image selected.');
+                                //print('No image selected.');
                               }
                             });
                           }
@@ -526,25 +527,38 @@ Widget displayImage(String imagePath) {
       fit: BoxFit.cover,
     );
   } else if (imagePath.contains("https")) {
-    return Image.network(
-      imagePath,
-      fit: BoxFit.cover,
-      errorBuilder: (context, error, stackTrace) {
-        return Image.asset(
-          AppStrings.error1Gif,
-          fit: BoxFit.cover,
-        );
-      },
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress != null) {
-          return Image.asset(
-            AppStrings.loading1Gif,
-            fit: BoxFit.cover,
-          );
-        }
-        return child;
-      },
-    );
+    return
+    CachedNetworkImage(imageUrl: imagePath,
+    fadeInDuration: const Duration(milliseconds: 350),
+                  fadeOutDuration: const Duration(milliseconds: 350),
+                                    fit: BoxFit.cover,
+                placeholder: (context, url) {
+                    return Image.asset(AppStrings.profileImage,fit: BoxFit.cover,);
+                  },
+                  errorWidget: (context, url, error) {
+                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
+                  },
+    )
+        // Image.network(
+        //   imagePath,
+        //   fit: BoxFit.cover,
+        //   errorBuilder: (context, error, stackTrace) {
+        //     return Image.asset(
+        //       AppStrings.error1Gif,
+        //       fit: BoxFit.cover,
+        //     );
+        //   },
+        //   loadingBuilder: (context, child, loadingProgress) {
+        //     if (loadingProgress != null) {
+        //       return Image.asset(
+        //         AppStrings.loading1Gif,
+        //         fit: BoxFit.cover,
+        //       );
+        //     }
+        //     return child;
+        //   },
+        // ),
+      ;
   } else {
     return Image.asset(
       AppStrings.profileImage,

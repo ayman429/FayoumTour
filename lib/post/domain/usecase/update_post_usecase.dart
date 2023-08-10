@@ -1,9 +1,6 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../core/error/faliure.dart';
-import '../../../core/usecase/base_usecase.dart';
-import '../../data/models/post_model.dart';
-import '../entities/post.dart';
 import '../repository/base_post_repository.dart';
 
 class UpdatePostUsecase {

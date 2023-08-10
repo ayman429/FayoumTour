@@ -6,7 +6,6 @@ import '../../../core/network/api_constance.dart';
 import '../../../core/network/dio_factory.dart';
 import '../../../core/network/error_message_model.dart';
 import '../../../core/utils/constance/shared_pref.dart';
-import '../../domain/entities/comment.dart';
 import '../../domain/entities/post_data.dart';
 import '../models/comment_model.dart';
 import '../models/like_model.dart';
@@ -44,7 +43,7 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
       );
       return List<PostModel>.from(
           (response.data as List).map((e) => PostModel.fromJson(e)));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
 
       throw ServerException(
@@ -81,9 +80,9 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
       final response = await dio.post(ApiConstance.postPath, data: formData);
 
       return Future.value(unit);
-    } on DioError catch (e) {
-      print("////////////////////////////////////");
-      print(e.message);
+    } on DioException catch (e) {
+      //print("////////////////////////////////////");
+      //print(e.message);
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -94,8 +93,8 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
   @override
   Future<Unit> updatePosts(
       String body, List<String> images, String posId, String index) async {
-    print("////////////////////////");
-    print(images);
+    //print("////////////////////////");
+    //print(images);
     try {
       // int user = int.parse(sharedPreferences!.getString("USERID") ?? "0");
       // print("============================>");
@@ -121,9 +120,9 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
           await dio.patch("${ApiConstance.postPath}/$posId/", data: formData);
 
       return Future.value(unit);
-    } on DioError catch (e) {
-      print("================>");
-      print(e);
+    } on DioException catch (e) {
+      //print("================>");
+      //print(e);
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -139,7 +138,7 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
         "${ApiConstance.postPath}$iD/",
       );
       return "Deleted";
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -156,7 +155,7 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
       );
 
       return PostModel.fromJson(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -176,10 +175,10 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
       return List<CommentModel>.from((response.data as List).map((e) {
         return CommentModel.fromJson(e);
       }));
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
-      print("ebvkjfdbvkjbvjrwvbewvewroui");
-      print(e.response);
+      //print("ebvkjfdbvkjbvjrwvbewvewroui");
+      //print(e.response);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
       );
@@ -196,9 +195,9 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
           await dio.post(ApiConstance.commentPath, data: commentModelsToJson);
 
       return Future.value(unit);
-    } on DioError catch (e) {
-      print("================>");
-      print(e);
+    } on DioException catch (e) {
+      //print("================>");
+      //print(e);
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -216,9 +215,9 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
           await dio.patch(ApiConstance.commentPath, data: commentModelsToJson);
 
       return Future.value(unit);
-    } on DioError catch (e) {
-      print("================>");
-      print(e);
+    } on DioException catch (e) {
+      //print("================>");
+      //print(e);
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -236,7 +235,7 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
       // print("-------------->");
       // print(response);
       return "Deleted";
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       // print("-------------->");
       // print(e);
@@ -261,13 +260,13 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
             "like": likeModelsToJson["like"],
             "user": likeModelsToJson["username"]
           });
-      print("------------vvv------------->");
-      print(likeModelsToJson["postId"]);
-      print(likeModelsToJson["like"]);
-      print(likeModelsToJson["username"]);
-      print(response.data);
+      // print("------------vvv------------->");
+      // print(likeModelsToJson["postId"]);
+      // print(likeModelsToJson["like"]);
+      // print(likeModelsToJson["username"]);
+      // print(response.data);
       return Future.value(unit);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
@@ -286,10 +285,10 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
           data: {"postId": postId, "userId": userId});
       // print(response.data);
       return response.data["like"] ?? "0";
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // return Error Message
-      print("=======================");
-      print(e.message);
+      // print("=======================");
+      // print(e.message);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
       );

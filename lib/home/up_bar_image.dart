@@ -1,10 +1,10 @@
 //This file is for the upbar of the hotels pages
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import 'check_favorite.dart';
-import 'check_favorite_API.dart';
 import 'home_details_of_tourism_hotel.dart';
 
 class UpBarImage extends StatelessWidget {
@@ -31,25 +31,37 @@ class UpBarImage extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height / 3,
                 width: MediaQuery.of(context).size.width,
-                child: Image.network(
-                  data.originalImage,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Image.asset(
-                      AppStrings.error1Gif,
-                      fit: BoxFit.cover,
-                    );
+                child:
+                CachedNetworkImage(imageUrl: data.originalImage,
+                fadeInDuration: const Duration(milliseconds: 350),
+                  fadeOutDuration: const Duration(milliseconds: 350),
+                fit: BoxFit.cover,
+                placeholder: (context, url) {
+                    return Image.asset(AppStrings.loading2Gif,fit: BoxFit.cover,);
                   },
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress != null) {
-                      return Image.asset(
-                        AppStrings.loading2Gif,
-                        fit: BoxFit.cover,
-                      );
-                    }
-                    return child;
+                  errorWidget: (context, url, error) {
+                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
                   },
-                ),
+                )
+                // Image.network(
+                //   data.originalImage,
+                //   fit: BoxFit.cover,
+                //   errorBuilder: (context, error, stackTrace) {
+                //     return Image.asset(
+                //       AppStrings.error1Gif,
+                //       fit: BoxFit.cover,
+                //     );
+                //   },
+                //   loadingBuilder: (context, child, loadingProgress) {
+                //     if (loadingProgress != null) {
+                //       return Image.asset(
+                //         AppStrings.loading2Gif,
+                //         fit: BoxFit.cover,
+                //       );
+                //     }
+                //     return child;
+                //   },
+                // ),
               ),
               AppBar(
                 backgroundColor: Colors.transparent,

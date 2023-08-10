@@ -6,6 +6,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
@@ -15,12 +17,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Current Time'),
+          title: const Text('Current Time'),
         ),
         body: Center(
           child: Text(
             'Current Time: $formattedTime',
-            style: TextStyle(fontSize: 24),
+            style: const TextStyle(fontSize: 24),
           ),
         ),
       ),

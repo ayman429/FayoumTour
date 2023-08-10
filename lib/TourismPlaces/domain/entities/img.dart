@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
 class ImagesT extends Equatable {
-  String imageT;
-  ImagesT({
+  final String imageT;
+  const ImagesT({
     required this.imageT,
   });
 

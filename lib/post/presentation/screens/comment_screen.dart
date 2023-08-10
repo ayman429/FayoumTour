@@ -12,8 +12,8 @@ import '../controller/bloc/post_bloc.dart';
 import 'get_comment.dart';
 
 class CommentScreen extends StatefulWidget {
-  int postId;
-  CommentScreen({
+  final int postId;
+  const CommentScreen({
     Key? key,
     required this.postId,
   }) : super(key: key);
@@ -71,12 +71,12 @@ class _CommentScreenState extends State<CommentScreen> {
                       state.updateCommentState == RequestState.loaded) {
                     // BlocProvider.of<PostBloc>(context)
                     //     .add(GetCommentEvent(postId: widget.postId));
-                    print("Loded");
+                    //print("Loded");
                     // Navigator.pop(context);
                     _textEditingController.clear();
                   } else if (state.addCommentState == RequestState.loading ||
                       state.updateCommentState == RequestState.loading) {
-                    print("Comment Loding");
+                    //print("Comment Loding");
 
                     /// loading
                     // return Text("Processing");

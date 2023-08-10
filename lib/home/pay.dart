@@ -221,7 +221,7 @@ class MySampleState extends State<MySample> {
 
   void _onValidate() {
     if (formKey.currentState!.validate()) {
-      print('valid!');
+      //print('valid!');
       showDialog(
           context: context,
           barrierDismissible: false,
@@ -242,7 +242,7 @@ class MySampleState extends State<MySample> {
                         Navigator.of(context).pop();
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
+                        backgroundColor: Colors.green,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15)),
                       ),
@@ -263,7 +263,7 @@ class MySampleState extends State<MySample> {
             );
           });
     } else {
-      print('invalid!');
+      //print('invalid!');
     }
   }
 

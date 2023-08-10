@@ -6,7 +6,6 @@ import '../../domain/entities/tourism_place.dart';
 import '../../domain/entities/tourism_place_rate.dart';
 import '../../domain/repository/base_tourism_place_repository.dart';
 import '../datasource/tourism_place_remote_data_source.dart';
-import '../models/tourism_place_model.dart';
 
 class TourismPlaceRerpository extends BaseTourismPlaceRepository {
   final BaseTourismPlaceRemoteDataSource baseTourismPlaceRemoteDataSource;

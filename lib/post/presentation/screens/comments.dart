@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fayoumtour/post/domain/entities/comment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,8 +10,8 @@ import '../controller/bloc/post_bloc.dart';
 import 'AR_EN_Post.dart';
 
 class CommentList extends StatelessWidget {
-  List<Comment> data;
-  CommentList({
+  final List<Comment> data;
+  const CommentList({
     Key? key,
     required this.data,
   }) : super(key: key);
@@ -56,33 +57,47 @@ class CommentList extends StatelessWidget {
                 leading: SizedBox(
                   width: 40,
                   height: 40,
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: data[index].createdBy!.image != ""
-                          ? Image.network(
-                              data[index].createdBy!.image,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Image.asset(
-                                  AppStrings.error1Gif,
-                                  fit: BoxFit.cover,
-                                );
-                              },
-                              loadingBuilder:
-                                  (context, child, loadingProgress) {
-                                if (loadingProgress != null) {
-                                  return Image.asset(
-                                    AppStrings.loading1Gif,
+                  child:
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: data[index].createdBy!.image != ""
+                              ?
+                              CachedNetworkImage(imageUrl: data[index].createdBy!.image,
+                              fadeInDuration: const Duration(milliseconds: 350),
+                  fadeOutDuration: const Duration(milliseconds: 350),
                                     fit: BoxFit.cover,
-                                  );
-                                }
-                                return child;
-                              },
-                            )
-                          : Image.asset(
-                              AppStrings.profileImage,
-                              fit: BoxFit.cover,
-                            )),
+                placeholder: (context, url) {
+                    return Image.asset(AppStrings.profileImage,fit: BoxFit.cover,);
+                  },
+                  errorWidget: (context, url, error) {
+                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
+                  },
+                              )
+                              // Image.network(
+                              //     data[index].createdBy!.image,
+                              //     fit: BoxFit.cover,
+                              //     errorBuilder: (context, error, stackTrace) {
+                              //       return Image.asset(
+                              //         AppStrings.error1Gif,
+                              //         fit: BoxFit.cover,
+                              //       );
+                              //     },
+                              //     loadingBuilder:
+                              //         (context, child, loadingProgress) {
+                              //       if (loadingProgress != null) {
+                              //         return Image.asset(
+                              //           AppStrings.loading1Gif,
+                              //           fit: BoxFit.cover,
+                              //         );
+                              //       }
+                              //       return child;
+                              //     },
+                              //   )
+                              : Image.asset(
+                                  AppStrings.profileImage,
+                                  fit: BoxFit.cover,
+                                )),
+                    
                 ),
                 title: Container(
                     decoration: BoxDecoration(

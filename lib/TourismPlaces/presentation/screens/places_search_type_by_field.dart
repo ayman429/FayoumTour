@@ -11,8 +11,8 @@ import '../controller/tourism_place_event.dart';
 import '../controller/tourism_place_state.dart';
 
 class HomeCardsTourismPlacesTypeSearch extends StatelessWidget {
-  String tourismPlaceSearchByFeild; //"Pharaonic relics"
-  HomeCardsTourismPlacesTypeSearch({
+  final String tourismPlaceSearchByFeild; //"Pharaonic relics"
+  const HomeCardsTourismPlacesTypeSearch({
     Key? key,
     required this.tourismPlaceSearchByFeild,
   }) : super(key: key);

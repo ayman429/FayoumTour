@@ -9,8 +9,8 @@ import '../controller/tourism_place_bloc.dart';
 import '../controller/tourism_place_event.dart';
 
 class PlacesDetails extends StatelessWidget {
-  String tourId;
-  PlacesDetails({
+  final String tourId;
+  const PlacesDetails({
     Key? key,
     required this.tourId,
   }) : super(key: key);
@@ -21,8 +21,8 @@ class PlacesDetails extends StatelessWidget {
         ..add(GetTourismPlacesByIdEvent(tourId: tourId));
     }, child: BlocBuilder<TourismPlaceBloc, TourismPlaceState>(
         builder: (context, state) {
-      print(state.tourismPlaceStateById);
-      print(tourId);
+      // print(state.tourismPlaceStateById);
+      // print(tourId);
       switch (state.tourismPlaceStateById) {
         case RequestState.loading:
           return const SizedBox(

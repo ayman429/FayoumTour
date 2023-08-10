@@ -65,40 +65,45 @@ class HomeCard extends StatelessWidget {
               },
               blendMode: BlendMode.dstIn,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(7),
-                child:
-                CachedNetworkImage(
-                  imageUrl: data.originalImage,
-                  fadeInDuration: const Duration(milliseconds: 350),
-                  fadeOutDuration: const Duration(milliseconds: 350),
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) {
-                    return Image.asset(AppStrings.loading2Gif,fit: BoxFit.cover,);
-                  },
-                  errorWidget: (context, url, error) {
-                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
-                  },
-                )
-                // Image.network(
-                //   data.originalImage,
-                //   fit: BoxFit.cover,
-                //   errorBuilder: (context, error, stackTrace) {
-                //     return Image.asset(
-                //       AppStrings.error1Gif,
-                //       fit: BoxFit.cover,
-                //     );
-                //   },
-                //   loadingBuilder: (context, child, loadingProgress) {
-                //     if (loadingProgress != null) {
-                //       return Image.asset(
-                //         AppStrings.loading2Gif,
-                //         fit: BoxFit.cover,
-                //       );
-                //     }
-                //     return child;
-                //   },
-                // ),
-              ),
+                  borderRadius: BorderRadius.circular(7),
+                  child: CachedNetworkImage(
+                    imageUrl: data.originalImage,
+                    fadeInDuration: const Duration(milliseconds: 350),
+                    fadeOutDuration: const Duration(milliseconds: 350),
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) {
+                      return Image.asset(
+                        AppStrings.loading2Gif,
+                        fit: BoxFit.cover,
+                      );
+                    },
+                    errorWidget: (context, url, error) {
+                      return Image.asset(
+                        AppStrings.error1Gif,
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  )
+                  // Image.network(
+                  //   data.originalImage,
+                  //   fit: BoxFit.cover,
+                  //   errorBuilder: (context, error, stackTrace) {
+                  //     return Image.asset(
+                  //       AppStrings.error1Gif,
+                  //       fit: BoxFit.cover,
+                  //     );
+                  //   },
+                  //   loadingBuilder: (context, child, loadingProgress) {
+                  //     if (loadingProgress != null) {
+                  //       return Image.asset(
+                  //         AppStrings.loading2Gif,
+                  //         fit: BoxFit.cover,
+                  //       );
+                  //     }
+                  //     return child;
+                  //   },
+                  // ),
+                  ),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(10, 0, 10, 2),
@@ -114,8 +119,12 @@ class HomeCard extends StatelessWidget {
                             ? data.nameAR
                             : data.name,
                         style: sharedPreferences!.getString("Language") == "AR"
-                                    ? const TextStyle(fontFamily: "marhey", fontSize: 15,fontWeight: FontWeight.bold)
-                                    : const TextStyle(fontFamily: "alata", fontSize: 15),
+                            ? const TextStyle(
+                                fontFamily: "marhey",
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold)
+                            : const TextStyle(
+                                fontFamily: "alata", fontSize: 15),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
@@ -124,18 +133,31 @@ class HomeCard extends StatelessWidget {
                   Row(
                     children: [
                       Padding(
-                        padding: sharedPreferences!.getString("Language") == "AR" ? const EdgeInsets.only() : const EdgeInsets.only(bottom: 2),
+                        padding:
+                            sharedPreferences!.getString("Language") == "AR"
+                                ? const EdgeInsets.only()
+                                : const EdgeInsets.only(bottom: 2),
                         child: Text(
                           data.avgRatings.toString(),
-                          style: sharedPreferences!.getString("Language") == "AR"
-                          ? const TextStyle(fontSize: 14,fontFamily: "marhey",fontWeight: FontWeight.bold)
-                          : const TextStyle(fontSize: 14,fontFamily: "alata",),
+                          style:
+                              sharedPreferences!.getString("Language") == "AR"
+                                  ? const TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: "marhey",
+                                      fontWeight: FontWeight.bold)
+                                  : const TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: "alata",
+                                    ),
                         ),
                       ),
                       Padding(
-                        padding: sharedPreferences!.getString("Language") == "AR" ? const EdgeInsets.only(bottom: 5)
-                        : const EdgeInsets.only(bottom: 2),
-                        child: RatingBar(rating: data.avgRatings, ratingCount: 0),
+                        padding:
+                            sharedPreferences!.getString("Language") == "AR"
+                                ? const EdgeInsets.only(bottom: 5)
+                                : const EdgeInsets.only(bottom: 2),
+                        child:
+                            RatingBar(rating: data.avgRatings, ratingCount: 0),
                       ),
                     ],
                   ),

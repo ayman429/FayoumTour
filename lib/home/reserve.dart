@@ -338,9 +338,9 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                     } else {
                       // print("/////////////////");
                       // print(state.addHotelReservationMessage);
-                      // SnackBarMessage().showErrorSnackBar(
-                      //     message: state.addHotelReservationMessage,
-                      //     context: context);
+                      SnackBarMessage().showErrorSnackBar(
+                          message: "problem happened try again",
+                          context: context);
                     }
                   }
                 }, builder: (context, state) {

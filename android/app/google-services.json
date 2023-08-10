@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "505467477230",
+    "project_id": "faytour-5cdd1",
+    "storage_bucket": "faytour-5cdd1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505467477230:android:e443432bd9619e773227ff",
+        "android_client_info": {
+          "package_name": "com.faytour.fayoumtour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505467477230-6e8qk7fqhfqtop1d0fpa0chea8i5c8g5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkrCRcXYmbQme1UFb8mDQpM5hB3t1RBtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505467477230-6e8qk7fqhfqtop1d0fpa0chea8i5c8g5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -64,7 +64,7 @@ class _RatingScreenState extends State<RatingScreen> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    primary: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                   ),

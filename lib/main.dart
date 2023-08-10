@@ -1,3 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -5,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
 import 'Authentication/presentation/screens/Login/login_screen.dart';
 import 'core/local_data_shared_preferences/access_token_shared_preferences.dart';
+import 'core/notification/notification.dart';
 import 'core/utils/app_localizations.dart';
 import 'core/services/services_locator.dart';
 import 'core/utils/constance/shared_pref.dart';
@@ -20,8 +24,23 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 var token = "";
 var _selectedOption = "";
+Future<void> firebaseMessageBackgroundHandler(RemoteMessage message) async {
+  if (kDebugMode) {
+    print(message.messageId);
+  }
+  print(message.messageId);
+}
+
+final navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //----------------------
+  await Firebase.initializeApp();
+  FirebaseNotification().notification();
+  FirebaseNotification().initLocalNotifications();
+  await FirebaseMessaging.instance.subscribeToTopic("POST");
+  FirebaseMessaging.onBackgroundMessage(firebaseMessageBackgroundHandler);
+//----------------------
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -86,6 +105,43 @@ class MyApp extends StatelessWidget {
                   }
                 }
                 return deviceLocale;
+              },
+              navigatorKey: navigatorKey,
+              onGenerateRoute: (RouteSettings settings) {
+                print("object ${settings.name}");
+                switch (settings.name) {
+                  case '/reservation':
+                    return MaterialPageRoute(
+                      builder: (_) => BottomBar(
+                          select: 3,
+                          _selectedOption != ""
+                              ? _selectedOption
+                              : "Islamic antiquities"),
+                    );
+                  case '/post':
+                    return MaterialPageRoute(
+                      builder: (_) => BottomBar(
+                          select: 3,
+                          _selectedOption != ""
+                              ? _selectedOption
+                              : "Islamic antiquities"),
+                    );
+                  default:
+                    (token == "0")
+                        ? const LoginScreen()
+                        : sharedPreferences!.getBool("is_manager") == true
+                            ? const DashBoardScreen(
+                                select: 0,
+                              )
+                            // ? DashBoard()
+                            : _selectedOption == ""
+                                ? const TourismScreen()
+                                : BottomBar(
+                                    select: 2,
+                                    _selectedOption != ""
+                                        ? _selectedOption
+                                        : "Islamic antiquities");
+                }
               },
               home: AnimatedSplashScreen(
                 backgroundColor: themeState.appTheme == AppStrings.lightString

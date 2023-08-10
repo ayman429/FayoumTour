@@ -81,8 +81,8 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
 
       return Future.value(unit);
     } on DioException catch (e) {
-      //print("////////////////////////////////////");
-      //print(e.message);
+      print("////////////////////////////////////");
+      print(e.message);
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),

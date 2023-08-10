@@ -9,7 +9,6 @@ import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 
-
 Barcode? result;
 
 class QRViewExample extends StatefulWidget {
@@ -196,7 +195,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                             Navigator.of(context).pop();
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
+                            primary: Colors.green,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                           ),

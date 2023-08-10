@@ -527,17 +527,23 @@ Widget displayImage(String imagePath) {
       fit: BoxFit.cover,
     );
   } else if (imagePath.contains("https")) {
-    return
-    CachedNetworkImage(imageUrl: imagePath,
-    fadeInDuration: const Duration(milliseconds: 350),
-                  fadeOutDuration: const Duration(milliseconds: 350),
-                                    fit: BoxFit.cover,
-                placeholder: (context, url) {
-                    return Image.asset(AppStrings.profileImage,fit: BoxFit.cover,);
-                  },
-                  errorWidget: (context, url, error) {
-                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
-                  },
+    return CachedNetworkImage(
+      imageUrl: imagePath,
+      fadeInDuration: const Duration(milliseconds: 350),
+      fadeOutDuration: const Duration(milliseconds: 350),
+      fit: BoxFit.cover,
+      placeholder: (context, url) {
+        return Image.asset(
+          AppStrings.profileImage,
+          fit: BoxFit.cover,
+        );
+      },
+      errorWidget: (context, url, error) {
+        return Image.asset(
+          AppStrings.error1Gif,
+          fit: BoxFit.cover,
+        );
+      },
     )
         // Image.network(
         //   imagePath,
@@ -558,7 +564,7 @@ Widget displayImage(String imagePath) {
         //     return child;
         //   },
         // ),
-      ;
+        ;
   } else {
     return Image.asset(
       AppStrings.profileImage,

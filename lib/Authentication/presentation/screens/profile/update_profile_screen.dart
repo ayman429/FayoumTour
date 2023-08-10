@@ -225,7 +225,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.green,
+                                    primary: Colors.green,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(15)),
@@ -321,22 +321,22 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     onPressed: () {
                       if (userNameController.text != "") {
                         showDialog(
-                        barrierDismissible: false,
-                        context: context,
-                        builder: (ctx) => const FractionallySizedBox(
-                          widthFactor:
-                              0.5, // Set the desired width factor (0.0 to 1.0)
-                          child: AlertDialog(
-                            content: SizedBox(
-                              width: double.infinity,
-                              height: 30,
-                              child: Center(
-                                child: CircularProgressIndicator(),
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (ctx) => const FractionallySizedBox(
+                            widthFactor:
+                                0.5, // Set the desired width factor (0.0 to 1.0)
+                            child: AlertDialog(
+                              content: SizedBox(
+                                width: double.infinity,
+                                height: 30,
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
+                        );
                         UserDetails userDetails =
                             UserDetails(username: userNameController.text);
                         BlocProvider.of<AuthenticationBloc>(context).add(
@@ -442,17 +442,23 @@ Widget displayImage(String imagePath) {
       fit: BoxFit.cover,
     );
   } else if (imagePath.contains("https")) {
-    return
-              CachedNetworkImage(imageUrl: imagePath,
-    fadeInDuration: const Duration(milliseconds: 350),
-                  fadeOutDuration: const Duration(milliseconds: 350),
-                                    fit: BoxFit.cover,
-                placeholder: (context, url) {
-                    return Image.asset(AppStrings.profileImage,fit: BoxFit.cover,);
-                  },
-                  errorWidget: (context, url, error) {
-                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
-                  },
+    return CachedNetworkImage(
+      imageUrl: imagePath,
+      fadeInDuration: const Duration(milliseconds: 350),
+      fadeOutDuration: const Duration(milliseconds: 350),
+      fit: BoxFit.cover,
+      placeholder: (context, url) {
+        return Image.asset(
+          AppStrings.profileImage,
+          fit: BoxFit.cover,
+        );
+      },
+      errorWidget: (context, url, error) {
+        return Image.asset(
+          AppStrings.error1Gif,
+          fit: BoxFit.cover,
+        );
+      },
     )
         // Image.network(
         //   imagePath,
@@ -473,7 +479,7 @@ Widget displayImage(String imagePath) {
         //     return child;
         //   },
         // ),
-      ;
+        ;
   } else {
     return Image.asset(
       AppStrings.profileImage,

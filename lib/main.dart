@@ -39,6 +39,7 @@ void main() async {
   FirebaseNotification().notification();
   FirebaseNotification().initLocalNotifications();
   await FirebaseMessaging.instance.subscribeToTopic("POST");
+  await FirebaseMessaging.instance.subscribeToTopic("ALL");
   FirebaseMessaging.onBackgroundMessage(firebaseMessageBackgroundHandler);
 //----------------------
   SystemChrome.setPreferredOrientations([

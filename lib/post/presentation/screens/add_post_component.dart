@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -39,6 +40,9 @@ class _AddPostComponentState extends State<AddPostComponent> {
   final List<String> _providedimageList = [];
   final List<int> _removedProvidedimageIndexList = [];
   final username = sharedPreferences!.getString("username") ?? "";
+  String userId = sharedPreferences!.getString("USERID") ?? "0";
+  final userImage = sharedPreferences!
+      .getString("${sharedPreferences!.getString("USERID")}USERIMAGE");
   Future<void> updateUIWithImagePath() async {
     Map<String, dynamic> localUerDetails =
         json.decode(sharedPreferences!.getString("USER") ?? "");
@@ -157,6 +161,36 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           ),
                         ),
                         onPressed: () async {
+                          ///////////////////////
+                          Dio dio = Dio();
+                          dio.options = BaseOptions(
+                            headers: {
+                              'Authorization':
+                                  'key=AAAAdbA1nO4:APA91bEIEO0VE5xXdAcm09ezdCzZiAft_0Pr9VyiLYdf8_uGD1q1GZ-OaAiOTQ_bHIbsK0kmwYSAoniYa8eVGoZRlNWedymsJXli_j1c3XGLOIzldj7JMWc47rrR1yOi7761DwJO_hKL',
+                            },
+                            connectTimeout: const Duration(seconds: 30),
+                            receiveTimeout: const Duration(seconds: 30),
+                            sendTimeout: const Duration(seconds: 30),
+                          );
+                          try {
+                            // print("---------------------------------");
+                            // print(userImage);
+                            final response = await dio.post(
+                                "https://fcm.googleapis.com/fcm/send",
+                                data: {
+                                  "to": "/topics/ALL",
+                                  "priority": "high",
+                                  "notification": {
+                                    "body": "$username Add New Post",
+                                    "title": "FayTour Community",
+                                    // "image": userImage
+                                  }
+                                });
+                          } catch (e) {
+                            print("error");
+                            print(e);
+                          }
+                          //////////////////////
                           if (widget.type != 'add' &&
                               _textEditingController.text == widget.data.body &&
                               !changeInImages) {

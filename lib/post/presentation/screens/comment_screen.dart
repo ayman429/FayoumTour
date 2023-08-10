@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/notification/add notification.dart';
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
@@ -8,14 +9,17 @@ import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
 import '../../../core/utils/snackbar_message.dart';
 import '../../domain/entities/comment.dart';
+import '../../domain/entities/created_by.dart';
 import '../controller/bloc/post_bloc.dart';
 import 'get_comment.dart';
 
 class CommentScreen extends StatefulWidget {
   final int postId;
-  const CommentScreen({
+  CreatedBy? createdBy;
+  CommentScreen({
     Key? key,
     required this.postId,
+    required this.createdBy,
   }) : super(key: key);
 
   @override
@@ -35,18 +39,16 @@ class _CommentScreenState extends State<CommentScreen> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text(
-            AppLocalizations.of(context)!.translate("Comments"),
-            style: sharedPreferences!.getString("Language") == "AR"
-            ? const TextStyle(
-                fontFamily: "galaxy",
-                fontWeight: FontWeight.bold,
-                fontSize: 28)
-            : const TextStyle(
-                fontFamily: AppStrings.fontFamily,
-                fontWeight: FontWeight.bold,
-                fontSize: 25)
-          ),
+          title: Text(AppLocalizations.of(context)!.translate("Comments"),
+              style: sharedPreferences!.getString("Language") == "AR"
+                  ? const TextStyle(
+                      fontFamily: "galaxy",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28)
+                  : const TextStyle(
+                      fontFamily: AppStrings.fontFamily,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25)),
           centerTitle: true,
         ),
         floatingActionButton: Container(
@@ -95,6 +97,14 @@ class _CommentScreenState extends State<CommentScreen> {
                     onPressed: _text == ""
                         ? null
                         : () {
+                            //createdBy
+                            // ------------ Add Comment ------------
+                            AddNotification().addNotification(
+                                topics: "/topics/POST",
+                                body:
+                                    "${sharedPreferences!.getString("username")} adds a new comment",
+                                title: "FayTour Community");
+
                             String? id = sharedPreferences!.getString("USERID");
                             int userId = int.parse(id!);
                             Comment comment = Comment(

@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../core/notification/add notification.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
@@ -161,36 +162,12 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           ),
                         ),
                         onPressed: () async {
-                          ///////////////////////
-                          Dio dio = Dio();
-                          dio.options = BaseOptions(
-                            headers: {
-                              'Authorization':
-                                  'key=AAAAdbA1nO4:APA91bEIEO0VE5xXdAcm09ezdCzZiAft_0Pr9VyiLYdf8_uGD1q1GZ-OaAiOTQ_bHIbsK0kmwYSAoniYa8eVGoZRlNWedymsJXli_j1c3XGLOIzldj7JMWc47rrR1yOi7761DwJO_hKL',
-                            },
-                            connectTimeout: const Duration(seconds: 30),
-                            receiveTimeout: const Duration(seconds: 30),
-                            sendTimeout: const Duration(seconds: 30),
-                          );
-                          try {
-                            // print("---------------------------------");
-                            // print(userImage);
-                            final response = await dio.post(
-                                "https://fcm.googleapis.com/fcm/send",
-                                data: {
-                                  "to": "/topics/ALL",
-                                  "priority": "high",
-                                  "notification": {
-                                    "body": "$username Add New Post",
-                                    "title": "FayTour Community",
-                                    // "image": userImage
-                                  }
-                                });
-                          } catch (e) {
-                            print("error");
-                            print(e);
-                          }
-                          //////////////////////
+                          // ------------ Add Post ------------
+                          AddNotification().addNotification(
+                              topics: "/topics/POST",
+                              body: "$username adds a new post",
+                              title: "FayTour Community");
+
                           if (widget.type != 'add' &&
                               _textEditingController.text == widget.data.body &&
                               !changeInImages) {

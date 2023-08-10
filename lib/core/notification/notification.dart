@@ -28,15 +28,18 @@ class FirebaseNotification {
 
   void handleMessage(RemoteMessage? message) {
     if (message == null) return;
-    print("---------------------------------------------------------------");
-    print("ccccccccc ${message.notification!.title}");
+    // print("---------------------------------------------------------------");
+    // print("ccccccccc ${message.notification!.title}");
     if (message.notification!.title == "FayTour Community") {
-      print("object object object object");
+      navigatorKey.currentState?.pushNamed(
+        '/post',
+        // arguments: message,
+      );
     }
-    navigatorKey.currentState?.pushNamed(
-      '/post',
-      // arguments: message,
-    );
+    // navigatorKey.currentState?.pushNamed(
+    //   '/post',
+    //   // arguments: message,
+    // );
   }
 
   void notification() async {

@@ -75,48 +75,56 @@ class ShowPosts extends StatelessWidget {
                                 height: 40,
                                 // user image in post
                                 child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                        child: (state.post[index].createdBy!
-                                                    .image !=
-                                                "")
-                                            ? CachedNetworkImage(imageUrl: state.post[index].createdBy!.image,
-                                            fadeInDuration: const Duration(milliseconds: 350),
-                  fadeOutDuration: const Duration(milliseconds: 350),
-                                    fit: BoxFit.cover,
-                placeholder: (context, url) {
-                    return Image.asset(AppStrings.profileImage,fit: BoxFit.cover,);
-                  },
-                  errorWidget: (context, url, error) {
-                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
-                  },
-                                            )
-                                            // Image.network(
-                                            //     state.post[index].createdBy!.image,
-                                            //     fit: BoxFit.cover,
-                                            //     errorBuilder: (context, error,
-                                            //         stackTrace) {
-                                            //       return Image.asset(
-                                            //         AppStrings.error1Gif,
-                                            //         fit: BoxFit.cover,
-                                            //       );
-                                            //     },
-                                            //     loadingBuilder: (context, child,
-                                            //         loadingProgress) {
-                                            //       if (loadingProgress != null) {
-                                            //         return Image.asset(
-                                            //           AppStrings.loading1Gif,
-                                            //           fit: BoxFit.cover,
-                                            //         );
-                                            //       }
-                                            //       return child;
-                                            //     },
-                                            //   )
-                                            : Image.asset(
+                                    borderRadius: BorderRadius.circular(100),
+                                    child: (state
+                                                .post[index].createdBy!.image !=
+                                            "")
+                                        ? CachedNetworkImage(
+                                            imageUrl: state
+                                                .post[index].createdBy!.image,
+                                            fadeInDuration: const Duration(
+                                                milliseconds: 350),
+                                            fadeOutDuration: const Duration(
+                                                milliseconds: 350),
+                                            fit: BoxFit.cover,
+                                            placeholder: (context, url) {
+                                              return Image.asset(
                                                 AppStrings.profileImage,
                                                 fit: BoxFit.cover,
-                                              )),
-                                  
+                                              );
+                                            },
+                                            errorWidget: (context, url, error) {
+                                              return Image.asset(
+                                                AppStrings.error1Gif,
+                                                fit: BoxFit.cover,
+                                              );
+                                            },
+                                          )
+                                        // Image.network(
+                                        //     state.post[index].createdBy!.image,
+                                        //     fit: BoxFit.cover,
+                                        //     errorBuilder: (context, error,
+                                        //         stackTrace) {
+                                        //       return Image.asset(
+                                        //         AppStrings.error1Gif,
+                                        //         fit: BoxFit.cover,
+                                        //       );
+                                        //     },
+                                        //     loadingBuilder: (context, child,
+                                        //         loadingProgress) {
+                                        //       if (loadingProgress != null) {
+                                        //         return Image.asset(
+                                        //           AppStrings.loading1Gif,
+                                        //           fit: BoxFit.cover,
+                                        //         );
+                                        //       }
+                                        //       return child;
+                                        //     },
+                                        //   )
+                                        : Image.asset(
+                                            AppStrings.profileImage,
+                                            fit: BoxFit.cover,
+                                          )),
                               ),
                               const SizedBox(width: 8),
                               Expanded(
@@ -340,46 +348,59 @@ class ShowPosts extends StatelessWidget {
                                               //     "assets/images/photoLoading.jpeg",
                                               //     fit: BoxFit.cover),
                                               Opacity(
-                                                opacity: state.post[index]
-                                                            .imagesP.length >
-                                                        4
-                                                    ? 0.4
-                                                    : 1.0,
-                                                child:
-                                                CachedNetworkImage(imageUrl: state.post[index].imagesP[x].imageT,
-                                                fadeInDuration: const Duration(milliseconds: 350),
-                  fadeOutDuration: const Duration(milliseconds: 350),
-                                    fit: BoxFit.cover,
-                placeholder: (context, url) {
-                    return Image.asset("assets/images/photoLoading.jpeg",fit: BoxFit.cover,);
-                  },
-                  errorWidget: (context, url, error) {
-                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
-                  },
-                                                )
-                                                // Image.network(
-                                                //   state.post[index].imagesP[x].imageT,
-                                                //   fit: BoxFit.cover,
-                                                //   errorBuilder: (context, error,
-                                                //       stackTrace) {
-                                                //     return Image.asset(
-                                                //       AppStrings.error1Gif,
-                                                //       fit: BoxFit.cover,
-                                                //     );
-                                                //   },
-                                                //   loadingBuilder: (context,
-                                                //       child, loadingProgress) {
-                                                //     if (loadingProgress !=
-                                                //         null) {
-                                                //       return Image.asset(
-                                                //         AppStrings.loading2Gif,
-                                                //         fit: BoxFit.cover,
-                                                //       );
-                                                //     }
-                                                //     return child;
-                                                //   },
-                                                // ),
-                                              ),
+                                                  opacity: state.post[index]
+                                                              .imagesP.length >
+                                                          4
+                                                      ? 0.4
+                                                      : 1.0,
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: state.post[index]
+                                                        .imagesP[x].imageT,
+                                                    fadeInDuration:
+                                                        const Duration(
+                                                            milliseconds: 350),
+                                                    fadeOutDuration:
+                                                        const Duration(
+                                                            milliseconds: 350),
+                                                    fit: BoxFit.cover,
+                                                    placeholder:
+                                                        (context, url) {
+                                                      return Image.asset(
+                                                        "assets/images/photoLoading.jpeg",
+                                                        fit: BoxFit.cover,
+                                                      );
+                                                    },
+                                                    errorWidget:
+                                                        (context, url, error) {
+                                                      return Image.asset(
+                                                        AppStrings.error1Gif,
+                                                        fit: BoxFit.cover,
+                                                      );
+                                                    },
+                                                  )
+                                                  // Image.network(
+                                                  //   state.post[index].imagesP[x].imageT,
+                                                  //   fit: BoxFit.cover,
+                                                  //   errorBuilder: (context, error,
+                                                  //       stackTrace) {
+                                                  //     return Image.asset(
+                                                  //       AppStrings.error1Gif,
+                                                  //       fit: BoxFit.cover,
+                                                  //     );
+                                                  //   },
+                                                  //   loadingBuilder: (context,
+                                                  //       child, loadingProgress) {
+                                                  //     if (loadingProgress !=
+                                                  //         null) {
+                                                  //       return Image.asset(
+                                                  //         AppStrings.loading2Gif,
+                                                  //         fit: BoxFit.cover,
+                                                  //       );
+                                                  //     }
+                                                  //     return child;
+                                                  //   },
+                                                  // ),
+                                                  ),
                                               state.post[index].imagesP.length >
                                                       4
                                                   ? Center(
@@ -402,49 +423,59 @@ class ShowPosts extends StatelessWidget {
                                         );
                                       } else {
                                         return InkWell(
-                                          onTap: () => Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ImageList(
-                                                          imageList: state
-                                                              .post[index]
-                                                              .imagesP,
-                                                          index: x))),
-                                          child:
-                                          CachedNetworkImage(imageUrl: state.post[index].imagesP[x].imageT,
-                                          fadeInDuration: const Duration(milliseconds: 350),
-                  fadeOutDuration: const Duration(milliseconds: 350),
-                                    fit: BoxFit.cover,
-                placeholder: (context, url) {
-                    return Image.asset("assets/images/photoLoading.jpeg",fit: BoxFit.cover,);
-                  },
-                  errorWidget: (context, url, error) {
-                    return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
-                  },
-                                          )
-                                          // Image.network(
-                                          //       state.post[index].imagesP[x].imageT,
-                                          //       fit: BoxFit.cover,
-                                          //       errorBuilder: (context, error,
-                                          //           stackTrace) {
-                                          //         return Image.asset(
-                                          //           AppStrings.error1Gif,
-                                          //           fit: BoxFit.cover,
-                                          //         );
-                                          //       },
-                                          //       loadingBuilder: (context, child,
-                                          //           loadingProgress) {
-                                          //         if (loadingProgress != null) {
-                                          //           return Image.asset(
-                                          //             AppStrings.loading2Gif,
-                                          //             fit: BoxFit.cover,
-                                          //           );
-                                          //         }
-                                          //         return child;
-                                          //       },
-                                          //     ),
-                                        );
+                                            onTap: () => Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ImageList(
+                                                            imageList: state
+                                                                .post[index]
+                                                                .imagesP,
+                                                            index: x))),
+                                            child: CachedNetworkImage(
+                                              imageUrl: state.post[index]
+                                                  .imagesP[x].imageT,
+                                              fadeInDuration: const Duration(
+                                                  milliseconds: 350),
+                                              fadeOutDuration: const Duration(
+                                                  milliseconds: 350),
+                                              fit: BoxFit.cover,
+                                              placeholder: (context, url) {
+                                                return Image.asset(
+                                                  "assets/images/photoLoading.jpeg",
+                                                  fit: BoxFit.cover,
+                                                );
+                                              },
+                                              errorWidget:
+                                                  (context, url, error) {
+                                                return Image.asset(
+                                                  AppStrings.error1Gif,
+                                                  fit: BoxFit.cover,
+                                                );
+                                              },
+                                            )
+                                            // Image.network(
+                                            //       state.post[index].imagesP[x].imageT,
+                                            //       fit: BoxFit.cover,
+                                            //       errorBuilder: (context, error,
+                                            //           stackTrace) {
+                                            //         return Image.asset(
+                                            //           AppStrings.error1Gif,
+                                            //           fit: BoxFit.cover,
+                                            //         );
+                                            //       },
+                                            //       loadingBuilder: (context, child,
+                                            //           loadingProgress) {
+                                            //         if (loadingProgress != null) {
+                                            //           return Image.asset(
+                                            //             AppStrings.loading2Gif,
+                                            //             fit: BoxFit.cover,
+                                            //           );
+                                            //         }
+                                            //         return child;
+                                            //       },
+                                            //     ),
+                                            );
                                       }
                                     } else {
                                       return Container();
@@ -492,10 +523,16 @@ class ShowPosts extends StatelessWidget {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     CommentScreen(
-                                                        postId: int.parse(state
-                                                                .post[index]
-                                                                .id ??
-                                                            "0"))));
+                                                        postId:
+                                                            int.parse(
+                                                                state
+                                                                        .post[
+                                                                            index]
+                                                                        .id ??
+                                                                    "0"),
+                                                        createdBy: state
+                                                            .post[index]
+                                                            .createdBy)));
                                       },
                                       child:
                                           state.post[index].comment_numbers !=
@@ -539,7 +576,10 @@ class ShowPosts extends StatelessWidget {
                                                   CommentScreen(
                                                       postId: int.parse(state
                                                               .post[index].id ??
-                                                          "0")),
+                                                          "0"),
+                                                      createdBy: state
+                                                          .post[index]
+                                                          .createdBy),
                                             ));
                                       },
                                       style: TextButton.styleFrom(

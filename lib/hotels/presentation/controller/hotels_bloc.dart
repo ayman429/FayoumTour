@@ -466,6 +466,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
       UpdateHotelReservationEvent event, Emitter<HotelsState> emit) async {
     try {
       (await updateHotelReservationUsecase(event.hotelReservation)).fold((l) {
+        print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
         return emit(HotelsState(
             updateHotelReservationState: RequestState.error,
             updateHotelReservationMessage: l.message));
@@ -475,6 +476,7 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
         ));
       });
     } catch (e) {
+      print("ggggggggggggggggggggggggggggggggg");
       emit(HotelsState(
           updateHotelReservationState: RequestState.error,
           updateHotelReservationMessage: "Have Problem Try Again"));

@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
 
 class AddNotification {
-  void addNotification({topics, body, title}) async {
+  void addNotification(
+      {topics, body, title, navigation, id, createdBy_id}) async {
+    print("=====================");
+    print(id);
     Dio dio = Dio();
     dio.options = BaseOptions(
       headers: {
@@ -21,6 +24,11 @@ class AddNotification {
           "body": body,
           "title": title,
           // "image": userImage
+        },
+        "data": {
+          "navigation": navigation,
+          "id": id,
+          "createdBy_id": createdBy_id,
         }
       });
     } catch (e) {

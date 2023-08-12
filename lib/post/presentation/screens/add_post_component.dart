@@ -164,9 +164,17 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         onPressed: () async {
                           // ------------ Add Post ------------
                           AddNotification().addNotification(
-                              topics: "/topics/POST",
-                              body: "$username adds a new post",
-                              title: "FayTour Community");
+                            topics: "/topics/POST_EN",
+                            body: "$username adds a new post",
+                            title: "FayTour Community",
+                            navigation: "POST",
+                          );
+                          AddNotification().addNotification(
+                            topics: "/topics/POST_AR",
+                            body: "اضاف منشور جديد $username",
+                            title: "مجتمع فايتور",
+                            navigation: "POST",
+                          );
 
                           if (widget.type != 'add' &&
                               _textEditingController.text == widget.data.body &&

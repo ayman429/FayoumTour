@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -8,7 +10,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
 import 'Authentication/presentation/screens/Login/login_screen.dart';
 import 'core/local_data_shared_preferences/access_token_shared_preferences.dart';
+import 'core/notification/add notification.dart';
 import 'core/notification/notification.dart';
+import 'core/notification/subscribe_topic.dart';
 import 'core/utils/app_localizations.dart';
 import 'core/services/services_locator.dart';
 import 'core/utils/constance/shared_pref.dart';
@@ -19,8 +23,13 @@ import 'core/utils/theme/bloc/app_theme_bloc.dart';
 import 'home/BottomBar.dart';
 import 'home/DashBoard2.dart';
 import 'home/questions.dart';
+import 'hotels/presentation/screens/hotel_reservation_details_for_manager.dart';
+import 'hotels/presentation/screens/hotel_reservation_details_for_user.dart';
 import 'post/presentation/controller/bloc/post_bloc.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+
+import 'post/presentation/screens/comment_screen.dart';
+import 'post/presentation/screens/get_comment.dart';
 
 var token = "";
 var _selectedOption = "";
@@ -38,9 +47,9 @@ void main() async {
   await Firebase.initializeApp();
   FirebaseNotification().notification();
   FirebaseNotification().initLocalNotifications();
-  await FirebaseMessaging.instance.subscribeToTopic("POST");
-  await FirebaseMessaging.instance.subscribeToTopic("ALL");
+
   FirebaseMessaging.onBackgroundMessage(firebaseMessageBackgroundHandler);
+
 //----------------------
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -49,7 +58,18 @@ void main() async {
   ServicesLocator().init();
 
   sharedPreferences = await SharedPreferences.getInstance();
-  token = await getIt<AccessToken>().getToken();
+  token != "0"
+      ? (sharedPreferences!.getString("Language") == "AR")
+          ? subscribeARTopic()
+          : subscribeENTopic()
+      : null;
+
+  // token = await getIt<AccessToken>().getToken();
+  // --------------
+  token = "37bb23be1fa2003096eb8498920cb0a8be81f2f8";
+  AccessToken accessToken = AccessToken();
+  accessToken.saveToken(token);
+  // --------------
   _selectedOption =
       sharedPreferences!.getString("placeType") ?? "Islamic antiquities";
   runApp(const MyApp());
@@ -127,6 +147,26 @@ class MyApp extends StatelessWidget {
                               ? _selectedOption
                               : "Islamic antiquities"),
                     );
+                  case '/comment':
+                    final argument = settings.arguments as Map<String, dynamic>;
+                    return MaterialPageRoute(
+                      builder: (_) => CommentScreen(
+                          postId: int.parse(argument["id"]),
+                          createdBy_id: int.parse(argument["createdBy_id"])),
+                    );
+                  case '/like':
+                    return MaterialPageRoute(
+                      builder: (_) => BottomBar(
+                          select: 3,
+                          _selectedOption != ""
+                              ? _selectedOption
+                              : "Islamic antiquities"),
+                    );
+                  case '/UserReservation':
+                    return MaterialPageRoute(
+                      builder: (_) => const HotelsReservationDetailsForUser(),
+                    );
+
                   default:
                     (token == "0")
                         ? const LoginScreen()

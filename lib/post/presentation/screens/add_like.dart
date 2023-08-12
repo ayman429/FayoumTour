@@ -2,22 +2,26 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/notification/add notification.dart';
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/enums.dart';
 import '../../../core/utils/snackbar_message.dart';
 import '../../../home/my_flutter_app_icons.dart';
+import '../../domain/entities/created_by.dart';
 import '../../domain/entities/like.dart';
 import '../controller/bloc/post_bloc.dart';
 
 class AddLike extends StatelessWidget {
   final int postId;
   final int like_value;
-  const AddLike({
+  CreatedBy? createdBy;
+  AddLike({
     Key? key,
     required this.postId,
     required this.like_value,
+    this.createdBy,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -39,6 +43,20 @@ class AddLike extends StatelessWidget {
         builder: (context, state) {
           return TextButton(
             onPressed: () {
+              AddNotification().addNotification(
+                topics: "/topics/LIKE_EN${createdBy!.id.toString()}",
+                body:
+                    "${sharedPreferences!.getString("username")} reacted to your post",
+                title: "FayTour Community",
+                navigation: "LIKE",
+              );
+              AddNotification().addNotification(
+                topics: "/topics/LIKE_AR${createdBy!.id.toString()}",
+                body:
+                    "تفاعل علي منشور لك ${sharedPreferences!.getString("username")}",
+                title: "مجتمع فايتور",
+                navigation: "LIKE",
+              );
               likeMap[postId] == 0
                   ? AudioPlayer().play(AssetSource('images/like.mp3'))
                   : null;

@@ -255,7 +255,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
             "user": hotelFavoriteModelsToJson["username"]
           });
       return Future.value(unit);
-    } on DioException   catch (e) {
+    } on DioException catch (e) {
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
@@ -355,8 +355,8 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       return Future.value(unit);
     } on DioException catch (e) {
       // return Error Message
-      //print("..................");
-      //print(e.response);
+      print("..................");
+      print(e.response);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );

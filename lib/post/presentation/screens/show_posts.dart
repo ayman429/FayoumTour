@@ -530,9 +530,11 @@ class ShowPosts extends StatelessWidget {
                                                                             index]
                                                                         .id ??
                                                                     "0"),
-                                                        createdBy: state
-                                                            .post[index]
-                                                            .createdBy)));
+                                                        createdBy_id: state
+                                                                .post[index]
+                                                                .createdBy!
+                                                                .id ??
+                                                            0)));
                                       },
                                       child:
                                           state.post[index].comment_numbers !=
@@ -559,6 +561,7 @@ class ShowPosts extends StatelessWidget {
                                 children: [
                                   // like_value
                                   AddLike(
+                                      createdBy: state.post[index].createdBy,
                                       like_value:
                                           state.post[index].like_value ?? 0,
                                       postId: int.parse(
@@ -577,9 +580,11 @@ class ShowPosts extends StatelessWidget {
                                                       postId: int.parse(state
                                                               .post[index].id ??
                                                           "0"),
-                                                      createdBy: state
-                                                          .post[index]
-                                                          .createdBy),
+                                                      createdBy_id: state
+                                                              .post[index]
+                                                              .createdBy!
+                                                              .id ??
+                                                          0),
                                             ));
                                       },
                                       style: TextButton.styleFrom(

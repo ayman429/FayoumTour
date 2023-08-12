@@ -5,6 +5,7 @@ import 'package:fayoumtour/hotels/presentation/controller/hotels_bloc.dart';
 import 'package:fayoumtour/hotels/presentation/controller/hotels_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../core/notification/add notification.dart';
 import '../core/services/services_locator.dart';
 import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
@@ -811,12 +812,17 @@ class GetReservationData extends StatelessWidget {
                                                   } else if (state
                                                           .updateHotelReservationState ==
                                                       RequestState.error) {
-                                                    //print("//////////////...............................");
+                                                    print(
+                                                        "//////////////............../////////");
                                                     //print(state.addHotelReservationMessage);
                                                     Navigator.pop(context);
                                                   }
                                                 },
                                                 builder: (context, state) {
+                                                  final hotelsBloc =
+                                                      BlocProvider.of<
+                                                          HotelsBloc>(context);
+
                                                   return Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -824,6 +830,30 @@ class GetReservationData extends StatelessWidget {
                                                     children: [
                                                       TextButton(
                                                         onPressed: () {
+                                                          AddNotification()
+                                                              .addNotification(
+                                                            topics:
+                                                                "/topics/ReserveState_EN${data[index].createdBy!.id.toString()}",
+                                                            body:
+                                                                "reservation rejected",
+                                                            title:
+                                                                "${sharedPreferences!.getString("username")}",
+                                                            navigation:
+                                                                "UserReservation",
+                                                          );
+                                                          AddNotification()
+                                                              .addNotification(
+                                                            // topics:
+                                                            //     "/topics/ReserveState_AR${47}",
+                                                            topics:
+                                                                "/topics/ReserveState_AR${data[index].createdBy!.id.toString()}",
+                                                            body:
+                                                                "تم رفض الحجز",
+                                                            title:
+                                                                "${sharedPreferences!.getString("username")}",
+                                                            navigation:
+                                                                "UserReservation",
+                                                          );
                                                           showDialog(
                                                               context: context,
                                                               barrierDismissible:
@@ -851,6 +881,7 @@ class GetReservationData extends StatelessWidget {
                                                                         ElevatedButton(
                                                                             onPressed:
                                                                                 () {
+                                                                              print("object object object");
                                                                               Navigator.of(context).pop();
                                                                               showDialog(
                                                                                 context: context,
@@ -868,11 +899,12 @@ class GetReservationData extends StatelessWidget {
                                                                                   ),
                                                                                 ),
                                                                               );
+
                                                                               HotelReservation hotelReservation = HotelReservation(
                                                                                 status: "Reject",
                                                                                 id: data[index].id.toString(),
                                                                               );
-                                                                              BlocProvider.of<HotelsBloc>(context).add(UpdateHotelReservationEvent(hotelReservation: hotelReservation));
+                                                                              hotelsBloc.add(UpdateHotelReservationEvent(hotelReservation: hotelReservation));
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
@@ -965,6 +997,28 @@ class GetReservationData extends StatelessWidget {
                                                       ),
                                                       TextButton(
                                                         onPressed: () {
+                                                          AddNotification()
+                                                              .addNotification(
+                                                            topics:
+                                                                "/topics/ReserveState_EN${data[index].createdBy!.id.toString()}",
+                                                            body:
+                                                                "reservation accepted",
+                                                            title:
+                                                                "${sharedPreferences!.getString("username")}",
+                                                            navigation:
+                                                                "UserReservation",
+                                                          );
+                                                          AddNotification()
+                                                              .addNotification(
+                                                            topics:
+                                                                "/topics/ReserveState_AR${data[index].createdBy!.id.toString()}",
+                                                            body:
+                                                                "تم قبول الحجز",
+                                                            title:
+                                                                "${sharedPreferences!.getString("username")}",
+                                                            navigation:
+                                                                "UserReservation",
+                                                          );
                                                           showDialog(
                                                               context: context,
                                                               barrierDismissible:
@@ -1009,11 +1063,12 @@ class GetReservationData extends StatelessWidget {
                                                                                   ),
                                                                                 ),
                                                                               );
+
                                                                               HotelReservation hotelReservation = HotelReservation(
                                                                                 status: "Accept",
                                                                                 id: data[index].id.toString(),
                                                                               );
-                                                                              BlocProvider.of<HotelsBloc>(context).add(UpdateHotelReservationEvent(hotelReservation: hotelReservation));
+                                                                              hotelsBloc.add(UpdateHotelReservationEvent(hotelReservation: hotelReservation));
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(

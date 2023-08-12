@@ -1,9 +1,20 @@
 import 'dart:convert';
 
+import 'package:fayoumtour/core/notification/add%20notification.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../main.dart';
+import '../../post/domain/entities/created_by.dart';
+
+class Arguments {
+  int id;
+  CreatedBy? createdBy;
+  Arguments({
+    required this.id,
+    required this.createdBy,
+  });
+}
 
 class FirebaseNotification {
   // Future<void> firebaseMessageBackgroundHandler(RemoteMessage message) async {
@@ -28,18 +39,34 @@ class FirebaseNotification {
 
   void handleMessage(RemoteMessage? message) {
     if (message == null) return;
-    // print("---------------------------------------------------------------");
-    // print("ccccccccc ${message.notification!.title}");
-    if (message.notification!.title == "FayTour Community") {
-      navigatorKey.currentState?.pushNamed(
-        '/post',
-        // arguments: message,
-      );
+
+    switch (message.data["navigation"]) {
+      case "POST":
+        navigatorKey.currentState?.pushNamed(
+          '/post',
+          // arguments: message,
+        );
+        break;
+      case "COMMENT":
+        navigatorKey.currentState?.pushNamed(
+          '/comment',
+          arguments: {
+            "id": message.data['id'],
+            "createdBy_id": message.data['createdBy_id']
+          },
+        );
+        break;
+      case "LIKE":
+        navigatorKey.currentState?.pushNamed(
+          '/like',
+        );
+        break;
+      case "UserReservation":
+        navigatorKey.currentState?.pushNamed(
+          '/UserReservation',
+        );
+        break;
     }
-    // navigatorKey.currentState?.pushNamed(
-    //   '/post',
-    //   // arguments: message,
-    // );
   }
 
   void notification() async {
@@ -75,6 +102,7 @@ class FirebaseNotification {
             _androidChannel.name,
             channelDescription: _androidChannel.description,
             icon: '@drawable/ic_launcher',
+            styleInformation: const BigTextStyleInformation(''),
           ),
         ),
         payload: jsonEncode(message.toMap()),

@@ -13,13 +13,15 @@ import '../../domain/entities/created_by.dart';
 import '../controller/bloc/post_bloc.dart';
 import 'get_comment.dart';
 
+Map<int, dynamic> commentIds = {};
+
 class CommentScreen extends StatefulWidget {
   final int postId;
-  CreatedBy? createdBy;
+  final int createdBy_id;
   CommentScreen({
     Key? key,
     required this.postId,
-    required this.createdBy,
+    required this.createdBy_id,
   }) : super(key: key);
 
   @override
@@ -99,11 +101,51 @@ class _CommentScreenState extends State<CommentScreen> {
                         : () {
                             //createdBy
                             // ------------ Add Comment ------------
+                            print("-----------------");
+                            print(widget.createdBy_id.toString());
                             AddNotification().addNotification(
-                                topics: "/topics/POST",
+                              topics:
+                                  "/topics/COMMENT_EN${widget.createdBy_id.toString()}",
+                              body:
+                                  "${sharedPreferences!.getString("username")} adds a comment to your post",
+                              title: "FayTour Community",
+                              navigation: "COMMENT",
+                              id: widget.postId,
+                              createdBy_id: widget.createdBy_id,
+                            );
+                            AddNotification().addNotification(
+                              topics:
+                                  "/topics/COMMENT_AR${widget.createdBy_id.toString()}",
+                              body:
+                                  "اضاف تعليق علي منشور لك ${sharedPreferences!.getString("username")}",
+                              title: "مجتمع فايتور",
+                              navigation: "COMMENT",
+                              id: widget.postId,
+                              createdBy_id: widget.createdBy_id,
+                            );
+
+                            for (var element in commentIds[widget.postId]) {
+                              AddNotification().addNotification(
+                                topics:
+                                    "/topics/COMMENT_EN${element.toString()}",
                                 body:
-                                    "${sharedPreferences!.getString("username")} adds a new comment",
-                                title: "FayTour Community");
+                                    "${sharedPreferences!.getString("username")} adds a new comment to a post you are following",
+                                title: "FayTour Community",
+                                navigation: "COMMENT",
+                                id: widget.postId,
+                                createdBy_id: widget.createdBy_id,
+                              );
+                              AddNotification().addNotification(
+                                topics:
+                                    "/topics/COMMENT_AR${element.toString()}",
+                                body:
+                                    "اضاف تعليق جديد على المنشور الذي تتابعه ${sharedPreferences!.getString("username")}",
+                                title: "مجتمع فايتور",
+                                navigation: "COMMENT",
+                                id: widget.postId,
+                                createdBy_id: widget.createdBy_id,
+                              );
+                            }
 
                             String? id = sharedPreferences!.getString("USERID");
                             int userId = int.parse(id!);

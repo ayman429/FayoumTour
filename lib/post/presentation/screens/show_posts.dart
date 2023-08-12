@@ -222,34 +222,42 @@ class ShowPosts extends StatelessWidget {
                             : Column(
                                 children: [
                                   for (final word in words)
-                                    isEnglish(word.replaceAll(" ", ""))
+                                    isEnglish(word
+                                            .replaceAll(" ", "")
+                                            .replaceAll(".", ""))
                                         ? Container(
                                             margin: const EdgeInsets.symmetric(
                                                 horizontal: 8, vertical: 12),
-                                            child: Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                word,
-                                                style: const TextStyle(
-                                                    fontSize: 20,
-                                                    fontFamily: "ibmP"
-                                                    //fontWeight: FontWeight.bold,
-                                                    ),
+                                            child: Directionality(
+                                              textDirection: TextDirection.ltr,
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                  word,
+                                                  style: const TextStyle(
+                                                      fontSize: 20,
+                                                      fontFamily: "ibmP"
+                                                      //fontWeight: FontWeight.bold,
+                                                      ),
+                                                ),
                                               ),
-                                            ),
-                                          )
+                                            ))
                                         : Container(
                                             margin: const EdgeInsets.symmetric(
                                                 horizontal: 8, vertical: 12),
-                                            child: Align(
-                                              alignment: Alignment.centerRight,
-                                              child: Text(
-                                                word,
-                                                style: const TextStyle(
-                                                    fontSize: 20,
-                                                    fontFamily: "ibmP"
-                                                    //fontWeight: FontWeight.bold,
-                                                    ),
+                                            child: Directionality(
+                                              textDirection: TextDirection.rtl,
+                                              child: Align(
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                child: Text(
+                                                  word,
+                                                  style: const TextStyle(
+                                                      fontSize: 20,
+                                                      fontFamily: "ibmP"
+                                                      //fontWeight: FontWeight.bold,
+                                                      ),
+                                                ),
                                               ),
                                             ),
                                           ),

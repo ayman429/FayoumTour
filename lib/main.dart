@@ -54,13 +54,14 @@ void main() async {
   ServicesLocator().init();
 
   sharedPreferences = await SharedPreferences.getInstance();
+
+  token = await getIt<AccessToken>().getToken();
   token != "0"
       ? (sharedPreferences!.getString("Language") == "AR")
           ? subscribeARTopic()
           : subscribeENTopic()
       : {unsubscribeARTopic(), unsubscribeENTopic()};
-
-  token = await getIt<AccessToken>().getToken();
+  print(token);
   // --------------
   // token = "37bb23be1fa2003096eb8498920cb0a8be81f2f8";
   // AccessToken accessToken = AccessToken();

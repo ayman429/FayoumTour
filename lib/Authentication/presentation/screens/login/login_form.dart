@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/notification/subscribe_topic.dart';
 import '../../../../core/services/services_locator.dart';
 import '../../../../core/utils/app_localizations.dart';
 import '../../../../core/utils/constance/shared_pref.dart';
@@ -52,7 +53,9 @@ class _LoginFormState extends State<LoginForm> {
                 sharedPreferences!.getString("Language") == "AR"
                     ? "🇸🇦"
                     : "🇬🇧",
-                style:  TextStyle(fontSize: (20/360)*MediaQuery.of(context).size.width,),
+                style: TextStyle(
+                  fontSize: (20 / 360) * MediaQuery.of(context).size.width,
+                ),
               ),
             ),
             border: const OutlineInputBorder(
@@ -66,8 +69,11 @@ class _LoginFormState extends State<LoginForm> {
               value: 0,
               child: Padding(
                 padding: const EdgeInsets.only(top: 1),
-                child: Text(AppLocalizations.of(context)!.translate("English"),
-                style: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,),
+                child: Text(
+                  AppLocalizations.of(context)!.translate("English"),
+                  style: TextStyle(
+                    fontSize: (16 / 360) * MediaQuery.of(context).size.width,
+                  ),
                 ),
               ),
             ),
@@ -75,8 +81,11 @@ class _LoginFormState extends State<LoginForm> {
               value: 1,
               child: Padding(
                 padding: const EdgeInsets.only(top: 1),
-                child: Text(AppLocalizations.of(context)!.translate("Arabic"),
-                style: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,),
+                child: Text(
+                  AppLocalizations.of(context)!.translate("Arabic"),
+                  style: TextStyle(
+                    fontSize: (16 / 360) * MediaQuery.of(context).size.width,
+                  ),
                 ),
               ),
             ),
@@ -104,6 +113,9 @@ class _LoginFormState extends State<LoginForm> {
                 child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
                   listener: (context, state) {
                     if (state.loginstate == RequestState.loaded) {
+                      (sharedPreferences!.getString("Language") == "AR")
+                          ? subscribeARTopic()
+                          : subscribeENTopic();
                       var selectedOption =
                           sharedPreferences!.getString("placeType") ??
                               "Islamic antiquities";
@@ -238,7 +250,8 @@ class _LoginFormState extends State<LoginForm> {
                       child: Text(
                         AppLocalizations.of(context)!.translate("SIGN IN"),
                         style: TextStyle(
-                            fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
+                            fontSize: (17 / 360) *
+                                MediaQuery.of(context).size.width, //17,
                             fontFamily:
                                 sharedPreferences!.getString("Language") == "AR"
                                     ? "Mag"

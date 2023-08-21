@@ -90,10 +90,9 @@ class AuthenticationBloc
       RegistrationEvent event, Emitter<AuthenticationState> emit) async {
     (await registerationUsecase(event.registration)).fold(
       (l) {
-        //print("Error Massage: ${l.message}");
         return emit(state.copyWith(
             registrationstate: RequestState.error,
-            registrationMessage: l.message));
+            registrationMessage: l.message.toString()));
       },
       (r) => emit(state.copyWith(
         registrationstate: RequestState.loaded,

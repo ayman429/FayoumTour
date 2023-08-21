@@ -60,11 +60,11 @@ void main() async {
           : subscribeENTopic()
       : null;
 
-  // token = await getIt<AccessToken>().getToken();
+  token = await getIt<AccessToken>().getToken();
   // --------------
-  token = "37bb23be1fa2003096eb8498920cb0a8be81f2f8";
-  AccessToken accessToken = AccessToken();
-  accessToken.saveToken(token);
+  // token = "37bb23be1fa2003096eb8498920cb0a8be81f2f8";
+  // AccessToken accessToken = AccessToken();
+  // accessToken.saveToken(token);
   // --------------
   _selectedOption =
       sharedPreferences!.getString("placeType") ?? "Islamic antiquities";

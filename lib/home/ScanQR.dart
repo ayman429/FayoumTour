@@ -195,7 +195,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                             Navigator.of(context).pop();
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
+                            primary: Colors.green,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                           ),
@@ -272,16 +272,18 @@ class QRReserviationView extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.translate("QRReservation"),
             style: sharedPreferences!.getString("Language") == "AR"
-                ?  TextStyle(
+                ? TextStyle(
                     fontFamily: "galaxy",
                     fontWeight: FontWeight.bold,
-                    fontSize: (28/360)*MediaQuery.of(context).size.width,//28,
-                    )
-                :  TextStyle(
+                    fontSize:
+                        (28 / 360) * MediaQuery.of(context).size.width, //28,
+                  )
+                : TextStyle(
                     fontFamily: AppStrings.fontFamily,
                     fontWeight: FontWeight.bold,
-                    fontSize: (25/360)*MediaQuery.of(context).size.width,//25,
-                    )),
+                    fontSize:
+                        (25 / 360) * MediaQuery.of(context).size.width, //25,
+                  )),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,

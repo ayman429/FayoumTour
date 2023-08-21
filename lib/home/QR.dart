@@ -21,20 +21,22 @@ class QR extends StatelessWidget {
         backgroundColor: Colors.transparent,
         title: Text(AppLocalizations.of(context)!.translate("QRtitle"),
             style: sharedPreferences!.getString("Language") == "AR"
-                ?  TextStyle(
+                ? TextStyle(
                     fontFamily: "galaxy",
                     fontWeight: FontWeight.bold,
-                    fontSize: (28/360)*MediaQuery.of(context).size.width,//28
-                    )
-                :  TextStyle(
+                    fontSize:
+                        (28 / 360) * MediaQuery.of(context).size.width, //28
+                  )
+                : TextStyle(
                     fontFamily: AppStrings.fontFamily,
                     fontWeight: FontWeight.bold,
-                    fontSize: (25/360)*MediaQuery.of(context).size.width,//25
-                    )),
+                    fontSize:
+                        (25 / 360) * MediaQuery.of(context).size.width, //25
+                  )),
         centerTitle: true,
       ),
       body: Center(
-        child: QrImageView(
+        child: QrImage(
           data:
               "${sharedPreferences!.getString("${userId}USERIMAGE")}*${sharedPreferences!.getString("username")}*${data.adulls}*${data.kids}*${data.check_in}*${data.check_out}*${data.created_at.substring(0, 10)}*${data.created_at.substring(12, 16)}*${data.phone_number}*${data.status}",
           version: QrVersions.auto,

@@ -37,8 +37,8 @@ class GetReservationData extends StatelessWidget {
                       ? "aref"
                       : "pressStart2p",
                   fontSize: sharedPreferences!.getString("Language") == "AR"
-                      ? (38/360)*MediaQuery.of(context).size.width//38
-                      : (24/360)*MediaQuery.of(context).size.width,//24,
+                      ? (38 / 360) * MediaQuery.of(context).size.width //38
+                      : (24 / 360) * MediaQuery.of(context).size.width, //24,
                   color: Theme.of(context).colorScheme.primary),
             ),
           )
@@ -61,8 +61,10 @@ class GetReservationData extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: (50/360)*MediaQuery.of(context).size.width,//50,
-                            height: (50/772)*MediaQuery.of(context).size.height,//50,
+                            width: (50 / 360) *
+                                MediaQuery.of(context).size.width, //50,
+                            height: (50 / 772) *
+                                MediaQuery.of(context).size.height, //50,
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
                                 child: type == "user"
@@ -164,8 +166,9 @@ class GetReservationData extends StatelessWidget {
                                       ? data[index].hotelNameAR
                                       : data[index].hotelName
                                   : data[index].createdBy.userName,
-                              style:  TextStyle(
-                                  fontSize: (18/360)*MediaQuery.of(context).size.width,//18.0,
+                              style: TextStyle(
+                                  fontSize: (18 / 360) *
+                                      MediaQuery.of(context).size.width, //18.0,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "ibmP"),
                               overflow: TextOverflow.ellipsis,
@@ -225,13 +228,20 @@ class GetReservationData extends StatelessWidget {
                                     style: sharedPreferences!
                                                 .getString("Language") ==
                                             "AR"
-                                        ?  TextStyle(
+                                        ? TextStyle(
                                             fontFamily: "messiri",
-                                            fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
-                                            )
-                                        :  TextStyle(
-                                            fontFamily: "acme", fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
-                                            ),
+                                            fontSize: (16.5 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16.5
+                                          )
+                                        : TextStyle(
+                                            fontFamily: "acme",
+                                            fontSize: (16.5 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16.5
+                                          ),
                                   ),
                                   sharedPreferences!.getString("Language") ==
                                           "AR"
@@ -257,7 +267,10 @@ class GetReservationData extends StatelessWidget {
                                             //offset: Offset(4,4),
                                           ),
                                         ]),
-                                    height: (30/772)*MediaQuery.of(context).size.height,//30,
+                                    height: (30 / 772) *
+                                        MediaQuery.of(context)
+                                            .size
+                                            .height, //30,
                                     width: sharedPreferences!
                                                 .getString("Language") ==
                                             "AR"
@@ -274,14 +287,20 @@ class GetReservationData extends StatelessWidget {
                                           style: sharedPreferences!
                                                       .getString("Language") ==
                                                   "AR"
-                                              ?  TextStyle(
+                                              ? TextStyle(
                                                   fontFamily: "messiri",
-                                                  fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
+                                                  fontSize: (17 / 360) *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width, //17,
                                                   color: Colors.green,
                                                   fontWeight: FontWeight.bold)
-                                              :  TextStyle(
+                                              : TextStyle(
                                                   fontFamily: "acme",
-                                                  fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
+                                                  fontSize: (17 / 360) *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width, //17,
                                                   color: Colors.green,
                                                   fontWeight: FontWeight.bold),
                                         ),
@@ -294,14 +313,20 @@ class GetReservationData extends StatelessWidget {
                                           style: sharedPreferences!
                                                       .getString("Language") ==
                                                   "AR"
-                                              ?  TextStyle(
+                                              ? TextStyle(
                                                   fontFamily: "messiri",
-                                                  fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
-                                                  )
-                                              :  TextStyle(
+                                                  fontSize: (16.5 / 360) *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width, //16.5
+                                                )
+                                              : TextStyle(
                                                   fontFamily: "acme",
-                                                  fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
-                                                  ),
+                                                  fontSize: (16.5 / 360) *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width, //16.5
+                                                ),
                                         ),
                                       ],
                                     ),
@@ -316,13 +341,20 @@ class GetReservationData extends StatelessWidget {
                                     style: sharedPreferences!
                                                 .getString("Language") ==
                                             "AR"
-                                        ?  TextStyle(
+                                        ? TextStyle(
                                             fontFamily: "messiri",
-                                            fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
-                                            )
-                                        :  TextStyle(
-                                            fontFamily: "acme", fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
-                                            ),
+                                            fontSize: (16.5 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16.5
+                                          )
+                                        : TextStyle(
+                                            fontFamily: "acme",
+                                            fontSize: (16.5 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16.5
+                                          ),
                                   ),
                                   const SizedBox(
                                     width: 5,
@@ -341,7 +373,10 @@ class GetReservationData extends StatelessWidget {
                                             //offset: Offset(4,4),
                                           ),
                                         ]),
-                                    height: (30/772)*MediaQuery.of(context).size.height,//30,
+                                    height: (30 / 772) *
+                                        MediaQuery.of(context)
+                                            .size
+                                            .height, //30,
                                     width: sharedPreferences!
                                                 .getString("Language") ==
                                             "AR"
@@ -363,8 +398,14 @@ class GetReservationData extends StatelessWidget {
                                                   ? "messiri"
                                                   : "acme",
                                               fontSize: data[index].kids == 0
-                                                  ? (16.5/360)*MediaQuery.of(context).size.width//16.5
-                                                  : (17/360)*MediaQuery.of(context).size.width,//17,
+                                                  ? (16.5 / 360) *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width //16.5
+                                                  : (17 / 360) *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width, //17,
                                               color: Colors.green,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -375,14 +416,17 @@ class GetReservationData extends StatelessWidget {
                                               : AppLocalizations.of(context)!
                                                   .translate("kids"),
                                           style: TextStyle(
-                                              fontFamily: sharedPreferences!
-                                                          .getString(
-                                                              "Language") ==
-                                                      "AR"
-                                                  ? "messiri"
-                                                  : "acme",
-                                              fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
-                                              ),
+                                            fontFamily: sharedPreferences!
+                                                        .getString(
+                                                            "Language") ==
+                                                    "AR"
+                                                ? "messiri"
+                                                : "acme",
+                                            fontSize: (16.5 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16.5
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -403,18 +447,29 @@ class GetReservationData extends StatelessWidget {
                                     style: sharedPreferences!
                                                 .getString("Language") ==
                                             "AR"
-                                        ?  TextStyle(
-                                            fontFamily: "messiri", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                            )
-                                        :  TextStyle(
-                                            fontFamily: "acme", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                            ),
+                                        ? TextStyle(
+                                            fontFamily: "messiri",
+                                            fontSize: (16 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16
+                                          )
+                                        : TextStyle(
+                                            fontFamily: "acme",
+                                            fontSize: (16 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16
+                                          ),
                                   ),
                                   const SizedBox(
                                     height: 5,
                                   ),
                                   Container(
-                                      height: (30/772)*MediaQuery.of(context).size.height,//30,
+                                      height: (30 / 772) *
+                                          MediaQuery.of(context)
+                                              .size
+                                              .height, //30,
                                       width: MediaQuery.of(context).size.width *
                                           0.35,
                                       decoration: BoxDecoration(
@@ -433,9 +488,12 @@ class GetReservationData extends StatelessWidget {
                                       child: Center(
                                           child: Text(
                                         data[index].check_in,
-                                        style:  TextStyle(
+                                        style: TextStyle(
                                             fontFamily: "acme",
-                                            fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                                            fontSize: (18 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //18,
                                             color: Colors.green,
                                             fontWeight: FontWeight.bold),
                                       ))),
@@ -449,18 +507,29 @@ class GetReservationData extends StatelessWidget {
                                     style: sharedPreferences!
                                                 .getString("Language") ==
                                             "AR"
-                                        ?  TextStyle(
-                                            fontFamily: "messiri", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                            )
-                                        :  TextStyle(
-                                            fontFamily: "acme", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                            ),
+                                        ? TextStyle(
+                                            fontFamily: "messiri",
+                                            fontSize: (16 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16
+                                          )
+                                        : TextStyle(
+                                            fontFamily: "acme",
+                                            fontSize: (16 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16
+                                          ),
                                   ),
                                   const SizedBox(
                                     height: 5,
                                   ),
                                   Container(
-                                      height: (30/772)*MediaQuery.of(context).size.height,//30,
+                                      height: (30 / 772) *
+                                          MediaQuery.of(context)
+                                              .size
+                                              .height, //30,
                                       width: MediaQuery.of(context).size.width *
                                           0.35,
                                       decoration: BoxDecoration(
@@ -479,9 +548,12 @@ class GetReservationData extends StatelessWidget {
                                       child: Center(
                                           child: Text(
                                         data[index].check_out,
-                                        style:  TextStyle(
+                                        style: TextStyle(
                                             fontFamily: "acme",
-                                            fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                                            fontSize: (18 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //18,
                                             color: Colors.green,
                                             fontWeight: FontWeight.bold),
                                       ))),
@@ -501,18 +573,29 @@ class GetReservationData extends StatelessWidget {
                                     style: sharedPreferences!
                                                 .getString("Language") ==
                                             "AR"
-                                        ?  TextStyle(
-                                            fontFamily: "messiri", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                            )
-                                        :  TextStyle(
-                                            fontFamily: "acme", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                            ),
+                                        ? TextStyle(
+                                            fontFamily: "messiri",
+                                            fontSize: (16 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16
+                                          )
+                                        : TextStyle(
+                                            fontFamily: "acme",
+                                            fontSize: (16 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16
+                                          ),
                                   ),
                                   const SizedBox(
                                     height: 5,
                                   ),
                                   Container(
-                                      height: (50/772)*MediaQuery.of(context).size.height,//50,
+                                      height: (50 / 772) *
+                                          MediaQuery.of(context)
+                                              .size
+                                              .height, //50,
                                       width: MediaQuery.of(context).size.width *
                                           0.35,
                                       decoration: BoxDecoration(
@@ -536,9 +619,12 @@ class GetReservationData extends StatelessWidget {
                                             data[index]
                                                 .created_at
                                                 .substring(0, 10),
-                                            style:  TextStyle(
+                                            style: TextStyle(
                                                 fontFamily: "acme",
-                                                fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
+                                                fontSize: (17 / 360) *
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .width, //17,
                                                 color: Colors.green,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -550,9 +636,12 @@ class GetReservationData extends StatelessWidget {
                                             data[index]
                                                 .created_at
                                                 .substring(11, 16),
-                                            style:  TextStyle(
+                                            style: TextStyle(
                                                 fontFamily: "acme",
-                                                fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
+                                                fontSize: (17 / 360) *
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .width, //17,
                                                 color: Colors.green,
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -568,18 +657,29 @@ class GetReservationData extends StatelessWidget {
                                     style: sharedPreferences!
                                                 .getString("Language") ==
                                             "AR"
-                                        ?  TextStyle(
-                                            fontFamily: "messiri", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                            )
-                                        :  TextStyle(
-                                            fontFamily: "acme", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                            ),
+                                        ? TextStyle(
+                                            fontFamily: "messiri",
+                                            fontSize: (16 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16
+                                          )
+                                        : TextStyle(
+                                            fontFamily: "acme",
+                                            fontSize: (16 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16
+                                          ),
                                   ),
                                   const SizedBox(
                                     height: 5,
                                   ),
                                   Container(
-                                      height: (50/772)*MediaQuery.of(context).size.height,//50,
+                                      height: (50 / 772) *
+                                          MediaQuery.of(context)
+                                              .size
+                                              .height, //50,
                                       width: MediaQuery.of(context).size.width *
                                           0.35,
                                       decoration: BoxDecoration(
@@ -602,9 +702,12 @@ class GetReservationData extends StatelessWidget {
                                               horizontal: 6),
                                           child: Text(
                                             data[index].phone_number,
-                                            style:  TextStyle(
+                                            style: TextStyle(
                                                 fontFamily: "acme",
-                                                fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
+                                                fontSize: (17 / 360) *
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .width, //17,
                                                 color: Colors.green,
                                                 fontWeight: FontWeight.bold),
                                             overflow: TextOverflow.ellipsis,
@@ -625,19 +728,30 @@ class GetReservationData extends StatelessWidget {
                                 style:
                                     sharedPreferences!.getString("Language") ==
                                             "AR"
-                                        ?  TextStyle(
-                                            fontFamily: "messiri", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                            )
-                                        :  TextStyle(
-                                            fontFamily: "acme", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                            ),
+                                        ? TextStyle(
+                                            fontFamily: "messiri",
+                                            fontSize: (16 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16
+                                          )
+                                        : TextStyle(
+                                            fontFamily: "acme",
+                                            fontSize: (16 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16
+                                          ),
                               ),
                               //const SizedBox(height: 2,),
                               type == "user" && data[index].status == "Accept"
                                   ? Row(
                                       children: [
                                         Container(
-                                            height: (40/772)*MediaQuery.of(context).size.height,//40,
+                                            height: (40 / 772) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .height, //40,
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
@@ -676,15 +790,21 @@ class GetReservationData extends StatelessWidget {
                                                           .getString(
                                                               "Language") ==
                                                       "AR"
-                                                  ?  TextStyle(
+                                                  ? TextStyle(
                                                       fontFamily: "messiri",
-                                                      fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                                                      fontSize: (18 / 360) *
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width, //18,
                                                       color: Colors.green,
                                                       fontWeight:
                                                           FontWeight.bold)
-                                                  :  TextStyle(
+                                                  : TextStyle(
                                                       fontFamily: "acme",
-                                                      fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                                                      fontSize: (18 / 360) *
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width, //18,
                                                       color: Colors.green,
                                                       fontWeight:
                                                           FontWeight.bold),
@@ -713,7 +833,7 @@ class GetReservationData extends StatelessWidget {
                                                   ));
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              backgroundColor: Theme.of(context)
+                                              primary: Theme.of(context)
                                                   .colorScheme
                                                   .primary,
                                               shape: RoundedRectangleBorder(
@@ -731,7 +851,10 @@ class GetReservationData extends StatelessWidget {
                                                       .colorScheme
                                                       .secondary,
                                                   Icons.qr_code,
-                                                  size: (30/360)*MediaQuery.of(context).size.width,//30,
+                                                  size: (30 / 360) *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width, //30,
                                                 )
                                                 // Text(
                                                 //   AppLocalizations.of(context)!.translate("Get QR"),
@@ -757,7 +880,10 @@ class GetReservationData extends StatelessWidget {
                                       ? Row(
                                           children: [
                                             Container(
-                                                height: (40/772)*MediaQuery.of(context).size.height,//40,
+                                                height: (40 / 772) *
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .height, //40,
                                                 width: MediaQuery.of(context)
                                                         .size
                                                         .width *
@@ -798,15 +924,23 @@ class GetReservationData extends StatelessWidget {
                                                               .getString(
                                                                   "Language") ==
                                                           "AR"
-                                                      ?  TextStyle(
+                                                      ? TextStyle(
                                                           fontFamily: "messiri",
-                                                          fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                                                          fontSize: (18 / 360) *
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width, //18,
                                                           color: Colors.green,
                                                           fontWeight:
                                                               FontWeight.bold)
-                                                      :  TextStyle(
+                                                      : TextStyle(
                                                           fontFamily: "acme",
-                                                          fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                                                          fontSize: (18 / 360) *
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width, //18,
                                                           color: Colors.green,
                                                           fontWeight:
                                                               FontWeight.bold),
@@ -924,7 +1058,7 @@ class GetReservationData extends StatelessWidget {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              backgroundColor: Colors.green,
+                                                                              primary: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -941,7 +1075,7 @@ class GetReservationData extends StatelessWidget {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              backgroundColor: Colors.green,
+                                                                              primary: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -991,21 +1125,31 @@ class GetReservationData extends StatelessWidget {
                                                                 .translate(
                                                                     "Reject"),
                                                             style: TextStyle(
-                                                                fontFamily:
-                                                                    sharedPreferences!.getString("Language") ==
-                                                                            "AR"
-                                                                        ? "Mag"
-                                                                        : "rye",
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .secondary,
-                                                                fontSize:
-                                                                    sharedPreferences!.getString("Language") ==
-                                                                            "AR"
-                                                                        ? (12/360)*MediaQuery.of(context).size.width//12
-                                                                        : (11/360)*MediaQuery.of(context).size.width,//11
-                                                                        ),
+                                                              fontFamily:
+                                                                  sharedPreferences!
+                                                                              .getString("Language") ==
+                                                                          "AR"
+                                                                      ? "Mag"
+                                                                      : "rye",
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .colorScheme
+                                                                  .secondary,
+                                                              fontSize: sharedPreferences!
+                                                                          .getString(
+                                                                              "Language") ==
+                                                                      "AR"
+                                                                  ? (12 / 360) *
+                                                                      MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width //12
+                                                                  : (11 / 360) *
+                                                                      MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width, //11
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -1089,7 +1233,7 @@ class GetReservationData extends StatelessWidget {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              backgroundColor: Colors.green,
+                                                                              primary: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -1106,7 +1250,7 @@ class GetReservationData extends StatelessWidget {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              backgroundColor: Colors.green,
+                                                                              primary: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -1159,21 +1303,31 @@ class GetReservationData extends StatelessWidget {
                                                                 .translate(
                                                                     "Accept"),
                                                             style: TextStyle(
-                                                                fontFamily:
-                                                                    sharedPreferences!.getString("Language") ==
-                                                                            "AR"
-                                                                        ? "Mag"
-                                                                        : "rye",
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .secondary,
-                                                                fontSize:
-                                                                    sharedPreferences!.getString("Language") ==
-                                                                            "AR"
-                                                                        ? (12/360)*MediaQuery.of(context).size.width//12
-                                                                        : (11/360)*MediaQuery.of(context).size.width,//11
-                                                                        ),
+                                                              fontFamily:
+                                                                  sharedPreferences!
+                                                                              .getString("Language") ==
+                                                                          "AR"
+                                                                      ? "Mag"
+                                                                      : "rye",
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .colorScheme
+                                                                  .secondary,
+                                                              fontSize: sharedPreferences!
+                                                                          .getString(
+                                                                              "Language") ==
+                                                                      "AR"
+                                                                  ? (12 / 360) *
+                                                                      MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width //12
+                                                                  : (11 / 360) *
+                                                                      MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width, //11
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -1187,7 +1341,10 @@ class GetReservationData extends StatelessWidget {
                                       : Row(
                                           children: [
                                             Container(
-                                                height: (40/772)*MediaQuery.of(context).size.height,//40,
+                                                height: (40 / 772) *
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .height, //40,
                                                 width: MediaQuery.of(context)
                                                         .size
                                                         .width *
@@ -1228,15 +1385,23 @@ class GetReservationData extends StatelessWidget {
                                                               .getString(
                                                                   "Language") ==
                                                           "AR"
-                                                      ?  TextStyle(
+                                                      ? TextStyle(
                                                           fontFamily: "messiri",
-                                                          fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                                                          fontSize: (18 / 360) *
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width, //18,
                                                           color: Colors.green,
                                                           fontWeight:
                                                               FontWeight.bold)
-                                                      :  TextStyle(
+                                                      : TextStyle(
                                                           fontFamily: "acme",
-                                                          fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                                                          fontSize: (18 / 360) *
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width, //18,
                                                           color: Colors.green,
                                                           fontWeight:
                                                               FontWeight.bold),

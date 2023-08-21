@@ -109,18 +109,20 @@ class _profile_screenState extends State<profile_screen> {
                     ? Column(
                         children: [
                           Text(username,
-                              style:  TextStyle(
-                                  fontFamily: "aBeeZee",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                  )),
+                              style: TextStyle(
+                                fontFamily: "aBeeZee",
+                                fontWeight: FontWeight.bold,
+                                fontSize: (16 / 360) *
+                                    MediaQuery.of(context).size.width, //16
+                              )),
                           const SizedBox(height: 10),
                           Text("${userDetails.email}",
-                              style:  TextStyle(
-                                  fontFamily: "aBeeZee",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                                  )),
+                              style: TextStyle(
+                                fontFamily: "aBeeZee",
+                                fontWeight: FontWeight.bold,
+                                fontSize: (16 / 360) *
+                                    MediaQuery.of(context).size.width, //16
+                              )),
                         ],
                       )
                     : const Text("welcome",
@@ -128,7 +130,7 @@ class _profile_screenState extends State<profile_screen> {
               ),
               const SizedBox(height: 20),
               SizedBox(
-                width: (200/360)*MediaQuery.of(context).size.width,//200,
+                width: (200 / 360) * MediaQuery.of(context).size.width, //200,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -139,23 +141,22 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      primary: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(
                     // (AppStrings.editProfile),
                     AppLocalizations.of(context)!.translate("Edit Profile"),
                     style: TextStyle(
-                        fontFamily:
-                            sharedPreferences!.getString("Language") == "AR"
-                                ? "Mag"
-                                : "rye",
-                        color: Theme.of(context).colorScheme.secondary,
-                        fontSize:
-                            sharedPreferences!.getString("Language") == "AR"
-                                ? (14/360)*MediaQuery.of(context).size.width//14
-                                : (16/360)*MediaQuery.of(context).size.width,//16
-                                ),
+                      fontFamily:
+                          sharedPreferences!.getString("Language") == "AR"
+                              ? "Mag"
+                              : "rye",
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontSize: sharedPreferences!.getString("Language") == "AR"
+                          ? (14 / 360) * MediaQuery.of(context).size.width //14
+                          : (16 / 360) * MediaQuery.of(context).size.width, //16
+                    ),
                   ),
                 ),
               ),

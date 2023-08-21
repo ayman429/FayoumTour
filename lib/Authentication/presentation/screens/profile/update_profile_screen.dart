@@ -197,59 +197,60 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       password2Controller.clear();
                     });
 
-                    showDialog(
-                      barrierDismissible: false,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          content: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                sharedPreferences!.getString("Language") == "AR"
-                                    ? 'تم التغيير بنجاح'
-                                    : 'change completed successfully',
-                                style:
-                                    sharedPreferences!.getString("Language") ==
-                                            "AR"
-                                        ? const TextStyle(fontFamily: "messiri")
-                                        : const TextStyle(
-                                            fontFamily: "merriweather"),
-                              ),
-                            ],
-                          ),
-                          actions: <Widget>[
-                            Center(
-                              child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                  ),
-                                  child: Text(
-                                    AppLocalizations.of(context)!
-                                        .translate("Okay"),
-                                    style: TextStyle(
-                                        fontFamily: sharedPreferences!
-                                                    .getString("Language") ==
-                                                "AR"
-                                            ? "Mag"
-                                            : "rye",
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSecondary),
-                                  )),
-                            ),
-                          ],
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                        );
-                      },
-                    );
+                    // showDialog(
+                    //   barrierDismissible: false,
+                    //   context: context,
+                    //   builder: (BuildContext context) {
+                    //     return AlertDialog(
+                    //       content: Row(
+                    //         mainAxisAlignment: MainAxisAlignment.center,
+                    //         children: [
+                    //           Text(
+                    //             sharedPreferences!.getString("Language") == "AR"
+                    //                 ? 'تم التغيير بنجاح'
+                    //                 : 'change completed successfully',
+                    //             style:
+                    //                 sharedPreferences!.getString("Language") ==
+                    //                         "AR"
+                    //                     ? const TextStyle(fontFamily: "messiri")
+                    //                     : const TextStyle(
+                    //                         fontFamily: "merriweather"),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       actions: <Widget>[
+                    //         Center(
+                    //           child: ElevatedButton(
+                    //               onPressed: () {
+                    //                 Navigator.of(context).pop();
+                    //               },
+                    //               style: ElevatedButton.styleFrom(
+                    //                 primary: Colors.green,
+                    //                 shape: RoundedRectangleBorder(
+                    //                     borderRadius:
+                    //                         BorderRadius.circular(15)),
+                    //               ),
+                    //               child: Text(
+                    //                 AppLocalizations.of(context)!
+                    //                     .translate("Okay"),
+                    //                 style: TextStyle(
+                    //                     fontFamily: sharedPreferences!
+                    //                                 .getString("Language") ==
+                    //                             "AR"
+                    //                         ? "Mag"
+                    //                         : "rye",
+                    //                     color: Theme.of(context)
+                    //                         .colorScheme
+                    //                         .onSecondary),
+                    //               )),
+                    //         ),
+                    //       ],
+                    //       shape: RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(15)),
+                    //     );
+                    //   },
+                    // );
+
                     if (state.updateuserDetailsState == RequestState.loaded &&
                         type == "username") {
                       String username = state.updateuserDetails ?? "";

@@ -58,7 +58,7 @@ void main() async {
       ? (sharedPreferences!.getString("Language") == "AR")
           ? subscribeARTopic()
           : subscribeENTopic()
-      : null;
+      : {unsubscribeARTopic(), unsubscribeENTopic()};
 
   token = await getIt<AccessToken>().getToken();
   // --------------

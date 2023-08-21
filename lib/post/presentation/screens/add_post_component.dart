@@ -205,6 +205,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           //   title: "مجتمع فايتور",
                           //   navigation: "POST",
                           // );
+
                           // if (widget.type == 'add') {
                           //   await FirebaseMessaging.instance
                           //       .unsubscribeFromTopic("POST_EN");

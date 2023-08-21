@@ -4,7 +4,7 @@ import '../utils/constance/shared_pref.dart';
 
 var user = sharedPreferences!.getString("USERID") ?? "";
 
-void subscribeARTopic() async {
+void unsubscribeENTopic() async {
   try {
     await FirebaseMessaging.instance.unsubscribeFromTopic("POST_EN");
     await FirebaseMessaging.instance.unsubscribeFromTopic("ALL_EN");
@@ -15,7 +15,10 @@ void subscribeARTopic() async {
   } catch (e) {
     print("$e ------------------->");
   }
+}
 
+void subscribeARTopic() async {
+  unsubscribeENTopic();
   await FirebaseMessaging.instance.subscribeToTopic("POST_AR");
   await FirebaseMessaging.instance.subscribeToTopic("ALL_AR");
   await FirebaseMessaging.instance.subscribeToTopic("COMMENT_AR$user");
@@ -23,7 +26,7 @@ void subscribeARTopic() async {
   await FirebaseMessaging.instance.subscribeToTopic("ReserveState_AR$user");
 }
 
-void subscribeENTopic() async {
+void unsubscribeARTopic() async {
   try {
     await FirebaseMessaging.instance.unsubscribeFromTopic("POST_AR");
     await FirebaseMessaging.instance.unsubscribeFromTopic("ALL_AR");
@@ -34,6 +37,10 @@ void subscribeENTopic() async {
   } catch (e) {
     print("$e ------------------->");
   }
+}
+
+void subscribeENTopic() async {
+  unsubscribeARTopic();
 
   await FirebaseMessaging.instance.subscribeToTopic("POST_EN");
   await FirebaseMessaging.instance.subscribeToTopic("ALL_EN");

@@ -10,6 +10,7 @@ import 'package:fayoumtour/core/utils/constance/shared_pref.dart';
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 
 import '../../../../core/local_data_shared_preferences/access_token_shared_preferences.dart';
+import '../../../../core/notification/subscribe_topic.dart';
 import '../../../../core/services/services_locator.dart';
 import '../../../../core/utils/app_localizations.dart';
 import '../../../../home/ScanQR.dart';
@@ -221,6 +222,8 @@ class _profile_screenState extends State<profile_screen> {
                             .add(LogoutEvent());
                         AccessToken accessToken = AccessToken();
                         accessToken.saveToken("0");
+                        unsubscribeARTopic();
+                        unsubscribeENTopic();
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

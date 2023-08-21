@@ -108,7 +108,8 @@ class _CommentScreenState extends State<CommentScreen> {
                     }
 
                     for (var element in commentIds[widget.postId]) {
-                      if (sharedPreferences!.getString("USERID") != element) {
+                      if (sharedPreferences!.getString("USERID") !=
+                          element.toString()) {
                         AddNotification().addNotification(
                           topics: "/topics/COMMENT_EN${element.toString()}",
                           body:

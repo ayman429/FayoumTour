@@ -25,8 +25,8 @@ class SEARCH extends StatelessWidget {
                       ? "aref"
                       : "pressStart2p",
                   fontSize: sharedPreferences!.getString("Language") == "AR"
-                      ? 38
-                      : 22,
+                      ? (38/360)*MediaQuery.of(context).size.width//38
+                      : (22/360)*MediaQuery.of(context).size.width,//22,
                   height: sharedPreferences!.getString("Language") == "AR"
                       ? null
                       : 1.7,

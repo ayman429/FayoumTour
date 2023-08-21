@@ -35,7 +35,9 @@ class _FavoritesState extends State<Favorites> {
                   ? "aref"
                   : "pressStart2p",
               fontSize:
-                  sharedPreferences!.getString("Language") == "AR" ? 38 : 23,
+                  sharedPreferences!.getString("Language") == "AR"
+                  ? (38/360)*MediaQuery.of(context).size.width//38
+                  : (23/360)*MediaQuery.of(context).size.width,//23,
               color: Theme.of(context).colorScheme.primary),
         ),
       );
@@ -62,7 +64,7 @@ class _FavoritesState extends State<Favorites> {
               }
             },
             child: Container(
-              height: 200,
+              height: (200/772)*MediaQuery.of(context).size.height,//200,
               margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondary,
@@ -161,7 +163,7 @@ class _FavoritesState extends State<Favorites> {
                                   ? "lemo"
                                   : "merriweather",
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
                           color: Theme.of(context).colorScheme.onPrimary,
                         ),
                         overflow: TextOverflow.ellipsis,

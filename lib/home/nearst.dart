@@ -61,7 +61,8 @@ class _NEARState extends State<NEAR> {
                   style: TextStyle(
                       fontFamily: sharedPreferences!.getString("Language") == "AR" ? "Mag" : "rye",
                       color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 18),
+                      fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                      ),
                 ),
               ),
             ),

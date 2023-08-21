@@ -1,16 +1,14 @@
-import 'dart:convert';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+//import 'package:device_preview/device_preview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
 import 'Authentication/presentation/screens/Login/login_screen.dart';
 import 'core/local_data_shared_preferences/access_token_shared_preferences.dart';
-import 'core/notification/add notification.dart';
 import 'core/notification/notification.dart';
 import 'core/notification/subscribe_topic.dart';
 import 'core/utils/app_localizations.dart';
@@ -23,21 +21,19 @@ import 'core/utils/theme/bloc/app_theme_bloc.dart';
 import 'home/BottomBar.dart';
 import 'home/DashBoard2.dart';
 import 'home/questions.dart';
-import 'hotels/presentation/screens/hotel_reservation_details_for_manager.dart';
 import 'hotels/presentation/screens/hotel_reservation_details_for_user.dart';
 import 'post/presentation/controller/bloc/post_bloc.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 import 'post/presentation/screens/comment_screen.dart';
-import 'post/presentation/screens/get_comment.dart';
 
 var token = "";
 var _selectedOption = "";
 Future<void> firebaseMessageBackgroundHandler(RemoteMessage message) async {
   if (kDebugMode) {
-    print(message.messageId);
+    //print(message.messageId);
   }
-  print(message.messageId);
+  //print(message.messageId);
 }
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -72,6 +68,10 @@ void main() async {
   // --------------
   _selectedOption =
       sharedPreferences!.getString("placeType") ?? "Islamic antiquities";
+  // runApp(DevicePreview(
+  //   enabled: true,
+  //   builder: ((context) => const MyApp()))
+  //   );
   runApp(const MyApp());
 }
 
@@ -183,6 +183,7 @@ class MyApp extends StatelessWidget {
                                         ? _selectedOption
                                         : "Islamic antiquities");
                 }
+                return null;
               },
               home: AnimatedSplashScreen(
                 backgroundColor: themeState.appTheme == AppStrings.lightString

@@ -28,21 +28,19 @@ class UpBarImage extends StatelessWidget {
               Size.fromHeight(MediaQuery.of(context).size.height / 3),
           child: Stack(
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 3,
+              CachedNetworkImage(imageUrl: data.originalImage,
+                height: MediaQuery.of(context).size.height / 2.9,
                 width: MediaQuery.of(context).size.width,
-                child:
-                CachedNetworkImage(imageUrl: data.originalImage,
                 fadeInDuration: const Duration(milliseconds: 350),
                   fadeOutDuration: const Duration(milliseconds: 350),
                 fit: BoxFit.cover,
-                placeholder: (context, url) {
-                    return Image.asset(AppStrings.loading2Gif,fit: BoxFit.cover,);
-                  },
+                // placeholder: (context, url) {
+                //     return Image.asset(AppStrings.loading2Gif,fit: BoxFit.cover,);
+                //   },
                   errorWidget: (context, url, error) {
                     return Image.asset(AppStrings.error1Gif,fit: BoxFit.cover,);
                   },
-                )
+                ),
                 // Image.network(
                 //   data.originalImage,
                 //   fit: BoxFit.cover,
@@ -62,7 +60,7 @@ class UpBarImage extends StatelessWidget {
                 //     return child;
                 //   },
                 // ),
-              ),
+              
               AppBar(
                 backgroundColor: Colors.transparent,
                 elevation: 0,

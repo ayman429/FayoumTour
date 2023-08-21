@@ -71,12 +71,12 @@ class HomeCard extends StatelessWidget {
                     fadeInDuration: const Duration(milliseconds: 350),
                     fadeOutDuration: const Duration(milliseconds: 350),
                     fit: BoxFit.cover,
-                    placeholder: (context, url) {
-                      return Image.asset(
-                        AppStrings.loading2Gif,
-                        fit: BoxFit.cover,
-                      );
-                    },
+                    // placeholder: (context, url) {
+                    //   return Image.asset(
+                    //     AppStrings.loading2Gif,
+                    //     fit: BoxFit.cover,
+                    //   );
+                    // },
                     errorWidget: (context, url, error) {
                       return Image.asset(
                         AppStrings.error1Gif,
@@ -119,12 +119,13 @@ class HomeCard extends StatelessWidget {
                             ? data.nameAR
                             : data.name,
                         style: sharedPreferences!.getString("Language") == "AR"
-                            ? const TextStyle(
+                            ?  TextStyle(
                                 fontFamily: "marhey",
-                                fontSize: 15,
+                                fontSize: (15/360)*MediaQuery.of(context).size.width,//15,
                                 fontWeight: FontWeight.bold)
-                            : const TextStyle(
-                                fontFamily: "alata", fontSize: 15),
+                            :  TextStyle(
+                                fontFamily: "alata", fontSize: (15/360)*MediaQuery.of(context).size.width,//15
+                                ),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
@@ -141,12 +142,12 @@ class HomeCard extends StatelessWidget {
                           data.avgRatings.toString(),
                           style:
                               sharedPreferences!.getString("Language") == "AR"
-                                  ? const TextStyle(
-                                      fontSize: 14,
+                                  ?  TextStyle(
+                                      fontSize: (14/360)*MediaQuery.of(context).size.width,//14,
                                       fontFamily: "marhey",
                                       fontWeight: FontWeight.bold)
-                                  : const TextStyle(
-                                      fontSize: 14,
+                                  :  TextStyle(
+                                      fontSize: (14/360)*MediaQuery.of(context).size.width,//14,
                                       fontFamily: "alata",
                                     ),
                         ),

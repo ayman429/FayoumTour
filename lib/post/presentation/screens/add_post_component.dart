@@ -3,10 +3,12 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dio/dio.dart';
+import 'package:fayoumtour/post/presentation/screens/AR_EN_Post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:date_format/date_format.dart';
+
 import '../../../core/notification/add notification.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
@@ -15,7 +17,7 @@ import '../../../core/utils/enums.dart';
 import '../../../core/utils/snackbar_message.dart';
 import '../../domain/entities/post_data.dart';
 import '../controller/bloc/post_bloc.dart';
-import 'package:intl/intl.dart';
+
 
 class AddPostComponent extends StatefulWidget {
   String type;
@@ -34,12 +36,13 @@ class _AddPostComponentState extends State<AddPostComponent> {
 
   String getImagePath = "";
   String _text = "";
-  bool upload = true;
+  bool upload = false;
   bool changeInImages = false;
   final List<File> _imageList = [];
   List<XFile> pickedFiles = [];
   final List<String> _providedimageList = [];
   final List<int> _removedProvidedimageIndexList = [];
+  TextDirection theTextDirection = sharedPreferences!.getString("Language") == "AR" ? TextDirection.rtl : TextDirection.ltr;
   final username = sharedPreferences!.getString("username") ?? "";
   String userId = sharedPreferences!.getString("USERID") ?? "0";
   final userImage = sharedPreferences!
@@ -90,14 +93,16 @@ class _AddPostComponentState extends State<AddPostComponent> {
                     ? AppLocalizations.of(context)!.translate("Create Post")
                     : AppLocalizations.of(context)!.translate("Edit Post"),
                 style: sharedPreferences!.getString("Language") == "AR"
-                    ? const TextStyle(
+                    ?  TextStyle(
                         fontFamily: "galaxy",
                         fontWeight: FontWeight.bold,
-                        fontSize: 28)
-                    : const TextStyle(
+                        fontSize: (28/360)*MediaQuery.of(context).size.width,//28
+                        )
+                    :  TextStyle(
                         fontFamily: AppStrings.fontFamily,
                         fontWeight: FontWeight.bold,
-                        fontSize: 25)),
+                        fontSize: (25/360)*MediaQuery.of(context).size.width,//25
+                        )),
             actions: [
               Opacity(
                 opacity: _textEditingController.text == "" &&
@@ -118,8 +123,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                   margin: sharedPreferences!.getString("Language") == "AR"
                       ? const EdgeInsets.fromLTRB(8, 6, 0, 6)
                       : const EdgeInsets.fromLTRB(0, 6, 8, 6),
-                  height: 45,
-                  width: 100,
+                  height: (45/772)*MediaQuery.of(context).size.height,//45,
+                  width: (100/360)*MediaQuery.of(context).size.width,//100,
                   decoration: BoxDecoration(
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(15.0),
@@ -133,6 +138,19 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         //print("Post Loded");
                         Navigator.pop(context);
                         Navigator.pop(context);
+
+                        AddNotification().addNotification(
+                            topics: "/topics/POST_EN",
+                            body: "$username added a new post",
+                            title: "FayTour Community",
+                            navigation: "POST",
+                          );
+                          AddNotification().addNotification(
+                            topics: "/topics/POST_AR",
+                            body: "أضاف $username منشوراً جديداً",
+                            title: "مجتمع فايتور",
+                            navigation: "POST",
+                          );
                       } else if (state.addPostState == RequestState.error ||
                           state.updatePostState == RequestState.error) {
                         Navigator.pop(context);
@@ -156,42 +174,36 @@ class _AddPostComponentState extends State<AddPostComponent> {
                                             "AR"
                                         ? "Mag"
                                         : "rye",
-                                fontSize: 16,
+                                fontSize: (16/360)*MediaQuery.of(context).size.width,//16,
                                 color:
                                     Theme.of(context).colorScheme.onSecondary),
                           ),
                         ),
                         onPressed: () async {
                           // ------------ Add Post ------------
-                          AddNotification().addNotification(
-                            topics: "/topics/POST_EN",
-                            body: "$username adds a new post",
-                            title: "FayTour Community",
-                            navigation: "POST",
-                          );
-                          AddNotification().addNotification(
-                            topics: "/topics/POST_AR",
-                            body: "اضاف منشور جديد $username",
-                            title: "مجتمع فايتور",
-                            navigation: "POST",
-                          );
+                          // AddNotification().addNotification(
+                          //   topics: "/topics/POST_EN",
+                          //   body: "$username added a new post",
+                          //   title: "FayTour Community",
+                          //   navigation: "POST",
+                          // );
+                          // AddNotification().addNotification(
+                          //   topics: "/topics/POST_AR",
+                          //   body: "أضاف $username منشوراً جديداً",
+                          //   title: "مجتمع فايتور",
+                          //   navigation: "POST",
+                          // );
 
-                          if (widget.type != 'add' &&
-                              _textEditingController.text == widget.data.body &&
-                              !changeInImages) {
-                            if (_textEditingController.text == "" &&
-                                _imageList.isEmpty &&
-                                _providedimageList.isEmpty) {
+                          if (widget.type != 'add' && _textEditingController.text == widget.data.body && !changeInImages) {
+                            if (_textEditingController.text == "" && _imageList.isEmpty && _providedimageList.isEmpty) {
                               upload = false;
                             }
                           } else {
                             upload = true;
                           }
 
-                          if (widget.type == "add" &&
-                                  (_textEditingController.text != "" ||
-                                      _imageList.isNotEmpty) ||
-                              widget.type != "add" && upload) {
+                          if (widget.type == "add" && (_textEditingController.text != "" || _imageList.isNotEmpty) || (widget.type != "add" && upload) )
+                          {
                             List<String> imagesPath = [];
                             for (int i = 0; i < _imageList.length; i++) {
                               imagesPath.add(_imageList[i].path);
@@ -199,11 +211,15 @@ class _AddPostComponentState extends State<AddPostComponent> {
 
                             String body = "";
                             body = _textEditingController.text;
+                            
                             PostData postData = PostData(
                                 body: body,
                                 images: imagesPath,
-                                createdAt: DateFormat('yyyy-MM-dd HH:mm:ss')
-                                    .format(DateTime.now()));
+                                // createdAt: DateFormat('yyyy-MM-dd HH:mm:ss')
+                                //     .format(DateTime.now()));
+                                createdAt: formatDate(DateTime.now(), [
+                                  yyyy,'-',mm,'-',dd,' ',HH,':',nn,':',ss
+                                ]));
                             if (widget.type == "add") {
                               BlocProvider.of<PostBloc>(context)
                                   .add(AddPostEvent(postData: postData));
@@ -285,8 +301,8 @@ class _AddPostComponentState extends State<AddPostComponent> {
                       Row(
                         children: [
                           SizedBox(
-                            width: 50,
-                            height: 50,
+                            width: (50/360)*MediaQuery.of(context).size.width,//50,
+                            height: (50/772)*MediaQuery.of(context).size.height,//50,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: displayImage(getImagePath),
@@ -297,10 +313,10 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           ),
                           Text(
                             username,
-                            style: const TextStyle(
+                            style:  TextStyle(
                               fontFamily: "aBeeZee",
                               fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                              fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
                             ),
                           ),
                         ],
@@ -308,7 +324,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                       // input images post
                       IconButton(
                         color: Colors.green,
-                        iconSize: 35,
+                        iconSize: (35/360)*MediaQuery.of(context).size.width,//35,
                         icon: const Icon(Icons.filter),
                         onPressed: () async {
                           {
@@ -380,34 +396,49 @@ class _AddPostComponentState extends State<AddPostComponent> {
                     margin: const EdgeInsets.symmetric(horizontal: 5),
                     child: Expanded(
                       child: TextFormField(
-                        style: const TextStyle(fontSize: 25),
-                        // initialValue: widget.data.body.toString(),
-                        controller: _textEditingController,
-                        decoration: InputDecoration(
-                          hintText: AppLocalizations.of(context)!
-                              .translate("Write your post now!"),
-                          // border: OutlineInputBorder(
-                          //     borderRadius: BorderRadius.circular(30)),
-                          border: InputBorder.none,
-                        ),
-                        maxLines: null,
-                        onChanged: (value) {
-                          if ((_text == "" && value != "") ||
-                              (_text != "" && value == "")) {
-                            setState(() {});
-                          }
+                          textDirection: theTextDirection,
+                          style:  TextStyle(fontSize: (25/360)*MediaQuery.of(context).size.width,//25
+                          ),
+                          // initialValue: widget.data.body.toString(),
+                          controller: _textEditingController,
+                          decoration: InputDecoration(
+                            hintText: AppLocalizations.of(context)!
+                                .translate("Write your post now!"),
+                            // border: OutlineInputBorder(
+                            //     borderRadius: BorderRadius.circular(30)),
+                            
+                            border: InputBorder.none,
+                            
+                          ),
+                          maxLines: null,
+                          onChanged: (value) {
 
-                          if (widget.type != 'add') {
-                            setState(() {});
-                            if ((_text == widget.data.body &&
-                                    value != widget.data.body) ||
-                                value == widget.data.body) {
+                            if(value != "" && isEnglish(value) && theTextDirection == TextDirection.rtl)
+                            {
+                              setState(() {theTextDirection = TextDirection.ltr;});
+                            }
+                            else if(value != "" && !isEnglish(value) && theTextDirection == TextDirection.ltr)
+                            {
+                              setState(() {theTextDirection = TextDirection.rtl;});
+                            }
+
+                            if ((_text == "" && value != "") ||
+                                (_text != "" && value == "")) {
                               setState(() {});
                             }
-                          }
-                          _text = value;
-                        },
-                      ),
+
+                            if (widget.type != 'add') {
+                              setState(() {});
+                              if ((_text == widget.data.body &&
+                                      value != widget.data.body) ||
+                                  value == widget.data.body) {
+                                setState(() {});
+                              }
+                            }
+                            _text = value;
+                          },
+                        ),
+                      
                     ),
                   ),
 
@@ -456,7 +487,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
 
   Widget _buildImageContainer(String imageProvider, File image, int pos) {
     return Container(
-      height: 120,
+      height: (120/772)*MediaQuery.of(context).size.height,//120,
       margin: const EdgeInsets.symmetric(horizontal: 3),
       child: Stack(
         fit: StackFit.passthrough,
@@ -482,17 +513,17 @@ class _AddPostComponentState extends State<AddPostComponent> {
                   ? Image.file(
                       image,
                       fit: BoxFit.cover,
-                      width: 100,
+                      width: (100/360)*MediaQuery.of(context).size.width,//100,
                     )
                   : Image.network(
                       imageProvider,
                       fit: BoxFit.cover,
-                      width: 100,
+                      width: (100/360)*MediaQuery.of(context).size.width,//100,
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset(
                           AppStrings.error1Gif,
                           fit: BoxFit.cover,
-                          width: 100,
+                          width: (100/360)*MediaQuery.of(context).size.width,//100,
                         );
                       },
                       loadingBuilder: (context, child, loadingProgress) {
@@ -500,7 +531,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           return Image.asset(
                             AppStrings.loading2Gif,
                             fit: BoxFit.cover,
-                            width: 100,
+                            width: (100/360)*MediaQuery.of(context).size.width,//100,
                           );
                         }
                         return child;

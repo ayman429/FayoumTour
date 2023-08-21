@@ -27,8 +27,8 @@ class ReservationListItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  width: 50,
-                  height: 50,
+                  width: (50/360)*MediaQuery.of(context).size.width,//50,
+                  height: (50/772)*MediaQuery.of(context).size.height,//50,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: data["USERIMAGE"] != ""
@@ -61,9 +61,10 @@ class ReservationListItem extends StatelessWidget {
                 Expanded(
                   child: Text(
                     data["username"],
-                    style: const TextStyle(
-                      fontSize: 18.0,
+                    style:  TextStyle(
+                      fontSize: (18/360)*MediaQuery.of(context).size.width,//18.0,
                       fontWeight: FontWeight.bold,
+                      fontFamily: "ibmP"
                     ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
@@ -75,139 +76,233 @@ class ReservationListItem extends StatelessWidget {
             Column(
               children: [
                 Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    AppLocalizations.of(context)!
+                                        .translate("Reservation for"),
+                                    style: sharedPreferences!
+                                                .getString("Language") ==
+                                            "AR"
+                                        ?  TextStyle(
+                                            fontFamily: "messiri",
+                                            fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
+                                            )
+                                        :  TextStyle(
+                                            fontFamily: "acme", fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
+                                            ),
+                                  ),
+                                  sharedPreferences!.getString("Language") ==
+                                          "AR"
+                                      ? const SizedBox(
+                                          width: 2,
+                                        )
+                                      : const SizedBox(
+                                          width: 3,
+                                        ),
+                                  Container(
+                                    // margin: sharedPreferences!.getString("Language") == "AR"
+                                    // ? const EdgeInsets.only(right: 1, left: 4)
+                                    // : const EdgeInsets.only(left: 1, right: 4),
+                                    decoration: BoxDecoration(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiaryContainer,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            blurRadius: 2,
+                                            //offset: Offset(4,4),
+                                          ),
+                                        ]),
+                                    height: (30/772)*MediaQuery.of(context).size.height,//30,
+                                    width: sharedPreferences!
+                                                .getString("Language") ==
+                                            "AR"
+                                        ? MediaQuery.of(context).size.width *
+                                            0.33
+                                        : MediaQuery.of(context).size.width *
+                                            0.22,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "${data["adulls"]}",
+                                          style: sharedPreferences!
+                                                      .getString("Language") ==
+                                                  "AR"
+                                              ?  TextStyle(
+                                                  fontFamily: "messiri",
+                                                  fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.bold)
+                                              :  TextStyle(
+                                                  fontFamily: "acme",
+                                                  fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          data["adulls"] == 1
+                                              ? AppLocalizations.of(context)!
+                                                  .translate(" Adult")
+                                              : AppLocalizations.of(context)!
+                                                  .translate("adults"),
+                                          style: sharedPreferences!
+                                                      .getString("Language") ==
+                                                  "AR"
+                                              ?  TextStyle(
+                                                  fontFamily: "messiri",
+                                                  fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
+                                                  )
+                                              :  TextStyle(
+                                                  fontFamily: "acme",
+                                                  fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
+                                                  ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    AppLocalizations.of(context)!
+                                        .translate("and"),
+                                    style: sharedPreferences!
+                                                .getString("Language") ==
+                                            "AR"
+                                        ?  TextStyle(
+                                            fontFamily: "messiri",
+                                            fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
+                                            )
+                                        :  TextStyle(
+                                            fontFamily: "acme", fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
+                                            ),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    //margin:const EdgeInsets.symmetric(horizontal: 4),
+                                    decoration: BoxDecoration(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onTertiaryContainer,
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            blurRadius: 2,
+                                            //offset: Offset(4,4),
+                                          ),
+                                        ]),
+                                    height: (30/772)*MediaQuery.of(context).size.height,//30,
+                                    width: sharedPreferences!
+                                                .getString("Language") ==
+                                            "AR"
+                                        ? MediaQuery.of(context).size.width *
+                                            0.33
+                                        : MediaQuery.of(context).size.width *
+                                            0.22,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "${data["kids"]}",
+                                          style: TextStyle(
+                                              fontFamily: sharedPreferences!
+                                                          .getString(
+                                                              "Language") ==
+                                                      "AR"
+                                                  ? "messiri"
+                                                  : "acme",
+                                              fontSize: data["kids"] == 0
+                                                  ? (16.5/360)*MediaQuery.of(context).size.width//16.5
+                                                  : (17/360)*MediaQuery.of(context).size.width,//17,
+                                              color: Colors.green,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          data["kids"] == 1
+                                              ? AppLocalizations.of(context)!
+                                                  .translate(" Kid")
+                                              : AppLocalizations.of(context)!
+                                                  .translate("kids"),
+                                          style: TextStyle(
+                                              fontFamily: sharedPreferences!
+                                                          .getString(
+                                                              "Language") ==
+                                                      "AR"
+                                                  ? "messiri"
+                                                  : "acme",
+                                              fontSize: (16.5/360)*MediaQuery.of(context).size.width,//16.5
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                Column(
+                  
                   children: [
-                    Text(
-                      AppLocalizations.of(context)!
-                          .translate("Reservation for"),
-                      style: sharedPreferences!.getString("Language") == "AR"
-                          ? const TextStyle(
-                              fontFamily: "messiri", fontSize: 16.5)
-                          : const TextStyle(fontFamily: "acme", fontSize: 16.5),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      // margin:
-                      //     const EdgeInsets.symmetric(horizontal: 2),
-                      decoration: BoxDecoration(
-                          color:
-                              Theme.of(context).colorScheme.onTertiaryContainer,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 2,
-                              //offset: Offset(4,4),
-                            ),
-                          ]),
-                      height: 30,
-                      width: MediaQuery.of(context).size.width * 0.35,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "${data["adulls"]}",
-                            style:
-                                sharedPreferences!.getString("Language") == "AR"
-                                    ? const TextStyle(
-                                        fontFamily: "messiri",
-                                        fontSize: 17,
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.bold)
-                                    : const TextStyle(
-                                        fontFamily: "acme",
-                                        fontSize: 17,
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            data["adulls"] == 1
-                                ? AppLocalizations.of(context)!
-                                    .translate(" Adult")
-                                : AppLocalizations.of(context)!
-                                    .translate("adults"),
-                            style:
-                                sharedPreferences!.getString("Language") == "AR"
-                                    ? const TextStyle(
-                                        fontFamily: "messiri", fontSize: 16.5)
-                                    : const TextStyle(
-                                        fontFamily: "acme", fontSize: 16.5),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.translate("and"),
-                      style: sharedPreferences!.getString("Language") == "AR"
-                          ? const TextStyle(
-                              fontFamily: "messiri", fontSize: 16.5)
-                          : const TextStyle(fontFamily: "acme", fontSize: 16.5),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 5),
-                      decoration: BoxDecoration(
-                          color:
-                              Theme.of(context).colorScheme.onTertiaryContainer,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 2,
-                              //offset: Offset(4,4),
-                            ),
-                          ]),
-                      height: 30,
-                      width: MediaQuery.of(context).size.width * 0.35,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "${data["kids"]}",
-                            style: TextStyle(
-                                fontFamily: "messiri",
-                                fontSize: data["kids"] == 0 ? 16.5 : 17,
-                                color: Colors.green,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            data["kids"] == 1
-                                ? AppLocalizations.of(context)!
-                                    .translate(" Kid")
-                                : AppLocalizations.of(context)!
-                                    .translate("kids"),
-                            style: const TextStyle(
-                                fontFamily: "messiri", fontSize: 16.5),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
+                    
+                        
+                        
+                        Container(
+                            height: (30/772)*MediaQuery.of(context).size.height,//30,
+                            width: MediaQuery.of(context).size.width * 0.820,
+                            decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onTertiaryContainer,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.grey,
+                                    blurRadius: 2,
+                                    //offset: Offset(4,4),
+                                  ),
+                                ]),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
                           AppLocalizations.of(context)!.translate("Check-In"),
                           style:
                               sharedPreferences!.getString("Language") == "AR"
-                                  ? const TextStyle(
-                                      fontFamily: "messiri", fontSize: 16)
-                                  : const TextStyle(
-                                      fontFamily: "acme", fontSize: 16),
+                                  ?  TextStyle(
+                                      fontFamily: "messiri", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      )
+                                  :  TextStyle(
+                                      fontFamily: "acme", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      ),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                            height: 30,
-                            width: MediaQuery.of(context).size.width * 0.35,
+                                Text(
+                                  data["check_in"],
+                                  style:  TextStyle(
+                                      fontFamily: "acme",
+                                      fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )
+                            ),
+                    const SizedBox(height: 20),
+                    Container(
+                            height: (30/772)*MediaQuery.of(context).size.height,//30,
+                            width: MediaQuery.of(context).size.width * 0.820,
                             decoration: BoxDecoration(
                                 color: Theme.of(context)
                                     .colorScheme
@@ -220,60 +315,35 @@ class ReservationListItem extends StatelessWidget {
                                     //offset: Offset(4,4),
                                   ),
                                 ]),
-                            child: Center(
-                                child: Text(
-                              data["check_in"],
-                              style: const TextStyle(
-                                  fontFamily: "acme",
-                                  fontSize: 18,
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold),
-                            ))),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
                           AppLocalizations.of(context)!.translate("Check-Out"),
                           style:
                               sharedPreferences!.getString("Language") == "AR"
-                                  ? const TextStyle(
-                                      fontFamily: "messiri", fontSize: 16)
-                                  : const TextStyle(
-                                      fontFamily: "acme", fontSize: 16),
+                                  ?  TextStyle(
+                                      fontFamily: "messiri", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      )
+                                  :  TextStyle(
+                                      fontFamily: "acme", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      ),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                            height: 30,
-                            width: MediaQuery.of(context).size.width * 0.35,
-                            decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onTertiaryContainer,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    blurRadius: 2,
-                                    //offset: Offset(4,4),
-                                  ),
-                                ]),
-                            child: Center(
-                                child: Text(
-                              data["check_out"],
-                              style: const TextStyle(
-                                  fontFamily: "acme",
-                                  fontSize: 18,
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold),
-                            ))),
-                      ],
-                    ),
+                                Text(
+                                  data["check_out"],
+                                  style:  TextStyle(
+                                      fontFamily: "acme",
+                                      fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            )
+                            ),
+                      
                   ],
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -284,16 +354,18 @@ class ReservationListItem extends StatelessWidget {
                               .translate("Request Time"),
                           style:
                               sharedPreferences!.getString("Language") == "AR"
-                                  ? const TextStyle(
-                                      fontFamily: "messiri", fontSize: 16)
-                                  : const TextStyle(
-                                      fontFamily: "acme", fontSize: 16),
+                                  ?  TextStyle(
+                                      fontFamily: "messiri", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      )
+                                  :  TextStyle(
+                                      fontFamily: "acme", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      ),
                         ),
                         const SizedBox(
                           height: 5,
                         ),
                         Container(
-                            height: 50,
+                            height: (50/772)*MediaQuery.of(context).size.height,//50,
                             width: MediaQuery.of(context).size.width * 0.35,
                             decoration: BoxDecoration(
                                 color: Theme.of(context)
@@ -312,9 +384,9 @@ class ReservationListItem extends StatelessWidget {
                               children: [
                                 Text(
                                   data["date"],
-                                  style: const TextStyle(
+                                  style:  TextStyle(
                                       fontFamily: "acme",
-                                      fontSize: 17,
+                                      fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -324,9 +396,9 @@ class ReservationListItem extends StatelessWidget {
                                 // ),
                                 Text(
                                   data["Time"],
-                                  style: const TextStyle(
+                                  style:  TextStyle(
                                       fontFamily: "acme",
-                                      fontSize: 17,
+                                      fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -341,16 +413,18 @@ class ReservationListItem extends StatelessWidget {
                               .translate("Phone Number"),
                           style:
                               sharedPreferences!.getString("Language") == "AR"
-                                  ? const TextStyle(
-                                      fontFamily: "messiri", fontSize: 16)
-                                  : const TextStyle(
-                                      fontFamily: "acme", fontSize: 16),
+                                  ?  TextStyle(
+                                      fontFamily: "messiri", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      )
+                                  :  TextStyle(
+                                      fontFamily: "acme", fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      ),
                         ),
                         const SizedBox(
                           height: 5,
                         ),
                         Container(
-                            height: 50,
+                            height: (50/772)*MediaQuery.of(context).size.height,//50,
                             width: MediaQuery.of(context).size.width * 0.35,
                             decoration: BoxDecoration(
                                 color: Theme.of(context)
@@ -371,9 +445,9 @@ class ReservationListItem extends StatelessWidget {
                                     const EdgeInsets.symmetric(horizontal: 6),
                                 child: Text(
                                   data["phone_number"],
-                                  style: const TextStyle(
+                                  style:  TextStyle(
                                       fontFamily: "acme",
-                                      fontSize: 17,
+                                      fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold),
                                   overflow: TextOverflow.ellipsis,
@@ -381,59 +455,29 @@ class ReservationListItem extends StatelessWidget {
                                 ),
                               ),
                             ))),
+
+                            
                       ],
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.translate("Status"),
-                      style: sharedPreferences!.getString("Language") == "AR"
-                          ? const TextStyle(fontFamily: "messiri", fontSize: 16)
-                          : const TextStyle(fontFamily: "acme", fontSize: 16),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                        height: 30,
-                        width: MediaQuery.of(context).size.width * 0.65,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onTertiaryContainer,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 2,
-                                //offset: Offset(4,4),
-                              ),
-                            ]),
-                        child: Center(
-                            child: Text(
-                          sharedPreferences!.getString("Language") == "AR"
-                              ? data["status"] == "under review"
-                                  ? "قيد المراجعة"
-                                  : data["status"] == "Accept"
-                                      ? "تم القبول"
-                                      : data["status"] == "Reject"
-                                          ? "تم الرفض"
-                                          : "قيد المراجعة"
-                              : "${data["status"]}",
-                          style: const TextStyle(
-                              fontFamily: "acme",
-                              fontSize: 18,
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold),
-                        ))),
-                  ],
-                ),
-              ],
+                ],
             ),
+
+            const SizedBox(
+                          height: 20,
+                        ),
+
+                        Opacity(
+                          opacity: 0.4,
+                          child: Image.asset(
+                            
+                            "assets/images/approved.png",
+                            height: (300/772)*MediaQuery.of(context).size.height,//300,
+                            width: (300/360)*MediaQuery.of(context).size.width,//300,
+                            fit: BoxFit.cover,
+                            ),
+                        )
           ],
         ),
       ),

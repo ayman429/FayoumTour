@@ -47,14 +47,14 @@ class AddLike extends StatelessWidget {
                 AddNotification().addNotification(
                   topics: "/topics/LIKE_EN${createdBy!.id.toString()}",
                   body:
-                      "${sharedPreferences!.getString("username")} reacted to your post",
+                      "${sharedPreferences!.getString("username")} liked your post",
                   title: "FayTour Community",
                   navigation: "LIKE",
                 );
                 AddNotification().addNotification(
                   topics: "/topics/LIKE_AR${createdBy!.id.toString()}",
                   body:
-                      "تفاعل علي منشور لك ${sharedPreferences!.getString("username")}",
+                      "أعجب ${sharedPreferences!.getString("username")} بمنشور لك",
                   title: "مجتمع فايتور",
                   navigation: "LIKE",
                 );

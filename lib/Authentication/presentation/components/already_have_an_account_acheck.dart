@@ -25,9 +25,9 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
                   : AppLocalizations.of(context)!
                       .translate("alreadyHaveAccount"),
               // style: TextStyle(color: ColorManager.kPrimaryColor),
-              style: sharedPreferences!.getString("Language") == "AR"
-              ? const TextStyle(fontFamily: "ibmP")
-              : const TextStyle(fontFamily: "merriweather")
+              style: TextStyle(fontFamily: sharedPreferences!.getString("Language") == "AR" ? "ibmP" : "merriweather",
+              fontSize: (14/360)*MediaQuery.of(context).size.width,
+              )
               ),
           GestureDetector(
             onTap: press as void Function()?,
@@ -37,6 +37,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
                   : AppLocalizations.of(context)!.translate("Sign In"),
               style: TextStyle(
                   fontFamily: sharedPreferences!.getString("Language") == "AR" ? "ibmP" :"merriweather",
+                  fontSize: (14/360)*MediaQuery.of(context).size.width,
                   color: Theme.of(context).colorScheme.primary),
               // style: const TextStyle(
               //   // color: ColorManager.kPrimaryColor,

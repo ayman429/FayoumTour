@@ -39,8 +39,8 @@ class SeachBody extends StatelessWidget {
         }
       },
       child: Container(
-        height: 200,
-        width: 200,
+        height: (200/772)*MediaQuery.of(context).size.height,//200,
+        //width: 200,
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.secondary,
@@ -114,7 +114,7 @@ class SeachBody extends StatelessWidget {
                       : data.name,
                   style: TextStyle(
                     fontFamily: sharedPreferences!.getString("Language") == "AR" ? "lemo" :"merriweather",
-                    fontSize: 18,
+                    fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context).colorScheme.onPrimary,
                   ),

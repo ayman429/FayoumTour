@@ -71,7 +71,8 @@ class _ImageListState extends State<ImageList> {
                             style: TextStyle(
                               fontFamily: "aclonica",
                                 color: Theme.of(context).colorScheme.primary,
-                                fontSize: 11.5),
+                                fontSize: (12.8/360)*MediaQuery.of(context).size.width,//11.5
+                                ),
                           ),
                     ),
                   ),

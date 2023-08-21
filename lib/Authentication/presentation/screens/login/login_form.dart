@@ -52,7 +52,7 @@ class _LoginFormState extends State<LoginForm> {
                 sharedPreferences!.getString("Language") == "AR"
                     ? "🇸🇦"
                     : "🇬🇧",
-                style: const TextStyle(fontSize: 20),
+                style:  TextStyle(fontSize: (20/360)*MediaQuery.of(context).size.width,),
               ),
             ),
             border: const OutlineInputBorder(
@@ -66,14 +66,18 @@ class _LoginFormState extends State<LoginForm> {
               value: 0,
               child: Padding(
                 padding: const EdgeInsets.only(top: 1),
-                child: Text(AppLocalizations.of(context)!.translate("English")),
+                child: Text(AppLocalizations.of(context)!.translate("English"),
+                style: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,),
+                ),
               ),
             ),
             DropdownMenuItem(
               value: 1,
               child: Padding(
                 padding: const EdgeInsets.only(top: 1),
-                child: Text(AppLocalizations.of(context)!.translate("Arabic")),
+                child: Text(AppLocalizations.of(context)!.translate("Arabic"),
+                style: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,),
+                ),
               ),
             ),
           ],
@@ -107,7 +111,7 @@ class _LoginFormState extends State<LoginForm> {
                           MaterialPageRoute(
                             builder: (context) =>
                                 sharedPreferences!.getBool("is_manager") == true
-                                    ? DashBoardScreen(
+                                    ? const DashBoardScreen(
                                         select: 0,
                                       )
                                     // ? DashBoard()
@@ -234,7 +238,7 @@ class _LoginFormState extends State<LoginForm> {
                       child: Text(
                         AppLocalizations.of(context)!.translate("SIGN IN"),
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
                             fontFamily:
                                 sharedPreferences!.getString("Language") == "AR"
                                     ? "Mag"

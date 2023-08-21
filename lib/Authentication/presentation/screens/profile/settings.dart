@@ -24,14 +24,16 @@ class SSSettings extends StatelessWidget {
             // AppStrings.settings,
             AppLocalizations.of(context)!.translate("Settings"),
             style: sharedPreferences!.getString("Language") == "AR"
-                ? const TextStyle(
+                ?  TextStyle(
                     fontFamily: "galaxy",
                     fontWeight: FontWeight.bold,
-                    fontSize: 28)
-                : const TextStyle(
+                    fontSize: (28/360)*MediaQuery.of(context).size.width,//28
+                    )
+                :  TextStyle(
                     fontFamily: AppStrings.fontFamily,
                     fontWeight: FontWeight.bold,
-                    fontSize: 25)),
+                    fontSize: (25/360)*MediaQuery.of(context).size.width,//25
+                    )),
         backgroundColor: Colors.transparent,
       ),
       body: FadeIn(
@@ -45,14 +47,16 @@ class SSSettings extends StatelessWidget {
                   leading: Text(
                     AppLocalizations.of(context)!.translate("App Theme"),
                     style: sharedPreferences!.getString("Language") == "AR"
-                        ? const TextStyle(fontFamily: "messiri", fontSize: 19)
-                        : const TextStyle(fontFamily: "aBeeZee", fontSize: 19),
+                        ?  TextStyle(fontFamily: "messiri", fontSize: (19/360)*MediaQuery.of(context).size.width,//19
+                        )
+                        :  TextStyle(fontFamily: "aBeeZee", fontSize: (19/360)*MediaQuery.of(context).size.width,//19
+                        ),
                   ),
                   trailing: BlocBuilder<AppThemeBloc, AppThemeState>(
                       builder: (context, state) {
                     if (state is AppChangeTheme || state is AppThemeInitial) {
                       return LiteRollingSwitch(
-                          textSize: 13,
+                          textSize: (13/360)*MediaQuery.of(context).size.width,//13,
                           animationDuration: const Duration(microseconds: 100),
                           value: (state.appTheme == AppStrings.darkString)
                               ? true
@@ -66,7 +70,7 @@ class SSSettings extends StatelessWidget {
                           //colorOn: Colors.greenAccent,
                           iconOff: Icons.light_mode,
                           iconOn: Icons.dark_mode,
-                          width: 100,
+                          width: (100/360)*MediaQuery.of(context).size.width,//100,
                           onDoubleTap: () {},
                           onSwipe: () {},
                           onTap: () {},
@@ -95,8 +99,10 @@ class SSSettings extends StatelessWidget {
                     // AppStrings.language,
                     AppLocalizations.of(context)!.translate("Language"),
                     style: sharedPreferences!.getString("Language") == "AR"
-                        ? const TextStyle(fontFamily: "messiri", fontSize: 19)
-                        : const TextStyle(fontFamily: "aBeeZee", fontSize: 19),
+                        ?  TextStyle(fontFamily: "messiri", fontSize: (19/360)*MediaQuery.of(context).size.width,//19
+                        )
+                        :  TextStyle(fontFamily: "aBeeZee", fontSize: (19/360)*MediaQuery.of(context).size.width,//19
+                        ),
                   ),
                   trailing: BlocBuilder<AppLanguageBloc, AppLanguageState>(
                     builder: (context, state) {
@@ -116,7 +122,7 @@ class SSSettings extends StatelessWidget {
                             subscribeARTopic();
                           }
                         },
-                        textSize: 13,
+                        textSize: (13/360)*MediaQuery.of(context).size.width,//13,
                         onDoubleTap: () {},
                         onSwipe: () {},
                         onTap: () {
@@ -134,7 +140,7 @@ class SSSettings extends StatelessWidget {
                         //colorOn: Colors.greenAccent,
                         iconOff: Icons.language,
                         iconOn: Icons.language_outlined,
-                        width: 100,
+                        width: (100/360)*MediaQuery.of(context).size.width,//100,
                       );
                     },
                   ),

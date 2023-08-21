@@ -9,7 +9,6 @@ import '../../../core/utils/constance/strings_manager.dart';
 import '../../../core/utils/enums.dart';
 import '../../../core/utils/snackbar_message.dart';
 import '../../domain/entities/comment.dart';
-import '../../domain/entities/created_by.dart';
 import '../controller/bloc/post_bloc.dart';
 import 'get_comment.dart';
 
@@ -18,7 +17,7 @@ Map<int, dynamic> commentIds = {};
 class CommentScreen extends StatefulWidget {
   final int postId;
   final int createdBy_id;
-  CommentScreen({
+  const CommentScreen({
     Key? key,
     required this.postId,
     required this.createdBy_id,
@@ -43,14 +42,16 @@ class _CommentScreenState extends State<CommentScreen> {
           elevation: 0,
           title: Text(AppLocalizations.of(context)!.translate("Comments"),
               style: sharedPreferences!.getString("Language") == "AR"
-                  ? const TextStyle(
+                  ?  TextStyle(
                       fontFamily: "galaxy",
                       fontWeight: FontWeight.bold,
-                      fontSize: 28)
-                  : const TextStyle(
+                      fontSize: (28/360)*MediaQuery.of(context).size.width,//28
+                      )
+                  :  TextStyle(
                       fontFamily: AppStrings.fontFamily,
                       fontWeight: FontWeight.bold,
-                      fontSize: 25)),
+                      fontSize: (25/360)*MediaQuery.of(context).size.width,//25
+                      )),
           centerTitle: true,
         ),
         floatingActionButton: Container(
@@ -66,7 +67,7 @@ class _CommentScreenState extends State<CommentScreen> {
                   const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
               hintText:
                   AppLocalizations.of(context)!.translate("Write a comment..."),
-              hintStyle: const TextStyle(color: Colors.grey),
+              hintStyle:  TextStyle(color: Colors.grey,fontSize: (16/360)*MediaQuery.of(context).size.width,),
               border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(50))),
               suffixIcon: BlocConsumer<PostBloc, PostState>(
@@ -101,13 +102,13 @@ class _CommentScreenState extends State<CommentScreen> {
                         : () {
                             //createdBy
                             // ------------ Add Comment ------------
-                            print("-----------------");
-                            print(widget.createdBy_id.toString());
+                            //print("-----------------");
+                            //print(widget.createdBy_id.toString());
                             AddNotification().addNotification(
                               topics:
                                   "/topics/COMMENT_EN${widget.createdBy_id.toString()}",
                               body:
-                                  "${sharedPreferences!.getString("username")} adds a comment to your post",
+                                  "${sharedPreferences!.getString("username")} added a comment to your post",
                               title: "FayTour Community",
                               navigation: "COMMENT",
                               id: widget.postId,
@@ -117,7 +118,7 @@ class _CommentScreenState extends State<CommentScreen> {
                               topics:
                                   "/topics/COMMENT_AR${widget.createdBy_id.toString()}",
                               body:
-                                  "اضاف تعليق علي منشور لك ${sharedPreferences!.getString("username")}",
+                                  "أضاف ${sharedPreferences!.getString("username")} تعليقاً على منشور لك",
                               title: "مجتمع فايتور",
                               navigation: "COMMENT",
                               id: widget.postId,
@@ -129,7 +130,7 @@ class _CommentScreenState extends State<CommentScreen> {
                                 topics:
                                     "/topics/COMMENT_EN${element.toString()}",
                                 body:
-                                    "${sharedPreferences!.getString("username")} adds a new comment to a post you are following",
+                                    "${sharedPreferences!.getString("username")} added a new comment to a post you are following it",
                                 title: "FayTour Community",
                                 navigation: "COMMENT",
                                 id: widget.postId,
@@ -139,7 +140,7 @@ class _CommentScreenState extends State<CommentScreen> {
                                 topics:
                                     "/topics/COMMENT_AR${element.toString()}",
                                 body:
-                                    "اضاف تعليق جديد على المنشور الذي تتابعه ${sharedPreferences!.getString("username")}",
+                                    "أضاف ${sharedPreferences!.getString("username")} تعليقاً جديداً على منشور تتابعه",
                                 title: "مجتمع فايتور",
                                 navigation: "COMMENT",
                                 id: widget.postId,

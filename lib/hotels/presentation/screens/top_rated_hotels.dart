@@ -6,6 +6,7 @@ import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/enums.dart';
+import '../../../home/HomeCardsLoading.dart';
 import '../../../home/home_card_of_tourism_hotel.dart';
 import '../controller/hotels_bloc.dart';
 import '../controller/hotels_state.dart';
@@ -24,16 +25,20 @@ class TopRatedHotels extends StatelessWidget {
               Text(
                 AppLocalizations.of(context)!.translate("Top Rated Hotels"),
                 style: sharedPreferences!.getString("Language") == "AR"
-                    ? const TextStyle(fontFamily: "dg", fontSize: 18)
-                    : const TextStyle(fontFamily: "alata", fontSize: 18),
+                    ?  TextStyle(fontFamily: "dg", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                    )
+                    :  TextStyle(fontFamily: "alata", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                    ),
               ),
               Row(
                 children: [
                   Text(
                     AppLocalizations.of(context)!.translate("See More"),
                     style: sharedPreferences!.getString("Language") == "AR"
-                        ? const TextStyle(fontFamily: "dg", fontSize: 18)
-                        : const TextStyle(fontFamily: "alata", fontSize: 18),
+                    ?  TextStyle(fontFamily: "dg", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                    )
+                    :  TextStyle(fontFamily: "alata", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                    ),
                   ),
                   const Icon(Icons.arrow_right)
                 ],
@@ -45,8 +50,8 @@ class TopRatedHotels extends StatelessWidget {
       }, child: BlocBuilder<HotelsBloc, HotelsState>(builder: (context, state) {
         switch (state.searchHotelRateState) {
           case RequestState.loading:
-            return const SizedBox(
-                height: 200, child: Center(child: CircularProgressIndicator()));
+            //return const SizedBox(height: 200, child: Center(child: CircularProgressIndicator()));
+            return const HomeLoading();
           case RequestState.loaded:
             return SizedBox(
               height: MediaQuery.of(context).size.height * 0.25,

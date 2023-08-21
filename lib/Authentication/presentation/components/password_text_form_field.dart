@@ -34,6 +34,7 @@ class PasswordTextFormField extends StatelessWidget {
                     ? AppLocalizations.of(context)!
                         .translate("Confirm Password")
                     : AppLocalizations.of(context)!.translate("Your password"),
+                hintStyle: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,),
                 prefixIcon: const Padding(
                   padding: EdgeInsets.all(AppPadding.p16),
                   child: Icon(Icons.fingerprint),

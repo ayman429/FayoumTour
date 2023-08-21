@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:expandable_text/expandable_text.dart';
 
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
@@ -18,7 +19,7 @@ import 'post_time.dart';
 
 class ShowPosts extends StatelessWidget {
   const ShowPosts({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     return BlocListener<PostBloc, PostState>(
@@ -71,8 +72,8 @@ class ShowPosts extends StatelessWidget {
                           child: Row(
                             children: [
                               SizedBox(
-                                width: 40,
-                                height: 40,
+                                width: (40/360)*MediaQuery.of(context).size.width,//40,
+                                height: (40/772)*MediaQuery.of(context).size.height,//40,
                                 // user image in post
                                 child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
@@ -135,10 +136,10 @@ class ShowPosts extends StatelessWidget {
                                       children: [
                                         Text(
                                           '${state.post[index].createdBy!.userName}',
-                                          style: const TextStyle(
+                                          style:  TextStyle(
                                             fontFamily: "readPro",
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 18,
+                                            fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
                                           ),
                                         ),
                                         const SizedBox(width: 4),
@@ -146,8 +147,8 @@ class ShowPosts extends StatelessWidget {
                                                 true
                                             ? Image.asset(
                                                 'assets/icons/mark.png',
-                                                width: 15,
-                                                height: 15,
+                                                width: (14/360)*MediaQuery.of(context).size.width,//14,
+                                                height: (14/772)*MediaQuery.of(context).size.height,//14,
                                               )
                                             : Container(),
                                       ],
@@ -157,9 +158,9 @@ class ShowPosts extends StatelessWidget {
                                       PostTime(
                                           "${state.post[index].createdAt}"),
                                       // "${state.post[index].createdAt}",
-                                      style: const TextStyle(
+                                      style:  TextStyle(
                                           color: Colors.grey,
-                                          fontSize: 14,
+                                          fontSize: (14/360)*MediaQuery.of(context).size.width,//14,
                                           fontFamily: "readPro"),
                                     ),
                                   ],
@@ -219,80 +220,51 @@ class ShowPosts extends StatelessWidget {
                             ? const SizedBox(
                                 height: 10,
                               )
-                            : Column(
-                                children: [
-                                  for (final word in words)
-                                    isEnglish(word
-                                            .replaceAll(" ", "")
-                                            .replaceAll(".", ""))
-                                        ? Container(
+                            : isEnglish(state.post[index].body)
+                            ? Container(
                                             margin: const EdgeInsets.symmetric(
                                                 horizontal: 8, vertical: 12),
-                                            child: Directionality(
-                                              textDirection: TextDirection.ltr,
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                  word,
-                                                  style: const TextStyle(
-                                                      fontSize: 20,
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: ExpandableText(
+                                                    textDirection: TextDirection.ltr,
+                                                    state.post[index].body,
+                                                    expandText:  AppLocalizations.of(context)!.translate("Show more"),
+                                                    collapseOnTextTap: true,
+                                                    expandOnTextTap: true,
+                                                    animation: true,
+                                                    maxLines: 5,
+                                                    linkColor: Colors.green,
+                                                    linkStyle: const TextStyle(fontFamily: "ibmP"),
+                                                    style: TextStyle(
+                                                      fontSize: (20/360)*MediaQuery.of(context).size.width,//20,
                                                       fontFamily: "ibmP"
-                                                      //fontWeight: FontWeight.bold,
-                                                      ),
-                                                ),
-                                              ),
-                                            ))
-                                        : Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: 8, vertical: 12),
-                                            child: Directionality(
-                                              textDirection: TextDirection.rtl,
-                                              child: Align(
-                                                alignment:
-                                                    Alignment.centerRight,
-                                                child: Text(
-                                                  word,
-                                                  style: const TextStyle(
-                                                      fontSize: 20,
-                                                      fontFamily: "ibmP"
-                                                      //fontWeight: FontWeight.bold,
-                                                      ),
-                                                ),
-                                              ),
+                                                    ),
+                                                  ),
                                             ),
-                                          ),
-                                ],
-                              ),
-                        // isEnglish(state.post[index].body[0])
-                        //     ? Container(
-                        //         margin: const EdgeInsets.symmetric(
-                        //             horizontal: 8, vertical: 12),
-                        //         child: Align(
-                        //           alignment: Alignment.centerLeft,
-                        //           child: Text(
-                        //             state.post[index].body,
-                        //             style: const TextStyle(
-                        //                 fontSize: 20, fontFamily: "ibmP"
-                        //                 //fontWeight: FontWeight.bold,
-                        //                 ),
-                        //           ),
-                        //         ),
-                        //       )
-                        //     : Container(
-                        //         margin: const EdgeInsets.symmetric(
-                        //             horizontal: 8, vertical: 12),
-                        //         child: Align(
-                        //           alignment: Alignment.centerRight,
-                        //           child: Text(
-                        //             state.post[index].body,
-                        //             style: const TextStyle(
-                        //                 fontSize: 20, fontFamily: "ibmP"
-                        //                 //fontWeight: FontWeight.bold,
-                        //                 ),
-                        //           ),
-                        //         ),
-                        //       ),
-
+                                            )
+                            : Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 8, vertical: 12),
+                                            child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: ExpandableText(
+                                                    textDirection: TextDirection.rtl,
+                                                    state.post[index].body,
+                                                    expandText: AppLocalizations.of(context)!.translate("Show more"),
+                                                    maxLines: 5,
+                                                    collapseOnTextTap: true,
+                                                    expandOnTextTap: true,
+                                                    animation: true,
+                                                    linkColor: Colors.green,
+                                                    linkStyle: const TextStyle(fontFamily: "ibmP"),
+                                                    style: TextStyle(
+                                                      fontSize: (20/360)*MediaQuery.of(context).size.width,//20,
+                                                      fontFamily: "ibmP"
+                                                    ),
+                                                  ),
+                                            ),
+                                            ),
                         state.post[index].imagesP.isNotEmpty
                             ? SizedBox(
                                 height:
@@ -516,9 +488,9 @@ class ShowPosts extends StatelessWidget {
                                             ),
                                             Text(
                                               "${state.post[index].like_numbers}",
-                                              style: const TextStyle(
+                                              style:  TextStyle(
                                                   color: Colors.grey,
-                                                  fontSize: 14,
+                                                  fontSize: (14/360)*MediaQuery.of(context).size.width,//14,
                                                   fontFamily: "readPro"),
                                             )
                                           ],
@@ -549,9 +521,9 @@ class ShowPosts extends StatelessWidget {
                                                   "0"
                                               ? Text(
                                                   "${state.post[index].comment_numbers} ${AppLocalizations.of(context)!.translate("Comments")}",
-                                                  style: const TextStyle(
+                                                  style:  TextStyle(
                                                       color: Colors.grey,
-                                                      fontSize: 14,
+                                                      fontSize: (14/360)*MediaQuery.of(context).size.width,//14,
                                                       fontFamily: "readPro"),
                                                 )
                                               : Container()),

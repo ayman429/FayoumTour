@@ -5,16 +5,18 @@ import '../core/utils/constance/shared_pref.dart';
 
 class RatingBar extends StatelessWidget {
   final double rating;
-  final double size;
+  double size;
   final int ratingCount;
-  const RatingBar(
-      {Key? key, required this.rating, this.ratingCount = 0, this.size = 18})
+  RatingBar(
+      {Key? key, required this.rating, this.ratingCount = 0, this.size = 18
+      })
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List<Widget> starList = [];
-
+    size = (size/360)*MediaQuery.of(context).size.width;
+    
     int realNumber = rating.floor();
     int partNumber = ((rating - realNumber) * 10).ceil();
 

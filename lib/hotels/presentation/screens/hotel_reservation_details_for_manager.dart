@@ -34,14 +34,16 @@ class HotelsReservationDetailsForManager extends StatelessWidget {
               title: Text(
                   AppLocalizations.of(context)!.translate("Reservation"),
                   style: sharedPreferences!.getString("Language") == "AR"
-                      ? const TextStyle(
+                      ?  TextStyle(
                           fontFamily: "galaxy",
                           fontWeight: FontWeight.bold,
-                          fontSize: 28)
-                      : const TextStyle(
+                          fontSize: (28/360)*MediaQuery.of(context).size.width,//28
+                          )
+                      :  TextStyle(
                           fontFamily: AppStrings.fontFamily,
                           fontWeight: FontWeight.bold,
-                          fontSize: 25)),
+                          fontSize: (25/360)*MediaQuery.of(context).size.width,//25
+                          )),
               centerTitle: true,
               backgroundColor: Colors.transparent,
               elevation: 0,

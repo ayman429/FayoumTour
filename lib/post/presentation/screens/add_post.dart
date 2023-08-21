@@ -75,8 +75,8 @@ class _AddPostState extends State<AddPost> {
                                         ? const EdgeInsets.only(right: 5)
                                         : const EdgeInsets.only(left: 5),
                                 child: SizedBox(
-                                  width: 40,
-                                  height: 40,
+                                  width: (40/360)*MediaQuery.of(context).size.width,//40,
+                                  height: (40/772)*MediaQuery.of(context).size.height,//40,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
                                     child: FutureBuilder(
@@ -124,8 +124,8 @@ class _AddPostState extends State<AddPost> {
                                                   AppLocalizations.of(context)!
                                                       .translate(
                                                           "   write your offer now!   "),
-                                                  style: const TextStyle(
-                                                      fontSize: 18.0,
+                                                  style:  TextStyle(
+                                                      fontSize: (18/360)*MediaQuery.of(context).size.width,//18.0,
                                                       fontFamily: "amiri"),
                                                 )
                                               : Text(
@@ -133,8 +133,8 @@ class _AddPostState extends State<AddPost> {
                                                   AppLocalizations.of(context)!
                                                       .translate(
                                                           "   Write your post now!   "),
-                                                  style: const TextStyle(
-                                                      fontSize: 18.0,
+                                                  style:  TextStyle(
+                                                      fontSize: (18/360)*MediaQuery.of(context).size.width,//18.0,
                                                       fontFamily: "amiri"),
                                                 ),
                                         ),
@@ -152,10 +152,10 @@ class _AddPostState extends State<AddPost> {
                                           "AR"
                                       ? const EdgeInsets.only(left: 5)
                                       : const EdgeInsets.only(right: 5),
-                              child: const Icon(
+                              child:  Icon(
                                 Icons.filter,
                                 color: Colors.green,
-                                size: 30,
+                                size: (30/360)*MediaQuery.of(context).size.width,//30,
                               )),
                         ]),
                   ],

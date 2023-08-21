@@ -77,7 +77,7 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
+                                    backgroundColor: Colors.green,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(15)),
@@ -103,15 +103,15 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                 }
               },
               icon: (flag)
-                  ? const Icon(
+                  ?  Icon(
                       Icons.favorite,
                       color: Colors.red,
-                      size: 40,
+                      size: (40/360)*MediaQuery.of(context).size.width,//40,
                     )
-                  : const Icon(
+                  :  Icon(
                       Icons.favorite_border_rounded,
                       color: Colors.red,
-                      size: 40,
+                      size: (40/360)*MediaQuery.of(context).size.width,//40,
                     ),
             ),
           );

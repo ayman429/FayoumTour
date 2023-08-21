@@ -52,7 +52,7 @@ class SigupForm extends StatelessWidget {
                 sharedPreferences!.getString("Language") == "AR"
                     ? "🇸🇦"
                     : "🇬🇧",
-                style: const TextStyle(fontSize: 20),
+                style:  TextStyle(fontSize: (20/360)*MediaQuery.of(context).size.width,),
               ),
             ),
             border: const OutlineInputBorder(
@@ -66,14 +66,18 @@ class SigupForm extends StatelessWidget {
               value: 0,
               child: Padding(
                 padding: const EdgeInsets.only(top: 1),
-                child: Text(AppLocalizations.of(context)!.translate("English")),
+                child: Text(AppLocalizations.of(context)!.translate("English"),
+                style: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,),
+                ),
               ),
             ),
             DropdownMenuItem(
               value: 1,
               child: Padding(
                 padding: const EdgeInsets.only(top: 1),
-                child: Text(AppLocalizations.of(context)!.translate("Arabic")),
+                child: Text(AppLocalizations.of(context)!.translate("Arabic"),
+                style: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,),
+                ),
               ),
             ),
           ],
@@ -156,7 +160,7 @@ class SigupForm extends StatelessWidget {
                               sharedPreferences!.getString("Language") == "AR"
                                   ? "Mag"
                                   : "rye",
-                          fontSize: 16,
+                          fontSize: (17/360)*MediaQuery.of(context).size.width,//17,
                           color: Theme.of(context).colorScheme.secondary),
                     ),
                   );

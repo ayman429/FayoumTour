@@ -6,6 +6,7 @@ import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/enums.dart';
 import '../../../home/home_card_of_tourism_hotel.dart';
+import '../../../home/HomeCardsLoading.dart';
 import '../controller/tourism_place_bloc.dart';
 import '../controller/tourism_place_event.dart';
 import '../controller/tourism_place_state.dart';
@@ -24,16 +25,20 @@ class recommendations extends StatelessWidget {
               Text(
                 AppLocalizations.of(context)!.translate("Recommendations"),
                 style: sharedPreferences!.getString("Language") == "AR"
-                    ? const TextStyle(fontFamily: "dg", fontSize: 18)
-                    : const TextStyle(fontFamily: "alata", fontSize: 18),
+                    ?  TextStyle(fontFamily: "dg", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                    )
+                    :  TextStyle(fontFamily: "alata", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                    ),
               ),
               Row(
                 children: [
                   Text(
                     AppLocalizations.of(context)!.translate("See More"),
                     style: sharedPreferences!.getString("Language") == "AR"
-                        ? const TextStyle(fontFamily: "dg", fontSize: 18)
-                        : const TextStyle(fontFamily: "alata", fontSize: 18),
+                        ?  TextStyle(fontFamily: "dg", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                        )
+                        :  TextStyle(fontFamily: "alata", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                        ),
                   ),
                   const Icon(Icons.arrow_right)
                 ],
@@ -49,8 +54,8 @@ class recommendations extends StatelessWidget {
           builder: (context, state) {
         switch (state.model1State) {
           case RequestState.loading:
-            return const SizedBox(
-                height: 200, child: Center(child: CircularProgressIndicator()));
+            //return const SizedBox(height: 200, child: Center(child: CircularProgressIndicator()));
+            return const HomeLoading();
           case RequestState.loaded:
             // print("=============>");
             // print(sharedPreferences!.getString("model1Input"));
@@ -77,11 +82,8 @@ class recommendations extends StatelessWidget {
               ),
             );
           case RequestState.error:
-            BlocProvider.of<TourismPlaceBloc>(context).add(Model1Event(
-                model1Input: sharedPreferences!.getString("model1Input") ??
-                    "I Love Historical pyramids, I Enjoy water sports"));
-            return const SizedBox(
-                height: 200, child: Center(child: CircularProgressIndicator()));
+            BlocProvider.of<TourismPlaceBloc>(context).add(Model1Event(model1Input: sharedPreferences!.getString("model1Input") ?? "I Love Historical pyramids, I Enjoy water sports"));
+            return const SizedBox(height: 200, child: Center(child: CircularProgressIndicator()));
         }
       }))
     ]);

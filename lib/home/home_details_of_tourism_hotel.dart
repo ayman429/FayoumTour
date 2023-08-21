@@ -54,7 +54,7 @@ class Details extends StatelessWidget {
                                           "AR"
                                       ? "messiri"
                                       : "acme",
-                              fontSize: 20.5,
+                              fontSize: (20.5/360)*MediaQuery.of(context).size.width,//20.5,
                               color: Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.bold),
                           overflow: TextOverflow.ellipsis,
@@ -93,21 +93,23 @@ class Details extends StatelessWidget {
                               data.avgRatings.toString(),
                               style: sharedPreferences!.getString("Language") ==
                                       "AR"
-                                  ? const TextStyle(
+                                  ?  TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "messiri",
-                                      fontSize: 16)
-                                  : const TextStyle(
+                                      fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      )
+                                  :  TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "acme",
-                                      fontSize: 16),
+                                      fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      ),
                             ),
                           ),
                           Container(
                               margin: const EdgeInsets.only(),
                               child: RatingBar(
                                 rating: data.avgRatings,
-                                size: 22,
+                                size: (22/360)*MediaQuery.of(context).size.width,//22,
                               )),
                         ],
                       ),
@@ -134,7 +136,7 @@ class Details extends StatelessWidget {
                                 sharedPreferences!.getString("Language") == "AR"
                                     ? 1.75
                                     : 1.50,
-                            fontSize: 18,
+                            fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).colorScheme.onPrimary),
                       ),
@@ -172,22 +174,7 @@ class Details extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => ImageList(
                                         imageList: data.imagesT, index: 0))),
-                            child: Stack(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image.asset(
-                                      "assets/images/photoLoading.jpeg",
-                                      width: MediaQuery.of(context).size.width *
-                                          0.30,
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.3,
-                                      fit: BoxFit.cover
-                                      //color: Colors.grey,
-                                      ),
-                                ),
-                                SizedBox(
+                            child: SizedBox(
                                   width:
                                       MediaQuery.of(context).size.width * 0.30,
                                   height:
@@ -203,7 +190,7 @@ class Details extends StatelessWidget {
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) {
                                           return Image.asset(
-                                            AppStrings.loading2Gif,
+                                            "assets/images/photoLoading.jpeg",
                                             fit: BoxFit.cover,
                                           );
                                         },
@@ -236,8 +223,6 @@ class Details extends StatelessWidget {
                                       //     ),
                                       ),
                                 ),
-                              ],
-                            ),
                           )),
                       Padding(
                           padding: EdgeInsets.only(
@@ -256,22 +241,7 @@ class Details extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => ImageList(
                                         imageList: data.imagesT, index: 1))),
-                            child: Stack(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image.asset(
-                                      "assets/images/photoLoading.jpeg",
-                                      width: MediaQuery.of(context).size.width *
-                                          0.30,
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.3,
-                                      fit: BoxFit.cover
-                                      //color: Colors.grey,
-                                      ),
-                                ),
-                                SizedBox(
+                            child: SizedBox(
                                   width:
                                       MediaQuery.of(context).size.width * 0.30,
                                   height:
@@ -287,7 +257,7 @@ class Details extends StatelessWidget {
                                       fit: BoxFit.cover,
                                       placeholder: (context, url) {
                                         return Image.asset(
-                                          AppStrings.loading2Gif,
+                                          "assets/images/photoLoading.jpeg",
                                           fit: BoxFit.cover,
                                         );
                                       },
@@ -320,8 +290,7 @@ class Details extends StatelessWidget {
                                     // ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              
                           )),
                       Padding(
                           padding: EdgeInsets.only(
@@ -341,18 +310,6 @@ class Details extends StatelessWidget {
                                     builder: (context) => ImageList(
                                         imageList: data.imagesT, index: 2))),
                             child: Stack(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.30,
-                                    height:
-                                        MediaQuery.of(context).size.width * 0.3,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Stack(
                                   alignment: Alignment.center,
                                   children: [
                                     Opacity(
@@ -376,7 +333,7 @@ class Details extends StatelessWidget {
                                               fit: BoxFit.cover,
                                               placeholder: (context, url) {
                                                 return Image.asset(
-                                                  AppStrings.loading2Gif,
+                                                  "assets/images/photoLoading.jpeg",
                                                   fit: BoxFit.cover,
                                                 );
                                               },
@@ -418,13 +375,12 @@ class Details extends StatelessWidget {
                                           color: Theme.of(context)
                                               .colorScheme
                                               .onPrimary,
-                                          fontSize: 27,
+                                          fontSize: (27/360)*MediaQuery.of(context).size.width,//27,
                                           fontWeight: FontWeight.w600),
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
+                              
                           )),
                     ],
                   ),
@@ -490,7 +446,8 @@ class Details extends StatelessWidget {
                                     ? "Mag"
                                     : "rye",
                             color: Theme.of(context).colorScheme.secondary,
-                            fontSize: 20),
+                            fontSize: (20/360)*MediaQuery.of(context).size.width,//20
+                            ),
                       ),
                     ),
                   ),
@@ -532,7 +489,8 @@ class Details extends StatelessWidget {
                                       : "rye",
                                   color:
                                       Theme.of(context).colorScheme.secondary,
-                                  fontSize: 20),
+                                  fontSize: (20/360)*MediaQuery.of(context).size.width,//20
+                                  ),
                             ),
                           ),
                         ),

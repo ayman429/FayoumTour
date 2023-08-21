@@ -11,7 +11,7 @@ class FayoumVedio extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.2608,
-      //width: MediaQuery.of(context).size.width*0.90,
+      width: MediaQuery.of(context).size.width,
       child: YoutubePlayerBuilder(
         player: YoutubePlayer(
           actionsPadding:

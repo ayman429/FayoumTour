@@ -74,6 +74,10 @@ dependencies:
   firebase_core:
   firebase_messaging:
   flutter_local_notifications:
+  device_preview:
+  expandable_text:
+  auto_size_text:
+  date_format:
 
 dev_dependencies:
   flutter_test:

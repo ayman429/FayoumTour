@@ -5,6 +5,7 @@ import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/enums.dart';
+import '../../../home/HomeCardsLoading.dart';
 import '../../../home/home_card_of_tourism_hotel.dart';
 import '../controller/tourism_place_bloc.dart';
 import '../controller/tourism_place_event.dart';
@@ -35,17 +36,20 @@ class HomeCardsTourismPlacesTypeSearch extends StatelessWidget {
                     AppLocalizations.of(context)!
                         .translate(tourismPlaceSearchByFeild),
                     style: sharedPreferences!.getString("Language") == "AR"
-                        ? const TextStyle(fontFamily: "dg", fontSize: 18)
-                        : const TextStyle(fontFamily: "alata", fontSize: 18),
+                    ?  TextStyle(fontFamily: "dg", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                    )
+                    :  TextStyle(fontFamily: "alata", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                    ),
                   ),
                   Row(
                     children: [
                       Text(
                         AppLocalizations.of(context)!.translate("See More"),
                         style: sharedPreferences!.getString("Language") == "AR"
-                            ? const TextStyle(fontFamily: "dg", fontSize: 18)
-                            : const TextStyle(
-                                fontFamily: "alata", fontSize: 18),
+                    ?  TextStyle(fontFamily: "dg", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                    )
+                    :  TextStyle(fontFamily: "alata", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                    ),
                       ),
                       const Icon(Icons.arrow_right)
                     ],
@@ -56,9 +60,8 @@ class HomeCardsTourismPlacesTypeSearch extends StatelessWidget {
               builder: (context, state) {
             switch (state.searchTourismPlaceState) {
               case RequestState.loading:
-                return const SizedBox(
-                    height: 200,
-                    child: Center(child: CircularProgressIndicator()));
+                //return const SizedBox(height: 200,child: Center(child: CircularProgressIndicator()));
+                return const HomeLoading();
               case RequestState.loaded:
                 return SizedBox(
                   height: MediaQuery.of(context).size.height * 0.25,

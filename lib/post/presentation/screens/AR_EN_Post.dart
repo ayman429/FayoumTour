@@ -13,10 +13,18 @@
 //   return false;
 // }
 
+
 bool isEnglish(String input) {
   for (var codePoint in input.codeUnits) {
     // English Unicode range: 0020 - 007E (basic Latin characters)
-    if (codePoint >= 0x0020 && codePoint <= 0x007E) {
+    if ( (codePoint >= 0x0041 && codePoint <= 0x005A) || (codePoint >= 0x0061 && codePoint <= 0x007A) ) {
+      return true;
+    }
+    else if(codePoint >= 0x00C1)
+    {
+      return false;
+    }
+    else{
       return true;
     }
   }

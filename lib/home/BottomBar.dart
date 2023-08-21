@@ -76,10 +76,11 @@ class _BottomBarState extends State<BottomBar> {
             ? AppBar(
               
                 title: SizedBox(
-                  height: 40,
+                  height: (40/360)*MediaQuery.of(context).size.width,//40,
                   child: TextField(
                     controller: _searchController,
-                    style: const TextStyle(fontSize: 16),
+                    style:  TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                    ),
                     textAlignVertical: TextAlignVertical.center,
                     decoration: InputDecoration(
                       hintText:
@@ -98,7 +99,8 @@ class _BottomBarState extends State<BottomBar> {
                           : null,
                           
                       
-                      contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                      contentPadding:  EdgeInsets.symmetric(vertical: (8/360)*MediaQuery.of(context).size.width,//8
+                      ),
                       border: InputBorder.none
                       //border: OutlineInputBorder(borderRadius: BorderRadius.circular(50), ),
                     ),
@@ -127,8 +129,10 @@ class _BottomBarState extends State<BottomBar> {
                 Container(
                   
                   margin: sharedPreferences!.getString("Language") == "AR"
-                  ? const EdgeInsets.only(left: 20)
-                  : const EdgeInsets.only(right: 20),
+                  ?  EdgeInsets.only(left: (20/360)*MediaQuery.of(context).size.width,//20
+                  )
+                  :  EdgeInsets.only(right: (20/360)*MediaQuery.of(context).size.width,//20
+                  ),
                   child: InkWell(
                               onTap: () {
                                 setState(() {
@@ -159,14 +163,16 @@ class _BottomBarState extends State<BottomBar> {
             : AppBar(
                 title: Text(AppStrings.titlesFunc(context, selected),
                     style: sharedPreferences!.getString("Language") == "AR"
-                        ? const TextStyle(
+                        ?  TextStyle(
                             fontFamily: "galaxy",
                             fontWeight: FontWeight.bold,
-                            fontSize: 28)
-                        : const TextStyle(
+                            fontSize: (28/360)*MediaQuery.of(context).size.width,//28
+                            )
+                        :  TextStyle(
                             fontFamily: AppStrings.fontFamily,
                             fontWeight: FontWeight.bold,
-                            fontSize: 25)
+                            fontSize: (25/360)*MediaQuery.of(context).size.width,//25
+                            )
                             ),
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
                 backgroundColor: Colors.transparent,
@@ -216,8 +222,8 @@ class _BottomBarState extends State<BottomBar> {
                       ]
                     : [
                         Container(
-                          height: 42,
-                          width: 45,
+                          height: (42/772)*MediaQuery.of(context).size.height,//42,
+                          width: (45/360)*MediaQuery.of(context).size.width,//45,
                           margin:
                               sharedPreferences!.getString("Language") == "AR"
                                   ? const EdgeInsets.only(left: 5)
@@ -246,32 +252,32 @@ class _BottomBarState extends State<BottomBar> {
                 items: [
                   Icon(
                     selected == 0 ? Icons.person : Icons.person_outlined,
-                    size: 25,
+                    size: (25/360)*MediaQuery.of(context).size.width,//25,
                     color: selected == 0 ? Colors.green : null,
                   ),
                   Icon(
                     selected == 1 ? Icons.explore : Icons.explore_outlined,
-                    size: 25,
+                    size: (25/360)*MediaQuery.of(context).size.width,//25,
                     color: selected == 1 ? Colors.green : null,
                   ),
                   Icon(
                     selected == 2 ? Icons.home : Icons.home_outlined,
-                    size: 25,
+                    size: (25/360)*MediaQuery.of(context).size.width,//25,
                     color: selected == 2 ? Colors.green : null,
                   ),
                   Icon(
                     selected == 3 ? Icons.add_circle : Icons.add_circle_outline,
-                    size: 25,
+                    size: (25/360)*MediaQuery.of(context).size.width,//25,
                     color: selected == 3 ? Colors.green : null,
                   ),
                   Icon(
                     selected == 4 ? Icons.favorite : Icons.favorite_outline,
-                    size: 25,
+                    size: (25/360)*MediaQuery.of(context).size.width,//25,
                     color: selected == 4 ? Colors.green : null,
                   ),
                   Icon(
                     selected == 5 ? Icons.padding_outlined : Icons.padding,
-                    size: 25,
+                    size: (25/360)*MediaQuery.of(context).size.width,//25,
                     color: selected == 5 ? Colors.green : null,
                   ),
                 ],

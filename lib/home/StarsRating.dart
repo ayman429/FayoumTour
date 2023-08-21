@@ -64,7 +64,7 @@ class _RatingScreenState extends State<RatingScreen> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                   ),
@@ -147,7 +147,7 @@ class StarRating extends StatelessWidget {
       child: Icon(
         iconData,
         color: color,
-        size: 30,
+        size: (30/360)*MediaQuery.of(context).size.width,//30,
       ),
     );
 
@@ -184,14 +184,14 @@ class StarRating extends StatelessWidget {
                   Text(
                     AppLocalizations.of(context)!.translate("Rate it !!"),
                     style: sharedPreferences!.getString("Language") == "AR"
-                        ? const TextStyle(
+                        ?  TextStyle(
                             fontFamily: "messiri",
-                            fontSize: 22,
+                            fontSize: (22/360)*MediaQuery.of(context).size.width,//22,
                             color: Colors.green,
                             fontWeight: FontWeight.bold)
-                        : const TextStyle(
+                        :  TextStyle(
                             fontFamily: "acme",
-                            fontSize: 22,
+                            fontSize: (22/360)*MediaQuery.of(context).size.width,//22,
                             color: Colors.green,
                             fontWeight: FontWeight.bold),
                   ),
@@ -232,14 +232,14 @@ class StarRating extends StatelessWidget {
                     // "Rate it !!",
                     AppLocalizations.of(context)!.translate("Rate it !!"),
                     style: sharedPreferences!.getString("Language") == "AR"
-                        ? const TextStyle(
+                        ?  TextStyle(
                             fontFamily: "messiri",
-                            fontSize: 22,
+                            fontSize: (22/360)*MediaQuery.of(context).size.width,//22,
                             color: Colors.green,
                             fontWeight: FontWeight.bold)
-                        : const TextStyle(
+                        :  TextStyle(
                             fontFamily: "acme",
-                            fontSize: 22,
+                            fontSize: (22/360)*MediaQuery.of(context).size.width,//22,
                             color: Colors.green,
                             fontWeight: FontWeight.bold),
                   ),

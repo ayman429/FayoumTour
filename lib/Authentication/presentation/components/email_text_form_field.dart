@@ -18,7 +18,9 @@ class EmailTextFormField extends StatelessWidget {
         // cursorColor: ColorManager.kPrimaryColor,
         controller: emailController,
         decoration: InputDecoration(
+            
             hintText: AppLocalizations.of(context)!.translate("Your email"),
+            hintStyle: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,),
             prefixIcon: const Padding(
               padding: EdgeInsets.all(AppPadding.p16),
               child: Icon(Icons.mail),

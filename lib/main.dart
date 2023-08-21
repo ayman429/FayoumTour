@@ -87,7 +87,7 @@ void main() async {
       ? (sharedPreferences!.getString("Language") == "AR")
           ? subscribeARTopic()
           : subscribeENTopic()
-      : {unsubscribeARTopic(), unsubscribeENTopic()};
+      : null;
   print(token);
   // --------------
   // token = "37bb23be1fa2003096eb8498920cb0a8be81f2f8";

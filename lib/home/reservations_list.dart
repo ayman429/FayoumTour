@@ -957,6 +957,56 @@ class GetReservationData extends StatelessWidget {
                                                   if (state
                                                           .updateHotelReservationState ==
                                                       RequestState.loaded) {
+                                                    if (data[index].status ==
+                                                        "Accept") {
+                                                      AddNotification()
+                                                          .addNotification(
+                                                        topics:
+                                                            "/topics/ReserveState_EN${data[index].createdBy!.id.toString()}",
+                                                        body:
+                                                            "Your reservation accepted",
+                                                        title:
+                                                            "Reservations: ${sharedPreferences!.getString("username")}",
+                                                        navigation:
+                                                            "UserReservation",
+                                                      );
+                                                      AddNotification()
+                                                          .addNotification(
+                                                        topics:
+                                                            "/topics/ReserveState_AR${data[index].createdBy!.id.toString()}",
+                                                        body: "تم قبول حجزك",
+                                                        title:
+                                                            "الحجوزات: ${sharedPreferences!.getString("username")}",
+                                                        navigation:
+                                                            "UserReservation",
+                                                      );
+                                                    }
+                                                    if (data[index].status ==
+                                                        "Reject") {
+                                                      AddNotification()
+                                                          .addNotification(
+                                                        topics:
+                                                            "/topics/ReserveState_EN${data[index].createdBy!.id.toString()}",
+                                                        body:
+                                                            "reservation rejected",
+                                                        title:
+                                                            "${sharedPreferences!.getString("username")}",
+                                                        navigation:
+                                                            "UserReservation",
+                                                      );
+                                                      AddNotification()
+                                                          .addNotification(
+                                                        // topics:
+                                                        //     "/topics/ReserveState_AR${47}",
+                                                        topics:
+                                                            "/topics/ReserveState_AR${data[index].createdBy!.id.toString()}",
+                                                        body: "تم رفض الحجز",
+                                                        title:
+                                                            "${sharedPreferences!.getString("username")}",
+                                                        navigation:
+                                                            "UserReservation",
+                                                      );
+                                                    }
                                                     Navigator.pop(context);
 
                                                     // Navigator.pop(context);
@@ -980,30 +1030,6 @@ class GetReservationData extends StatelessWidget {
                                                     children: [
                                                       TextButton(
                                                         onPressed: () {
-                                                          AddNotification()
-                                                              .addNotification(
-                                                            topics:
-                                                                "/topics/ReserveState_EN${data[index].createdBy!.id.toString()}",
-                                                            body:
-                                                                "reservation rejected",
-                                                            title:
-                                                                "${sharedPreferences!.getString("username")}",
-                                                            navigation:
-                                                                "UserReservation",
-                                                          );
-                                                          AddNotification()
-                                                              .addNotification(
-                                                            // topics:
-                                                            //     "/topics/ReserveState_AR${47}",
-                                                            topics:
-                                                                "/topics/ReserveState_AR${data[index].createdBy!.id.toString()}",
-                                                            body:
-                                                                "تم رفض الحجز",
-                                                            title:
-                                                                "${sharedPreferences!.getString("username")}",
-                                                            navigation:
-                                                                "UserReservation",
-                                                          );
                                                           showDialog(
                                                               context: context,
                                                               barrierDismissible:
@@ -1158,28 +1184,6 @@ class GetReservationData extends StatelessWidget {
                                                       ),
                                                       TextButton(
                                                         onPressed: () {
-                                                          AddNotification()
-                                                              .addNotification(
-                                                            topics:
-                                                                "/topics/ReserveState_EN${data[index].createdBy!.id.toString()}",
-                                                            body:
-                                                                "Your reservation accepted",
-                                                            title:
-                                                                "Reservations: ${sharedPreferences!.getString("username")}",
-                                                            navigation:
-                                                                "UserReservation",
-                                                          );
-                                                          AddNotification()
-                                                              .addNotification(
-                                                            topics:
-                                                                "/topics/ReserveState_AR${data[index].createdBy!.id.toString()}",
-                                                            body:
-                                                                "تم قبول حجزك",
-                                                            title:
-                                                                "الحجوزات: ${sharedPreferences!.getString("username")}",
-                                                            navigation:
-                                                                "UserReservation",
-                                                          );
                                                           showDialog(
                                                               context: context,
                                                               barrierDismissible:

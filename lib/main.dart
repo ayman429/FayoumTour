@@ -32,6 +32,33 @@ var _selectedOption = "";
 Future<void> firebaseMessageBackgroundHandler(RemoteMessage message) async {
   if (kDebugMode) {
     //print(message.messageId);
+    switch (message.data["navigation"]) {
+      case "POST":
+        navigatorKey.currentState?.pushNamed(
+          '/post',
+          // arguments: message,
+        );
+        break;
+      case "COMMENT":
+        navigatorKey.currentState?.pushNamed(
+          '/comment',
+          arguments: {
+            "id": message.data['id'],
+            "createdBy_id": message.data['createdBy_id']
+          },
+        );
+        break;
+      case "LIKE":
+        navigatorKey.currentState?.pushNamed(
+          '/like',
+        );
+        break;
+      case "UserReservation":
+        navigatorKey.currentState?.pushNamed(
+          '/UserReservation',
+        );
+        break;
+    }
   }
   //print(message.messageId);
 }

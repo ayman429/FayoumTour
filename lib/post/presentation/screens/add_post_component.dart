@@ -11,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:date_format/date_format.dart';
 
 import '../../../core/notification/add notification.dart';
+import '../../../core/notification/notification.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
@@ -157,10 +158,12 @@ class _AddPostComponentState extends State<AddPostComponent> {
                             title: "مجتمع فايتور",
                             navigation: "POST",
                           );
-                          // await FirebaseMessaging.instance
-                          //     .subscribeToTopic("POST_EN");
-                          // await FirebaseMessaging.instance
-                          //     .subscribeToTopic("POST_AR");
+
+                          // sharedPreferences!.getString("Language") == "AR"
+                          //     ? await FirebaseMessaging.instance
+                          //         .subscribeToTopic("POST_AR")
+                          //     : await FirebaseMessaging.instance
+                          //         .subscribeToTopic("POST_EN");
                         }
                       } else if (state.addPostState == RequestState.error ||
                           state.updatePostState == RequestState.error) {

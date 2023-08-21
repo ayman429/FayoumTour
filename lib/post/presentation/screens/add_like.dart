@@ -44,20 +44,23 @@ class AddLike extends StatelessWidget {
           return TextButton(
             onPressed: () {
               if (likeMap[postId] == 0) {
-                AddNotification().addNotification(
-                  topics: "/topics/LIKE_EN${createdBy!.id.toString()}",
-                  body:
-                      "${sharedPreferences!.getString("username")} liked your post",
-                  title: "FayTour Community",
-                  navigation: "LIKE",
-                );
-                AddNotification().addNotification(
-                  topics: "/topics/LIKE_AR${createdBy!.id.toString()}",
-                  body:
-                      "أعجب ${sharedPreferences!.getString("username")} بمنشور لك",
-                  title: "مجتمع فايتور",
-                  navigation: "LIKE",
-                );
+                if (sharedPreferences!.getString("USERID") !=
+                    createdBy!.id.toString()) {
+                  AddNotification().addNotification(
+                    topics: "/topics/LIKE_EN${createdBy!.id.toString()}",
+                    body:
+                        "${sharedPreferences!.getString("username")} liked your post",
+                    title: "FayTour Community",
+                    navigation: "LIKE",
+                  );
+                  AddNotification().addNotification(
+                    topics: "/topics/LIKE_AR${createdBy!.id.toString()}",
+                    body:
+                        "أعجب ${sharedPreferences!.getString("username")} بمنشور لك",
+                    title: "مجتمع فايتور",
+                    navigation: "LIKE",
+                  );
+                }
               }
               likeMap[postId] == 0
                   ? AudioPlayer().play(AssetSource('images/like.mp3'))

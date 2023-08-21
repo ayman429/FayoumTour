@@ -5,6 +5,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../main.dart';
 import '../../post/domain/entities/created_by.dart';
+import '../utils/constance/shared_pref.dart';
 
 class Arguments {
   int id;
@@ -91,21 +92,26 @@ class FirebaseNotification {
     // FirebaseMessaging.instance.
     FirebaseMessaging.onMessage.listen((message) {
       final notification = message.notification;
-      _localNotifications.show(
-        notification.hashCode,
-        notification!.title,
-        notification.body,
-        NotificationDetails(
-          android: AndroidNotificationDetails(
-            _androidChannel.id,
-            _androidChannel.name,
-            channelDescription: _androidChannel.description,
-            icon: '@drawable/ic_launcher',
-            styleInformation: const BigTextStyleInformation(''),
+      if (notification!.body !=
+              "${sharedPreferences!.getString("username")} added a new post" &&
+          notification.body !=
+              "أضاف ${sharedPreferences!.getString("username")} منشوراً جديداً") {
+        _localNotifications.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              _androidChannel.id,
+              _androidChannel.name,
+              channelDescription: _androidChannel.description,
+              icon: '@drawable/ic_launcher',
+              styleInformation: const BigTextStyleInformation(''),
+            ),
           ),
-        ),
-        payload: jsonEncode(message.toMap()),
-      );
+          payload: jsonEncode(message.toMap()),
+        );
+      }
 
       print(
           "Title: ${message.notification?.title} Body: ${message.notification?.body}");

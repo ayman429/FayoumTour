@@ -152,7 +152,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       DeletePostEvent event, Emitter<PostState> emit) async {
     (await deletePostUsecase(event.postId)).fold((l) {
       return emit(PostState(
-          deletePostState: RequestState.error, deletePostMessage: l.message));
+          deletePostState: RequestState.error,
+          deletePostMessage: l.message.toString()));
     }, (r) {
       return emit(PostState(
         deletePostState: RequestState.loaded,

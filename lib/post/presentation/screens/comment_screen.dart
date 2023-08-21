@@ -83,46 +83,51 @@ class _CommentScreenState extends State<CommentScreen> {
                     //     .add(GetCommentEvent(postId: widget.postId));
                     //print("Loded");
                     // Navigator.pop(context);
-                    AddNotification().addNotification(
-                      topics:
-                          "/topics/COMMENT_EN${widget.createdBy_id.toString()}",
-                      body:
-                          "${sharedPreferences!.getString("username")} added a comment to your post",
-                      title: "FayTour Community",
-                      navigation: "COMMENT",
-                      id: widget.postId,
-                      createdBy_id: widget.createdBy_id,
-                    );
-                    AddNotification().addNotification(
-                      topics:
-                          "/topics/COMMENT_AR${widget.createdBy_id.toString()}",
-                      body:
-                          "أضاف ${sharedPreferences!.getString("username")} تعليقاً على منشور لك",
-                      title: "مجتمع فايتور",
-                      navigation: "COMMENT",
-                      id: widget.postId,
-                      createdBy_id: widget.createdBy_id,
-                    );
-
-                    for (var element in commentIds[widget.postId]) {
+                    if (sharedPreferences!.getString("USERID") !=
+                        widget.createdBy_id.toString()) {
                       AddNotification().addNotification(
-                        topics: "/topics/COMMENT_EN${element.toString()}",
+                        topics:
+                            "/topics/COMMENT_EN${widget.createdBy_id.toString()}",
                         body:
-                            "${sharedPreferences!.getString("username")} added a new comment to a post you are following it",
+                            "${sharedPreferences!.getString("username")} added a comment to your post",
                         title: "FayTour Community",
                         navigation: "COMMENT",
                         id: widget.postId,
                         createdBy_id: widget.createdBy_id,
                       );
                       AddNotification().addNotification(
-                        topics: "/topics/COMMENT_AR${element.toString()}",
+                        topics:
+                            "/topics/COMMENT_AR${widget.createdBy_id.toString()}",
                         body:
-                            "أضاف ${sharedPreferences!.getString("username")} تعليقاً جديداً على منشور تتابعه",
+                            "أضاف ${sharedPreferences!.getString("username")} تعليقاً على منشور لك",
                         title: "مجتمع فايتور",
                         navigation: "COMMENT",
                         id: widget.postId,
                         createdBy_id: widget.createdBy_id,
                       );
+                    }
+
+                    for (var element in commentIds[widget.postId]) {
+                      if (sharedPreferences!.getString("USERID") != element) {
+                        AddNotification().addNotification(
+                          topics: "/topics/COMMENT_EN${element.toString()}",
+                          body:
+                              "${sharedPreferences!.getString("username")} added a new comment to a post you are following it",
+                          title: "FayTour Community",
+                          navigation: "COMMENT",
+                          id: widget.postId,
+                          createdBy_id: widget.createdBy_id,
+                        );
+                        AddNotification().addNotification(
+                          topics: "/topics/COMMENT_AR${element.toString()}",
+                          body:
+                              "أضاف ${sharedPreferences!.getString("username")} تعليقاً جديداً على منشور تتابعه",
+                          title: "مجتمع فايتور",
+                          navigation: "COMMENT",
+                          id: widget.postId,
+                          createdBy_id: widget.createdBy_id,
+                        );
+                      }
                     }
                     Navigator.pop(context);
                     _textEditingController.clear();

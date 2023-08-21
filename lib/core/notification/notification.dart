@@ -100,7 +100,7 @@ class FirebaseNotification {
             _androidChannel.id,
             _androidChannel.name,
             channelDescription: _androidChannel.description,
-            icon: '@drawable/ic_mod',
+            icon: '@drawable/ic_launcher',
             styleInformation: const BigTextStyleInformation(''),
           ),
         ),
@@ -119,7 +119,7 @@ class FirebaseNotification {
 
   Future initLocalNotifications() async {
     // const ios = IOSInitializationSettings();
-    const android = AndroidInitializationSettings('@drawable/ic_mod');
+    const android = AndroidInitializationSettings('@drawable/ic_launcher');
     const settings = InitializationSettings(android: android);
     await _localNotifications.initialize(settings,
         onDidReceiveNotificationResponse: (payload) {

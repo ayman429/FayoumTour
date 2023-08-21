@@ -69,14 +69,14 @@ class HomeCard extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: data.originalImage,
                     fadeInDuration: const Duration(milliseconds: 350),
-                    fadeOutDuration: const Duration(milliseconds: 350),
+                    // fadeOutDuration: const Duration(milliseconds: 350),
                     fit: BoxFit.cover,
-                    // placeholder: (context, url) {
-                    //   return Image.asset(
-                    //     AppStrings.loading2Gif,
-                    //     fit: BoxFit.cover,
-                    //   );
-                    // },
+                    placeholder: (context, url) {
+                      return Image.asset(
+                        "assets/images/holder.png",
+                        fit: BoxFit.cover,
+                      );
+                    },
                     errorWidget: (context, url, error) {
                       return Image.asset(
                         AppStrings.error1Gif,
@@ -119,13 +119,16 @@ class HomeCard extends StatelessWidget {
                             ? data.nameAR
                             : data.name,
                         style: sharedPreferences!.getString("Language") == "AR"
-                            ?  TextStyle(
+                            ? TextStyle(
                                 fontFamily: "marhey",
-                                fontSize: (15/360)*MediaQuery.of(context).size.width,//15,
+                                fontSize: (15 / 360) *
+                                    MediaQuery.of(context).size.width, //15,
                                 fontWeight: FontWeight.bold)
-                            :  TextStyle(
-                                fontFamily: "alata", fontSize: (15/360)*MediaQuery.of(context).size.width,//15
-                                ),
+                            : TextStyle(
+                                fontFamily: "alata",
+                                fontSize: (15 / 360) *
+                                    MediaQuery.of(context).size.width, //15
+                              ),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
@@ -140,16 +143,18 @@ class HomeCard extends StatelessWidget {
                                 : const EdgeInsets.only(bottom: 2),
                         child: Text(
                           data.avgRatings.toString(),
-                          style:
-                              sharedPreferences!.getString("Language") == "AR"
-                                  ?  TextStyle(
-                                      fontSize: (14/360)*MediaQuery.of(context).size.width,//14,
-                                      fontFamily: "marhey",
-                                      fontWeight: FontWeight.bold)
-                                  :  TextStyle(
-                                      fontSize: (14/360)*MediaQuery.of(context).size.width,//14,
-                                      fontFamily: "alata",
-                                    ),
+                          style: sharedPreferences!.getString("Language") ==
+                                  "AR"
+                              ? TextStyle(
+                                  fontSize: (14 / 360) *
+                                      MediaQuery.of(context).size.width, //14,
+                                  fontFamily: "marhey",
+                                  fontWeight: FontWeight.bold)
+                              : TextStyle(
+                                  fontSize: (14 / 360) *
+                                      MediaQuery.of(context).size.width, //14,
+                                  fontFamily: "alata",
+                                ),
                         ),
                       ),
                       Padding(

@@ -42,7 +42,7 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
         ApiConstance.postPath,
       );
       return List<PostModel>.from(
-          (response.data as List).map((e) => PostModel.fromJson(e)));
+          (response.data['results'] as List).map((e) => PostModel.fromJson(e)));
     } on DioException catch (e) {
       // return Error Message
 

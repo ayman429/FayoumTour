@@ -131,6 +131,7 @@ class _CommentScreenState extends State<CommentScreen> {
                       }
                     }
                     Navigator.pop(context);
+                    _text = "";
                     _textEditingController.clear();
                   } else if (state.addCommentState == RequestState.error ||
                       state.updateCommentState == RequestState.error) {
@@ -142,7 +143,8 @@ class _CommentScreenState extends State<CommentScreen> {
                 builder: (context, state) {
                   return IconButton(
                     icon: const Icon(Icons.send),
-                    onPressed: _text == ""
+                    onPressed: _text.replaceAll(" ", "").replaceAll("\n", "") ==
+                            ""
                         ? null
                         : () {
                             //createdBy

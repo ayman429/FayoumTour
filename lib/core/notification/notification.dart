@@ -92,13 +92,11 @@ class FirebaseNotification {
     // FirebaseMessaging.instance.
     FirebaseMessaging.onMessage.listen((message) {
       final notification = message.notification;
-      // if (notification!.body !=
-      //         "${sharedPreferences!.getString("username")} added a new post" &&
-      //     notification.body !=
-      //         "أضاف ${sharedPreferences!.getString("username")} منشوراً جديداً") {}
+      print(notification!.body);
+
       _localNotifications.show(
         notification.hashCode,
-        notification!.title,
+        notification.title,
         notification.body,
         NotificationDetails(
           android: AndroidNotificationDetails(

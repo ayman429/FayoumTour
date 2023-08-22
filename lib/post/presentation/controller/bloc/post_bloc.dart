@@ -178,14 +178,20 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
   FutureOr<void> _addComment(
       AddCommentEvent event, Emitter<PostState> emit) async {
-    (await addCommentUsecase(event.comment)).fold((l) {
+    try {
+      (await addCommentUsecase(event.comment)).fold((l) {
+        return emit(PostState(
+            addCommentState: RequestState.error,
+            addCommentMessage: l.message.toString()));
+      }, (r) {
+        return emit(PostState(
+          addCommentState: RequestState.loaded,
+        ));
+      });
+    } catch (e) {
       return emit(PostState(
-          addCommentState: RequestState.error, addCommentMessage: l.message));
-    }, (r) {
-      return emit(PostState(
-        addCommentState: RequestState.loaded,
-      ));
-    });
+          addPostState: RequestState.error, addPostMessage: "No Connection"));
+    }
   }
 
   FutureOr<void> _updateComment(

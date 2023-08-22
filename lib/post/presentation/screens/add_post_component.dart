@@ -111,7 +111,10 @@ class _AddPostComponentState extends State<AddPostComponent> {
                       )),
             actions: [
               Opacity(
-                opacity: _textEditingController.text == "" &&
+                opacity: _textEditingController.text
+                                .replaceAll("\n", "")
+                                .replaceAll(" ", "") ==
+                            "" &&
                         _imageList.isEmpty &&
                         widget.type == 'add'
                     ? 0.5
@@ -119,7 +122,10 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         ? _textEditingController.text == widget.data.body &&
                                 !changeInImages
                             ? 0.5
-                            : _textEditingController.text == "" &&
+                            : _textEditingController.text
+                                            .replaceAll("\n", "")
+                                            .replaceAll(" ", "") ==
+                                        "" &&
                                     _imageList.isEmpty &&
                                     _providedimageList.isEmpty
                                 ? 0.5
@@ -218,7 +224,10 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           if (widget.type != 'add' &&
                               _textEditingController.text == widget.data.body &&
                               !changeInImages) {
-                            if (_textEditingController.text == "" &&
+                            if (_textEditingController.text
+                                        .replaceAll("\n", "")
+                                        .replaceAll(" ", "") ==
+                                    "" &&
                                 _imageList.isEmpty &&
                                 _providedimageList.isEmpty) {
                               upload = false;
@@ -228,7 +237,10 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           }
 
                           if (widget.type == "add" &&
-                                  (_textEditingController.text != "" ||
+                                  (_textEditingController.text
+                                              .replaceAll("\n", "")
+                                              .replaceAll(" ", "") !=
+                                          "" ||
                                       _imageList.isNotEmpty) ||
                               (widget.type != "add" && upload)) {
                             List<String> imagesPath = [];

@@ -40,8 +40,8 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
       final response = await dio.get(
         ApiConstance.tourismPlacePath,
       );
-      return List<TourismPlaceModel>.from((response.data['results'] as List)
-          .map((e) => TourismPlaceModel.fromJson(e)));
+      return List<TourismPlaceModel>.from(
+          (response.data as List).map((e) => TourismPlaceModel.fromJson(e)));
     } on DioException catch (e) {
       // return Error Message
       // print("/////////////////////////////");
@@ -123,8 +123,8 @@ class TourismPlaceRemoteDataSource extends BaseTourismPlaceRemoteDataSource {
       Dio dio = (await DioFactory.create()).dio;
       final response = await dio.get(ApiConstance.tourismPlacePath,
           queryParameters: {"search": search});
-      return List<TourismPlaceModel>.from((response.data['results'] as List)
-          .map((e) => TourismPlaceModel.fromJson(e)));
+      return List<TourismPlaceModel>.from(
+          (response.data as List).map((e) => TourismPlaceModel.fromJson(e)));
     } on DioException catch (e) {
       // return Error Message
 

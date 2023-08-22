@@ -50,7 +50,7 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
       final response = await dio.get(
         ApiConstance.hotelPath,
       );
-      return List<HotelModel>.from((response.data['results'] as List)
+      return List<HotelModel>.from((response.data as List)
           .map((e) => HotelModel.fromJson(e)));
     } on DioException catch (e) {
       // return Error Message

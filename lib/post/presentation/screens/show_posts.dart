@@ -19,7 +19,7 @@ import 'post_time.dart';
 
 class ShowPosts extends StatelessWidget {
   const ShowPosts({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<PostBloc, PostState>(
@@ -48,8 +48,8 @@ class ShowPosts extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: state.post.length,
                 itemBuilder: (context, index) {
-                  final words = state.post[index].body.split("\n");
-
+                  // final words = state.post[index].body.split("\n");
+                  // print(state.post.length);
                   return Container(
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
@@ -72,8 +72,10 @@ class ShowPosts extends StatelessWidget {
                           child: Row(
                             children: [
                               SizedBox(
-                                width: (40/360)*MediaQuery.of(context).size.width,//40,
-                                height: (40/772)*MediaQuery.of(context).size.height,//40,
+                                width: (40 / 360) *
+                                    MediaQuery.of(context).size.width, //40,
+                                height: (40 / 772) *
+                                    MediaQuery.of(context).size.height, //40,
                                 // user image in post
                                 child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
@@ -136,10 +138,13 @@ class ShowPosts extends StatelessWidget {
                                       children: [
                                         Text(
                                           '${state.post[index].createdBy!.userName}',
-                                          style:  TextStyle(
+                                          style: TextStyle(
                                             fontFamily: "readPro",
                                             fontWeight: FontWeight.bold,
-                                            fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
+                                            fontSize: (18 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //18,
                                           ),
                                         ),
                                         const SizedBox(width: 4),
@@ -147,8 +152,14 @@ class ShowPosts extends StatelessWidget {
                                                 true
                                             ? Image.asset(
                                                 'assets/icons/mark.png',
-                                                width: (14/360)*MediaQuery.of(context).size.width,//14,
-                                                height: (14/772)*MediaQuery.of(context).size.height,//14,
+                                                width: (14 / 360) *
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .width, //14,
+                                                height: (14 / 772) *
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .height, //14,
                                               )
                                             : Container(),
                                       ],
@@ -158,9 +169,12 @@ class ShowPosts extends StatelessWidget {
                                       PostTime(
                                           "${state.post[index].createdAt}"),
                                       // "${state.post[index].createdAt}",
-                                      style:  TextStyle(
+                                      style: TextStyle(
                                           color: Colors.grey,
-                                          fontSize: (14/360)*MediaQuery.of(context).size.width,//14,
+                                          fontSize: (14 / 360) *
+                                              MediaQuery.of(context)
+                                                  .size
+                                                  .width, //14,
                                           fontFamily: "readPro"),
                                     ),
                                   ],
@@ -221,50 +235,60 @@ class ShowPosts extends StatelessWidget {
                                 height: 10,
                               )
                             : isEnglish(state.post[index].body)
-                            ? Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: 8, vertical: 12),
-                                            child: Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: ExpandableText(
-                                                    textDirection: TextDirection.ltr,
-                                                    state.post[index].body,
-                                                    expandText:  AppLocalizations.of(context)!.translate("Show more"),
-                                                    collapseOnTextTap: true,
-                                                    expandOnTextTap: true,
-                                                    animation: true,
-                                                    maxLines: 5,
-                                                    linkColor: Colors.green,
-                                                    linkStyle: const TextStyle(fontFamily: "ibmP"),
-                                                    style: TextStyle(
-                                                      fontSize: (20/360)*MediaQuery.of(context).size.width,//20,
-                                                      fontFamily: "ibmP"
-                                                    ),
-                                                  ),
-                                            ),
-                                            )
-                            : Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: 8, vertical: 12),
-                                            child: Align(
-                                              alignment: Alignment.centerRight,
-                                              child: ExpandableText(
-                                                    textDirection: TextDirection.rtl,
-                                                    state.post[index].body,
-                                                    expandText: AppLocalizations.of(context)!.translate("Show more"),
-                                                    maxLines: 5,
-                                                    collapseOnTextTap: true,
-                                                    expandOnTextTap: true,
-                                                    animation: true,
-                                                    linkColor: Colors.green,
-                                                    linkStyle: const TextStyle(fontFamily: "ibmP"),
-                                                    style: TextStyle(
-                                                      fontSize: (20/360)*MediaQuery.of(context).size.width,//20,
-                                                      fontFamily: "ibmP"
-                                                    ),
-                                                  ),
-                                            ),
-                                            ),
+                                ? Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 12),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: ExpandableText(
+                                        textDirection: TextDirection.ltr,
+                                        state.post[index].body,
+                                        expandText:
+                                            AppLocalizations.of(context)!
+                                                .translate("Show more"),
+                                        collapseOnTextTap: true,
+                                        expandOnTextTap: true,
+                                        animation: true,
+                                        maxLines: 5,
+                                        linkColor: Colors.green,
+                                        linkStyle:
+                                            const TextStyle(fontFamily: "ibmP"),
+                                        style: TextStyle(
+                                            fontSize: (20 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //20,
+                                            fontFamily: "ibmP"),
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 12),
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: ExpandableText(
+                                        textDirection: TextDirection.rtl,
+                                        state.post[index].body,
+                                        expandText:
+                                            AppLocalizations.of(context)!
+                                                .translate("Show more"),
+                                        maxLines: 5,
+                                        collapseOnTextTap: true,
+                                        expandOnTextTap: true,
+                                        animation: true,
+                                        linkColor: Colors.green,
+                                        linkStyle:
+                                            const TextStyle(fontFamily: "ibmP"),
+                                        style: TextStyle(
+                                            fontSize: (20 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //20,
+                                            fontFamily: "ibmP"),
+                                      ),
+                                    ),
+                                  ),
                         state.post[index].imagesP.isNotEmpty
                             ? SizedBox(
                                 height:
@@ -488,9 +512,12 @@ class ShowPosts extends StatelessWidget {
                                             ),
                                             Text(
                                               "${state.post[index].like_numbers}",
-                                              style:  TextStyle(
+                                              style: TextStyle(
                                                   color: Colors.grey,
-                                                  fontSize: (14/360)*MediaQuery.of(context).size.width,//14,
+                                                  fontSize: (14 / 360) *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width, //14,
                                                   fontFamily: "readPro"),
                                             )
                                           ],
@@ -521,9 +548,12 @@ class ShowPosts extends StatelessWidget {
                                                   "0"
                                               ? Text(
                                                   "${state.post[index].comment_numbers} ${AppLocalizations.of(context)!.translate("Comments")}",
-                                                  style:  TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.grey,
-                                                      fontSize: (14/360)*MediaQuery.of(context).size.width,//14,
+                                                      fontSize: (14 / 360) *
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width, //14,
                                                       fontFamily: "readPro"),
                                                 )
                                               : Container()),

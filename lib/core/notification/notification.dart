@@ -92,11 +92,11 @@ class FirebaseNotification {
     // FirebaseMessaging.instance.
     FirebaseMessaging.onMessage.listen((message) {
       final notification = message.notification;
-      print(notification!.body);
+      // print(notification!.body);
 
       _localNotifications.show(
         notification.hashCode,
-        notification.title,
+        notification!.title,
         notification.body,
         NotificationDetails(
           android: AndroidNotificationDetails(

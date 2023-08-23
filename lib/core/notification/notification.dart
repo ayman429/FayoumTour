@@ -5,7 +5,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../main.dart';
 import '../../post/domain/entities/created_by.dart';
-import '../utils/constance/shared_pref.dart';
 
 class Arguments {
   int id;
@@ -103,7 +102,7 @@ class FirebaseNotification {
             _androidChannel.id,
             _androidChannel.name,
             channelDescription: _androidChannel.description,
-            icon: '@drawable/ic_launcher',
+            icon: '@drawable/ic_mod',
             styleInformation: const BigTextStyleInformation(''),
           ),
         ),
@@ -122,7 +121,7 @@ class FirebaseNotification {
 
   Future initLocalNotifications() async {
     // const ios = IOSInitializationSettings();
-    const android = AndroidInitializationSettings('@drawable/ic_launcher');
+    const android = AndroidInitializationSettings('@drawable/ic_mod');
     const settings = InitializationSettings(android: android);
     await _localNotifications.initialize(settings,
         onDidReceiveNotificationResponse: (payload) {

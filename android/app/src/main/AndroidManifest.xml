@@ -35,7 +35,7 @@
         <!-- Default Notification Icon -->
         <meta-data
         android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@mipmap/ic_launcher" />
+            android:resource="@mipmap/ic_mod" />
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

@@ -14,7 +14,7 @@ import '../core/utils/enums.dart';
 import '../hotels/domain/entities/hotel_reservation.dart';
 import '../hotels/presentation/controller/hotels_state.dart';
 
-class GetReservationData extends StatelessWidget {
+class GetReservationData extends StatefulWidget {
   dynamic data;
   String type;
   GetReservationData({
@@ -24,10 +24,15 @@ class GetReservationData extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<GetReservationData> createState() => _GetReservationDataState();
+}
+
+class _GetReservationDataState extends State<GetReservationData> {
+  bool reject = false;
+  bool accept = false;
+  @override
   Widget build(BuildContext context) {
-    int index = 0;
-    bool agree = false;
-    return data.length == 0
+    return widget.data.length == 0
         ? Center(
             child: Text(
               // "Nothing Yet",
@@ -43,7 +48,7 @@ class GetReservationData extends StatelessWidget {
             ),
           )
         : ListView.builder(
-            itemCount: data.length,
+            itemCount: widget.data.length,
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               return Card(
@@ -67,9 +72,9 @@ class GetReservationData extends StatelessWidget {
                                 MediaQuery.of(context).size.height, //50,
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
-                                child: type == "user"
+                                child: widget.type == "user"
                                     ? CachedNetworkImage(
-                                        imageUrl: data[index].hotelImage,
+                                        imageUrl: widget.data[index].hotelImage,
                                         fadeInDuration:
                                             const Duration(milliseconds: 350),
                                         fadeOutDuration:
@@ -109,10 +114,10 @@ class GetReservationData extends StatelessWidget {
                                     //       return child;
                                     //     },
                                     //   )
-                                    : data[index].createdBy.image != ""
+                                    : widget.data[index].createdBy.image != ""
                                         ? CachedNetworkImage(
-                                            imageUrl:
-                                                data[index].createdBy.image,
+                                            imageUrl: widget
+                                                .data[index].createdBy.image,
                                             fadeInDuration: const Duration(
                                                 milliseconds: 350),
                                             fadeOutDuration: const Duration(
@@ -160,12 +165,12 @@ class GetReservationData extends StatelessWidget {
                           const SizedBox(width: 10.0),
                           Expanded(
                             child: Text(
-                              type == "user"
+                              widget.type == "user"
                                   ? sharedPreferences!.getString("Language") ==
                                           "AR"
-                                      ? data[index].hotelNameAR
-                                      : data[index].hotelName
-                                  : data[index].createdBy.userName,
+                                      ? widget.data[index].hotelNameAR
+                                      : widget.data[index].hotelName
+                                  : widget.data[index].createdBy.userName,
                               style: TextStyle(
                                   fontSize: (18 / 360) *
                                       MediaQuery.of(context).size.width, //18.0,
@@ -175,7 +180,7 @@ class GetReservationData extends StatelessWidget {
                               maxLines: 2,
                             ),
                           ),
-                          type == "user"
+                          widget.type == "user"
                               ? Row(
                                   children: [
                                     IconButton(
@@ -188,10 +193,10 @@ class GetReservationData extends StatelessWidget {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     HotelReservationScreen(
-                                                      hotelId:
-                                                          data[index].hotel,
+                                                      hotelId: widget
+                                                          .data[index].hotel,
                                                       type: "edit",
-                                                      data: data[index],
+                                                      data: widget.data[index],
                                                     )));
                                       },
                                     ),
@@ -201,7 +206,8 @@ class GetReservationData extends StatelessWidget {
                                         // Implement cancellation logic here
                                         BlocProvider.of<HotelsBloc>(context)
                                             .add(DeleteHotelReservationEvent(
-                                                hotelsId: data[index].id));
+                                                hotelsId:
+                                                    widget.data[index].id));
                                         // BlocProvider.of<HotelsBloc>(context).add(
                                         //     GetHotelsReservationByUserEvent(
                                         //         userId: int.parse(sharedPreferences!
@@ -283,7 +289,7 @@ class GetReservationData extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "${data[index].adulls}",
+                                          "${widget.data[index].adulls}",
                                           style: sharedPreferences!
                                                       .getString("Language") ==
                                                   "AR"
@@ -305,7 +311,7 @@ class GetReservationData extends StatelessWidget {
                                                   fontWeight: FontWeight.bold),
                                         ),
                                         Text(
-                                          data[index].adulls == 1
+                                          widget.data[index].adulls == 1
                                               ? AppLocalizations.of(context)!
                                                   .translate(" Adult")
                                               : AppLocalizations.of(context)!
@@ -389,7 +395,7 @@ class GetReservationData extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "${data[index].kids}",
+                                          "${widget.data[index].kids}",
                                           style: TextStyle(
                                               fontFamily: sharedPreferences!
                                                           .getString(
@@ -397,20 +403,21 @@ class GetReservationData extends StatelessWidget {
                                                       "AR"
                                                   ? "messiri"
                                                   : "acme",
-                                              fontSize: data[index].kids == 0
-                                                  ? (16.5 / 360) *
-                                                      MediaQuery.of(context)
-                                                          .size
-                                                          .width //16.5
-                                                  : (17 / 360) *
-                                                      MediaQuery.of(context)
-                                                          .size
-                                                          .width, //17,
+                                              fontSize:
+                                                  widget.data[index].kids == 0
+                                                      ? (16.5 / 360) *
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width //16.5
+                                                      : (17 / 360) *
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width, //17,
                                               color: Colors.green,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
-                                          data[index].kids == 1
+                                          widget.data[index].kids == 1
                                               ? AppLocalizations.of(context)!
                                                   .translate(" Kid")
                                               : AppLocalizations.of(context)!
@@ -487,7 +494,7 @@ class GetReservationData extends StatelessWidget {
                                           ]),
                                       child: Center(
                                           child: Text(
-                                        data[index].check_in,
+                                        widget.data[index].check_in,
                                         style: TextStyle(
                                             fontFamily: "acme",
                                             fontSize: (18 / 360) *
@@ -547,7 +554,7 @@ class GetReservationData extends StatelessWidget {
                                           ]),
                                       child: Center(
                                           child: Text(
-                                        data[index].check_out,
+                                        widget.data[index].check_out,
                                         style: TextStyle(
                                             fontFamily: "acme",
                                             fontSize: (18 / 360) *
@@ -616,8 +623,7 @@ class GetReservationData extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            data[index]
-                                                .created_at
+                                            widget.data[index].created_at
                                                 .substring(0, 10),
                                             style: TextStyle(
                                                 fontFamily: "acme",
@@ -633,8 +639,7 @@ class GetReservationData extends StatelessWidget {
                                           //   style: GoogleFonts.acme(fontSize: 17),
                                           // ),
                                           Text(
-                                            data[index]
-                                                .created_at
+                                            widget.data[index].created_at
                                                 .substring(11, 16),
                                             style: TextStyle(
                                                 fontFamily: "acme",
@@ -701,7 +706,7 @@ class GetReservationData extends StatelessWidget {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 6),
                                           child: Text(
-                                            data[index].phone_number,
+                                            widget.data[index].phone_number,
                                             style: TextStyle(
                                                 fontFamily: "acme",
                                                 fontSize: (17 / 360) *
@@ -744,7 +749,8 @@ class GetReservationData extends StatelessWidget {
                                           ),
                               ),
                               //const SizedBox(height: 2,),
-                              type == "user" && data[index].status == "Accept"
+                              widget.type == "user" &&
+                                      widget.data[index].status == "Accept"
                                   ? Row(
                                       children: [
                                         Container(
@@ -774,18 +780,19 @@ class GetReservationData extends StatelessWidget {
                                               sharedPreferences!.getString(
                                                           "Language") ==
                                                       "AR"
-                                                  ? data[index].status ==
+                                                  ? widget.data[index].status ==
                                                           "Under Review"
                                                       ? "قيد المراجعة"
-                                                      : data[index].status ==
+                                                      : widget.data[index]
+                                                                  .status ==
                                                               "Accept"
                                                           ? "تم القبول"
-                                                          : data[index]
+                                                          : widget.data[index]
                                                                       .status ==
                                                                   "Reject"
                                                               ? "تم الرفض"
                                                               : "قيد المراجعة"
-                                                  : "${data[index].status}",
+                                                  : "${widget.data[index].status}",
                                               style: sharedPreferences!
                                                           .getString(
                                                               "Language") ==
@@ -828,8 +835,9 @@ class GetReservationData extends StatelessWidget {
                                               Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        QR(data: data[index]),
+                                                    builder: (context) => QR(
+                                                        data:
+                                                            widget.data[index]),
                                                   ));
                                             },
                                             style: ElevatedButton.styleFrom(
@@ -874,9 +882,10 @@ class GetReservationData extends StatelessWidget {
                                         )
                                       ],
                                     )
-                                  : type != "user" &&
-                                          data[index].status != "Accept" &&
-                                          data[index].status != "Reject"
+                                  : widget.type != "user" &&
+                                          widget.data[index].status !=
+                                              "Accept" &&
+                                          widget.data[index].status != "Reject"
                                       ? Row(
                                           children: [
                                             Container(
@@ -907,19 +916,20 @@ class GetReservationData extends StatelessWidget {
                                                   sharedPreferences!.getString(
                                                               "Language") ==
                                                           "AR"
-                                                      ? data[index].status ==
+                                                      ? widget.data[index]
+                                                                  .status ==
                                                               "under review"
                                                           ? "قيد المراجعة"
-                                                          : data[index]
+                                                          : widget.data[index]
                                                                       .status ==
                                                                   "Accept"
                                                               ? "تم القبول"
-                                                              : data[index]
+                                                              : widget.data[index]
                                                                           .status ==
                                                                       "Reject"
                                                                   ? "تم الرفض"
                                                                   : "قيد المراجعة"
-                                                      : "${data[index].status}",
+                                                      : "${widget.data[index].status}",
                                                   style: sharedPreferences!
                                                               .getString(
                                                                   "Language") ==
@@ -957,12 +967,11 @@ class GetReservationData extends StatelessWidget {
                                                   if (state
                                                           .updateHotelReservationState ==
                                                       RequestState.loaded) {
-                                                    if (data[index].status ==
-                                                        "Accept") {
+                                                    if (accept) {
                                                       AddNotification()
                                                           .addNotification(
                                                         topics:
-                                                            "/topics/ReserveState_EN${data[index].createdBy!.id.toString()}",
+                                                            "/topics/ReserveState_EN${widget.data[index].createdBy!.id.toString()}",
                                                         body:
                                                             "Your reservation accepted",
                                                         title:
@@ -973,7 +982,7 @@ class GetReservationData extends StatelessWidget {
                                                       AddNotification()
                                                           .addNotification(
                                                         topics:
-                                                            "/topics/ReserveState_AR${data[index].createdBy!.id.toString()}",
+                                                            "/topics/ReserveState_AR${widget.data[index].createdBy!.id.toString()}",
                                                         body: "تم قبول حجزك",
                                                         title:
                                                             "الحجوزات: ${sharedPreferences!.getString("username")}",
@@ -981,12 +990,11 @@ class GetReservationData extends StatelessWidget {
                                                             "UserReservation",
                                                       );
                                                     }
-                                                    if (data[index].status ==
-                                                        "Reject") {
+                                                    if (reject) {
                                                       AddNotification()
                                                           .addNotification(
                                                         topics:
-                                                            "/topics/ReserveState_EN${data[index].createdBy!.id.toString()}",
+                                                            "/topics/ReserveState_EN${widget.data[index].createdBy!.id.toString()}",
                                                         body:
                                                             "reservation rejected",
                                                         title:
@@ -999,7 +1007,7 @@ class GetReservationData extends StatelessWidget {
                                                         // topics:
                                                         //     "/topics/ReserveState_AR${47}",
                                                         topics:
-                                                            "/topics/ReserveState_AR${data[index].createdBy!.id.toString()}",
+                                                            "/topics/ReserveState_AR${widget.data[index].createdBy!.id.toString()}",
                                                         body: "تم رفض الحجز",
                                                         title:
                                                             "${sharedPreferences!.getString("username")}",
@@ -1030,6 +1038,10 @@ class GetReservationData extends StatelessWidget {
                                                     children: [
                                                       TextButton(
                                                         onPressed: () {
+                                                          setState(() {
+                                                            reject = true;
+                                                            accept = false;
+                                                          });
                                                           showDialog(
                                                               context: context,
                                                               barrierDismissible:
@@ -1078,7 +1090,7 @@ class GetReservationData extends StatelessWidget {
 
                                                                               HotelReservation hotelReservation = HotelReservation(
                                                                                 status: "Reject",
-                                                                                id: data[index].id.toString(),
+                                                                                id: widget.data[index].id.toString(),
                                                                               );
                                                                               hotelsBloc.add(UpdateHotelReservationEvent(hotelReservation: hotelReservation));
                                                                             },
@@ -1184,6 +1196,10 @@ class GetReservationData extends StatelessWidget {
                                                       ),
                                                       TextButton(
                                                         onPressed: () {
+                                                          setState(() {
+                                                            accept = true;
+                                                            reject = false;
+                                                          });
                                                           showDialog(
                                                               context: context,
                                                               barrierDismissible:
@@ -1231,7 +1247,7 @@ class GetReservationData extends StatelessWidget {
 
                                                                               HotelReservation hotelReservation = HotelReservation(
                                                                                 status: "Accept",
-                                                                                id: data[index].id.toString(),
+                                                                                id: widget.data[index].id.toString(),
                                                                               );
                                                                               hotelsBloc.add(UpdateHotelReservationEvent(hotelReservation: hotelReservation));
                                                                             },
@@ -1372,19 +1388,20 @@ class GetReservationData extends StatelessWidget {
                                                   sharedPreferences!.getString(
                                                               "Language") ==
                                                           "AR"
-                                                      ? data[index].status ==
+                                                      ? widget.data[index]
+                                                                  .status ==
                                                               "Under Review"
                                                           ? "قيد المراجعة"
-                                                          : data[index]
+                                                          : widget.data[index]
                                                                       .status ==
                                                                   "Accept"
                                                               ? "تم القبول"
-                                                              : data[index]
+                                                              : widget.data[index]
                                                                           .status ==
                                                                       "Reject"
                                                                   ? "تم الرفض"
                                                                   : "قيد المراجعة"
-                                                      : "${data[index].status}",
+                                                      : "${widget.data[index].status}",
                                                   style: sharedPreferences!
                                                               .getString(
                                                                   "Language") ==

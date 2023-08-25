@@ -88,7 +88,7 @@ void main() async {
           ? subscribeARTopic()
           : subscribeENTopic()
       : null;
-  print(token);
+ // print(token);
   // --------------
   // token = "37bb23be1fa2003096eb8498920cb0a8be81f2f8";
   // AccessToken accessToken = AccessToken();
@@ -157,7 +157,7 @@ class MyApp extends StatelessWidget {
               },
               navigatorKey: navigatorKey,
               onGenerateRoute: (RouteSettings settings) {
-                print("object ${settings.name}");
+                //print("object ${settings.name}");
                 switch (settings.name) {
                   case '/reservation':
                     return MaterialPageRoute(

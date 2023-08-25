@@ -17,7 +17,7 @@ class UserNameTextFormField extends StatelessWidget {
       controller: userNameController,
       decoration: InputDecoration(
         hintText: AppLocalizations.of(context)!.translate("Your name"),
-        hintStyle: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,),
+        hintStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,fontFamily: "readPro"),
         prefixIcon: const Padding(
           padding: EdgeInsets.all(AppPadding.p16),
           child: Icon(Icons.person),

@@ -91,8 +91,8 @@ class _profile_screenState extends State<profile_screen> {
               Stack(
                 children: [
                   SizedBox(
-                    width: 120,
-                    height: 120,
+                    width: (120 / 360) * MediaQuery.of(context).size.width,//120,
+                    height: (120 / 360) * MediaQuery.of(context).size.width,//120,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: FutureBuilder(
@@ -142,7 +142,7 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(
@@ -249,8 +249,8 @@ Widget displayImage(String imagePath) {
   } else if (imagePath.contains("https")) {
     return CachedNetworkImage(
       imageUrl: imagePath,
-      fadeInDuration: const Duration(milliseconds: 350),
-      fadeOutDuration: const Duration(milliseconds: 350),
+      fadeInDuration: const Duration(milliseconds: 300),
+      fadeOutDuration: const Duration(milliseconds: 50),
       fit: BoxFit.cover,
       placeholder: (context, url) {
         return Image.asset(

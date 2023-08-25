@@ -28,7 +28,7 @@ class ReservationListItem extends StatelessWidget {
               children: [
                 SizedBox(
                   width: (50/360)*MediaQuery.of(context).size.width,//50,
-                  height: (50/772)*MediaQuery.of(context).size.height,//50,
+                  height: (50/360)*MediaQuery.of(context).size.width,//50,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: data["USERIMAGE"] != ""

@@ -68,8 +68,8 @@ class HomeCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(7),
                   child: CachedNetworkImage(
                     imageUrl: data.originalImage,
-                    fadeInDuration: const Duration(milliseconds: 350),
-                    // fadeOutDuration: const Duration(milliseconds: 350),
+                    fadeInDuration: const Duration(milliseconds: 300),
+                    fadeOutDuration: const Duration(milliseconds: 50),
                     fit: BoxFit.cover,
                     placeholder: (context, url) {
                       return Image.asset(
@@ -126,8 +126,7 @@ class HomeCard extends StatelessWidget {
                                 fontWeight: FontWeight.bold)
                             : TextStyle(
                                 fontFamily: "alata",
-                                fontSize: (15 / 360) *
-                                    MediaQuery.of(context).size.width, //15
+                                fontSize: (15 / 360) *MediaQuery.of(context).size.width, //15
                               ),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,

@@ -68,17 +68,16 @@ class _GetReservationDataState extends State<GetReservationData> {
                           SizedBox(
                             width: (50 / 360) *
                                 MediaQuery.of(context).size.width, //50,
-                            height: (50 / 772) *
-                                MediaQuery.of(context).size.height, //50,
+                            height: (50 / 360) * MediaQuery.of(context).size.width, //50,
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
                                 child: widget.type == "user"
                                     ? CachedNetworkImage(
                                         imageUrl: widget.data[index].hotelImage,
                                         fadeInDuration:
-                                            const Duration(milliseconds: 350),
+                                            const Duration(milliseconds: 300),
                                         fadeOutDuration:
-                                            const Duration(milliseconds: 350),
+                                            const Duration(milliseconds: 50),
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) {
                                           return Image.asset(
@@ -119,9 +118,9 @@ class _GetReservationDataState extends State<GetReservationData> {
                                             imageUrl: widget
                                                 .data[index].createdBy.image,
                                             fadeInDuration: const Duration(
-                                                milliseconds: 350),
+                                                milliseconds: 300),
                                             fadeOutDuration: const Duration(
-                                                milliseconds: 350),
+                                                milliseconds: 50),
                                             fit: BoxFit.cover,
                                             placeholder: (context, url) {
                                               return Image.asset(
@@ -841,7 +840,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                   ));
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              primary: Theme.of(context)
+                                              backgroundColor: Theme.of(context)
                                                   .colorScheme
                                                   .primary,
                                               shape: RoundedRectangleBorder(
@@ -1096,7 +1095,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              primary: Colors.green,
+                                                                              backgroundColor: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -1113,7 +1112,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              primary: Colors.green,
+                                                                              backgroundColor: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -1253,7 +1252,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              primary: Colors.green,
+                                                                              backgroundColor: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -1270,7 +1269,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              primary: Colors.green,
+                                                                              backgroundColor: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(

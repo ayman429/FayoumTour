@@ -4,14 +4,12 @@ import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fayoumtour/post/presentation/screens/AR_EN_Post.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:date_format/date_format.dart';
 
 import '../../../core/notification/add notification.dart';
-import '../../../core/notification/notification.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
@@ -67,7 +65,14 @@ class _AddPostComponentState extends State<AddPostComponent> {
     super.initState();
     if (widget.type != 'add') {
       _textEditingController.text = widget.data.body;
-
+      if(isEnglish(widget.data.body))
+      {
+        theTextDirection = TextDirection.ltr;
+      }
+      else
+      {
+        theTextDirection = TextDirection.rtl;
+      }
       for (int i = 0; i < widget.data.imagesP.length; i++) {
         _providedimageList.add(widget.data.imagesP[i].imageT);
       }
@@ -352,8 +357,7 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           SizedBox(
                             width: (50 / 360) *
                                 MediaQuery.of(context).size.width, //50,
-                            height: (50 / 772) *
-                                MediaQuery.of(context).size.height, //50,
+                            height: (50/360)*MediaQuery.of(context).size.width,//50,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: displayImage(getImagePath),
@@ -466,30 +470,23 @@ class _AddPostComponentState extends State<AddPostComponent> {
                         ),
                         maxLines: null,
                         onChanged: (value) {
-                          if (value != "" &&
-                              isEnglish(value) &&
-                              theTextDirection == TextDirection.rtl) {
-                            setState(() {
-                              theTextDirection = TextDirection.ltr;
-                            });
-                          } else if (value != "" &&
-                              !isEnglish(value) &&
-                              theTextDirection == TextDirection.ltr) {
-                            setState(() {
-                              theTextDirection = TextDirection.rtl;
-                            });
+
+                          if (value != "" && isEnglish(value) && theTextDirection == TextDirection.rtl)
+                          {
+                            setState(() {theTextDirection = TextDirection.ltr;});
+                          }
+                          else if (value != "" && !isEnglish(value) && theTextDirection == TextDirection.ltr)
+                          {
+                            setState(() {theTextDirection = TextDirection.rtl;});
                           }
 
-                          if ((_text == "" && value != "") ||
-                              (_text != "" && value == "")) {
+                          if ((_text == "" && value != "") || (_text != "" && value == "")) {
                             setState(() {});
                           }
 
                           if (widget.type != 'add') {
-                            setState(() {});
-                            if ((_text == widget.data.body &&
-                                    value != widget.data.body) ||
-                                value == widget.data.body) {
+                            if ((_text == widget.data.body && value != widget.data.body) || value == widget.data.body) 
+                            {
                               setState(() {});
                             }
                           }
@@ -640,8 +637,8 @@ Widget displayImage(String imagePath) {
   } else if (imagePath.contains("https")) {
     return CachedNetworkImage(
       imageUrl: imagePath,
-      fadeInDuration: const Duration(milliseconds: 350),
-      fadeOutDuration: const Duration(milliseconds: 350),
+      fadeInDuration: const Duration(milliseconds: 300),
+      fadeOutDuration: const Duration(milliseconds: 50),
       fit: BoxFit.cover,
       placeholder: (context, url) {
         return Image.asset(

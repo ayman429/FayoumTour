@@ -11,6 +11,7 @@ import 'add_post_component.dart';
 import 'show_posts.dart';
 
 class AddPost extends StatefulWidget {
+  
   const AddPost({super.key});
 
   @override
@@ -76,7 +77,7 @@ class _AddPostState extends State<AddPost> {
                                         : const EdgeInsets.only(left: 5),
                                 child: SizedBox(
                                   width: (40/360)*MediaQuery.of(context).size.width,//40,
-                                  height: (40/772)*MediaQuery.of(context).size.height,//40,
+                                  height: (40/360)*MediaQuery.of(context).size.width,//40,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
                                     child: FutureBuilder(
@@ -182,8 +183,8 @@ Widget displayImage(String imagePath) {
   } else if (imagePath.contains("https")) {
     return CachedNetworkImage(
       imageUrl: imagePath,
-      fadeInDuration: const Duration(milliseconds: 350),
-      fadeOutDuration: const Duration(milliseconds: 350),
+      fadeInDuration: const Duration(milliseconds: 300),
+      fadeOutDuration: const Duration(milliseconds: 50),
       fit: BoxFit.cover,
       placeholder: (context, url) {
         return Image.asset(

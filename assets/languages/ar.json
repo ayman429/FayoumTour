@@ -109,8 +109,8 @@
   "This feature will be available soon!": "سيتم تفعيل هذه الخاصية قريبًا!",
   "CopyRights": "2023 FayTour . كل الحقوق محفوظة.",
   "Status":"الحالة",
-  "Accept":"قبول",
-  "Reject":"رفض",
+  "Accept":"مقبول",
+  "Reject":"مرفوض",
   "Get QR":"باركود",
   "Secan QR":"مسح الباركود",
   "QRReservation":"بيانات الحجز",
@@ -118,6 +118,7 @@
   "No":"لا",
   "Show more":"عرض المزيد",
   "QRtitle":"باركود الحجز",
-  "Are you sure to complete this process?":"هل أنت متأكد من إتمام هذه العملية؟"
+  "Are you sure to complete this process?":"هل أنت متأكد من إتمام هذه العملية؟",
+  "QR Message":"الفندق هو الوحيد القادر على مسح الباركود للتحقق من الحجز وبياناته."
 
 }

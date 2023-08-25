@@ -49,45 +49,38 @@ class SigupForm extends StatelessWidget {
           decoration: InputDecoration(
             prefixIcon: Padding(
               padding: const EdgeInsets.all(AppPadding.p16),
-              child: Text(
+              child: Image.asset(
                 sharedPreferences!.getString("Language") == "AR"
-                    ? "🇸🇦"
-                    : "🇬🇧",
-                style: TextStyle(
-                  fontSize: (20 / 360) * MediaQuery.of(context).size.width,
-                ),
+                    ? "assets/images/arabic_flag.png"
+                    : "assets/images/english_flag.png",
+                height: (20 / 772) * MediaQuery.of(context).size.height,//17,
+                width: (25 / 360) * MediaQuery.of(context).size.width,//25,
+                fit: BoxFit.cover,
+                //style: TextStyle(fontSize: (20 / 360) * MediaQuery.of(context).size.width,),
               ),
             ),
             border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(15))),
-            contentPadding: sharedPreferences!.getString("Language") == "AR"
-                ? const EdgeInsets.symmetric(vertical: 18, horizontal: 6)
-                : const EdgeInsets.symmetric(vertical: 16, horizontal: 6),
+            contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 6),
           ),
           items: [
             DropdownMenuItem(
               value: 0,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 1),
-                child: Text(
+              child: Text(
                   AppLocalizations.of(context)!.translate("English"),
                   style: TextStyle(
-                    fontSize: (16 / 360) * MediaQuery.of(context).size.width,
+                    fontSize: (12.5 / 360) * MediaQuery.of(context).size.width,fontFamily: "readPro"
                   ),
                 ),
-              ),
             ),
             DropdownMenuItem(
               value: 1,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 1),
-                child: Text(
+              child: Text(
                   AppLocalizations.of(context)!.translate("Arabic"),
                   style: TextStyle(
-                    fontSize: (16 / 360) * MediaQuery.of(context).size.width,
+                    fontSize: (12.5 / 360) * MediaQuery.of(context).size.width,fontFamily: "readPro"
                   ),
                 ),
-              ),
             ),
           ],
           onChanged: (value) {

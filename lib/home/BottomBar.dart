@@ -1,7 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import '../Authentication/presentation/screens/profile/profile_screen.dart';
-import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 import '../core/utils/constance/strings_manager.dart';
 import '../core/utils/youtubeController.dart';
@@ -34,8 +33,16 @@ class _BottomBarState extends State<BottomBar> {
   // _BottomBarState(tourtismType) {
   //   tourtismTypes = tourtismType;
   // }
+  
+  
 
-  List<Widget> Screens = [
+  @override
+  void initState() {
+    super.initState();
+    selected = widget.select;
+  }
+  
+  List<Widget> Screens =  [
     profile_screen(type: "user"),
     const NEAR(),
     Home(tourtismType: tourtismTypes),
@@ -45,6 +52,7 @@ class _BottomBarState extends State<BottomBar> {
     const Plan(),
   ];
   final controller = YoutubeControllerSingleton.youtubeController;
+  
   List upIcons = [
     "assets/images/profileIconUp.png",
     "assets/images/nearbyIconUp.png",
@@ -54,113 +62,21 @@ class _BottomBarState extends State<BottomBar> {
     "assets/images/plansIconUp.png"
   ];
 
-  final TextEditingController _searchController = TextEditingController();
+  //final TextEditingController _searchController = TextEditingController();
 
   int selected = 0;
-  bool search = false;
-  int search_counter = 0;
-  String _text = '';
 
-  @override
-  void initState() {
-    super.initState();
-    selected = widget.select;
-  }
+  //int search_counter = 0;
+  //String _text = '';
+
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         extendBody: true,
         backgroundColor: Theme.of(context).colorScheme.onSecondary,
-        appBar: search
-            ? AppBar(
-              
-                title: SizedBox(
-                  height: (40/360)*MediaQuery.of(context).size.width,//40,
-                  child: TextField(
-                    controller: _searchController,
-                    style:  TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,//16
-                    ),
-                    textAlignVertical: TextAlignVertical.center,
-                    decoration: InputDecoration(
-                      hintText:
-                          AppLocalizations.of(context)!.translate("Search..."),
-                      suffixIcon:
-                      _searchController.text.isNotEmpty
-                          ? InkWell(
-                            child: const Icon(Icons.clear),
-                            onTap: () {
-                              setState(() {
-                                  _searchController.text = '';
-                                  search_counter = 0;
-                                });
-                            },
-                          )
-                          : null,
-                          
-                      
-                      contentPadding:  EdgeInsets.symmetric(vertical: (8/360)*MediaQuery.of(context).size.width,//8
-                      ),
-                      border: InputBorder.none
-                      //border: OutlineInputBorder(borderRadius: BorderRadius.circular(50), ),
-                    ),
-                    textInputAction: TextInputAction.search,
-                    onSubmitted: (value) {
-                      setState(() {
-                        search_counter = 0;
-
-                        _text = _searchController.text;
-                      });
-                    },
-                    onChanged: (value) {
-                      setState(() {
-                        // _searchController.text = _searchController.text;
-                        // search_counter = 0;
-                        // _text = value;
-                        // print(_text);
-                      });
-                    },
-                  ),
-                ),
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                actions: [
-                Container(
-                  
-                  margin: sharedPreferences!.getString("Language") == "AR"
-                  ?  EdgeInsets.only(left: (20/360)*MediaQuery.of(context).size.width,//20
-                  )
-                  :  EdgeInsets.only(right: (20/360)*MediaQuery.of(context).size.width,//20
-                  ),
-                  child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  search_counter = 0;
-                
-                                  _text = _searchController.text;
-                                });
-                              },
-                              child: const Icon(Icons.search),
-                            ),
-                ),
-                        
-                        
-              ],
-                //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-                centerTitle: true,
-                leading: InkWell(
-                  onTap: () {
-                    setState(() {
-                      _searchController.clear();
-                      _text = "";
-                      search = false;
-                    });
-                  },
-                  child: const Icon(Icons.arrow_back),
-                ),
-              )
-            : AppBar(
+        appBar: AppBar(
                 title: Text(AppStrings.titlesFunc(context, selected),
                     style: sharedPreferences!.getString("Language") == "AR"
                         ?  TextStyle(
@@ -208,11 +124,10 @@ class _BottomBarState extends State<BottomBar> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                search = true;
-                              });
-                            },
+                            onTap:() => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SEARCH())),
                             child: const Icon(
                               Icons.search,
                               size: 26,
@@ -235,16 +150,8 @@ class _BottomBarState extends State<BottomBar> {
                         ),
                       ],
               ),
-        body: search
-            ? SEARCH(
-                searchKetword: _text,
-                searchCount: search_counter,
-              )
-            // : Screens[selected],
-            : IndexedStack(index: selected, children: Screens),
-        bottomNavigationBar: search
-            ? null
-            : CurvedNavigationBar(
+        body: IndexedStack(index: selected, children: Screens),
+        bottomNavigationBar: CurvedNavigationBar(
                 height: 65,
                 backgroundColor: Colors.transparent,
                 animationDuration: const Duration(milliseconds: 200),
@@ -284,8 +191,10 @@ class _BottomBarState extends State<BottomBar> {
                 onTap: (value) {
                   setState(() {
                     selected = value;
+
                     if(selected != 2)
                     {controller.pause();}
+                    
                   });
                 },
                 index: selected,

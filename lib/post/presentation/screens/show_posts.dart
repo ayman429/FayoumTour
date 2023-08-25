@@ -22,6 +22,7 @@ class ShowPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return BlocListener<PostBloc, PostState>(
       listenWhen: (previous, current) =>
           previous.postState != current.postState,
@@ -74,8 +75,7 @@ class ShowPosts extends StatelessWidget {
                               SizedBox(
                                 width: (40 / 360) *
                                     MediaQuery.of(context).size.width, //40,
-                                height: (40 / 772) *
-                                    MediaQuery.of(context).size.height, //40,
+                                height: (40/360)*MediaQuery.of(context).size.width,//40,
                                 // user image in post
                                 child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
@@ -86,9 +86,9 @@ class ShowPosts extends StatelessWidget {
                                             imageUrl: state
                                                 .post[index].createdBy!.image,
                                             fadeInDuration: const Duration(
-                                                milliseconds: 350),
+                                                milliseconds: 300),
                                             fadeOutDuration: const Duration(
-                                                milliseconds: 350),
+                                                milliseconds: 50),
                                             fit: BoxFit.cover,
                                             placeholder: (context, url) {
                                               return Image.asset(
@@ -137,34 +137,37 @@ class ShowPosts extends StatelessWidget {
                                     Row(
                                       children: [
                                         Text(
-                                          '${state.post[index].createdBy!.userName}',
-                                          style: TextStyle(
-                                            fontFamily: "readPro",
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: (18 / 360) *
-                                                MediaQuery.of(context)
-                                                    .size
-                                                    .width, //18,
+                                            '${state.post[index].createdBy!.userName}',
+                                            style: TextStyle(
+                                              fontFamily: "readPro",
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: (16 / 360) *
+                                                  MediaQuery.of(context)
+                                                      .size
+                                                      .width, //18,
+                                            ),
                                           ),
-                                        ),
-                                        const SizedBox(width: 4),
+                                        const SizedBox(width: 3.5),
                                         state.post[index].createdBy!.mark ==
                                                 true
-                                            ? Image.asset(
-                                                'assets/icons/mark.png',
-                                                width: (14 / 360) *
-                                                    MediaQuery.of(context)
-                                                        .size
-                                                        .width, //14,
-                                                height: (14 / 772) *
-                                                    MediaQuery.of(context)
-                                                        .size
-                                                        .height, //14,
-                                              )
+                                            ? Padding(
+                                              padding: const EdgeInsets.only(top: 2.5),
+                                              child: Image.asset(
+                                                  'assets/icons/mark.png',
+                                                  width: (14 / 360) *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width, //14,
+                                                  height: (14 / 360) *
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width, //14,
+                                                ),
+                                            )
                                             : Container(),
                                       ],
                                     ),
-                                    const SizedBox(height: 4),
+                                    const SizedBox(height: 3),
                                     Text(
                                       PostTime(
                                           "${state.post[index].createdAt}"),
@@ -362,10 +365,10 @@ class ShowPosts extends StatelessWidget {
                                                         .imagesP[x].imageT,
                                                     fadeInDuration:
                                                         const Duration(
-                                                            milliseconds: 350),
+                                                            milliseconds: 300),
                                                     fadeOutDuration:
                                                         const Duration(
-                                                            milliseconds: 350),
+                                                            milliseconds: 50),
                                                     fit: BoxFit.cover,
                                                     placeholder:
                                                         (context, url) {
@@ -440,9 +443,9 @@ class ShowPosts extends StatelessWidget {
                                               imageUrl: state.post[index]
                                                   .imagesP[x].imageT,
                                               fadeInDuration: const Duration(
-                                                  milliseconds: 350),
+                                                  milliseconds: 300),
                                               fadeOutDuration: const Duration(
-                                                  milliseconds: 350),
+                                                  milliseconds: 50),
                                               fit: BoxFit.cover,
                                               placeholder: (context, url) {
                                                 return Image.asset(

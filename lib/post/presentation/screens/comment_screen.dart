@@ -10,6 +10,7 @@ import '../../../core/utils/enums.dart';
 import '../../../core/utils/snackbar_message.dart';
 import '../../domain/entities/comment.dart';
 import '../controller/bloc/post_bloc.dart';
+import 'AR_EN_Post.dart';
 import 'get_comment.dart';
 
 Map<int, dynamic> commentIds = {};
@@ -31,7 +32,11 @@ class _CommentScreenState extends State<CommentScreen> {
   String _text = "";
 
   final TextEditingController _textEditingController = TextEditingController();
-
+  TextDirection theTextDirection =
+      sharedPreferences!.getString("Language") == "AR"
+          ? TextDirection.rtl
+          : TextDirection.ltr;
+  
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -62,6 +67,7 @@ class _CommentScreenState extends State<CommentScreen> {
               : const EdgeInsets.only(left: 35),
           child: TextField(
             controller: _textEditingController,
+            textDirection: theTextDirection,
             decoration: InputDecoration(
               filled: true,
               fillColor: Theme.of(context).colorScheme.tertiaryContainer,
@@ -187,6 +193,15 @@ class _CommentScreenState extends State<CommentScreen> {
             maxLines: 5,
             minLines: 1,
             onChanged: (value) {
+              if (value != "" && isEnglish(value) && theTextDirection == TextDirection.rtl)
+              {
+                setState(() {theTextDirection = TextDirection.ltr;});
+              }
+              else if (value != "" && !isEnglish(value) && theTextDirection == TextDirection.ltr)
+              {
+                setState(() {theTextDirection = TextDirection.rtl;});
+              }
+
               if ((_text == "" && value != "") ||
                   (_text != "" && value == "")) {}
 

@@ -31,10 +31,10 @@ class _TourismScreenState extends State<TourismScreen>
       ? "حدد نوع السياحة"
       : "Select Tourism Type";
   List<String> options = [
-    "Islamic antiquities",
-    "Coptic antiquities",
-    "Greek and Roman Antiquities",
-    "Pharaonic antiquities"
+    "Islamic antiquities\n",
+    "Coptic antiquities\n",
+    "Greek and Roman Antiquities\n",
+    "Pharaonic antiquities\n"
   ];
   List<String> optionsAR = [
     "الآثار الإسلامية",
@@ -146,13 +146,13 @@ class _TourismScreenState extends State<TourismScreen>
                                         child: Text(
                                           title,
                                           style: sharedPreferences!.getString("Language") == "AR"
-                                          ? const TextStyle(
+                                          ?  TextStyle(
                                             fontFamily: "ibmP",
-                                            fontSize: 23,
+                                            fontSize: (23 / 360) * MediaQuery.of(context).size.width,//23,
                                           )
-                                          : const TextStyle(
+                                          :  TextStyle(
                                             fontFamily: "aBeeZee",
-                                            fontSize: 23,
+                                            fontSize: (23 / 360) * MediaQuery.of(context).size.width,//23,
                                           )
                                         ),
                                       ),
@@ -233,13 +233,13 @@ class _TourismScreenState extends State<TourismScreen>
                                             ? optionsAR[0]
                                             : options[0],
                                       style: sharedPreferences!.getString("Language") == "AR"
-                                          ? const TextStyle(
+                                          ?  TextStyle(
                                             fontFamily: "ibmP",
-                                            fontSize: 16,
+                                            fontSize: (16 / 360) * MediaQuery.of(context).size.width,//16,
                                           )
-                                          : const TextStyle(
+                                          :  TextStyle(
                                             fontFamily: "aBeeZee",
-                                            fontSize: 16,
+                                            fontSize: (15 / 360) * MediaQuery.of(context).size.width,//15,
                                           ),
                                       )
                                     ],
@@ -308,13 +308,13 @@ class _TourismScreenState extends State<TourismScreen>
                                                 ? optionsAR[1]
                                                 : options[1],
                                                 style: sharedPreferences!.getString("Language") == "AR"
-                                          ? const TextStyle(
+                                          ?  TextStyle(
                                             fontFamily: "ibmP",
-                                            fontSize: 16,
+                                            fontSize: (16 / 360) * MediaQuery.of(context).size.width,//16,
                                           )
-                                          : const TextStyle(
+                                          :  TextStyle(
                                             fontFamily: "aBeeZee",
-                                            fontSize: 16,
+                                            fontSize: (15 / 360) * MediaQuery.of(context).size.width,//15,
                                           ),
                                           )
                                         ],
@@ -388,17 +388,17 @@ class _TourismScreenState extends State<TourismScreen>
                                                 "AR"
                                             ? optionsAR[2]
                                             : options[2] ==
-                                                    "Greek and Roman Antiquities"
-                                                ? "Greek and Roman"
+                                                    "Greek and Roman Antiquities\n"
+                                                ? "Greek and Roman\n"
                                                 : options[2],
                                                 style: sharedPreferences!.getString("Language") == "AR"
-                                          ? const TextStyle(
+                                          ?  TextStyle(
                                             fontFamily: "ibmP",
-                                            fontSize: 16,
+                                            fontSize: (16 / 360) * MediaQuery.of(context).size.width,//16,
                                           )
-                                          : const TextStyle(
+                                          :  TextStyle(
                                             fontFamily: "aBeeZee",
-                                            fontSize: 16,
+                                            fontSize: (15 / 360) * MediaQuery.of(context).size.width,//15,
                                           ),
                                       )
                                     ],
@@ -463,13 +463,13 @@ class _TourismScreenState extends State<TourismScreen>
                                             ? optionsAR[3]
                                             : options[3],
                                             style: sharedPreferences!.getString("Language") == "AR"
-                                          ? const TextStyle(
+                                          ?  TextStyle(
                                             fontFamily: "ibmP",
-                                            fontSize: 16,
+                                            fontSize: (16 / 360) * MediaQuery.of(context).size.width,//16,
                                           )
-                                          : const TextStyle(
+                                          :  TextStyle(
                                             fontFamily: "aBeeZee",
-                                            fontSize: 16,
+                                            fontSize: (15 / 360) * MediaQuery.of(context).size.width,//15,
                                           ),
                                       )
                                     ],
@@ -520,10 +520,10 @@ class _TourismScreenState extends State<TourismScreen>
                                                     ? "ماذا تفضل؟"
                                                     : "What do you prefer?";
                                                 options = [
-                                                  "Historical pyramids",
-                                                  "Statues and Monuments",
-                                                  "Temples",
-                                                  "Sand Boarding"
+                                                  "Historical pyramids\n",
+                                                  "Statues and \nMonuments",
+                                                  "Temples\n",
+                                                  "Sand Boarding\n"
                                                 ];
                                                 optionsAR = [
                                                   "الأهرامات التاريخية",
@@ -548,10 +548,10 @@ class _TourismScreenState extends State<TourismScreen>
                                                     ? "ماذا تفضل؟"
                                                     : "What do you prefer?";
                                                 options = [
-                                                  "Water Sports",
-                                                  "Waterfalls Area",
-                                                  "Safari Trips and Camping",
-                                                  "Natural Gardens"
+                                                  "Water Sports\n",
+                                                  "Waterfalls Area\n",
+                                                  "Safari Trips \nand Camping",
+                                                  "Natural Gardens\n"
                                                 ];
                                                 optionsAR = [
                                                   "رياضات مائية",
@@ -627,7 +627,8 @@ class _TourismScreenState extends State<TourismScreen>
                                                 color: Theme.of(context)
                                                     .colorScheme
                                                     .onSecondary,
-                                                fontSize: 20),
+                                                fontSize: (20 / 360) * MediaQuery.of(context).size.width,//20
+                                                ),
                                           ),
                                         )),
                                   );

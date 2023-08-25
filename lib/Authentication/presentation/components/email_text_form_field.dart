@@ -20,7 +20,9 @@ class EmailTextFormField extends StatelessWidget {
         decoration: InputDecoration(
             
             hintText: AppLocalizations.of(context)!.translate("Your email"),
-            hintStyle: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,),
+            hintStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+            fontFamily: "readPro"
+            ),
             prefixIcon: const Padding(
               padding: EdgeInsets.all(AppPadding.p16),
               child: Icon(Icons.mail),

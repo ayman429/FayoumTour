@@ -109,8 +109,8 @@
   "This feature will be available soon!": "This feature will be available soon!",
   "CopyRights": "2023 FayTour . All rights reserved.",
   "Status":"Status",
-  "Accept":"Accept",
-  "Reject":"Reject",
+  "Accept":"Accepted",
+  "Reject":"Rejected",
   "Get QR":"Get QR",
   "Secan QR":"Scan QR",
   "QRReservation":"Reservation Data",
@@ -118,6 +118,7 @@
   "No":"No",
   "Show more":"Show more",
   "QRtitle":"Reservation QR",
-  "Are you sure to complete this process?":"Are you sure to complete this process?"
+  "Are you sure to complete this process?":"Are you sure to complete this process?",
+  "QR Message":"Only the hotel is able to scan the QR to check the reservation and its data."
   
 }

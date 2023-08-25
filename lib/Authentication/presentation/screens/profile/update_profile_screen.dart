@@ -67,14 +67,16 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         centerTitle: true,
         title: Text(AppLocalizations.of(context)!.translate("Edit Profile"),
             style: sharedPreferences!.getString("Language") == "AR"
-                ? const TextStyle(
+                ?  TextStyle(
                     fontFamily: "galaxy",
                     fontWeight: FontWeight.bold,
-                    fontSize: 28)
-                : const TextStyle(
+                    fontSize: (28 / 360) * MediaQuery.of(context).size.width,//28,
+                    )
+                :  TextStyle(
                     fontFamily: AppStrings.fontFamily,
                     fontWeight: FontWeight.bold,
-                    fontSize: 25)),
+                    fontSize: (25 / 360) * MediaQuery.of(context).size.width,//25,
+                    )),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -85,8 +87,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
               Stack(
                 children: [
                   SizedBox(
-                    width: 120,
-                    height: 120,
+                    width: (120 / 360) * MediaQuery.of(context).size.width,//120,
+                    height: (120 / 360) * MediaQuery.of(context).size.width,//120,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: displayImage(getImagePath),
@@ -256,7 +258,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       String username = state.updateuserDetails ?? "";
                       sharedPreferences!.setString("username", username);
                       Navigator.pop(context);
-                      Navigator.pop(context);
+                      //Navigator.pop(context);
                     }
                   } else if (state.updateuserDetailsState ==
                       RequestState.error) {
@@ -301,6 +303,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     padding: EdgeInsets.all(AppPadding.p16),
                     child: Icon(Icons.person),
                   ),
+                  hintStyle: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,fontFamily: "readPro"),
                   contentPadding: const EdgeInsets.symmetric(
                       horizontal: AppPadding.p16, vertical: AppPadding.p16),
                   border: OutlineInputBorder(
@@ -406,6 +409,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         new_password2: password2Controller.text);
                     BlocProvider.of<AuthenticationBloc>(context).add(
                         ChangePasswordEvent(changePassword: changePassword));
+                    
+                    
+                    
                   },
                   style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(
@@ -445,8 +451,8 @@ Widget displayImage(String imagePath) {
   } else if (imagePath.contains("https")) {
     return CachedNetworkImage(
       imageUrl: imagePath,
-      fadeInDuration: const Duration(milliseconds: 350),
-      fadeOutDuration: const Duration(milliseconds: 350),
+      fadeInDuration: const Duration(milliseconds: 300),
+      fadeOutDuration: const Duration(milliseconds: 50),
       fit: BoxFit.cover,
       placeholder: (context, url) {
         return Image.asset(

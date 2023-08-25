@@ -184,9 +184,9 @@ class Details extends StatelessWidget {
                                       child: CachedNetworkImage(
                                         imageUrl: data.imagesT[0].imageT,
                                         fadeInDuration:
-                                            const Duration(milliseconds: 350),
+                                            const Duration(milliseconds: 300),
                                         fadeOutDuration:
-                                            const Duration(milliseconds: 350),
+                                            const Duration(milliseconds: 50),
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) {
                                           return Image.asset(
@@ -251,9 +251,9 @@ class Details extends StatelessWidget {
                                     child: CachedNetworkImage(
                                       imageUrl: data.imagesT[1].imageT,
                                       fadeInDuration:
-                                          const Duration(milliseconds: 350),
+                                          const Duration(milliseconds: 300),
                                       fadeOutDuration:
-                                          const Duration(milliseconds: 350),
+                                          const Duration(milliseconds: 50),
                                       fit: BoxFit.cover,
                                       placeholder: (context, url) {
                                         return Image.asset(
@@ -327,9 +327,9 @@ class Details extends StatelessWidget {
                                             child: CachedNetworkImage(
                                               imageUrl: data.imagesT[2].imageT,
                                               fadeInDuration: const Duration(
-                                                  milliseconds: 350),
+                                                  milliseconds: 300),
                                               fadeOutDuration: const Duration(
-                                                  milliseconds: 350),
+                                                  milliseconds: 50),
                                               fit: BoxFit.cover,
                                               placeholder: (context, url) {
                                                 return Image.asset(

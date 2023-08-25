@@ -99,8 +99,8 @@ class _FavoritesState extends State<Favorites> {
                       borderRadius: BorderRadius.circular(7),
                       child:
                       CachedNetworkImage(imageUrl: snapshot![index]["image"],
-                      fadeInDuration: const Duration(milliseconds: 350),
-                  fadeOutDuration: const Duration(milliseconds: 350),
+                      fadeInDuration: const Duration(milliseconds: 300),
+                  fadeOutDuration: const Duration(milliseconds: 50),
                 fit: BoxFit.cover,
                 placeholder: (context, url) {
                     return Image.asset(AppStrings.loading2Gif,fit: BoxFit.cover,);

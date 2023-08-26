@@ -316,7 +316,54 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                                     "0")));
                     // print("HotelReservation Loded");
                     Navigator.pop(context);
-                    Navigator.pop(context);
+                    showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: Text(
+                            sharedPreferences!.getString("Language") == "AR"
+                                ? 'تم الحجز بنجاح'
+                                : 'Reservation successful',
+                            style: sharedPreferences!.getString("Language") ==
+                                    "AR"
+                                ? const TextStyle(fontFamily: "messiri")
+                                : const TextStyle(fontFamily: "merriweather"),
+                          ),
+                          actions: <Widget>[
+                            Center(
+                              child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    Navigator.pop(context);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.green,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                  ),
+                                  child: Text(
+                                    AppLocalizations.of(context)!
+                                        .translate("Okay"),
+                                    style: TextStyle(
+                                        fontFamily: sharedPreferences!
+                                                    .getString("Language") ==
+                                                "AR"
+                                            ? "Mag"
+                                            : "rye",
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary),
+                                  )),
+                            ),
+                          ],
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                        );
+                      },
+                    );
+
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(

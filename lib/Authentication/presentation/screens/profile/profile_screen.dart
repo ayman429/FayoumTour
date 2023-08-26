@@ -224,6 +224,7 @@ class _profile_screenState extends State<profile_screen> {
                             .add(LogoutEvent());
                         AccessToken accessToken = AccessToken();
                         accessToken.saveToken("0");
+                        // sharedPreferences!.remove("USERID");
                         unsubscribeARTopic();
                         unsubscribeENTopic();
                         Navigator.pushReplacement(

@@ -36,7 +36,7 @@ class _CommentScreenState extends State<CommentScreen> {
       sharedPreferences!.getString("Language") == "AR"
           ? TextDirection.rtl
           : TextDirection.ltr;
-  
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -115,7 +115,9 @@ class _CommentScreenState extends State<CommentScreen> {
 
                     for (var element in commentIds[widget.postId]) {
                       if (sharedPreferences!.getString("USERID") !=
-                          element.toString()) {
+                              element.toString() &&
+                          widget.createdBy_id.toString() !=
+                              element.toString()) {
                         AddNotification().addNotification(
                           topics: "/topics/COMMENT_EN${element.toString()}",
                           body:
@@ -193,13 +195,18 @@ class _CommentScreenState extends State<CommentScreen> {
             maxLines: 5,
             minLines: 1,
             onChanged: (value) {
-              if (value != "" && isEnglish(value) && theTextDirection == TextDirection.rtl)
-              {
-                setState(() {theTextDirection = TextDirection.ltr;});
-              }
-              else if (value != "" && !isEnglish(value) && theTextDirection == TextDirection.ltr)
-              {
-                setState(() {theTextDirection = TextDirection.rtl;});
+              if (value != "" &&
+                  isEnglish(value) &&
+                  theTextDirection == TextDirection.rtl) {
+                setState(() {
+                  theTextDirection = TextDirection.ltr;
+                });
+              } else if (value != "" &&
+                  !isEnglish(value) &&
+                  theTextDirection == TextDirection.ltr) {
+                setState(() {
+                  theTextDirection = TextDirection.rtl;
+                });
               }
 
               if ((_text == "" && value != "") ||

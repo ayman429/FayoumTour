@@ -34,8 +34,9 @@ class CommentList extends StatelessWidget {
                               ? "aref"
                               : "pressStart2p",
                       fontSize: sharedPreferences!.getString("Language") == "AR"
-                          ? (38/360)*MediaQuery.of(context).size.width//38
-                          : (20/360)*MediaQuery.of(context).size.width,//20,
+                          ? (38 / 360) * MediaQuery.of(context).size.width //38
+                          : (20 / 360) *
+                              MediaQuery.of(context).size.width, //20,
                       color: Theme.of(context).colorScheme.primary),
                 ),
                 const SizedBox(
@@ -50,8 +51,9 @@ class CommentList extends StatelessWidget {
                               ? "aref"
                               : "pressStart2p",
                       fontSize: sharedPreferences!.getString("Language") == "AR"
-                          ? (25/360)*MediaQuery.of(context).size.width//25
-                          : (11.5/360)*MediaQuery.of(context).size.width,//11.5,
+                          ? (25 / 360) * MediaQuery.of(context).size.width //25
+                          : (11.5 / 360) *
+                              MediaQuery.of(context).size.width, //11.5,
                       color: Theme.of(context).colorScheme.primary),
                 ),
               ],
@@ -69,8 +71,10 @@ class CommentList extends StatelessWidget {
                   ),
                   ListTile(
                     leading: SizedBox(
-                      width: (40/360)*MediaQuery.of(context).size.width,//40,
-                      height: (40/772)*MediaQuery.of(context).size.height,//40,
+                      width:
+                          (40 / 360) * MediaQuery.of(context).size.width, //40,
+                      height:
+                          (40 / 772) * MediaQuery.of(context).size.height, //40,
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
                           child: data[index].createdBy!.image != ""
@@ -137,17 +141,26 @@ class CommentList extends StatelessWidget {
                                     children: [
                                       Text(
                                         data[index].createdBy!.userName ?? "",
-                                        style:  TextStyle(
-                                          fontSize: (16/360)*MediaQuery.of(context).size.width,//16,
+                                        style: TextStyle(
+                                            fontSize: (16 / 360) *
+                                                MediaQuery.of(context)
+                                                    .size
+                                                    .width, //16,
                                             fontFamily: "readPro",
                                             fontWeight: FontWeight.bold),
                                       ),
                                       const SizedBox(width: 4),
-                                      sharedPreferences!.getBool("mark") == true
+                                      data[index].createdBy!.mark == true
                                           ? Image.asset(
                                               'assets/icons/mark.png',
-                                              width: (14/360)*MediaQuery.of(context).size.width,//15,
-                                              height: (14/772)*MediaQuery.of(context).size.height,//15,
+                                              width: (14 / 360) *
+                                                  MediaQuery.of(context)
+                                                      .size
+                                                      .width, //15,
+                                              height: (14 / 772) *
+                                                  MediaQuery.of(context)
+                                                      .size
+                                                      .height, //15,
                                             )
                                           : Container(),
                                     ],
@@ -186,49 +199,58 @@ class CommentList extends StatelessWidget {
                             const SizedBox(
                               height: 3,
                             ),
-
-                              isEnglish(data[index].comment)
-                                  ? Align(
-                                      alignment: Alignment.centerLeft,
-                                      child:
-                                      ExpandableText(
+                            isEnglish(data[index].comment)
+                                ? Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: ExpandableText(
                                       textDirection: TextDirection.ltr,
                                       data[index].comment,
-                                      expandText:  AppLocalizations.of(context)!.translate("Show more"),
+                                      expandText: AppLocalizations.of(context)!
+                                          .translate("Show more"),
                                       collapseOnTextTap: true,
                                       expandOnTextTap: true,
                                       animation: true,
                                       maxLines: 5,
                                       linkColor: Colors.green,
-                                      linkStyle: const TextStyle(fontFamily: "ibmP"),
-                                      style: TextStyle(fontFamily: "ibmP",
-                                      fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      linkStyle:
+                                          const TextStyle(fontFamily: "ibmP"),
+                                      style: TextStyle(
+                                        fontFamily: "ibmP",
+                                        fontSize: (16 / 360) *
+                                            MediaQuery.of(context)
+                                                .size
+                                                .width, //16
                                       ),
-                                      )
-                                    )
-                                  : Align(
-                                      alignment: Alignment.centerRight,
-                                      child: ExpandableText(
+                                    ))
+                                : Align(
+                                    alignment: Alignment.centerRight,
+                                    child: ExpandableText(
                                       textDirection: TextDirection.rtl,
                                       data[index].comment,
-                                      expandText:  AppLocalizations.of(context)!.translate("Show more"),
+                                      expandText: AppLocalizations.of(context)!
+                                          .translate("Show more"),
                                       collapseOnTextTap: true,
                                       expandOnTextTap: true,
                                       animation: true,
                                       maxLines: 5,
                                       linkColor: Colors.green,
-                                      linkStyle: const TextStyle(fontFamily: "ibmP"),
-                                      style: TextStyle(fontFamily: "ibmP",
-                                      fontSize: (16/360)*MediaQuery.of(context).size.width,//16
+                                      linkStyle:
+                                          const TextStyle(fontFamily: "ibmP"),
+                                      style: TextStyle(
+                                        fontFamily: "ibmP",
+                                        fontSize: (16 / 360) *
+                                            MediaQuery.of(context)
+                                                .size
+                                                .width, //16
                                       ),
-                                      )
-                                    ),
+                                    )),
                           ],
                         )),
                   ),
                   data.length - 1 == index
-                      ?  SizedBox(
-                          height: (100/772)*MediaQuery.of(context).size.height,//85,
+                      ? SizedBox(
+                          height: (100 / 772) *
+                              MediaQuery.of(context).size.height, //85,
                         )
                       : Container(),
                 ]),

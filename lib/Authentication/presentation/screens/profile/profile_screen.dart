@@ -91,8 +91,10 @@ class _profile_screenState extends State<profile_screen> {
               Stack(
                 children: [
                   SizedBox(
-                    width: (120 / 360) * MediaQuery.of(context).size.width,//120,
-                    height: (120 / 360) * MediaQuery.of(context).size.width,//120,
+                    width:
+                        (120 / 360) * MediaQuery.of(context).size.width, //120,
+                    height:
+                        (120 / 360) * MediaQuery.of(context).size.width, //120,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: FutureBuilder(
@@ -142,7 +144,7 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      primary: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(

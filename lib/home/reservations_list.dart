@@ -68,7 +68,8 @@ class _GetReservationDataState extends State<GetReservationData> {
                           SizedBox(
                             width: (50 / 360) *
                                 MediaQuery.of(context).size.width, //50,
-                            height: (50 / 360) * MediaQuery.of(context).size.width, //50,
+                            height: (50 / 360) *
+                                MediaQuery.of(context).size.width, //50,
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
                                 child: widget.type == "user"
@@ -840,7 +841,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                   ));
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              backgroundColor: Theme.of(context)
+                                              primary: Theme.of(context)
                                                   .colorScheme
                                                   .primary,
                                               shape: RoundedRectangleBorder(
@@ -1095,7 +1096,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              backgroundColor: Colors.green,
+                                                                              primary: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -1112,7 +1113,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              backgroundColor: Colors.green,
+                                                                              primary: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -1252,7 +1253,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              backgroundColor: Colors.green,
+                                                                              primary: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -1269,7 +1270,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              backgroundColor: Colors.green,
+                                                                              primary: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(

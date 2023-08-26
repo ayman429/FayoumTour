@@ -67,16 +67,18 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         centerTitle: true,
         title: Text(AppLocalizations.of(context)!.translate("Edit Profile"),
             style: sharedPreferences!.getString("Language") == "AR"
-                ?  TextStyle(
+                ? TextStyle(
                     fontFamily: "galaxy",
                     fontWeight: FontWeight.bold,
-                    fontSize: (28 / 360) * MediaQuery.of(context).size.width,//28,
-                    )
-                :  TextStyle(
+                    fontSize:
+                        (28 / 360) * MediaQuery.of(context).size.width, //28,
+                  )
+                : TextStyle(
                     fontFamily: AppStrings.fontFamily,
                     fontWeight: FontWeight.bold,
-                    fontSize: (25 / 360) * MediaQuery.of(context).size.width,//25,
-                    )),
+                    fontSize:
+                        (25 / 360) * MediaQuery.of(context).size.width, //25,
+                  )),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -87,8 +89,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
               Stack(
                 children: [
                   SizedBox(
-                    width: (120 / 360) * MediaQuery.of(context).size.width,//120,
-                    height: (120 / 360) * MediaQuery.of(context).size.width,//120,
+                    width:
+                        (120 / 360) * MediaQuery.of(context).size.width, //120,
+                    height:
+                        (120 / 360) * MediaQuery.of(context).size.width, //120,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: displayImage(getImagePath),
@@ -198,67 +202,107 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       password1Controller.clear();
                       password2Controller.clear();
                     });
-
-                    // showDialog(
-                    //   barrierDismissible: false,
-                    //   context: context,
-                    //   builder: (BuildContext context) {
-                    //     return AlertDialog(
-                    //       content: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: [
-                    //           Text(
-                    //             sharedPreferences!.getString("Language") == "AR"
-                    //                 ? 'تم التغيير بنجاح'
-                    //                 : 'change completed successfully',
-                    //             style:
-                    //                 sharedPreferences!.getString("Language") ==
-                    //                         "AR"
-                    //                     ? const TextStyle(fontFamily: "messiri")
-                    //                     : const TextStyle(
-                    //                         fontFamily: "merriweather"),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //       actions: <Widget>[
-                    //         Center(
-                    //           child: ElevatedButton(
-                    //               onPressed: () {
-                    //                 Navigator.of(context).pop();
-                    //               },
-                    //               style: ElevatedButton.styleFrom(
-                    //                 primary: Colors.green,
-                    //                 shape: RoundedRectangleBorder(
-                    //                     borderRadius:
-                    //                         BorderRadius.circular(15)),
-                    //               ),
-                    //               child: Text(
-                    //                 AppLocalizations.of(context)!
-                    //                     .translate("Okay"),
-                    //                 style: TextStyle(
-                    //                     fontFamily: sharedPreferences!
-                    //                                 .getString("Language") ==
-                    //                             "AR"
-                    //                         ? "Mag"
-                    //                         : "rye",
-                    //                     color: Theme.of(context)
-                    //                         .colorScheme
-                    //                         .onSecondary),
-                    //               )),
-                    //         ),
-                    //       ],
-                    //       shape: RoundedRectangleBorder(
-                    //           borderRadius: BorderRadius.circular(15)),
-                    //     );
-                    //   },
-                    // );
+                    if (state.changePasswordstate == RequestState.loaded) {
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            content: Text(
+                              sharedPreferences!.getString("Language") == "AR"
+                                  ? 'تم تغيير الرقم السري بنجاح'
+                                  : 'password changed successfully',
+                              style: sharedPreferences!.getString("Language") ==
+                                      "AR"
+                                  ? const TextStyle(fontFamily: "messiri")
+                                  : const TextStyle(fontFamily: "merriweather"),
+                            ),
+                            actions: <Widget>[
+                              Center(
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                    ),
+                                    child: Text(
+                                      AppLocalizations.of(context)!
+                                          .translate("Okay"),
+                                      style: TextStyle(
+                                          fontFamily: sharedPreferences!
+                                                      .getString("Language") ==
+                                                  "AR"
+                                              ? "Mag"
+                                              : "rye",
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondary),
+                                    )),
+                              ),
+                            ],
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          );
+                        },
+                      );
+                    }
 
                     if (state.updateuserDetailsState == RequestState.loaded &&
                         type == "username") {
                       String username = state.updateuserDetails ?? "";
                       sharedPreferences!.setString("username", username);
-                      Navigator.pop(context);
+                      // Navigator.pop(context);
                       //Navigator.pop(context);
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            content: Text(
+                              sharedPreferences!.getString("Language") == "AR"
+                                  ? 'تم تغيير الاسم بنجاح'
+                                  : 'username changed successfully',
+                              style: sharedPreferences!.getString("Language") ==
+                                      "AR"
+                                  ? const TextStyle(fontFamily: "messiri")
+                                  : const TextStyle(fontFamily: "merriweather"),
+                            ),
+                            actions: <Widget>[
+                              Center(
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.green,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                    ),
+                                    child: Text(
+                                      AppLocalizations.of(context)!
+                                          .translate("Okay"),
+                                      style: TextStyle(
+                                          fontFamily: sharedPreferences!
+                                                      .getString("Language") ==
+                                                  "AR"
+                                              ? "Mag"
+                                              : "rye",
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondary),
+                                    )),
+                              ),
+                            ],
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          );
+                        },
+                      );
                     }
                   } else if (state.updateuserDetailsState ==
                       RequestState.error) {
@@ -303,7 +347,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     padding: EdgeInsets.all(AppPadding.p16),
                     child: Icon(Icons.person),
                   ),
-                  hintStyle: TextStyle(fontSize: (16/360)*MediaQuery.of(context).size.width,fontFamily: "readPro"),
+                  hintStyle: TextStyle(
+                      fontSize: (16 / 360) * MediaQuery.of(context).size.width,
+                      fontFamily: "readPro"),
                   contentPadding: const EdgeInsets.symmetric(
                       horizontal: AppPadding.p16, vertical: AppPadding.p16),
                   border: OutlineInputBorder(
@@ -409,9 +455,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                         new_password2: password2Controller.text);
                     BlocProvider.of<AuthenticationBloc>(context).add(
                         ChangePasswordEvent(changePassword: changePassword));
-                    
-                    
-                    
                   },
                   style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(

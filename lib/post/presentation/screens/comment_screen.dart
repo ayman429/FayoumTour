@@ -118,6 +118,8 @@ class _CommentScreenState extends State<CommentScreen> {
                               element.toString() &&
                           widget.createdBy_id.toString() !=
                               element.toString()) {
+                        print("///////////////////");
+                        print(element.toString());
                         AddNotification().addNotification(
                           topics: "/topics/COMMENT_EN${element.toString()}",
                           body:

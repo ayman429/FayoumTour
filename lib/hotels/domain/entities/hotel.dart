@@ -1,44 +1,45 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:equatable/equatable.dart';
 
-import 'Images.dart';
 import 'created_by.dart';
 import 'img.dart';
 import 'rate_one_by_one.dart';
 
 class Hotel extends Equatable {
-  int id;
-  String name;
-  String nameAR;
-  String description;
-  String descriptionAR;
-  double coordinatesX;
-  double coordinatesY;
-  String address;
-  String city;
-  String phone;
-  String web;
-  String email;
-  int single;
-  int Double;
-  int triple;
-  int sweet;
-  int chalet;
-  int villa;
-  int totalRooms;
-  int totalBeds;
-  int noOfRatings;
-  double avgRatings;
-  RateOneByOne rateOneByOne;
+  final int id;
+  final String name;
+  final String nameAR;
+  final String description;
+  final String descriptionAR;
+  final double coordinatesX;
+  final double coordinatesY;
+  final String address;
+  final String city;
+  final String phone;
+  final String web;
+  final String email;
+  final int single;
+  final int Double;
+  final int triple;
+  final int sweet;
+  final int chalet;
+  final int villa;
+  final int totalRooms;
+  final int totalBeds;
+  final int noOfRatings;
+  final double avgRatings;
+  final RateOneByOne rateOneByOne;
   // List<Images> images;
-  List<Images2> imagesT;
+  final List<Images2> imagesT;
   // String images;
-  String originalImage;
-  int user;
-  CreatedBy? createdBy;
-  int? rate_value;
-  int? fav_value;
+  final String originalImage;
+  final int user;
+  final CreatedBy? createdBy;
+  final int? rate_value;
+  final int? fav_value;
 
-  Hotel(
+  const Hotel(
       {required this.id,
       required this.name,
       required this.nameAR,

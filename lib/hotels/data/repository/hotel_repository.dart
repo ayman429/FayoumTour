@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, avoid_renaming_method_parameters
+
 import 'package:dartz/dartz.dart';
 
 import '../../../core/error/exceptions.dart';

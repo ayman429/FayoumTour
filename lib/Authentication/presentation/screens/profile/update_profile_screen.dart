@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, unused_local_variable, use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -224,7 +226,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                       Navigator.of(context).pop();
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      primary: Colors.green,
+                                      backgroundColor: Colors.green,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(15)),
@@ -278,7 +280,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                       Navigator.of(context).pop();
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      primary: Colors.green,
+                                      backgroundColor: Colors.green,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(15)),

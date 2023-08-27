@@ -1,19 +1,21 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:equatable/equatable.dart';
 
 class UserDetails extends Equatable {
-  String? id;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? username;
-  String? image;
-  bool? is_manager;
-  bool? mark;
-  int? managerId;
-  String? placeType;
-  String? model1Input;
+  final String? id;
+  final String? email;
+  final String? firstName;
+  final String? lastName;
+  final String? username;
+  final String? image;
+  final bool? is_manager;
+  final bool? mark;
+  final int? managerId;
+  final String? placeType;
+  final String? model1Input;
 
-  UserDetails({
+  const UserDetails({
     this.id,
     this.email,
     this.firstName,

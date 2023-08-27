@@ -127,13 +127,14 @@
 ////////////////////
 
 void main() {
+  // ignore: unused_local_variable
   String postTime = "";
   // String postTime = "2023-07-31 23:59:23";
-  print(isEnglish(postTime[0]));
+  //print(isEnglish(postTime[0]));
 }
 
 bool isEnglish(String input) {
-  print(input);
+  //print(input);
   for (var codePoint in input.codeUnits) {
     // English Unicode range: 0020 - 007E (basic Latin characters)
     if (codePoint >= 0x0020 && codePoint <= 0x007E) {

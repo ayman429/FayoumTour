@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:fayoumtour/TourismPlaces/presentation/controller/tourism_place_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,18 +18,19 @@ import '../hotels/presentation/controller/hotels_event.dart';
 import '../hotels/presentation/controller/hotels_state.dart';
 
 class RatingScreen extends StatefulWidget {
-  String type;
+  final String type;
   // String data;
-  int id;
-  int rate_value;
-  RatingScreen(
+  final int id;
+  final int rateValue;
+  const RatingScreen(
       {Key? key,
       required this.type,
       // required this.data,
       required this.id,
-      required this.rate_value})
+      required this.rateValue})
       : super(key: key);
   @override
+  // ignore: library_private_types_in_public_api
   _RatingScreenState createState() => _RatingScreenState();
 }
 
@@ -64,7 +67,7 @@ class _RatingScreenState extends State<RatingScreen> {
                     Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
                   ),
@@ -104,11 +107,11 @@ class _RatingScreenState extends State<RatingScreen> {
 
 class StarRating extends StatelessWidget {
   final int rating;
-  int id;
-  String type;
+  final int id;
+  final String type;
   final Function(int)? onRated;
 
-  StarRating(
+  const StarRating(
       {super.key,
       this.rating = 0,
       this.onRated,

@@ -7,6 +7,8 @@ abstract class AppThemeState {
 class AppThemeInitial extends AppThemeState {}
 
 class AppChangeTheme extends AppThemeState {
+  @override
+  // ignore: overridden_fields
   final String? appTheme;
   AppChangeTheme({this.appTheme});
 }

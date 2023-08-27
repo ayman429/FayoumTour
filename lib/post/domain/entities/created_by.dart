@@ -2,6 +2,7 @@ class CreatedBy {
   int? id;
   String? userName;
   String? email;
+  // ignore: prefer_typing_uninitialized_variables
   var image;
   bool? mark;
   CreatedBy({this.id, this.userName, this.email, this.image, this.mark});

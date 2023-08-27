@@ -1,10 +1,12 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:fayoumtour/TourismPlaces/data/models/img_model.dart';
 
 import '../../domain/entities/tourism_place.dart';
 import 'rate_on_by_one_model.dart';
 
 class TourismPlaceModel extends TourismPlace {
-  TourismPlaceModel(
+  const TourismPlaceModel(
       {required super.id,
       required super.name,
       required super.nameAR,

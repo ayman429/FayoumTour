@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 // // (Profile page) ---> for view the user account info.
 // import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';

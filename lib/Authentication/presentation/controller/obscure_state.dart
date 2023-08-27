@@ -8,6 +8,8 @@ abstract class ObscureState {
 class IsObscureInitial extends ObscureState {}
 
 class IsObscureState extends ObscureState {
+  @override
+  // ignore: overridden_fields
   bool isObscure = true;
   IsObscureState({
     required this.isObscure,

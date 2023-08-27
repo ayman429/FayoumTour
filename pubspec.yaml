@@ -62,7 +62,7 @@ dependencies:
   url_launcher:
   flutter_staggered_grid_view: ^0.6.2
   location: ^4.4.0
-  date_time_picker:
+  #date_time_picker:
   flutter_credit_card:
   flutter_tts:
   audioplayers:
@@ -78,6 +78,7 @@ dependencies:
   expandable_text:
   auto_size_text:
   date_format:
+  intl:
 
 dev_dependencies:
   flutter_test:

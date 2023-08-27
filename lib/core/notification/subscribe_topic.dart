@@ -4,8 +4,8 @@ import '../utils/constance/shared_pref.dart';
 
 void unsubscribeENTopic() async {
   var user = sharedPreferences!.getString("USERID") ?? "";
-  print("//////////un////////////////");
-  print(user);
+  //print("//////////un////////////////");
+  //print(user);
 
   try {
     await FirebaseMessaging.instance.unsubscribeFromTopic("POST_EN");
@@ -15,7 +15,7 @@ void unsubscribeENTopic() async {
     await FirebaseMessaging.instance
         .unsubscribeFromTopic("ReserveState_EN$user");
   } catch (e) {
-    print("$e ------------------->");
+    //print("$e ------------------->");
   }
 }
 
@@ -41,14 +41,14 @@ void unsubscribeARTopic() async {
     await FirebaseMessaging.instance
         .unsubscribeFromTopic("ReserveState_AR$user");
   } catch (e) {
-    print("$e ------------------->");
+    //print("$e ------------------->");
   }
 }
 
 void subscribeENTopic() async {
   var user = sharedPreferences!.getString("USERID") ?? "";
-  print("//////////su///////////////////");
-  print(user);
+  //print("//////////su///////////////////");
+  //print(user);
   unsubscribeARTopic();
 
   await FirebaseMessaging.instance.subscribeToTopic("POST_EN");

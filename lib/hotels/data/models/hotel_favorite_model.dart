@@ -1,7 +1,7 @@
 import '../../domain/entities/hotel_favorite.dart';
 
 class HotelFavoriteModel extends HotelFavorite {
-  HotelFavoriteModel(
+  const HotelFavoriteModel(
       {required super.id,
       required super.fav,
       required super.hotelId,

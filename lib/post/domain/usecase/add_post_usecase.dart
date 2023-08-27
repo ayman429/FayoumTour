@@ -9,7 +9,6 @@ class AddPostUsecase {
   final BasePostRepository basePostRepository;
 
   AddPostUsecase(this.basePostRepository);
-  @override
   Future<Either<Failure, Unit>> call(PostData postData) async {
     // PostModel postModel = PostModel.castFromEntity(parameters);
     return await basePostRepository.addPost(postData);

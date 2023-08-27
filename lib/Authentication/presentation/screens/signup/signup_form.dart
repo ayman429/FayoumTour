@@ -21,10 +21,10 @@ import '../../controller/authentication_event.dart';
 import '../../controller/authentication_state.dart';
 
 class SigupForm extends StatelessWidget {
-  TextEditingController userNameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController password1Controller = TextEditingController();
-  TextEditingController password2Controller = TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController password1Controller = TextEditingController();
+  final TextEditingController password2Controller = TextEditingController();
   SigupForm({Key? key}) : super(key: key);
   // int indexError = 0;
   @override

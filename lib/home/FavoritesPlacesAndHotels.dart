@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 // import 'dart:math';
 
 // import 'package:fayoumtour/hotels/domain/entities/hotel.dart';

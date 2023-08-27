@@ -27,10 +27,10 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
+              const Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     SizedBox(
                       width: 450,
                       child: BaseSignupForm(),
@@ -64,8 +64,8 @@ class MobileSignupScreen extends StatelessWidget {
           width: 200,
           child: Image.asset(AppStrings.logoImage),
         ),
-        Row(
-          children: const [
+        const Row(
+          children: [
             Spacer(),
             Expanded(
               flex: 8,

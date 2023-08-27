@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +12,9 @@ import 'StarsRating.dart';
 import 'image_list.dart';
 import 'reserve.dart';
 
+// ignore: must_be_immutable
 class Details extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   var data;
   int index;
   Details({
@@ -394,12 +398,12 @@ class Details extends StatelessWidget {
                 index == 1
                     ? RatingScreen(
                         id: data.id,
-                        rate_value: data.rate_value,
+                        rateValue: data.rate_value,
                         type: "hotel",
                       )
                     : RatingScreen(
                         id: data.id,
-                        rate_value: data.rate_value ?? 0,
+                        rateValue: data.rate_value ?? 0,
                         type: "places",
                       ),
                 const SizedBox(

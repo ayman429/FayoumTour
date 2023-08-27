@@ -25,10 +25,10 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
+              const Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     SizedBox(
                       width: 450,
                       child: BaseLoginForm(),
@@ -60,8 +60,8 @@ class MobileLoginScreen extends StatelessWidget {
           width: 200,
           child: Image.asset(AppStrings.logoImage),
         ),
-        Row(
-          children: const [
+        const Row(
+          children: [
             Spacer(),
             Expanded(
               flex: 8,

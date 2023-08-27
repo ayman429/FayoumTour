@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
 class RateOneByOne extends Equatable {
-  int i1;
-  int i2;
-  int i3;
-  int i4;
-  int i5;
+  final int i1;
+  final int i2;
+  final int i3;
+  final int i4;
+  final int i5;
 
-  RateOneByOne(
+  const RateOneByOne(
       {required this.i1,
       required this.i2,
       required this.i3,

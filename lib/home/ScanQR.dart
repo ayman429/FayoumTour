@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:developer';
 import 'dart:io';
 
@@ -195,7 +197,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                             Navigator.of(context).pop();
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
+                            backgroundColor: Colors.green,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                           ),
@@ -247,6 +249,7 @@ class _QRViewExampleState extends State<QRViewExample> {
   }
 }
 
+// ignore: must_be_immutable
 class QRReserviationView extends StatelessWidget {
   List<String> dataElements = result!.code!.split('*');
   late Map<String, dynamic> json;

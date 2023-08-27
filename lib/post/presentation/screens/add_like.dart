@@ -1,8 +1,10 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/notification/add notification.dart';
+import '../../../core/notification/add_notification.dart';
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
@@ -16,8 +18,8 @@ import '../controller/bloc/post_bloc.dart';
 class AddLike extends StatelessWidget {
   final int postId;
   final int like_value;
-  CreatedBy? createdBy;
-  AddLike({
+  final CreatedBy? createdBy;
+  const AddLike({
     Key? key,
     required this.postId,
     required this.like_value,

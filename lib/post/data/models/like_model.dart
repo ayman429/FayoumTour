@@ -1,7 +1,7 @@
 import '../../domain/entities/like.dart';
 
 class LikeModel extends Like {
-  LikeModel(
+  const LikeModel(
       {required super.id,
       required super.like,
       required super.postId,

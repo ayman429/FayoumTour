@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import 'constance/strings_manager.dart';

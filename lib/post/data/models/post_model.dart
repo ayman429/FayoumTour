@@ -1,9 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import '../../domain/entities/post.dart';
 import 'created_by_model.dart';
 import 'img_model.dart';
 
 class PostModel extends Post {
-  PostModel(
+  const PostModel(
       {required super.id,
       required super.user,
       required super.body,

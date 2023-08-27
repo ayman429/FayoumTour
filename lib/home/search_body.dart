@@ -6,7 +6,9 @@ import 'package:fayoumtour/core/utils/constance/strings_manager.dart';
 import '../core/utils/constance/shared_pref.dart';
 import 'up_bar_image.dart';
 
+// ignore: must_be_immutable
 class SeachBody extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   var data;
   String type;
   SeachBody({

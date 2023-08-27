@@ -1,7 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import '../../domain/entities/user_details.dart';
 
 class UserDetailsModel extends UserDetails {
-  UserDetailsModel(
+  const UserDetailsModel(
       {required String id,
       required String email,
       required String firstName,

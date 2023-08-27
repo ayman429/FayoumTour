@@ -7,6 +7,8 @@ abstract class AppLanguageState {
 class AppLanguageInitial extends AppLanguageState {}
 
 class AppChangeLanguage extends AppLanguageState {
+  @override
+  // ignore: overridden_fields
   final String? languageCode;
 
   AppChangeLanguage({this.languageCode});

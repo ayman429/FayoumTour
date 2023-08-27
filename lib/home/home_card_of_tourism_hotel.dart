@@ -7,7 +7,9 @@ import '../core/utils/constance/strings_manager.dart';
 import 'RatingStarsBar.dart';
 import 'up_bar_image.dart';
 
+// ignore: must_be_immutable
 class HomeCard extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   var data;
   int index;
   String type;

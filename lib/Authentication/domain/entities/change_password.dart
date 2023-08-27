@@ -1,9 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:equatable/equatable.dart';
 
 class ChangePassword extends Equatable {
-  String new_password1;
-  String new_password2;
-  ChangePassword({
+  final String new_password1;
+  final String new_password2;
+  const ChangePassword({
     required this.new_password1,
     required this.new_password2,
   });

@@ -11,6 +11,7 @@ class UpdateCreateHotelFavoriteUsecase
   final BaseHotelRepository baseHotelRepository;
 
   UpdateCreateHotelFavoriteUsecase(this.baseHotelRepository);
+  @override
   Future<Either<Failure, Unit>> call(HotelFavorite parameters) async {
     HotelFavoriteModel tourismPlaceFavoriteModel =
         HotelFavoriteModel.castFromEntity(parameters);

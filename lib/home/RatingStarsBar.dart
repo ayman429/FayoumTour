@@ -1,8 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 import '../core/utils/constance/shared_pref.dart';
 
 
+// ignore: must_be_immutable
 class RatingBar extends StatelessWidget {
   final double rating;
   double size;

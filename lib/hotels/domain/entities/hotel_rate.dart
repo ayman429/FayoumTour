@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class HotelRate extends Equatable {
-  int? id;
-  int stars;
-  int? hotel;
-  int user;
-  HotelRate({
+  final int? id;
+  final int stars;
+  final int? hotel;
+  final int user;
+  const HotelRate({
     this.id,
     required this.stars,
     this.hotel,

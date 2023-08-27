@@ -12,7 +12,7 @@ class Validation {
           jsonDecode(message.toString());
       String messageError = validationMessageMap.values.first[0].toString();
       //print("Unexpected Error");
-      print(messageError);
+      //print(messageError);
       String validationMessage;
       // print(messageError);
       if (messageError == AppStrings.apiEmptyString1 ||

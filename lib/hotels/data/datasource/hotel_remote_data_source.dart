@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, avoid_renaming_method_parameters, unused_local_variable
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -349,14 +351,14 @@ class HotelRemoteDataSource extends BaseHotelRemoteDataSource {
 
     try {
       Dio dio = (await DioFactory.create()).dio;
-      final response = await dio.patch(
-          "${"${ApiConstance.hotelReservationPath}/" + hotelReservationModelsToJson["id"]}/",
+      // ignore: prefer_interpolation_to_compose_strings
+      final response = await dio.patch("${"${ApiConstance.hotelReservationPath}/" + hotelReservationModelsToJson["id"]}/",
           data: hotelReservationModelsToJson);
       return Future.value(unit);
     } on DioException catch (e) {
       // return Error Message
-      print("..................");
-      print(e.response);
+      //print("..................");
+      //print(e.response);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.message),
       );

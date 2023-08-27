@@ -14,6 +14,8 @@
 // }
 
 
+// ignore_for_file: file_names
+
 bool isEnglish(String input) {
   for (var codePoint in input.codeUnits) {
     // English Unicode range: 0020 - 007E (basic Latin characters)

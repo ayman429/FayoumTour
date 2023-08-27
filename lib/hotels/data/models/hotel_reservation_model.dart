@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import '../../domain/entities/hotel_reservation.dart';
 import 'created_by_model.dart';
 

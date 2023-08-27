@@ -25,6 +25,7 @@ import 'ProfileMenuWidget.dart';
 import 'base_update_profile.dart';
 import 'settings.dart';
 
+// ignore: must_be_immutable, camel_case_types
 class profile_screen extends StatefulWidget {
   String type = "user";
   profile_screen({
@@ -36,11 +37,13 @@ class profile_screen extends StatefulWidget {
   State<profile_screen> createState() => _profile_screenState();
 }
 
+// ignore: camel_case_types
 class _profile_screenState extends State<profile_screen> {
   String getImagePath = "";
 
   UserDetails userDetails =
-      UserDetails(id: "", email: "", firstName: "", lastName: "", username: "");
+      const UserDetails(id: "", email: "", firstName: "", lastName: "", username: "");
+  // ignore: prefer_typing_uninitialized_variables
   var username;
   Future<void> updateUIWithUserDetails() async {
     Map<String, dynamic> localUerDetails =
@@ -144,7 +147,7 @@ class _profile_screenState extends State<profile_screen> {
                         ));
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       side: BorderSide.none,
                       shape: const StadiumBorder()),
                   child: Text(

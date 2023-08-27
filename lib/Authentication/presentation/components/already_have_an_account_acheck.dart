@@ -4,9 +4,9 @@ import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
-  bool login;
+  final bool login;
   final Function? press;
-  AlreadyHaveAnAccountCheck({
+  const AlreadyHaveAnAccountCheck({
     Key? key,
     required this.login,
     required this.press,
@@ -26,7 +26,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
                       .translate("alreadyHaveAccount"),
               // style: TextStyle(color: ColorManager.kPrimaryColor),
               style: TextStyle(fontFamily: sharedPreferences!.getString("Language") == "AR" ? "ibmP" : "merriweather",
-              fontSize: (14/360)*MediaQuery.of(context).size.width,
+              fontSize: (13/360)*MediaQuery.of(context).size.width,
               )
               ),
           GestureDetector(
@@ -37,7 +37,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
                   : AppLocalizations.of(context)!.translate("Sign In"),
               style: TextStyle(
                   fontFamily: sharedPreferences!.getString("Language") == "AR" ? "ibmP" :"merriweather",
-                  fontSize: (14/360)*MediaQuery.of(context).size.width,
+                  fontSize: (13/360)*MediaQuery.of(context).size.width,
                   color: Theme.of(context).colorScheme.primary),
               // style: const TextStyle(
               //   // color: ColorManager.kPrimaryColor,

@@ -1,9 +1,13 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import '../core/local_data_shared_preferences/favourites_shared_preferences.dart';
 import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
 
+// ignore: must_be_immutable
 class CheckFavorite extends StatefulWidget {
+  
   var data;
   String type;
   CheckFavorite({
@@ -13,6 +17,7 @@ class CheckFavorite extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: no_logic_in_create_state
   State<CheckFavorite> createState() => _CheckFavoriteState(data, type);
 }
 
@@ -57,6 +62,7 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                     flag = true;
                   });
 
+                  // ignore: use_build_context_synchronously
                   showDialog(
                       context: context,
                       barrierDismissible: false,
@@ -77,7 +83,7 @@ class _CheckFavoriteState extends State<CheckFavorite> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
+                                    backgroundColor: Colors.green,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(15)),

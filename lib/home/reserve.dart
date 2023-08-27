@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,10 +18,10 @@ import 'pay.dart';
 import 'package:intl/intl.dart';
 
 class HotelReservationScreen extends StatefulWidget {
-  int hotelId;
-  String type;
-  dynamic data;
-  HotelReservationScreen({
+  final int hotelId;
+  final String type;
+  final dynamic data;
+  const HotelReservationScreen({
     Key? key,
     required this.hotelId,
     required this.type,
@@ -27,6 +29,7 @@ class HotelReservationScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _HotelReservationScreenState createState() => _HotelReservationScreenState();
 }
 
@@ -68,14 +71,16 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
             // 'Reservation',
             AppLocalizations.of(context)!.translate("Reserve in a Hotel"),
             style: sharedPreferences!.getString("Language") == "AR"
-                ? const TextStyle(
+                ?  TextStyle(
                     fontFamily: "galaxy",
                     fontWeight: FontWeight.bold,
-                    fontSize: 28)
-                : const TextStyle(
+                    fontSize: (28/360)*MediaQuery.of(context).size.width,//28
+                    )
+                :  TextStyle(
                     fontFamily: AppStrings.fontFamily,
                     fontWeight: FontWeight.bold,
-                    fontSize: 25)),
+                    fontSize: (25/360)*MediaQuery.of(context).size.width,//25
+                    )),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -109,6 +114,9 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                 keyboardType: TextInputType.phone,
                 controller: _textEditingController,
                 decoration: InputDecoration(
+                  labelStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+            fontFamily: "readPro"
+            ),
                   labelText:
                       AppLocalizations.of(context)!.translate("Phone Number"),
                   border: const OutlineInputBorder(
@@ -161,24 +169,26 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                                   .translate("Check-In"),
                               style: sharedPreferences!.getString("Language") ==
                                       "AR"
-                                  ? const TextStyle(
-                                      fontFamily: "amiri", fontSize: 22.0)
-                                  : const TextStyle(
-                                      fontFamily: "acme", fontSize: 22.0),
+                                  ?  TextStyle(
+                                      fontFamily: "amiri", fontSize: (22/360)*MediaQuery.of(context).size.width,//22.0
+                                      )
+                                  :  TextStyle(
+                                      fontFamily: "acme", fontSize: (22/360)*MediaQuery.of(context).size.width,//22.0
+                                      ),
                             ),
                             const SizedBox(width: 8.0),
                             Text(
                               '${_checkInDate.day}/${_checkInDate.month}/${_checkInDate.year}',
                               style: sharedPreferences!.getString("Language") ==
                                       "AR"
-                                  ? const TextStyle(
+                                  ?  TextStyle(
                                       fontFamily: "amiri",
-                                      fontSize: 22.0,
+                                      fontSize: (22/360)*MediaQuery.of(context).size.width,//22.0,
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold)
-                                  : const TextStyle(
+                                  :  TextStyle(
                                       fontFamily: "acme",
-                                      fontSize: 22.0,
+                                      fontSize: (22/360)*MediaQuery.of(context).size.width,//22.0,
                                       color: Colors.green),
                             ),
                           ],
@@ -218,24 +228,26 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                                   .translate("Check-Out"),
                               style: sharedPreferences!.getString("Language") ==
                                       "AR"
-                                  ? const TextStyle(
-                                      fontFamily: "amiri", fontSize: 22.0)
-                                  : const TextStyle(
-                                      fontFamily: "acme", fontSize: 22.0),
+                                  ?  TextStyle(
+                                      fontFamily: "amiri", fontSize: (22/360)*MediaQuery.of(context).size.width,//22.0
+                                      )
+                                  :  TextStyle(
+                                      fontFamily: "acme", fontSize: (22/360)*MediaQuery.of(context).size.width,//22.0
+                                      ),
                             ),
                             const SizedBox(height: 8.0),
                             Text(
                               '${_checkOutDate.day}/${_checkOutDate.month}/${_checkOutDate.year}',
                               style: sharedPreferences!.getString("Language") ==
                                       "AR"
-                                  ? const TextStyle(
+                                  ?  TextStyle(
                                       fontFamily: "amiri",
-                                      fontSize: 22.0,
+                                      fontSize: (22/360)*MediaQuery.of(context).size.width,//22.0,
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold)
-                                  : const TextStyle(
+                                  :  TextStyle(
                                       fontFamily: "acme",
-                                      fontSize: 22.0,
+                                      fontSize: (22/360)*MediaQuery.of(context).size.width,//22.0,
                                       color: Colors.green),
                             ),
                           ],
@@ -308,7 +320,7 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                   if (state.addHotelReservationState == RequestState.loaded ||
                       state.updateHotelReservationState ==
                           RequestState.loaded) {
-                    print("HotelReservation Loded");
+                    //print("HotelReservation Loded");
                     BlocProvider.of<HotelsBloc>(context).add(
                         GetHotelsReservationByUserEvent(
                             userId: int.parse(
@@ -338,7 +350,7 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                                     Navigator.pop(context);
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
+                                    backgroundColor: Colors.green,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(15)),
@@ -372,7 +384,7 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                   } else if (state.addHotelReservationState ==
                           RequestState.error ||
                       state.updateHotelReservationState == RequestState.error) {
-                    print("//////////////...............................");
+                    //print("//////////////...............................");
                     Navigator.pop(context);
                     if (state.addHotelReservationMessage ==
                         '{"non_field_errors":["The fields user, hotel must make a unique set."]}') {
@@ -462,7 +474,8 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                                     ? "Mag"
                                     : "rye",
                             color: Theme.of(context).colorScheme.secondary,
-                            fontSize: 20),
+                            fontSize: (20/360)*MediaQuery.of(context).size.width,//20
+                            ),
                       ),
                     ),
                   );
@@ -499,7 +512,8 @@ class _HotelReservationScreenState extends State<HotelReservationScreen> {
                                 ? "Mag"
                                 : "rye",
                         color: Theme.of(context).colorScheme.secondary,
-                        fontSize: 20),
+                        fontSize: (20/360)*MediaQuery.of(context).size.width,//20
+                        ),
                   ),
                 ),
               ),

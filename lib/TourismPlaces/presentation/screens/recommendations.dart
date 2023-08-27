@@ -11,6 +11,7 @@ import '../controller/tourism_place_bloc.dart';
 import '../controller/tourism_place_event.dart';
 import '../controller/tourism_place_state.dart';
 
+// ignore: camel_case_types
 class recommendations extends StatelessWidget {
   const recommendations({super.key});
 

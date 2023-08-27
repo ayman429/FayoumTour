@@ -1,7 +1,7 @@
 import '../../domain/entities/tourism_place_rate.dart';
 
 class TourismPlaceRateModel extends TourismPlaceRate {
-  TourismPlaceRateModel(
+  const TourismPlaceRateModel(
       {required super.id,
       required super.stars,
       required super.touristPlaces,
@@ -15,6 +15,7 @@ class TourismPlaceRateModel extends TourismPlaceRate {
       user: json['user'],
     );
   }
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
 

@@ -6,9 +6,10 @@ import '../../../core/utils/constance/values_manager.dart';
 import '../controller/obscure_bloc.dart';
 
 class PasswordTextFormField extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final passwordController;
-  bool isConfirm;
-  PasswordTextFormField(
+  final bool isConfirm;
+  const PasswordTextFormField(
       {Key? key, required this.passwordController, required this.isConfirm})
       : super(key: key);
   @override

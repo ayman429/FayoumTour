@@ -9,8 +9,8 @@ import '../hotels/presentation/screens/top_rated_hotels.dart';
 import 'fayoum_vedio.dart';
 
 class Home extends StatelessWidget {
-  String tourtismType;
-  Home({
+  final String tourtismType;
+  const Home({
     Key? key,
     required this.tourtismType,
   }) : super(key: key);

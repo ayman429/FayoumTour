@@ -1,5 +1,8 @@
+// ignore_for_file: unused_local_variable
+
 import '../../../core/utils/constance/shared_pref.dart';
 
+// ignore: non_constant_identifier_names
 String PostTime(String requestTime) {
   DateTime parsedRequestTime = DateTime.parse(requestTime.substring(0, 16));
   DateTime now = DateTime.now();

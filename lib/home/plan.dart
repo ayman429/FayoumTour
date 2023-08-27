@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -8,6 +10,7 @@ class Plan extends StatefulWidget {
   const Plan({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _PlanState createState() => _PlanState();
 }
 
@@ -21,6 +24,7 @@ class _PlanState extends State<Plan>
     const AssetImage('assets/images/plan1_Ar.png'),
       const AssetImage('assets/images/plan2_Ar.png'),
   ];
+  
   final List<String> _imageTexts = [
     "Firstly, Tunis village"
     "You can start with the village of Tunis, enjoy the picturesque green scenery there, and buy a souvenir of porcelain and pottery, which is widely made in the Tunis Village."
@@ -288,6 +292,7 @@ class DelayedWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _DelayedWidgetState createState() => _DelayedWidgetState();
 }
 

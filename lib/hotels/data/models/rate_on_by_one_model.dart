@@ -1,7 +1,7 @@
 import '../../domain/entities/rate_one_by_one.dart';
 
 class RateOneByOneModel extends RateOneByOne {
-  RateOneByOneModel(
+  const RateOneByOneModel(
       {required super.i1,
       required super.i2,
       required super.i3,

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
@@ -9,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:date_format/date_format.dart';
 
-import '../../../core/notification/add notification.dart';
+import '../../../core/notification/add_notification.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
 import '../../../core/utils/constance/strings_manager.dart';
@@ -18,8 +20,10 @@ import '../../../core/utils/snackbar_message.dart';
 import '../../domain/entities/post_data.dart';
 import '../controller/bloc/post_bloc.dart';
 
+// ignore: must_be_immutable
 class AddPostComponent extends StatefulWidget {
   String type;
+  // ignore: prefer_typing_uninitialized_variables
   var data;
   AddPostComponent({
     Key? key,

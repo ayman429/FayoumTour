@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
 class Registration extends Equatable {
-  String username;
-  String email;
-  String password1;
-  String password2;
+  final String username;
+  final String email;
+  final String password1;
+  final String password2;
 
-  Registration(
+  const Registration(
       {required this.username,
       required this.email,
       required this.password1,

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import '../../../hotels/data/models/img_model.dart';
 
 import '../../domain/entities/hotel.dart';
@@ -5,7 +7,7 @@ import 'created_by_model.dart';
 import 'rate_on_by_one_model.dart';
 
 class HotelModel extends Hotel {
-  HotelModel(
+  const HotelModel(
       {required super.id,
       required super.name,
       required super.nameAR,

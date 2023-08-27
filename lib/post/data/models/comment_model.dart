@@ -1,9 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:fayoumtour/post/domain/entities/comment.dart';
 
 import 'created_by_model.dart';
 
 class CommentModel extends Comment {
-  CommentModel(
+  const CommentModel(
       {required super.id,
       super.user,
       super.post,

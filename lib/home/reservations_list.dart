@@ -5,7 +5,7 @@ import 'package:fayoumtour/hotels/presentation/controller/hotels_bloc.dart';
 import 'package:fayoumtour/hotels/presentation/controller/hotels_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../core/notification/add notification.dart';
+import '../core/notification/add_notification.dart';
 import '../core/services/services_locator.dart';
 import '../core/utils/app_localizations.dart';
 import '../core/utils/constance/shared_pref.dart';
@@ -15,9 +15,9 @@ import '../hotels/domain/entities/hotel_reservation.dart';
 import '../hotels/presentation/controller/hotels_state.dart';
 
 class GetReservationData extends StatefulWidget {
-  dynamic data;
-  String type;
-  GetReservationData({
+  final dynamic data;
+  final String type;
+  const GetReservationData({
     Key? key,
     required this.data,
     required this.type,
@@ -841,7 +841,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                   ));
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              primary: Theme.of(context)
+                                              backgroundColor: Theme.of(context)
                                                   .colorScheme
                                                   .primary,
                                               shape: RoundedRectangleBorder(
@@ -1096,7 +1096,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              primary: Colors.green,
+                                                                              backgroundColor: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -1113,7 +1113,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              primary: Colors.green,
+                                                                              backgroundColor: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -1253,7 +1253,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              primary: Colors.green,
+                                                                              backgroundColor: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(
@@ -1270,7 +1270,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                                             },
                                                                             style:
                                                                                 ElevatedButton.styleFrom(
-                                                                              primary: Colors.green,
+                                                                              backgroundColor: Colors.green,
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                             ),
                                                                             child: Text(

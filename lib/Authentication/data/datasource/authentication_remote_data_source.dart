@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
@@ -150,8 +152,8 @@ class AuthenticationRemoteDataSource
       return Future.value(unit);
     } on DioException catch (e) {
       // return Error Message
-      print("===============");
-      print(e);
+      //print("===============");
+      //print(e);
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),
       );
@@ -184,8 +186,7 @@ class AuthenticationRemoteDataSource
       //print("password: $changePasswordToJson");
       Dio dio = (await DioFactory.create()).dio;
       // Change Password , Request and Response
-      final response = await dio.post(ApiConstance.changePasswordPath,
-          data: changePasswordToJson);
+      final response = await dio.post(ApiConstance.changePasswordPath,data: changePasswordToJson);
       //print(response.data);
       // return unit
       return Future.value(unit);
@@ -203,8 +204,7 @@ class AuthenticationRemoteDataSource
     // print("resetPasswordToJson = $resetPasswordToJson");
     try {
       // Reset Password , Request and Response
-      final response = await Dio()
-          .post(ApiConstance.resetPasswordPath, data: resetPasswordToJson);
+      final response = await Dio().post(ApiConstance.resetPasswordPath, data: resetPasswordToJson);
       //print("response = ${response.data}");
       // return unit
       return Future.value(unit);
@@ -222,8 +222,8 @@ class AuthenticationRemoteDataSource
     final passwordResetConfirmToJson = passwordResetConfirmModel.toJson();
     try {
       // password Reset Confirm , Request and Response
-      final response = Dio().post(passwordResetConfirmModel.link,
-          data: passwordResetConfirmToJson);
+      final response = Dio().post(passwordResetConfirmModel.link,data: passwordResetConfirmToJson);
+      //print(response);
       // return unit
       return Future.value(unit);
     } on DioException catch (e) {

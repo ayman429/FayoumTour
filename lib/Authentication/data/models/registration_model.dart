@@ -1,7 +1,7 @@
 import '../../domain/entities/registration.dart';
 
 class RegistrationModel extends Registration {
-  RegistrationModel(
+  const RegistrationModel(
       {required String username,
       required String email,
       required String password1,

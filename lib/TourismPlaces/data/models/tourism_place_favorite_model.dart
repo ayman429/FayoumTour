@@ -1,7 +1,7 @@
 import '../../domain/entities/tourism_place_favorite.dart';
 
 class TourismPlaceFavoriteModel extends TourismPlaceFavorite {
-  TourismPlaceFavoriteModel(
+  const TourismPlaceFavoriteModel(
       {required super.id,
       required super.fav,
       required super.placeId,

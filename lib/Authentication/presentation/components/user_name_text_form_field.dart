@@ -4,6 +4,7 @@ import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/values_manager.dart';
 
 class UserNameTextFormField extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final userNameController;
 
   const UserNameTextFormField({Key? key, required this.userNameController})

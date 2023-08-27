@@ -6,8 +6,8 @@ import '../core/utils/constance/strings_manager.dart';
 
 
 class ReservationListItem extends StatelessWidget {
-  Map<String, dynamic> data;
-  ReservationListItem({
+  final Map<String, dynamic> data;
+  const ReservationListItem({
     Key? key,
     required this.data,
   }) : super(key: key);

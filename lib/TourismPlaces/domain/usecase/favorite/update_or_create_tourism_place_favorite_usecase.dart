@@ -11,6 +11,7 @@ class UpdateCreateTourismPlaceFavoriteUsecase
   final BaseTourismPlaceRepository baseTourismPlaceRepository;
 
   UpdateCreateTourismPlaceFavoriteUsecase(this.baseTourismPlaceRepository);
+  @override
   Future<Either<Failure, Unit>> call(TourismPlaceFavorite parameters) async {
     TourismPlaceFavoriteModel tourismPlaceFavoriteModel =
         TourismPlaceFavoriteModel.castFromEntity(parameters);

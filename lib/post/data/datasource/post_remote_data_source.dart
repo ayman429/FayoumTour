@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -81,8 +83,8 @@ class PostRemoteDataSource extends BasePostRemoteDataSource {
 
       return Future.value(unit);
     } on DioException catch (e) {
-      print("////////////////////////////////////");
-      print(e.message);
+      //print("////////////////////////////////////");
+      //print(e.message);
       // return Error Message
       throw ServerException(
         errorMassageModel: ErrorMassageModel.fromJson(e.response),

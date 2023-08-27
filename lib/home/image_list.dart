@@ -6,6 +6,7 @@ import 'package:photo_view/photo_view.dart';
 class ImageList extends StatefulWidget {
   final PageController pageController;
   final int index;
+  // ignore: prefer_typing_uninitialized_variables
   final imageList;
   ImageList({Key? key, this.index = 0, required this.imageList})
       : pageController = PageController(initialPage: index),

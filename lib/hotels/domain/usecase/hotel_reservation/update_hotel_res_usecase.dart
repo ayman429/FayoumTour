@@ -10,7 +10,6 @@ class UpdateHotelReservationByUserUsecase {
   final BaseHotelRepository baseHotelRepository;
 
   UpdateHotelReservationByUserUsecase(this.baseHotelRepository);
-  @override
   Future<Either<Failure, Unit>> call(
       HotelReservation parameters, String reservationId) async {
     HotelReservationModel hotelReservationModel =

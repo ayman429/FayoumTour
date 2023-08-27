@@ -7,9 +7,11 @@ import '../core/utils/constance/strings_manager.dart';
 import 'check_favorite.dart';
 import 'home_details_of_tourism_hotel.dart';
 
+// ignore: must_be_immutable
 class UpBarImage extends StatelessWidget {
   // String img;
   int index;
+  // ignore: prefer_typing_uninitialized_variables
   var data;
   String type;
   UpBarImage({

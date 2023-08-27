@@ -8,7 +8,6 @@ class GetHotelRateByUserUsecase {
   final BaseHotelRepository baseHotelRepository;
 
   GetHotelRateByUserUsecase(this.baseHotelRepository);
-  @override
   Future<Either<Failure, String>> call(int hotelId, int userId) async {
     return await baseHotelRepository.getHotelRateByUser(hotelId, userId);
   }

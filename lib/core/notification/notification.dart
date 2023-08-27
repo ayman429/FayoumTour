@@ -84,9 +84,9 @@ class FirebaseNotification {
     FirebaseMessaging.instance.getInitialMessage().then(handleMessage);
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print("User permission");
+      //print("User permission");
     } else {
-      print("no no n on o n");
+      //print("no no n on o n");
     }
     // FirebaseMessaging.instance.
     FirebaseMessaging.onMessage.listen((message) {
@@ -109,8 +109,7 @@ class FirebaseNotification {
         payload: jsonEncode(message.toMap()),
       );
 
-      print(
-          "Title: ${message.notification?.title} Body: ${message.notification?.body}");
+      //print("Title: ${message.notification?.title} Body: ${message.notification?.body}");
     });
     // FirebaseMessaging.onMessageOpenedApp.listen((message) {
     //   print("App opened from background notification:");

@@ -8,7 +8,6 @@ class UpdatePostUsecase {
   final BasePostRepository basePostRepository;
 
   UpdatePostUsecase(this.basePostRepository);
-  @override
   Future<Either<Failure, Unit>> call(
       String body, List<String> images, String posId, String index) async {
     // PostModel postModel = PostModel.castFromEntity(parameters);

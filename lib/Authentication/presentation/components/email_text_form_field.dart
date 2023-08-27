@@ -4,6 +4,7 @@ import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/values_manager.dart';
 
 class EmailTextFormField extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final emailController;
 
   const EmailTextFormField({Key? key, required this.emailController})

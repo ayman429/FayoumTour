@@ -4,6 +4,7 @@ class ApiConstance {
       "https://faytourapp.pythonanywhere.com"; //"http://10.0.2.2:8000";
 
 /* **************** Access Token **************** */
+  // ignore: constant_identifier_names
   static const String KeyAccessToken = "KeyAccessToken";
 
 /* **************** Hotel/TourismPlac EndPoints **************** */

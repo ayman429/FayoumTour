@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import '../Authentication/presentation/screens/profile/profile_screen.dart';
@@ -42,7 +44,7 @@ class _BottomBarState extends State<BottomBar> {
     selected = widget.select;
   }
   
-  List<Widget> Screens =  [
+  List<Widget> screens =  [
     profile_screen(type: "user"),
     const NEAR(),
     Home(tourtismType: tourtismTypes),
@@ -150,7 +152,7 @@ class _BottomBarState extends State<BottomBar> {
                         ),
                       ],
               ),
-        body: IndexedStack(index: selected, children: Screens),
+        body: IndexedStack(index: selected, children: screens),
         bottomNavigationBar: CurvedNavigationBar(
                 height: 65,
                 backgroundColor: Colors.transparent,

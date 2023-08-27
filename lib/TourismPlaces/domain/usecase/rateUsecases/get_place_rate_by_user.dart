@@ -9,7 +9,6 @@ class GetTourismPlaceRateByUserUsecase {
   final BaseTourismPlaceRepository baseTourismPlaceRepository;
 
   GetTourismPlaceRateByUserUsecase(this.baseTourismPlaceRepository);
-  @override
   Future<Either<Failure, String>> call(int placeId, int userId) async {
     return await baseTourismPlaceRepository.getTourismPlaceRateByUser(
         placeId, userId);

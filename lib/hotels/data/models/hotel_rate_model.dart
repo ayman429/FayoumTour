@@ -1,7 +1,7 @@
 import '../../domain/entities/hotel_rate.dart';
 
 class HotelRateModel extends HotelRate {
-  HotelRateModel(
+  const HotelRateModel(
       {required super.id,
       required super.stars,
       required super.hotel,
@@ -15,6 +15,7 @@ class HotelRateModel extends HotelRate {
       user: json['user'],
     );
   }
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
 

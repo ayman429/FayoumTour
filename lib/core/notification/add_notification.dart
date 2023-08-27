@@ -1,10 +1,12 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:dio/dio.dart';
 
 class AddNotification {
   void addNotification(
       {topics, body, title, navigation, id, createdBy_id}) async {
-    print("=====================");
-    print(id);
+    //print("=====================");
+    //print(id);
     Dio dio = Dio();
     dio.options = BaseOptions(
       headers: {
@@ -16,6 +18,7 @@ class AddNotification {
       sendTimeout: const Duration(seconds: 30),
     );
     try {
+      // ignore: unused_local_variable
       final response =
           await dio.post("https://fcm.googleapis.com/fcm/send", data: {
         "to": topics,
@@ -32,8 +35,8 @@ class AddNotification {
         }
       });
     } catch (e) {
-      print("error");
-      print(e);
+      //print("error");
+      //print(e);
     }
   }
 }

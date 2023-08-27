@@ -8,7 +8,6 @@ class GetLikeUsecase {
   final BasePostRepository basePostRepository;
 
   GetLikeUsecase(this.basePostRepository);
-  @override
   Future<Either<Failure, String>> call(int postId, int userId) async {
     return await basePostRepository.getLike(postId, userId);
   }

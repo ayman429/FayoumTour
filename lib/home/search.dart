@@ -13,7 +13,8 @@ class SEARCH extends StatefulWidget {
 
 class _SEARCHState extends State<SEARCH> {
   final TextEditingController _searchController = TextEditingController();
-  int search_counter = 0;
+
+  int searchCounter = 0;
   String _text = '';
 
   @override
@@ -38,7 +39,7 @@ class _SEARCHState extends State<SEARCH> {
                             onTap: () {
                               setState(() {
                                   _searchController.text = '';
-                                  search_counter = 0;
+                                  searchCounter = 0;
                                 });
                             },
                           )
@@ -53,7 +54,7 @@ class _SEARCHState extends State<SEARCH> {
                     textInputAction: TextInputAction.search,
                     onSubmitted: (value) {
                       setState(() {
-                        search_counter = 0;
+                        searchCounter = 0;
 
                         _text = _searchController.text;
                       });
@@ -82,7 +83,7 @@ class _SEARCHState extends State<SEARCH> {
                   child: InkWell(
                               onTap: () {
                                 setState(() {
-                                  search_counter = 0;
+                                  searchCounter = 0;
                 
                                   _text = _searchController.text;
                                 });

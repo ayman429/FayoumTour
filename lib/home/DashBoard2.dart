@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import '../Authentication/presentation/screens/profile/profile_screen.dart';
@@ -16,7 +18,7 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
-  List<Widget> Screens = [
+  List<Widget> screens = [
     profile_screen(type: "manger"),
     const AddPost(),
   ];
@@ -88,7 +90,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             ),
           ],
         ),
-        body: Screens[selected],
+        body: screens[selected],
         bottomNavigationBar: CurvedNavigationBar(
           height: 65,
           backgroundColor: Colors.transparent,

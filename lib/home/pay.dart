@@ -23,6 +23,7 @@ class MySampleState extends State<MySample> {
   bool isCvvFocused = false;
   bool useGlassMorphism = false;
   bool useBackgroundImage = false;
+  // ignore: unused_field
   final bool _isPhoneNumberFocused = false;
   OutlineInputBorder? border;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -44,14 +45,16 @@ class MySampleState extends State<MySample> {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.translate("Payment"),
             style: sharedPreferences!.getString("Language") == "AR"
-                ? const TextStyle(
+                ?  TextStyle(
                     fontFamily: "galaxy",
                     fontWeight: FontWeight.bold,
-                    fontSize: 28)
-                : const TextStyle(
+                    fontSize: (28/360)*MediaQuery.of(context).size.width,//28
+                    )
+                :  TextStyle(
                     fontFamily: AppStrings.fontFamily,
                     fontWeight: FontWeight.bold,
-                    fontSize: 25)),
+                    fontSize: (25/360)*MediaQuery.of(context).size.width,//25
+                    )),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -68,6 +71,7 @@ class MySampleState extends State<MySample> {
               Directionality(
                 textDirection: TextDirection.ltr,
                 child: CreditCardWidget(
+                  
                   labelCardHolder:
                       sharedPreferences!.getString("Language") == "AR"
                           ? "اسم صاحب البطاقة"
@@ -128,14 +132,22 @@ class MySampleState extends State<MySample> {
                           labelText:
                               AppLocalizations.of(context)!.translate("Number"),
                           hintText: 'XXXX XXXX XXXX XXXX',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          labelStyle: const TextStyle(color: Colors.grey),
+                          labelStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+                          fontFamily: "readPro",color: Colors.grey
+                          ),
+                          hintStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+                          fontFamily: "readPro",color: Colors.grey
+                          ),
                           focusedBorder: border,
                           enabledBorder: border,
                         ),
                         expiryDateDecoration: InputDecoration(
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          labelStyle: const TextStyle(color: Colors.grey),
+                          labelStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+                          fontFamily: "readPro",color: Colors.grey
+                          ),
+                          hintStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+                          fontFamily: "readPro",color: Colors.grey
+                          ),
                           focusedBorder: border,
                           enabledBorder: border,
                           labelText: AppLocalizations.of(context)!
@@ -143,16 +155,24 @@ class MySampleState extends State<MySample> {
                           hintText: 'XX/XX',
                         ),
                         cvvCodeDecoration: InputDecoration(
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          labelStyle: const TextStyle(color: Colors.grey),
+                          labelStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+                          fontFamily: "readPro",color: Colors.grey
+                          ),
+                          hintStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+                          fontFamily: "readPro",color: Colors.grey
+                          ),
                           focusedBorder: border,
                           enabledBorder: border,
                           labelText: 'CVV',
                           hintText: 'XXX',
                         ),
                         cardHolderDecoration: InputDecoration(
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          labelStyle: const TextStyle(color: Colors.grey),
+                          labelStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+                          fontFamily: "readPro",color: Colors.grey
+                          ),
+                          hintStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+                          fontFamily: "readPro",color: Colors.grey
+                          ),
                           focusedBorder: border,
                           enabledBorder: border,
                           labelText: AppLocalizations.of(context)!
@@ -164,8 +184,12 @@ class MySampleState extends State<MySample> {
                         padding: const EdgeInsets.all(15),
                         child: TextFormField(
                           decoration: InputDecoration(
-                            hintStyle: const TextStyle(color: Colors.grey),
-                            labelStyle: const TextStyle(color: Colors.grey),
+                            labelStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+                          fontFamily: "readPro",color: Colors.grey
+                          ),
+                          hintStyle: TextStyle(fontSize: (13/360)*MediaQuery.of(context).size.width,
+                          fontFamily: "readPro",color: Colors.grey
+                          ),
                             focusedBorder: border,
                             enabledBorder: border,
                             labelText: AppLocalizations.of(context)!
@@ -202,7 +226,7 @@ class MySampleState extends State<MySample> {
                                       : "rye",
                               color: Theme.of(context).colorScheme.secondary,
                               fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                              fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
                               //package: 'flutter_credit_card',
                             ),
                           ),
@@ -242,7 +266,7 @@ class MySampleState extends State<MySample> {
                         Navigator.of(context).pop();
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
+                        backgroundColor: Colors.green,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15)),
                       ),

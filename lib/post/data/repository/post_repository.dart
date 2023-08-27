@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_renaming_method_parameters, non_constant_identifier_names
+
 import 'package:dartz/dartz.dart';
 import 'package:fayoumtour/post/data/models/comment_model.dart';
 

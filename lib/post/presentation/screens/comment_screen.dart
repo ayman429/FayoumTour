@@ -1,7 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/notification/add notification.dart';
+import '../../../core/notification/add_notification.dart';
 import '../../../core/services/services_locator.dart';
 import '../../../core/utils/app_localizations.dart';
 import '../../../core/utils/constance/shared_pref.dart';
@@ -118,8 +120,8 @@ class _CommentScreenState extends State<CommentScreen> {
                               element.toString() &&
                           widget.createdBy_id.toString() !=
                               element.toString()) {
-                        print("///////////////////");
-                        print(element.toString());
+                        //print("///////////////////");
+                        //print(element.toString());
                         AddNotification().addNotification(
                           topics: "/topics/COMMENT_EN${element.toString()}",
                           body:

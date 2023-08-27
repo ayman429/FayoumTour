@@ -1,7 +1,8 @@
 import '../../domain/entities/change_password.dart';
 
 class ChangePasswordModel extends ChangePassword {
-  ChangePasswordModel(
+  const ChangePasswordModel(
+      // ignore: non_constant_identifier_names
       {required String new_password1, required String new_password2})
       : super(new_password1: new_password1, new_password2: new_password2);
 

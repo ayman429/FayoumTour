@@ -97,14 +97,16 @@ class AddLike extends StatelessWidget {
                 likeMap[postId] == 1
                     ? Text(
                         AppLocalizations.of(context)!.translate("Liked"),
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.blue,
+                          fontSize: (14 / 360) * MediaQuery.of(context).size.width,fontFamily: "readPro",
                         ),
                       )
                     : Text(
                         AppLocalizations.of(context)!.translate("Like"),
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.grey,
+                          fontSize: (14 / 360) * MediaQuery.of(context).size.width,fontFamily: "readPro",
                         ),
                       )
               ],

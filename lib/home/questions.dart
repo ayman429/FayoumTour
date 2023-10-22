@@ -33,7 +33,7 @@ class _TourismScreenState extends State<TourismScreen>
       : "Select Tourism Type";
   List<String> options = [
     "Islamic antiquities\n",
-    "Coptic antiquities\n",
+    "Coptic antiquities",
     "Greek and Roman Antiquities\n",
     "Pharaonic antiquities\n"
   ];
@@ -50,7 +50,7 @@ class _TourismScreenState extends State<TourismScreen>
     "pharonic.jpg"
   ];
 
-  final List<String> _selectedOption = ['', '', ''];
+  final List<String> _selectedOption = ['', '', '',''];
 
   @override
   void initState() {

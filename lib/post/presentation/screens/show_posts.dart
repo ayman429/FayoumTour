@@ -617,8 +617,10 @@ class ShowPosts extends StatelessWidget {
                                           Text(
                                               AppLocalizations.of(context)!
                                                   .translate("Comment"),
-                                              style: const TextStyle(
-                                                  color: Colors.grey))
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: (14 / 360) * MediaQuery.of(context).size.width,fontFamily: "readPro",
+                                                  ))
                                         ],
                                       )),
                                 ],

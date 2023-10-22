@@ -32,9 +32,8 @@ class HomeCardsTourismPlacesTypeSearch extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    // tourismPlaceSearchByFeild,
-                    AppLocalizations.of(context)!
-                        .translate(tourismPlaceSearchByFeild),
+                    //tourismPlaceSearchByFeild.trimRight(),
+                    AppLocalizations.of(context)!.translate(tourismPlaceSearchByFeild.trimRight()),
                     style: sharedPreferences!.getString("Language") == "AR"
                     ?  TextStyle(fontFamily: "dg", fontSize: (18/360)*MediaQuery.of(context).size.width,//18,
                     )

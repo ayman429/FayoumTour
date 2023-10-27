@@ -450,13 +450,11 @@ class _AddPostComponentState extends State<AddPostComponent> {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 10),
                   // input text post
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 5),
-                    child: Expanded(
-                      child: TextFormField(
+                    child: TextFormField(
                         textDirection: theTextDirection,
                         style: TextStyle(
                           fontSize: (25 / 360) *
@@ -497,7 +495,6 @@ class _AddPostComponentState extends State<AddPostComponent> {
                           _text = value;
                         },
                       ),
-                    ),
                   ),
 
                   // show images selected

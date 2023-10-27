@@ -497,7 +497,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                         widget.data[index].check_in,
                                         style: TextStyle(
                                             fontFamily: "acme",
-                                            fontSize: (18 / 360) *
+                                            fontSize: (16 / 360) *
                                                 MediaQuery.of(context)
                                                     .size
                                                     .width, //18,
@@ -557,7 +557,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                         widget.data[index].check_out,
                                         style: TextStyle(
                                             fontFamily: "acme",
-                                            fontSize: (18 / 360) *
+                                            fontSize: (16 / 360) *
                                                 MediaQuery.of(context)
                                                     .size
                                                     .width, //18,
@@ -627,7 +627,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                 .substring(0, 10),
                                             style: TextStyle(
                                                 fontFamily: "acme",
-                                                fontSize: (17 / 360) *
+                                                fontSize: (14 / 360) *
                                                     MediaQuery.of(context)
                                                         .size
                                                         .width, //17,
@@ -643,7 +643,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                 .substring(11, 16),
                                             style: TextStyle(
                                                 fontFamily: "acme",
-                                                fontSize: (17 / 360) *
+                                                fontSize: (14 / 360) *
                                                     MediaQuery.of(context)
                                                         .size
                                                         .width, //17,
@@ -701,15 +701,14 @@ class _GetReservationDataState extends State<GetReservationData> {
                                             ),
                                           ]),
                                       child: Center(
-                                          child: Expanded(
-                                        child: Padding(
+                                          child: Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 6),
                                           child: Text(
                                             widget.data[index].phone_number,
                                             style: TextStyle(
                                                 fontFamily: "acme",
-                                                fontSize: (17 / 360) *
+                                                fontSize: (15 / 360) *
                                                     MediaQuery.of(context)
                                                         .size
                                                         .width, //17,
@@ -719,7 +718,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                             maxLines: 2,
                                           ),
                                         ),
-                                      ))),
+                                      )),
                                 ],
                               ),
                             ],
@@ -799,7 +798,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                       "AR"
                                                   ? TextStyle(
                                                       fontFamily: "messiri",
-                                                      fontSize: (18 / 360) *
+                                                      fontSize: (17 / 360) *
                                                           MediaQuery.of(context)
                                                               .size
                                                               .width, //18,
@@ -808,7 +807,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                           FontWeight.bold)
                                                   : TextStyle(
                                                       fontFamily: "acme",
-                                                      fontSize: (18 / 360) *
+                                                      fontSize: (17 / 360) *
                                                           MediaQuery.of(context)
                                                               .size
                                                               .width, //18,
@@ -936,7 +935,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                           "AR"
                                                       ? TextStyle(
                                                           fontFamily: "messiri",
-                                                          fontSize: (18 / 360) *
+                                                          fontSize: (17 / 360) *
                                                               MediaQuery.of(
                                                                       context)
                                                                   .size
@@ -946,7 +945,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                               FontWeight.bold)
                                                       : TextStyle(
                                                           fontFamily: "acme",
-                                                          fontSize: (18 / 360) *
+                                                          fontSize: (17 / 360) *
                                                               MediaQuery.of(
                                                                       context)
                                                                   .size
@@ -1408,7 +1407,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                           "AR"
                                                       ? TextStyle(
                                                           fontFamily: "messiri",
-                                                          fontSize: (18 / 360) *
+                                                          fontSize: (17 / 360) *
                                                               MediaQuery.of(
                                                                       context)
                                                                   .size
@@ -1418,7 +1417,7 @@ class _GetReservationDataState extends State<GetReservationData> {
                                                               FontWeight.bold)
                                                       : TextStyle(
                                                           fontFamily: "acme",
-                                                          fontSize: (18 / 360) *
+                                                          fontSize: (17 / 360) *
                                                               MediaQuery.of(
                                                                       context)
                                                                   .size
